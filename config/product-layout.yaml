@@ -28,12 +28,8 @@
 # the delivery of this work
 ################################################################################
 header:
-  productName: REPLACEME
+  productName: Identity and Access Management
   productionDescription: REPLACEME
-  whoIsItFor: REPLACEME
-  image: 
-    link: "/assets/images/Fiserv_Logo.jpg"
-    altText: REPLACEME™
 featuredFeatures:
   - title: REPLACE ME
     description:  REPLACE ME
