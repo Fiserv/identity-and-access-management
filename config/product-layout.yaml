@@ -31,9 +31,10 @@ header:
   productName: Identity and Access Management
   productionDescription: REPLACEME
 featuredFeatures:
-  - title: REPLACE ME
-    description:  REPLACE ME
-    tags: ["REPLACEME", "REPLACEME", "REPLACEME"]
+  - title: Multi-Factor Authentication
+    description: > 
+       Multo factor authentication high level details
+    tags: ["tag1", "tag2"]
     bullets: ["REPLACEME", "REPLACEME" ]  
     relatedDocs:
       - relatedDoc: 
@@ -50,17 +51,27 @@ featuredFeatures:
         link: ./docs/REPLACE-ME3.md
     relatedAPIs:
       - relatedAPI: 
-        title: REPLACEME
-        description: REPLACEME
-        type: "patch"        
-        path: "/v1/REPLACEME1"
-      - relatedAPI: 
-        title: REPLACEME
-        description: REPLACEME
+        title: Add Device
+        description: initiate device registration.
         type: "post"        
-        path: "/v1/REPLACEME2"
+        path: "/v1/users/{username}/device"
       - relatedAPI: 
-        title: REPLACEME
-        description: REPLACEME
+        title: Validate Device
+        description: Validate device
+        type: "post"        
+        path: "/v1/users/{username}/device/{authId}"
+      - relatedAPI: 
+        title: Get device 
+        description: Get list of user devices
         type: "get"        
-        path: "/v1/REPLACEME3"
+        path: "/v1/users/{username}/device"
+      - relatedAPI: 
+        title: Request Authentication
+        description: API for initiating device authentication
+        type: "post"        
+        path: "/v1/deviceauthentications"
+      - relatedAPI: 
+        title: Validation device
+        description: API for validating  device authentication
+        type: "post"        
+        path: "/v1/deviceauthentications/{authid}"

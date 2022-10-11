@@ -28,344 +28,483 @@
 # the delivery of this work
 ################################################################################
 
-openapi: 3.0.2
+openapi: 3.0.0
 info:
-  title: Dev Portal Tenant APIs.
-  description: To onboard properly into the Fiserv Developer Studio as a tenant each
-    product must support these APIs so that we can retrieve product specific API specifications
-    and documentation.
+  title: CIAM MFA API
   version: 1.0.0
+  description: >-
+    This API Specification is designed to provide technical guidance required to
+    consume and integrate with our APIs for multi factor authentication.
+  x-logo:
+    url: ''
 servers:
-  - url: https://tenants.fiserv.com/
+  - url: https://ciam-mfa-api-dev.1dc.com/ciam-mfa/v1
 paths:
-  /v1/products:
+  /users/{username}/devices:
     get:
       tags:
-        - Tenant
-      x-group-name: Tenant
-      x-proxy-name: products
-      summary: Returns tenant provider API.
-      operationId: TenantProviderID
+        - MFA device endpoint definition
+      summary: Get All  User Devices registered for MFA.
+      description: >-
+        Returns a list of all device resources associated with the specified
+        username. Request required username in the path and response body will
+        have array of devices. Each array object will have an individual device
+        information consisting of deviceType , deviceName, CreateDate.
+      parameters:
+        - name: username
+          schema:
+            type: string
+          in: path
+          required: true
+          description: Username
       responses:
-        200:
-          description: Tenant provider response. <a href="https://fiserv.com" rel="noopener noreferrer" target="_blank">external link</a> <a href="../docs?path=docs/getting-started/setup-tenant/setup-tenant.md">Setup Tenant</a>
+        '200':
+          description: Successful response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TenantProviderResponse'
-            text/yaml:
-              schema:
-                $ref: '#/components/schemas/TenantProviderResponse'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/TenantProviderResponse'
-  /v1/apis:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Device'
+              examples:
+                Devices:
+                  summary: List of Devices
+                  $ref: '#/components/examples/DeviceList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      operationId: getDeviceDetails
     post:
       tags:
-        - Specs
-      x-group-name: Specs
-      x-proxy-name: apis
-      summary: Returns OpenAPI Spec.
-      operationId: APISpecProviderId
+        - MFA device registration endpoint definition
+      summary: Create  MFA User Device.
+      description: >
+        Operation to add a Time-based One-time Password (TOTP) authenticator 
+        device type to the specified user resource. Username is required as in
+        path attribute. Username should be unique for your application. Request
+        body requires deviceType and deviceName as additional attribute.
+        deviceName will be associated with a specific device for a user.
+        deviceType will be TOTP. The response returns a  authentication ID that
+        is required for the next steps in the flow to validate and activate the
+        device for authentication.  Response also returns registration URI that
+        will be a  string that specifies the authenticator key URI (for example,
+        otpauth://totp/abc@example.com?secret={secretValue}.
+      parameters:
+        - name: username
+          description: User Name associated associated with the device.
+          schema:
+            type: string
+          in: path
+          required: true
       requestBody:
-        description: Filter Request
+        description: Request object of a device.
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SpecsFilterRequest'
-        required: false
+              $ref: '#/components/schemas/Device'
+            examples:
+              TOTPDeviceRegistration:
+                summary: Request to register TOTP Devices
+                $ref: '#/components/examples/TOTPDeviceRegistrationRequest'
+        required: true
       responses:
-        200:
-          description: ""
-          content: {}
-      x-codegen-request-body-name: Body
-  /v1/docs:
-    get:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+              examples:
+                TOTPDeviceRegistration:
+                  summary: Request to register TOTP Devices
+                  $ref: '#/components/examples/TOTPDeviceRegistrationResponse'
+          description: Created
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      operationId: createMFADevice
+  /users/{username}/devices/{authId}:
+    post:
+      summary: activate  device
+      description: >-
+        Device is activated using TOTP displayed on the authenticator
+        application.
       tags:
-        - Documents
-      x-group-name: Documents
-      x-proxy-name: docs
-      summary: Returns Docs in markdown format.
-      operationId: DocsAPIId
+        - mfa device activation endpoint
+      requestBody:
+        description: >-
+          operation to activate the TOTP device specified in the request URL. 
+          Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ActivationRequest'
+            examples:
+              TOTPDeviceActivation:
+                summary: TOTP Device acticvation request
+                $ref: '#/components/examples/TOTPDeviceActivationRequest'
+        required: true
       parameters:
-        - in: query
-          name: path
+        - in: path
+          name: username
+          description: >-
+            Username of the user activating the device. This should be similar
+            to username used during registration
           schema:
             type: string
           required: true
-          description: Markdown document path
+        - in: path
+          name: authId
+          description: >-
+            Username of the user activating the device. This should be similar
+            to username used during registration
+          schema:
+            type: string
+          required: true
       responses:
-        200:
-          description: ""
-          content: {}
-      x-codegen-request-body-name: Body
-  /v1/layouts:
-    get:
-      tags:
-        - Layout
-      x-group-name: Layout
-      x-proxy-name: layouts
-      summary: Returns the product page layout.
-      operationId: LayoutAPIId
-      responses:
-        200:
-          description: This text will appear as description of your response body.
+        '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PageLayoutResponse'
-            text/yaml:
-              schema:
-                $ref: '#/components/schemas/PageLayoutResponse'
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/PageLayoutResponse'
-  /live:
-    get:
+                $ref: '#/components/schemas/ActivationResponse'
+              examples:
+                TOTPDeviceActivation:
+                  summary: TOTP Device acticvation request
+                  $ref: '#/components/examples/TOTPDeviceActivationResponse'
+          description: Successful Response
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      operationId: activateDevice
+  /deviceAuthentications:
+    post:
+      description: >-
+        The POST deviceAuthentications operation initiates an MFA device
+        authentication flow.  Operation supports authentication using SMS, EMAIL
+        and registered TOTP device such as Google authenticator.  The request
+        body requires a username, deviceType  attribute to associate a user with
+        the MFA flow. SMS or EMAIL based OTP based authentication  requires
+        either email or Phone Number depending on deviceType selected. TOTP flow
+        required deviceName provided during device registration  flow . For 
+        device registration  refer device registration API. The response returns
+        a  authentication ID that is required for the next steps in the flow.
+        The response also includes a status and message.
+      summary: Initialize Device Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationRequest'
+            examples:
+              EmailAuthentication:
+                summary: Email authentication request
+                $ref: '#/components/examples/EmailAuthenticationRequest'
+              SMSAuthentication:
+                summary: SMS authentication request
+                $ref: '#/components/examples/SmsAuthenticationRequest'
+              TOTPAuthentication:
+                summary: TOTP authentication request
+                $ref: '#/components/examples/TotpAuthenticationRequest'
+        required: true
       tags:
-        - HealthCheck
-      x-group-name: HealthCheck
-      x-proxy-name: live
-      summary: Health check probes.
-      operationId: healthCheckId
-      x-links: 
-        link1: 
-          description: Developer Studio
-          flag: external
-          url:  'https://dev-developerstudio.fiserv.com/'
-        link2: 
-          description: Setup tenant
-          flag: internal
-          url:  '../docs?path=docs/getting-started/setup-tenant/setup-tenant.md'
-        link3: 
-          description: Fiserv Portal
-          flag: external
-          url:  'https://fiserv.com'
+        - device authentication
       responses:
-        200:
-          description: Health check.
+        '201':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LiveProbeResponse'
-  
+                $ref: '#/components/schemas/AuthenticationResponse'
+              examples:
+                EmailAuthentication:
+                  summary: Email authentication response
+                  $ref: '#/components/examples/EmailAuthenticationResponse'
+                SMSAuthentication:
+                  summary: SMS authentication response
+                  $ref: '#/components/examples/SmsAuthenticationResponse'
+                TOTPAuthentication:
+                  summary: TOTP authentication response
+                  $ref: '#/components/examples/TotpAuthenticationResponse'
+          description: Successfully created.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      operationId: initializeDeviceAuthentication
+  /deviceAuthentications/{authId}:
+    post:
+      summary: validate Device authentication request
+      description: >-
+        The multi-factor authentication flow uses a one-time passcode (OTP) sent
+        to the user's device to continue the flow. The user receives the OTP on
+        a specified device and submits it as a step in the authentication
+        process. Prerequisite is to call Initialize device authentication to get
+        a {{authID}} for the endpoint.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidationRequest'
+            examples:
+              EmailAuthentication:
+                summary: Email authentication response
+                $ref: '#/components/examples/ValidationRequest'
+              SMSAuthentication:
+                summary: SMS authentication response
+                $ref: '#/components/examples/ValidationRequest'
+              TOTPAuthentication:
+                summary: TOTP authentication response
+                $ref: '#/components/examples/ValidationRequest'
+        required: true
+      tags:
+        - device authentication
+      parameters:
+        - name: authId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationResponse'
+          description: Successful operation.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      operationId: validateOTP
 components:
+  examples:
+    DeviceList:
+      value:
+        - deviceType: TOTP
+          deviceName: Google
+          status: Active
+          createdAt: 06/16/2022
+        - deviceType: TOTP
+          deviceName: MSFT
+          status: Active
+          createdAt: 07/16/2022
+    ValidationRequest:
+      value:
+        - otp: '3423423'
+    EmailAuthenticationRequest:
+      value:
+        - userName: jdoe
+          deviceType: EMAIL
+          email: a@b.com
+          deviceName: MyEmail
+          templateName: emailTemplate
+    SmsAuthenticationRequest:
+      value:
+        - userName: jdoe
+          deviceType: SMS
+          email: 999-000-9999
+          deviceName: MySMS
+          templateName: SMSTemplate
+    TotpAuthenticationRequest:
+      value:
+        - userName: jdoe
+          deviceType: TOTP
+          deviceName: Google
+    TotpAuthenticationResponse:
+      value:
+        - authId: '654564645'
+          status: Success
+          message: OTP has been sent to the device
+    EmailAuthenticationResponse:
+      value:
+        - authId: '798798789'
+          status: Success
+          message: OTP has been sent to the device
+    SmsAuthenticationResponse:
+      value:
+        - authId: TOTP
+          status: Success
+          message: OTP has been sent to the device
+    TOTPDeviceRegistrationRequest:
+      value:
+        deviceType: TOTP
+        deviceName: Google
+    TOTPDeviceRegistrationResponse:
+      value:
+        deviceType: TOTP
+        deviceName: Google
+        status: ACTIVATION_REQUIRED
+        authId: 30706e95-5e38-4148-b0e3-1e801cd87660"
+        registrationUri: >-
+          otpauth://totp/tomjones@example.com?secret=BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
+        secret: BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
+    TOTPDeviceActivationRequest:
+      value:
+        - otp: '312312'
+    TOTPDeviceActivationResponse:
+      value:
+        - deviceType: TOTP
+          status: ''
+  responses:
+    BadRequest:
+      x-model-version: 1
+      description: The request cannot be validated.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10008'
+            message: Invalid Authid
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+    Unauthorized:
+      x-model-version: 1
+      description: The request was unauthorized.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10001'
+            message: Access token has expired
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+    NotFound:
+      x-model-version: 1
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10003'
+            message: User not found, please check the username
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+    ServerError:
+      x-model-version: 1
+      description: An unexpected internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10010'
+            message: An unexpected internal server error occurred. Try again later
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
   schemas:
-    LiveProbeResponse:
-      type: object
+    ErrorResponse:
       properties:
+        error:
+          format: int32
+          type: integer
         message:
           type: string
-          description: Message
-    PageLayoutResponse:
-      type: array
-      items:
-        type: object
-        properties:
-          hero:
-            type: array
-            items:
-              type: object
-              properties:
-                descrption:
-                  type: string
-                  description: Descrption
-                image:
-                  type: string
-                  description: Image
-            description: Hero
-          journey Cards:
-            type: array
-            items:
-              type: object
-              properties:
-                journeyCard:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      contextualNavigationCards:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            contextualNavigationCard:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  description:
-                                    type: string
-                                    description: Description
-                                  link:
-                                    type: array
-                                    items:
-                                      type: object
-                                      properties:
-                                        type:
-                                          type: string
-                                          description: Type
-                                        uri:
-                                          type: string
-                                          description: URI
-                                    description: Link
-                                  title:
-                                    type: string
-                                    description: Title
-                              description: ContextualNavigationCard
-                        description: ContextualNavigationCards
-                      description:
-                        type: string
-                        description: Description
-                      link:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            type:
-                              type: string
-                              description: Type
-                            uri:
-                              type: string
-                              description: URI
-                        description: Link
-                      title:
-                        type: string
-                        description: Title
-                  description: JourneyCard
-            description: JourneyCards
-    SpecsFilterRequest:
-      type: object
+        traceid:
+          type: string
+        timestamp:
+          type: string
+    ActivationRequest:
       properties:
-        categories:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name
-              subcategories:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      description: Name
-                description: Subcategories
-          description: Categories
-    TenantProviderResponse:
-      type: object
+        otp:
+          format: password
+          type: string
+    ActivationResponse:
       properties:
-        brand:
+        status:
           type: string
-          description: Brand
-        brandDescription:
+        message:
           type: string
-          description: BrandDescription
-        brandLogoURL:
+    Type:
+      enum:
+        - EMAIL
+        - SMS
+        - TOTP
+      type: string
+    AuthenticationRequest:
+      properties:
+        userName:
           type: string
-          description: BrandLogoURL
-        categories:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Name
-              subcategories:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                      description: Name
-                    value:
-                      type: string
-                      description: Value
-                description: Subcategories
-              value:
-                type: string
-                description: Value
-          description: Categories
-        name:
+        deviceType:
+          $ref: '#/components/schemas/Type'
+        phoneNumber:
           type: string
-          description: Name
-        product:
-          type: object
-          properties:
-            apiSpecification:
-              type: string
-              description: APISpecification 
-            description:
-              type: string
-              description: Description
-            documentation:
-              type: string
-              description: Documentation
-            featured:
-              type: boolean
-              description: Featured
-            layout:
-              type: string
-              description: Layout
-            logoURL:
-              type: string
-              description: LogoURL
-          description: Product
-        solution:
+        email:
           type: string
-          description: Solution
-        title:
+        deviceName:
           type: string
-          description: Title
-  responses:
-    apiSpecResponseWrapper:
-      description: OpenAPI Spec for the APIs. 
-      content: {}
-    docsResponseWrapper:
-      description: Markdown files.
-      content: {}
-    liveResponse:
-      description: Health check.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/LiveProbeResponse'
-        text/yaml:
-          schema:
-            $ref: '#/components/schemas/LiveProbeResponse'
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/LiveProbeResponse'
-    productPage:
-      description: This text will appear as description of your response body. 
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/PageLayoutResponse'
-        text/yaml:
-          schema:
-            $ref: '#/components/schemas/PageLayoutResponse'
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/PageLayoutResponse'
-    tenant:
-      description: This text will appear as description of your response body. 
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TenantProviderResponse'
-        text/yaml:
-          schema:
-            $ref: '#/components/schemas/TenantProviderResponse'
-        text/plain:
-          schema:
-            $ref: '#/components/schemas/TenantProviderResponse'
-  securitySchemes:
-    basic:
-      type: http
-      scheme: basic
+          example: iphone/android
+        templateName:
+          type: string
+          example: emailTemplate
+    AuthenticationResponse:
+      properties:
+        authId:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+    ValidationRequest:
+      properties:
+        otp:
+          format: password
+          type: string
+    ValidationResponse:
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    Device:
+      properties:
+        authId:
+          type: string
+        deviceType:
+          $ref: '#/components/schemas/Type'
+        status:
+          type: string
+        phoneNumber:
+          type: string
+        email:
+          type: string
+        deviceName:
+          type: string
+          example: iphone/android
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        secret:
+          type: string
+        registrationUri:
+          type: string
+  securitySchemes: {}
+  headers: {}
+  parameters: {}
+tags: []
+security: []
+
