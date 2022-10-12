@@ -44,7 +44,7 @@ paths:
     get:
       tags:
         - MFA device endpoint definition
-      x-proxy-name: Device
+      x-proxy-name: Devices
       summary: Get All  User Devices registered for MFA.
       description: >-
         Returns a list of all device resources associated with the specified
@@ -83,7 +83,7 @@ paths:
     post:
       tags:
         - MFA device registration endpoint definition
-      x-proxy-name: Device
+      x-proxy-name: Create
       summary: Create  MFA User Device.
       description: >
         Operation to add a Time-based One-time Password (TOTP) authenticator 
@@ -136,7 +136,7 @@ paths:
       operationId: createMFADevice
   /users/{username}/devices/{authId}:
     post:
-      x-proxy-name: Device
+      x-proxy-name: Register
       summary: activate  device
       description: >-
         Device is activated using TOTP displayed on the authenticator
@@ -195,7 +195,7 @@ paths:
       operationId: activateDevice
   /deviceAuthentications:
     post:
-      x-proxy-name: Auth
+      x-proxy-name: Authenticate
       description: >-
         The POST deviceAuthentications operation initiates an MFA device
         authentication flow.  Operation supports authentication using SMS, EMAIL
@@ -254,7 +254,7 @@ paths:
       operationId: initializeDeviceAuthentication
   /deviceAuthentications/{authId}:
     post:
-      x-proxy-name: Auth
+      x-proxy-name: Authorize
       summary: validate Device authentication request
       description: >-
         The multi-factor authentication flow uses a one-time passcode (OTP) sent
