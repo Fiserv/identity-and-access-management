@@ -194,8 +194,8 @@ paths:
           $ref: '#/components/responses/ServerError'
       operationId: activateDevice
   /deviceAuthentications:
-    x-proxy-name: Auth
     post:
+      x-proxy-name: Auth
       description: >-
         The POST deviceAuthentications operation initiates an MFA device
         authentication flow.  Operation supports authentication using SMS, EMAIL
