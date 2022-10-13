@@ -7,9 +7,9 @@ tags: [Getting Started, Card Not Present, Card Present, In-Person, Online, Mobil
 Fiserv Identity and access managment API  provides a simple way through [Developer Studio](?path=docs/Getting-Started/Getting-Started-Dev-Portal.md) to integrate Identity and access managment functionality such as multi-factor authentication functionality. 
 
 Multi-factor authentication (MFA) is an authentication method in which a computer user is granted access only after successfully presenting two or more pieces of evidence (or factors) to an authentication mechanism: 
-* Knowledge (something the user and only the user knows)
-* Possession (something the user and only the user has)
-* Inherence (something the user and only the user is)
+1. Knowledge (something the user and only the user knows)
+2. Possession (something the user and only the user has)
+3. Inherence (something the user and only the user is)
 
 By their nature, inherent factors are the strongest authentication factors and pose the lowest risk to security vulnerability.
 
