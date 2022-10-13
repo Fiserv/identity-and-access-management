@@ -85,7 +85,7 @@ paths:
       tags:
         - MFA device creation endpoint definition
       x-group-name: 'Device'
-      x-proxy-name: 'Create'
+      x-proxy-name: 'Add'
       summary: Create  MFA User Device.
       description: >
         Operation to add a Time-based One-time Password (TOTP) authenticator 
@@ -141,7 +141,7 @@ paths:
       tags:
         - mfa device activation endpoint
       x-group-name: 'Device'
-      x-proxy-name: 'Activate'
+      x-proxy-name: 'Register'
       summary: activate  device
       description: >-
         Device is activated using TOTP displayed on the authenticator
