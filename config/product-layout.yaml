@@ -37,17 +37,13 @@ featuredFeatures:
     bullets: ["REPLACEME", "REPLACEME" ]  
     relatedDocs:
       - relatedDoc: 
-        title: REPLACEME
-        description: REPLACEME
+        title: 
+        description: OTP 
         link: ./docs/REPLACE-ME1.md
       - relatedDoc: 
-        title: REPLACEME
+        title: Biometrics
         description: REPLACEME
         link: ./docs/REPLACE-ME2.md
-      - relatedDoc: 
-        title: REPLACEME
-        description: REPLACEME
-        link: ./docs/REPLACE-ME3.md
     relatedAPIs:
       - relatedAPI: 
         title: Add Device
