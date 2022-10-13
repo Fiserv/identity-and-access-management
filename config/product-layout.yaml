@@ -28,7 +28,7 @@
 # the delivery of this work
 ################################################################################
 header:
-  productName: Identity and Access Management 
+  productName: Identity and Access Management (CIAM)
   productionDescription: With developer-friendly, rest  communication standards, CIAM API  reduces development time and accelerates integration of access services and capabilities. Multi region availablitly brings the solution wherever integration is required, we bring highly secure and modern authentication practices  in a standardized  and for easier  integration.
 featuredFeatures:
   - title: Multi-Factor Authentication
