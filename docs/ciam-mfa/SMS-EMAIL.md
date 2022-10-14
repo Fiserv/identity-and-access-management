@@ -4,11 +4,15 @@ The PIN Pad or device used to capture the payment source is connected to the ter
 
 Commerce Hub supports the following encrypted payment source types: [EMV chip and PIN](?path=docs/In-Person/Encrypted-Payments/EMV.md), [track data (magstripe)](?path=docs/In-Person/Encrypted-Payments/Track.md), NFC/contactless, and [manual entry (EMV fallback)](?path=docs/In-Person/Encrypted-Payments/Manual.md).
 
----
-- [Step 1: Create Keys](#step-1-create-keys)
-- [Step 2: Get Payment Details](#step-2-get-payment-details)
-- [Step 3: Process Payment](#step-3-process-payment)
-- [Step 4: Finalize Transaction](#step-4-finalize-transaction)
+---  
+
+- [Step 1: Create Keys](#step-1-create-keys)  
+
+- [Step 2: Get Payment Details](#step-2-get-payment-details)  
+
+- [Step 3: Process Payment](#step-3-process-payment)  
+
+- [Step 4: Finalize Transaction](#step-4-finalize-transaction)  
 
 
 ---
@@ -79,7 +83,7 @@ type: tab
 titles: Request, Response
 -->
 
-##### Example of a charge payload request using `dynamicDescriptors`.
+### Example of a charge payload request using `dynamicDescriptors`
 
 ```json
  {
@@ -123,7 +127,7 @@ titles: Request, Response
 type: tab
 -->
 
-##### Example of a charge (201: Created) response.
+### Example of a charge (201: Created) response
 
 <!-- theme: info -->
 > See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
@@ -199,7 +203,7 @@ type: tab
 
 
 ---
-## See also 
+## See also  
 
 - [API Explorer](./api/?type=post&path=/payments/v1/charges) 
 
