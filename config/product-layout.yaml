@@ -37,13 +37,13 @@ featuredFeatures:
     bullets: ["REPLACEME", "REPLACEME" ]  
     relatedDocs:
       - relatedDoc: 
-        title: 
+        title: One-time passcode (OTP)
         description: OTP 
-        link: ./docs/REPLACE-ME1.md
+        link: ./docs/OTP.md
       - relatedDoc: 
-        title: Biometrics
-        description: REPLACEME
-        link: ./docs/REPLACE-ME2.md
+        title: Biometrics Authentication
+        description: Thi section is for authentication using 
+        link: ./docs/biometrics.md
     relatedAPIs:
       - relatedAPI: 
         title: Add Device
