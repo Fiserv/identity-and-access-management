@@ -36,10 +36,13 @@
     sections:
        - link: docs/ciam-mfa/sma-email.md
          title: MFA with SMS/EMAIL
+         type: recipe
        - link: docs/ciam-mfa/TOTP.md
          title: MFA with TOTP
+         type: recipe
        - link: docs/ciam-mfa/yubikey.md
          title: Authentication using Yubikey
+         type: recipe
 - sections:
   - title: Release notes
     sections:
