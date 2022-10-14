@@ -47,12 +47,12 @@ featuredFeatures:
     relatedAPIs:
       - relatedAPI: 
         title: Add Device
-        description: initiate device registration.
+        description: Operation to add  device type to the specified user resource.
         type: "post"        
         path: "/v1/users/{username}/device"
       - relatedAPI: 
-        title: Validate Device
-        description: Validate device
+        title: Register Device
+        description:  Operation to activate  an  added device.
         type: "post"        
         path: "/v1/users/{username}/device/{authId}"
       - relatedAPI: 
@@ -62,11 +62,11 @@ featuredFeatures:
         path: "/v1/users/{username}/device"
       - relatedAPI: 
         title: Request Authentication
-        description: API for initiating device authentication
+        description: API for   initiating device authentication flow. 
         type: "post"        
         path: "/v1/deviceauthentications"
       - relatedAPI: 
-        title: Validation device
-        description: API for validating  device authentication
+        title: Validate Authetnication.
+        description: API for validating  authentication code.
         type: "post"        
         path: "/v1/deviceauthentications/{authid}"

@@ -142,9 +142,9 @@ paths:
         - mfa device activation endpoint
       x-group-name: 'Device'
       x-proxy-name: 'Register'
-      summary: activate  device
+      summary: Register  device
       description: >-
-        Device is activated using TOTP displayed on the authenticator
+        Device is activated and registered using TOTP displayed on the authenticator
         application.
         
       requestBody:
@@ -212,7 +212,7 @@ paths:
         device registration  refer device registration API. The response returns
         a  authentication ID that is required for the next steps in the flow.
         The response also includes a status and message.
-      summary: Initialize Device Authentication
+      summary: Request Authentication
       requestBody:
         content:
           application/json:
@@ -260,8 +260,8 @@ paths:
   /deviceAuthentications/{authId}:
     post:
       x-group-name: 'Device'
-      x-proxy-name: 'Authorize'
-      summary: validate Device authentication request
+      x-proxy-name: 'Validate'
+      summary: Validate Device authentication request
       description: >-
         The multi-factor authentication flow uses a one-time passcode (OTP) sent
         to the user's device to continue the flow. The user receives the OTP on
