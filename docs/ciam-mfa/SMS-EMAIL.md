@@ -19,7 +19,8 @@ Commerce Hub supports the following encrypted payment source types: [EMV chip an
 
 ## Step 1: Create Keys 
 
-The benefits of a encyrpted PIN Pad solution are:
+The benefits of a encyrpted PIN Pad solution are:  
+
 - Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor 
 
 - All forms of electronic payment are accepted 
@@ -31,7 +32,8 @@ The benefits of a encyrpted PIN Pad solution are:
 
 ## Step 2: Get payment details 
 
-The benefits of a encyrpted PIN Pad solution are:
+The benefits of a encyrpted PIN Pad solution are:  
+
 - All forms of electronic payment are accepted 
 
 - Faster payment improving the customer experience 
@@ -65,19 +67,27 @@ The benefits of a encyrpted PIN Pad solution are:
 
 ## Step 3: Process Payment 
 
-The benefits of a encyrpted PIN Pad solution are:
-- Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor
-- All forms of electronic payment are accepted
-- Business security by enabling acceptance of chip and signature, and chip and PIN
+The benefits of a encyrpted PIN Pad solution are:  
+
+- Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor  
+
+- All forms of electronic payment are accepted  
+
+- Business security by enabling acceptance of chip and signature, and chip and PIN  
+
 <!-- theme: info -->
 > Commerce Hub highly recommends testing against our sandbox and end to end environments before using our production environment.
 
 ## Step 4: Finalize Transaction 
 
-The benefits of a encyrpted PIN Pad solution are:
-- Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor
-- All forms of electronic payment are accepted
-- Faster payment improving the customer experience
+The benefits of a encyrpted PIN Pad solution are:  
+
+- Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor  
+
+- All forms of electronic payment are accepted  
+
+- Faster payment improving the customer experience  
+
 <!--
 type: tab
 titles: Request, Response
@@ -202,7 +212,8 @@ type: tab
 <!-- type: tab-end -->
 
 
----
+---  
+
 ## See also  
 
 - [API Explorer](./api/?type=post&path=/payments/v1/charges) 
