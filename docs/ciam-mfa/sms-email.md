@@ -1,4 +1,4 @@
-# Recipe #3
+# MFA using SMS or EMAIL 
 
 The PIN Pad or device used to capture the payment source is connected to the terminal or software. The PIN Pad encrypts the customer's payment source and sends the encryption data to the terminal or software. The terminal or software initiates the RESTful API transaction with the encrypted payment source from the 3rd party device.
 
@@ -6,18 +6,16 @@ Commerce Hub supports the following encrypted payment source types: [EMV chip an
 
 ---  
 
-- [Step 1: Create Keys](#step-1-create-keys)  
+- [Step 1: Request Authorization Token](#step-1-request-authroization-token)  
 
-- [Step 2: Get Payment Details](#step-2-get-payment-details)  
+- [Step 2: Request OTP](#step-2-request-otp)  
 
-- [Step 3: Process Payment](#step-3-process-payment)  
-
-- [Step 4: Finalize Transaction](#step-4-finalize-transaction)  
+- [Step 3: Validate OTP](#step-3-validate-otp)  
 
 
 ---
 
-## Step 1: Create Keys 
+## Step 1: Request Authorization Token   
 
 The benefits of a encyrpted PIN Pad solution are:  
 
@@ -30,7 +28,7 @@ The benefits of a encyrpted PIN Pad solution are:
 - Business security by enabling acceptance of chip and signature, and chip and PIN 
 
 
-## Step 2: Get payment details 
+## Step 2: Request OTP 
 
 The benefits of a encyrpted PIN Pad solution are:  
 
@@ -65,20 +63,7 @@ The benefits of a encyrpted PIN Pad solution are:
 }
 ```
 
-## Step 3: Process Payment 
-
-The benefits of a encyrpted PIN Pad solution are:  
-
-- Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor  
-
-- All forms of electronic payment are accepted  
-
-- Business security by enabling acceptance of chip and signature, and chip and PIN  
-
-<!-- theme: info -->
-> Commerce Hub highly recommends testing against our sandbox and end to end environments before using our production environment.
-
-## Step 4: Finalize Transaction 
+## Step 3: Validate OTP 
 
 The benefits of a encyrpted PIN Pad solution are:  
 
