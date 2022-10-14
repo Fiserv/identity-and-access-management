@@ -13,18 +13,27 @@ Commerce Hub supports the following encrypted payment source types: [EMV chip an
 
 ---
 
-## Step 1: Create Keys
-The benefits of a encyrpted PIN Pad solution are:
-- Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor
-- All forms of electronic payment are accepted
-- Faster payment improving the customer experience
-- Business security by enabling acceptance of chip and signature, and chip and PIN
+## Step 1: Create Keys 
 
-## Step 2: Get payment details
 The benefits of a encyrpted PIN Pad solution are:
-- All forms of electronic payment are accepted
-- Faster payment improving the customer experience
-- Business security by enabling acceptance of chip and signature, and chip and PIN
+- Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor 
+
+- All forms of electronic payment are accepted 
+
+- Faster payment improving the customer experience 
+
+- Business security by enabling acceptance of chip and signature, and chip and PIN 
+
+
+## Step 2: Get payment details 
+
+The benefits of a encyrpted PIN Pad solution are:
+- All forms of electronic payment are accepted 
+
+- Faster payment improving the customer experience 
+
+- Business security by enabling acceptance of chip and signature, and chip and PIN 
+
 ```json
 {
   "amount": {
@@ -50,7 +59,8 @@ The benefits of a encyrpted PIN Pad solution are:
 }
 ```
 
-## Step 3: Process Payment
+## Step 3: Process Payment 
+
 The benefits of a encyrpted PIN Pad solution are:
 - Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor
 - All forms of electronic payment are accepted
@@ -58,7 +68,8 @@ The benefits of a encyrpted PIN Pad solution are:
 <!-- theme: info -->
 > Commerce Hub highly recommends testing against our sandbox and end to end environments before using our production environment.
 
-## Step 4: Finalize Transaction
+## Step 4: Finalize Transaction 
+
 The benefits of a encyrpted PIN Pad solution are:
 - Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor
 - All forms of electronic payment are accepted
@@ -188,13 +199,9 @@ type: tab
 
 
 ---
-## See also
-- [API Explorer](./api/?type=post&path=/payments/v1/charges)
-- [Charge Request](?path=docs/Resources/API-Documents/Payments/Charges.md)
-- [EMV Chip and PIN](?path=docs/In-Person/Encrypted-Payments/EMV.md)
-- [Track Data](?path=docs/In-Person/Encrypted-Payments/Track.md)
-- [NFC/Contactless](?path=docs/In-Person/Encrypted-Payments/Contactless.md)
-- [Manual Entry](?path=docs/In-Person/Encrypted-Payments/Manual.md)
+## See also 
+
+- [API Explorer](./api/?type=post&path=/payments/v1/charges) 
 
 
 ---

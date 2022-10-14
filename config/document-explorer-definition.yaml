@@ -34,12 +34,15 @@
   - title: CIAM MFA
     link: docs/getting-started-mfa.md
     sections:
-       - link: docs/ciam-mfa/sms-email.md
+       - link: docs/ciam-mfa/SMS-EMAIL.md
          title: MFA using SMS/EMAIL
+         type: recipe
        - link: docs/ciam-mfa/TOTP.md
          title: MFA using  TOTP
+         type: recipe 
        - link: docs/ciam-mfa/yubikey.md
-         title: MFA using Yubikey
+         title: MFA using Yubikey 
+         type: recipe
 - sections:
   - title: Release notes
     sections:
