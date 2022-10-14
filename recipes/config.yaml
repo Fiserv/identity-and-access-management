@@ -3,15 +3,13 @@
 ---
 version: 1.0.0
 recipes:
-- link: recipes/Recipe-1.md
-  title: Payment with JS
+- link: recipes/SMS-EMAIL.md
+  title: MFA with SMS/EMAIL
   type: recipe
-- link: recipes/Recipe-2.md
-  title: Payment with Py
+- link: recipes/TOTP.md
+  title: MFA with TOTP
   type: recipe
-- link: recipes/Recipe-3.md
-  title: Payment with Rust
+- link: recipes/FIDO2.md
+  title: MFA with FIDO2
   type: recipe
-- link: recipes/Recipe-4.md
-  title: Payment with Java
-  type: recipe
+
