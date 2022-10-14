@@ -24,19 +24,19 @@ Build an integration based on common use cases and industry verticals.
 <!-- type: card
 title: MFA using SMS or Email
 description: Commerce Hub allows integration with Apple Pay and Google Pay mobile wallets.
-link: ?path=ciam-mfa/sms-email.md
+link: ?path=docs/ciam-mfa/sms-email.md
 -->
 
 <!-- type: card
 title:  MFA using TOTP
 description: A split shipment is an ability to capture an authorization for the full order amount by performing a capture for each item shipped.
-link: ?path=ciam-mfa/TOTP.md
+link: ?path=docs/ciam-mfa/TOTP.md
 -->
 
 <!-- type: card
 title: MFA using Yubikey
 description: Stored Credentials also known as Credentials on File or Card on File, allows customer to authorize the storage of their payment source details for future transactionst as a Cardholder Initiated Transaction (CIT).
-link: ?path=ciam-mfa/yubikey.md
+link: ?path=docs/ciam-mfa/yubikey.md
 -->
 
 <!-- type: row-end -->

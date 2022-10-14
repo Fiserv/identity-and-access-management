@@ -34,7 +34,7 @@
   - title: CIAM MFA
     link: docs/getting-started-mfa.md
     sections:
-       - link: docs/ciam-mfa/sma-email.md
+       - link: docs/ciam-mfa/sms-email.md
          title: MFA using SMS/EMAIL
        - link: docs/ciam-mfa/TOTP.md
          title: MFA using  TOTP
