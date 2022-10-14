@@ -33,6 +33,13 @@
 - sections:
   - title: CIAM MFA
     link: docs/getting-started-mfa.md
+    sections:
+       - link: docs/ciam-mfa/sma-email.md
+         title: MFA with SMS/EMAIL
+       - link: docs/ciam-mfa/TOTP.md
+         title: MFA with TOTP
+       - link: docs/ciam-mfa/yubikey.md
+         title: Authentication using Yubikey
 - sections:
   - title: Release notes
     sections:
