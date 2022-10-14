@@ -42,7 +42,7 @@ featuredFeatures:
         link: ./docs/OTP.md
       - relatedDoc: 
         title: Biometrics Authentication
-        description: Thi section is for authentication using 
+        description: This section is for authentication using 
         link: ./docs/biometrics.md
     relatedAPIs:
       - relatedAPI: 
@@ -52,7 +52,7 @@ featuredFeatures:
         path: "/v1/users/{username}/device"
       - relatedAPI: 
         title: Register Device
-        description:  Operation to activate  an  added device.
+        description:  Operation to activate  an added device.
         type: "post"        
         path: "/v1/users/{username}/device/{authId}"
       - relatedAPI: 
@@ -66,7 +66,7 @@ featuredFeatures:
         type: "post"        
         path: "/v1/deviceauthentications"
       - relatedAPI: 
-        title: Validate Authetnication.
+        title: Validate Authentication.
         description: API for validating  authentication code.
         type: "post"        
         path: "/v1/deviceauthentications/{authid}"

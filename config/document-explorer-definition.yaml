@@ -32,7 +32,17 @@
   - title: Getting Started
     link: docs/getting-started.md
 - sections:
+  - title: CIAM MFA
+    link: docs/getting-started-MFA.md
+    sections:
+       - link: recipes/SMS-EMAIL.md
+         title: MFA with SMS/EMAIL
+       - link: recipes/TOTP.md
+         title: MFA with TOTP
+       - link: recipes/Yubikey.md
+         title: Authentication using Yubikey
+- sections:
   - title: Release notes
     sections:
-    - title: March 2022
-      link: docs/release-notes/2022/march.md
+        - title: March 2022
+          link: docs/release-notes/2022/march.md
