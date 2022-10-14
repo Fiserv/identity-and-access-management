@@ -1,12 +1,19 @@
 
-# Getting Started with CIAM MFA API
+# Getting Started with CIAM MFA API  
+
 Multi-factor authentication (MFA) is an authentication method in which a computer user is granted access only after successfully presenting two or more pieces of evidence (or factors) to an authentication mechanism:  
 
+
 - Knowledge (something the user and only the user knows)  
+
 - Possession (something the user and only the user has)  
+
 - Inherence (something the user and only the user is)  
+
 By their nature, inherent factors are the strongest authentication factors and pose the lowest risk to security vulnerability.  
+
 Fiserv Identity and access managment  provides  simple and easy to integrate MFA  capabilities for enabling MFA actions in authentication flows. CIAM API  gives you access to  most advance and secure authentication options.  
+
 ---
 
 ## Integration use cases
