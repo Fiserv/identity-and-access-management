@@ -14,6 +14,12 @@ There are steps  required at the application-side that should meet the below cri
 
 - Has a user base that have either e-mail addresses, mobile phone for SMS or TOTP  
 
+Customization:  
+
+- CIAM MFA API  allows to brand and customize notification template.  
+
+- CIAM MFA API allows your application to send email from a trusted domain that you own
+
 
 ---  
 
@@ -41,13 +47,17 @@ To get an access token, the following must be true:
 
 ## Step 2: Request OTP 
 
-The benefits of a encyrpted PIN Pad solution are:  
+API to initiate Second factor authentication by contacting the user using  email or SMS provided. 
 
-- All forms of electronic payment are accepted 
+- API will send one-time passcode to user device i.e. EMAIl address or a phone number. 
 
-- Faster payment improving the customer experience 
+- API will return   authId in response which will be required during device validation.  
 
-- Business security by enabling acceptance of chip and signature, and chip and PIN 
+- API supports custom templates that can be configured during application onboarding process. Custom template will allow to customize email and SMS messaging.
+
+
+
+
 
 <!--
 type: tab
@@ -83,16 +93,39 @@ type: tab
 }
 ```
 
+### Example of a request OTP  payload request using SMS 
+
+
+
+```json
+{
+    "userName": "jdoe",
+    "phoneNumber": "999-999-9999",
+    "deviceType": "SMS",
+}
+```
+<!--
+type: tab
+-->
+
+### Example of authentication request (201: Created) response
+
+```json
+{
+    "authId": "0063f27c-787b-4046-8b8e-a75e241b5ea6",
+    "status": "SUCCESS",
+    "message": "OTP has been sent to the device "
+}
+```
+
 <!-- type: tab-end -->
 ## Step 3: Validate OTP 
 
-The benefits of a encyrpted PIN Pad solution are:  
+API to validate one-time passcode that was sent on email or SMS provided.
 
-- Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor  
+- API will authId in path and otp in the body to complete the validation.
 
-- All forms of electronic payment are accepted  
-
-- Faster payment improving the customer experience  
+- API will HTTP code ,  status and message in response to the validation process.
 
 <!--
 type: tab
@@ -113,8 +146,6 @@ type: tab
 
 ### Example of a validation (200: Created) response
 
-<!-- theme: info -->
-> See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
 
 ```json
 {
