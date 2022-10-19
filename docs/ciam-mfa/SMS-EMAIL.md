@@ -1,12 +1,23 @@
 # MFA using SMS or EMAIL 
 
-The PIN Pad or device used to capture the payment source is connected to the terminal or software. The PIN Pad encrypts the customer's payment source and sends the encryption data to the terminal or software. The terminal or software initiates the RESTful API transaction with the encrypted payment source from the 3rd party device.
+- A user attempts to access a protected resource that is configured to use CIAM MFA, such as a gated website.  
 
-Commerce Hub supports the following encrypted payment source types: [EMV chip and PIN](?path=docs/In-Person/Encrypted-Payments/EMV.md), [track data (magstripe)](?path=docs/In-Person/Encrypted-Payments/Track.md), NFC/contactless, and [manual entry (EMV fallback)](?path=docs/In-Person/Encrypted-Payments/Manual.md).
+- The CIAM MFA API  sends a notification on an out-of-band (OOB) channel to the user’s authentication device (possession factor), for further verification of the user’s identity.  
+
+- The notification to the user is communicated on a separate network channel, isolated from the network channel that the user used when entering their username and password. Use of an OOB channel enhances security, reducing the possibility of man-in-the-middle (MITM), phishing, and other security vulnerability attacks.  
+
+- CIAM MFA is configured to provide a one-time passcode (OTP) through SMS  or email notification, or Time-based One-Time Password (TOTP) authenticator app. The user must enter that passcode before it expires.
+
+There are steps  required at the application-side that should meet the below criteria:  
+
+- Can make http/REST calls  
+
+- Has a user base that have either e-mail addresses, mobile phone for SMS or TOTP  
+
 
 ---  
 
-- [Step 1: Request Authorization Token](#step-1-request-authroization-token)  
+- [Step 1: Getting an access token](#step-1-getting-an-access-token)  
 
 - [Step 2: Request OTP](#step-2-request-otp)  
 
@@ -15,17 +26,17 @@ Commerce Hub supports the following encrypted payment source types: [EMV chip an
 
 ---
 
-## Step 1: Request Authorization Token   
+## Step 1: Getting an access token     
 
-The benefits of a encyrpted PIN Pad solution are:  
+Access tokens are credential strings that represent authorization to access a protected resource. Applications obtain access tokens by making OAuth 2 or OpenID Connect requests to an authorization server; MFA API resource servers require clients to authenticate using access tokens. Access tokens are obtained from the token endpoint (when using the client credentials grant type).
 
-- Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor 
+To get an access token, the following must be true:  
 
-- All forms of electronic payment are accepted 
+- The application is configured for MFA using  application onboarding process.
 
-- Faster payment improving the customer experience 
+- The credentials are provided to application owner for getting an access token.  
 
-- Business security by enabling acceptance of chip and signature, and chip and PIN 
+- The application runtime  has access to the client secret and token endpoint.  
 
 
 ## Step 2: Request OTP 
@@ -38,31 +49,41 @@ The benefits of a encyrpted PIN Pad solution are:
 
 - Business security by enabling acceptance of chip and signature, and chip and PIN 
 
+<!--
+type: tab
+titles: Request, Response
+-->
+
+### Example of a request OTP  payload request using email 
+
+
+
 ```json
 {
-  "amount": {
-    "total": "12.04",
-    "currency": "USD"
-  },
-  "paymentSource": {
-    "sourceType": "PaymentCard",
-    "card": {
-      "cardData": "4005550000000019",
-      "expirationMonth": "02",
-      "expirationYear": "2035",
-      "securityCode": "123"
-    }
-  },
-  "transactionDetails": {
-    "captureFlag": true
-  },
-  "merchantDetails":{
-      "merchantId": "123456789789567",
-      "terminalId": "123456"
-    }
+    "userName": "jdoe",
+    "email": "jon.doe@gmail.com",
+    "deviceType": "EMAIL",
+    "templateName": "demotemplate"
+}
+```
+<!--
+type: tab
+-->
+
+### Example of authentication request (201: Created) response
+
+<!-- theme: info -->
+> See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
+
+```json
+{
+    "authId": "0063f27c-787b-4046-8b8e-a75e241b5ea6",
+    "status": "SUCCESS",
+    "message": "OTP has been sent to the device "
 }
 ```
 
+<!-- type: tab-end -->
 ## Step 3: Validate OTP 
 
 The benefits of a encyrpted PIN Pad solution are:  
@@ -78,43 +99,11 @@ type: tab
 titles: Request, Response
 -->
 
-### Example of a charge payload request using `dynamicDescriptors`
+### Example of a validation request
 
 ```json
  {
-   "amount":{
-      "total": "12.04",
-      "currency": "USD"
-   },
-   "source":{
-      "sourceType": "PaymentCard",
-      "card":{
-         "cardData": "4005550000000019",
-         "expirationMonth": "02",
-         "expirationYear": "2035"
-      }
-   },
-   "dynamicDescriptors":{
-      "mcc": "4457",
-      "merchantName": "Mywebsite.com",
-      "customerServiceNumber": "1231231234",
-      "serviceEntitlement": "67893827513",
-      "address":{
-         "street": "123 Main Street",
-         "houseNumberOrName": "Unit B",
-         "city": "Atlanta",
-         "stateOrProvince": "GA",
-         "postalCode": "30303",
-         "country": "US"
-      }
-   },
-   "transactionDetails":{
-      "captureFlag": true
-   },
-   "merchantDetails":{
-      "merchantId": "123456789789567",
-      "terminalId": "123456"
-   }
+  "otp": "523471"
 }
 ```
 
@@ -122,76 +111,17 @@ titles: Request, Response
 type: tab
 -->
 
-### Example of a charge (201: Created) response
+### Example of a validation (200: Created) response
 
 <!-- theme: info -->
 > See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
 
 ```json
 {
-   "gatewayResponse":{
-      "orderId": "R-3b83fca8-2f9c-4364-86ae-12c91f1fcf16",
-      "transactionType": "CHARGE",
-      "transactionState": "AUTHORIZED",
-      "transactionOrigin": "ECOM",
-      "transactionProcessingDetails":{
-         "transactionTimestamp": "2016-04-16T16:06:05Z",
-         "apiTraceId": "rrt-0bd552c12342d3448-b-ea-1142-12938318-7",
-         "clientRequestId": "30dd879c-ee2f-11db-8314-0800200c9a66",
-         "transactionId": "838916029301"
-      }
-   },
-   "source":{
-      "sourceType": "PaymentCard",
-      "card":{
-         "cardData": "4005550000000019",
-         "nameOnCard": "Jane Smith",
-         "expirationMonth": "02",
-         "expirationYear": "2035",
-         "bin": "400555",
-         "last4": "0019"
-      }
-   },
-   "paymentReceipt":{
-      "approvedAmount":{
-         "total": 12.04,
-         "currency": "USD"
-      },
-      "processorResponseDetails":{
-         "approvalStatus": "APPROVED",
-         "approvalCode": "OK3483",
-         "authenticationResponseCode": "string",
-         "referenceNumber": "845366457890-TODO",
-         "schemeTransactionId": "019078743804756",
-         "feeProgramIndicator": "123",
-         "processor": "FISERV",
-         "host": "NASHVILLE",
-         "responseCode": "000",
-         "responseMessage": "APPROVAL",
-         "hostResponseCode": "00",
-         "hostResponseMessage": "APPROVAL",
-         "localTimestamp": "2016-04-16T16:06:05Z",
-         "bankAssociationDetails":{
-            "associationResponseCode": "000",
-            "transactionTimestamp": "2016-04-16T16:06:05Z"
-         }
-      }
-   },
-   "dynamicDescriptors":{
-      "mcc": "4457",
-      "merchantName": "Mywebsite.com",
-      "customerServiceNumber": "1231231234",
-      "serviceEntitlement": "67893827513",
-      "address":{
-         "street": "123 Main Street",
-         "houseNumberOrName": "Unit B",
-         "city": "Atlanta",
-         "stateOrProvince": "GA",
-         "postalCode": "30303",
-         "country": "US"
-      }
-   }
+  "status": "SUCCESS",
+  "message": "OTP has been validated successfully"
 }
+
 ```
 
 <!-- type: tab-end -->
