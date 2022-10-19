@@ -8,7 +8,6 @@
 
 - CIAM MFA is configured to provide a one-time passcode (OTP) through SMS  or email notification, or Time-based One-Time Password (TOTP) authenticator app. The user must enter that passcode before it expires.
 
-
 There are steps  required at the application-side that should meet the below criteria:  
 
 - Can make http/REST calls  
@@ -20,6 +19,7 @@ Customization:
 - CIAM MFA API  allows to brand and customize notification template.
 
 - CIAM MFA API allows your application to send email from a trusted domain that you own
+
 
 
 ---  
@@ -55,7 +55,7 @@ API to initiate Second factor authentication by contacting the user using  email
 - API will return   authId in response which will be required during device validation.  
 
 - API supports custom templates that can be configured during application onboarding process. Custom template will allow to customize email and SMS messaging.
-
+ 
 
 <!--
 type: tab
@@ -63,6 +63,8 @@ titles: Request, Response
 -->
 
 ### Example of a request OTP  payload request using email 
+
+
 
 ```json
 {
@@ -78,29 +80,8 @@ type: tab
 
 ### Example of authentication request (201: Created) response
 
-
-```json
-{
-    "authId": "0063f27c-787b-4046-8b8e-a75e241b5ea6",
-    "status": "SUCCESS",
-    "message": "OTP has been sent to the device "
-}
-```
-
-### Example of a request OTP  payload request using SMS 
-
-```json
-{
-    "userName": "jdoe",
-    "phoneNumber": "999-999-9999",
-    "deviceType": "SMS",
-}
-```
-<!--
-type: tab
--->
-
-### Example of authentication request (201: Created) response
+<!-- theme: info -->
+> See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
 
 ```json
 {
@@ -113,11 +94,13 @@ type: tab
 <!-- type: tab-end -->
 ## Step 3: Validate OTP 
 
-API to validate one-time passcode that was sent on email or SMS provided.
+The benefits of a encyrpted PIN Pad solution are:  
 
-- API will authId in path and otp in the body to complete the validation.
+- Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor  
 
-- API will HTTP code ,  status and message in response to the validation process.
+- All forms of electronic payment are accepted  
+
+- Faster payment improving the customer experience  
 
 <!--
 type: tab
@@ -138,6 +121,8 @@ type: tab
 
 ### Example of a validation (200: Created) response
 
+<!-- theme: info -->
+> See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
 
 ```json
 {
