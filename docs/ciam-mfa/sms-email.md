@@ -1,12 +1,23 @@
 # MFA using SMS or EMAIL 
 
-The PIN Pad or device used to capture the payment source is connected to the terminal or software. The PIN Pad encrypts the customer's payment source and sends the encryption data to the terminal or software. The terminal or software initiates the RESTful API transaction with the encrypted payment source from the 3rd party device.
+- A user attempts to access a protected resource that is configured to use CIAM MFA, such as a gated website.  
 
-Commerce Hub supports the following encrypted payment source types: [EMV chip and PIN](?path=docs/In-Person/Encrypted-Payments/EMV.md), [track data (magstripe)](?path=docs/In-Person/Encrypted-Payments/Track.md), NFC/contactless, and [manual entry (EMV fallback)](?path=docs/In-Person/Encrypted-Payments/Manual.md).
+- The CIAM MFA API  sends a notification on an out-of-band (OOB) channel to the user’s authentication device (possession factor), for further verification of the user’s identity.  
+
+- The notification to the user is communicated on a separate network channel, isolated from the network channel that the user used when entering their username and password. Use of an OOB channel enhances security, reducing the possibility of man-in-the-middle (MITM), phishing, and other security vulnerability attacks.  
+
+- CIAM MFA is configured to provide a one-time passcode (OTP) through SMS  or email notification, or Time-based One-Time Password (TOTP) authenticator app. The user must enter that passcode before it expires.
+
+There are steps  required at the application-side that should meet the below criteria:  
+
+- Can make http/REST calls  
+
+- Has a user base that have either e-mail addresses, mobile phone for SMS or TOTP  
+
 
 ---  
 
-- [Step 1: Request Authorization Token](#step-1-request-authroization-token)  
+- [Step 1: Getting an access token](#step-1-getting-an-access-token)  
 
 - [Step 2: Request OTP](#step-2-request-otp)  
 
@@ -15,17 +26,17 @@ Commerce Hub supports the following encrypted payment source types: [EMV chip an
 
 ---
 
-## Step 1: Request Authorization Token   
+## Step 1: Getting an access token     
 
-The benefits of a encyrpted PIN Pad solution are:  
+Access tokens are credential strings that represent authorization to access a protected resource. Applications obtain access tokens by making OAuth 2 or OpenID Connect requests to an authorization server; MFA API resource servers require clients to authenticate using access tokens. Access tokens are obtained from the token endpoint (when using the client credentials grant type).
 
-- Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor 
+To get an access token, the following must be true:  
 
-- All forms of electronic payment are accepted 
+- The application is configured for MFA using  application onboarding process.
 
-- Faster payment improving the customer experience 
+- The credentials are provided to application owner for getting an access token.  
 
-- Business security by enabling acceptance of chip and signature, and chip and PIN 
+- The application runtime  has access to the client secret and token endpoint.  
 
 
 ## Step 2: Request OTP 
@@ -37,6 +48,15 @@ The benefits of a encyrpted PIN Pad solution are:
 - Faster payment improving the customer experience 
 
 - Business security by enabling acceptance of chip and signature, and chip and PIN 
+
+<!--
+type: tab
+titles: Request, Response
+-->
+
+### Example of a request OTP  payload request using email 
+
+
 
 ```json
 {

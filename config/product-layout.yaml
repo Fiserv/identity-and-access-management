@@ -31,42 +31,42 @@ header:
   productName: Identity and Access Management (CIAM)
   productionDescription: With developer-friendly, rest  communication standards, CIAM API  reduces development time and accelerates integration of access services and capabilities. Multi region availablitly brings the solution wherever integration is required, we bring highly secure and modern authentication practices  in a standardized  and for easier  integration.
 featuredFeatures:
-  - title: Multi-Factor Authentication
-    description: CIAM MFA API provides MFA for the customer use case that protects Fiserv applications, and data resources.
+  - title: Multi-Factor Authentication API
+    description: CIAM MFA API provides capabilities for enabling MFA actions in authentication flows. API supports email, SMS, TOTP authenticator application, and native application method types for use in an MFA flow. Multiple MFA methods can be associated with a user. 
     tags: ["tag1", "tag2"]
     bullets: ["REPLACEME", "REPLACEME" ]  
     relatedDocs:
       - relatedDoc: 
-        title: One-time passcode (OTP)
+        title: On-Time-Password (OTP) device or software
         description: OTP 
-        link: ./docs/OTP.md
+        link: ./docs/otp.md
       - relatedDoc: 
-        title: Biometrics Authentication
+        title: Cryptographic device or software
         description: This section is for authentication using 
         link: ./docs/biometrics.md
     relatedAPIs:
       - relatedAPI: 
+        title: Get device 
+        description: Get list of user devices
+        type: "get"        
+        path: "/v1/users/{username}/device"  
+      - relatedAPI: 
         title: Add Device
-        description: Operation to add  device type to the specified user resource.
+        description: Operation to add mfa  device to the specified user.
         type: "post"        
         path: "/v1/users/{username}/device"
       - relatedAPI: 
         title: Register Device
-        description:  Operation to activate  an added device.
+        description:  Operation to activate an added device.
         type: "post"        
         path: "/v1/users/{username}/device/{authId}"
       - relatedAPI: 
-        title: Get device 
-        description: Get list of user devices
-        type: "get"        
-        path: "/v1/users/{username}/device"
-      - relatedAPI: 
         title: Request Authentication
-        description: API for   initiating device authentication flow. 
+        description: API for initiating authentication process. 
         type: "post"        
         path: "/v1/deviceauthentications"
       - relatedAPI: 
         title: Validate Authentication.
-        description: API for validating  authentication code.
+        description: API for validating authentication code.
         type: "post"        
         path: "/v1/deviceauthentications/{authid}"

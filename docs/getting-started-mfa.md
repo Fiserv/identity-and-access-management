@@ -1,5 +1,5 @@
 
-# CIAM MFA  
+# What is Multi-Factor authentication (MFA)  
 
 Multi-factor authentication (MFA) is an authentication method in which a computer user is granted access only after successfully presenting two or more pieces of evidence (or factors) to an authentication mechanism:  
 

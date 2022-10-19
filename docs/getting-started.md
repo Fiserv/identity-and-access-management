@@ -1,7 +1,3 @@
----
-tags: [Getting Started, Card Not Present, Card Present, In-Person, Online, Mobile, Digital, Omnicommerce, Connected Commerce]
----
-
 # Getting Started with CIAM API
 
 Fiserv Identity and access managment API  provides a simple way through [Developer Studio](?path=docs/Getting-Started/Getting-Started-Dev-Portal.md) to integrate Identity and access managment functionality such as multi-factor authentication functionality. 
@@ -17,7 +13,7 @@ Build secure solution using IAM provided services and capbilties.
 
 <!-- type: card
 title: Multi factor Authentication
-description: Online, mobile, and digital transactions are considered Card Not Present (CNP) where the customer does not physically present their payment source at the time of the transaction. Transaction types include; online payments, in-app payments, and MOTO.
+description: CIAM MFA API provides capabilities for enabling MFA actions in authentication flows. API supports email, SMS, TOTP authenticator application, and native application method types for use in an MFA flow. Multiple MFA methods can be associated with a user. 
 link: ?path=docs/getting-started-mfa.md
 -->
 
