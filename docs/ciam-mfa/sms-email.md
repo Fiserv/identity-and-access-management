@@ -60,29 +60,30 @@ titles: Request, Response
 
 ```json
 {
-  "amount": {
-    "total": "12.04",
-    "currency": "USD"
-  },
-  "paymentSource": {
-    "sourceType": "PaymentCard",
-    "card": {
-      "cardData": "4005550000000019",
-      "expirationMonth": "02",
-      "expirationYear": "2035",
-      "securityCode": "123"
-    }
-  },
-  "transactionDetails": {
-    "captureFlag": true
-  },
-  "merchantDetails":{
-      "merchantId": "123456789789567",
-      "terminalId": "123456"
-    }
+    "userName": "jdoe",
+    "email": "jon.doe@gmail.com",
+    "deviceType": "EMAIL",
+    "templateName": "demotemplate"
+}
+```
+<!--
+type: tab
+-->
+
+### Example of authentication request (201: Created) response
+
+<!-- theme: info -->
+> See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
+
+```json
+{
+    "authId": "0063f27c-787b-4046-8b8e-a75e241b5ea6",
+    "status": "SUCCESS",
+    "message": "OTP has been sent to the device "
 }
 ```
 
+<!-- type: tab-end -->
 ## Step 3: Validate OTP 
 
 The benefits of a encyrpted PIN Pad solution are:  
@@ -98,43 +99,11 @@ type: tab
 titles: Request, Response
 -->
 
-### Example of a charge payload request using `dynamicDescriptors`
+### Example of a validation request
 
 ```json
  {
-   "amount":{
-      "total": "12.04",
-      "currency": "USD"
-   },
-   "source":{
-      "sourceType": "PaymentCard",
-      "card":{
-         "cardData": "4005550000000019",
-         "expirationMonth": "02",
-         "expirationYear": "2035"
-      }
-   },
-   "dynamicDescriptors":{
-      "mcc": "4457",
-      "merchantName": "Mywebsite.com",
-      "customerServiceNumber": "1231231234",
-      "serviceEntitlement": "67893827513",
-      "address":{
-         "street": "123 Main Street",
-         "houseNumberOrName": "Unit B",
-         "city": "Atlanta",
-         "stateOrProvince": "GA",
-         "postalCode": "30303",
-         "country": "US"
-      }
-   },
-   "transactionDetails":{
-      "captureFlag": true
-   },
-   "merchantDetails":{
-      "merchantId": "123456789789567",
-      "terminalId": "123456"
-   }
+  "otp": "523471"
 }
 ```
 
@@ -142,76 +111,17 @@ titles: Request, Response
 type: tab
 -->
 
-### Example of a charge (201: Created) response
+### Example of a validation (200: Created) response
 
 <!-- theme: info -->
 > See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
 
 ```json
 {
-   "gatewayResponse":{
-      "orderId": "R-3b83fca8-2f9c-4364-86ae-12c91f1fcf16",
-      "transactionType": "CHARGE",
-      "transactionState": "AUTHORIZED",
-      "transactionOrigin": "ECOM",
-      "transactionProcessingDetails":{
-         "transactionTimestamp": "2016-04-16T16:06:05Z",
-         "apiTraceId": "rrt-0bd552c12342d3448-b-ea-1142-12938318-7",
-         "clientRequestId": "30dd879c-ee2f-11db-8314-0800200c9a66",
-         "transactionId": "838916029301"
-      }
-   },
-   "source":{
-      "sourceType": "PaymentCard",
-      "card":{
-         "cardData": "4005550000000019",
-         "nameOnCard": "Jane Smith",
-         "expirationMonth": "02",
-         "expirationYear": "2035",
-         "bin": "400555",
-         "last4": "0019"
-      }
-   },
-   "paymentReceipt":{
-      "approvedAmount":{
-         "total": 12.04,
-         "currency": "USD"
-      },
-      "processorResponseDetails":{
-         "approvalStatus": "APPROVED",
-         "approvalCode": "OK3483",
-         "authenticationResponseCode": "string",
-         "referenceNumber": "845366457890-TODO",
-         "schemeTransactionId": "019078743804756",
-         "feeProgramIndicator": "123",
-         "processor": "FISERV",
-         "host": "NASHVILLE",
-         "responseCode": "000",
-         "responseMessage": "APPROVAL",
-         "hostResponseCode": "00",
-         "hostResponseMessage": "APPROVAL",
-         "localTimestamp": "2016-04-16T16:06:05Z",
-         "bankAssociationDetails":{
-            "associationResponseCode": "000",
-            "transactionTimestamp": "2016-04-16T16:06:05Z"
-         }
-      }
-   },
-   "dynamicDescriptors":{
-      "mcc": "4457",
-      "merchantName": "Mywebsite.com",
-      "customerServiceNumber": "1231231234",
-      "serviceEntitlement": "67893827513",
-      "address":{
-         "street": "123 Main Street",
-         "houseNumberOrName": "Unit B",
-         "city": "Atlanta",
-         "stateOrProvince": "GA",
-         "postalCode": "30303",
-         "country": "US"
-      }
-   }
+  "status": "SUCCESS",
+  "message": "OTP has been validated successfully"
 }
+
 ```
 
 <!-- type: tab-end -->

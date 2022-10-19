@@ -24,7 +24,7 @@ CIAM MFA API provides MFA for the customer use case that protects Fiserv applica
 
 2. The CIAM MFA API typically sends a notification on an out-of-band (OOB) channel to the user’s authentication device (possession factor), for further verification of the user’s identity. The notification to the user is communicated on a separate network channel, isolated from the network channel that the user used when entering their username and password. Use of an OOB channel enhances security, reducing the possibility of man-in-the-middle (MITM), phishing, and other security vulnerability attacks.  
 
-3. CIAM MFA is configured to provide a one-time passcode (OTP) through SMS, voice or email notification, or Time-based One-Time Password (TOTP) authenticator app. The user must enter that passcode before it expires.  
+3. CIAM MFA is configured to provide a one-time passcode (OTP) through SMS  or email notification, or Time-based One-Time Password (TOTP) authenticator app. The user must enter that passcode before it expires.  
 
 
 ## Integration use cases  
