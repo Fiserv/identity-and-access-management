@@ -14,6 +14,11 @@ There are steps  required at the application-side that should meet the below cri
 
 - Has a user base that have either e-mail addresses, mobile phone for SMS or TOTP  
 
+Customization:  
+
+- CIAM MFA API  allows to brand and customize notification template.  
+
+- CIAM MFA API allows your application to send email from a trusted domain that you own
 
 ---  
 
@@ -41,13 +46,14 @@ To get an access token, the following must be true:
 
 ## Step 2: Request OTP 
 
-The benefits of a encyrpted PIN Pad solution are:  
+API to initiate Second factor authentication by contacting the user using  email or SMS provided. 
 
-- All forms of electronic payment are accepted 
+- API will send one-time passcode to user device i.e. EMAIl address or a phone number. 
 
-- Faster payment improving the customer experience 
+- API will return   authId in response which will be required during device validation.  
 
-- Business security by enabling acceptance of chip and signature, and chip and PIN 
+- API supports custom templates that can be configured during application onboarding process. Custom template will allow to customize email and SMS messaging.
+
 
 <!--
 type: tab
