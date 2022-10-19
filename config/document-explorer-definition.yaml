@@ -37,9 +37,14 @@
        - link: docs/ciam-mfa/SMS-EMAIL.md
          title: MFA using SMS/EMAIL
          type: recipe
-       - link: docs/ciam-mfa/TOTP.md
-         title: MFA using  TOTP
-         type: recipe 
+       - title: MFA using TOTP 
+         sections:
+          - title: TOTP Device Registration 
+            link: docs/ciam-mfa/TOTP.md
+            type: recipe
+          - title: MFA FLow 
+            link: docs/ciam-mfa/TOTP.md
+            type: recipe
        - link: docs/ciam-mfa/yubikey.md
          title: MFA using Yubikey 
          type: recipe

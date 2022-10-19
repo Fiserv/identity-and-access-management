@@ -57,16 +57,16 @@ featuredFeatures:
         path: "/v1/users/{username}/device"
       - relatedAPI: 
         title: Register Device
-        description:  Operation to activate an added device.
+        description:  Operation to register the device that was added but requires activation.
         type: "post"        
         path: "/v1/users/{username}/device/{authId}"
       - relatedAPI: 
-        title: Request Authentication
-        description: API for initiating authentication process. 
+        title: Initialize  Authentication
+        description: API for initiating multi factor authentication process. 
         type: "post"        
         path: "/v1/deviceauthentications"
       - relatedAPI: 
         title: Validate Authentication.
-        description: API for validating authentication code.
+        description: API for validating requested authentication.
         type: "post"        
         path: "/v1/deviceauthentications/{authid}"

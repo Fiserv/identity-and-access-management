@@ -6,7 +6,7 @@
 
 - The notification to the user is communicated on a separate network channel, isolated from the network channel that the user used when entering their username and password. Use of an OOB channel enhances security, reducing the possibility of man-in-the-middle (MITM), phishing, and other security vulnerability attacks.  
 
-- CIAM MFA is configured to provide a one-time passcode (OTP) through SMS  or email notification, or Time-based One-Time Password (TOTP) authenticator app. The user must enter that passcode before it expires.
+- CIAM MFA is configured to provide a one-time passcode (OTP) through SMS  or email notification. The user must enter that passcode before it expires.
 
 There are steps  required at the application-side that should meet the below criteria:  
 
@@ -92,13 +92,11 @@ type: tab
 <!-- type: tab-end -->
 ## Step 3: Validate OTP 
 
-The benefits of a encyrpted PIN Pad solution are:  
+API to validate one-time passcode that was sent on email or SMS provided.
 
-- Reduced coding effort for the developer because the encryption handling is already implemented by the third party vendor  
+- API will authId in path and otp in the body to complete the validation.
 
-- All forms of electronic payment are accepted  
-
-- Faster payment improving the customer experience  
+- API will HTTP code ,  status and message in response to the validation process.
 
 <!--
 type: tab
