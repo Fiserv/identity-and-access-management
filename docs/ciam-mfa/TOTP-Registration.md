@@ -72,15 +72,16 @@ type: tab
 
 ### Example of authentication request (201: Created) response
 
-<!-- theme: info -->
-> See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
 
 ```json
 {
-    "authId": "0063f27c-787b-4046-8b8e-a75e241b5ea6",
-    "status": "SUCCESS",
-    "message": "Please get the OTP from registered device to authenticate "
-}
+    "authId": "c0b26a2e-6142-4640-9dd7-1ebd488d46f5",
+    "deviceType": "TOTP",
+    "status": "ACTIVATION_REQUIRED",
+    "message": "Device registration has been initiated, please activate the device to use"
+    "deviceName": "Mydevice",
+    "secret": "LXXXWKFKAKKIGOSP62SORVM67GECU6P2",
+    "registrationUri": "otpauth://totp/APM0000003$jdoe?secret=LXXXWKFKAKKIGOSP62SORVM67GECU6P2"
 ```
 
 <!-- type: tab-end -->
@@ -88,11 +89,13 @@ type: tab
 
 ## Step 3: Device pairing
 
-- Application should create a QR code that will be geenrated using registration URI and secret returned by API in response.
+- Device parining is  required for  sharing of secret key with  with the authenticator app to enable the app to generate TOTPs that can be verified by the CIAM API  service.
 
-- The QR code shares a secret key with the authenticator app to enable the app to generate TOTPs that can be verified by the CIAM API  service.
+- Two options are available for Device pairing
 
-- To enable MFA, user should their  mobile device's authenticator app to scan generated  QR code that is generated using regsitration URI and secret returned by the CIAM API. 
+- Option: 1 requires application to provide user with the enter secret key that was  within Step-1 response. To enable MFA, user should key in secret key  manually and attach it to authenticator application.
+
+- Option: 2 provides a better user experience where application should create a QR code using registration URI returned within  Step -1  API  response. To enable MFA, user should use their  mobile device's authenticator app to scan generated  QR code. 
 
 
 ## Step 4: Register TOTP device 
@@ -126,8 +129,6 @@ type: tab
 
 ### Example of a validation (200: Created) response
 
-<!-- theme: info -->
-> See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
 
 ```json
 {
