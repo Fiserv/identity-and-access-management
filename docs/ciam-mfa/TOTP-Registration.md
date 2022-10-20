@@ -22,7 +22,7 @@ To Verify user using TOTP, first step required is to  register Time-based One-ti
 
 - [Step 2: Create TOTP Device](#step-2-create-totp-device)  
 
-- [Step 3: Device pairing] (# step-3-device-pairing)
+- [Step 3: Device pairing](#step-3-device-pairing)
 
 - [Step 3: Register TOTP device](#step-4-register-totp-device)  
 
