@@ -38,12 +38,13 @@
          title: MFA using SMS/EMAIL
          type: recipe
        - title: MFA using TOTP 
+         link: docs/ciam-mfa/TOTP.md
          sections:
           - title: TOTP Device Registration 
             link: docs/ciam-mfa/TOTP-Registration.md
             type: recipe
-          - title: MFA  
-            link: docs/ciam-mfa/TOTP.md
+          - title: Authentication using TOTP device
+            link: docs/ciam-mfa/TOTP-Authentication.md
             type: recipe
        - link: docs/ciam-mfa/yubikey.md
          title: MFA using Yubikey 

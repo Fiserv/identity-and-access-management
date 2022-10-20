@@ -1,4 +1,4 @@
-# TOTP Device Resgistration 
+# TOTP Device Registration 
 
 TOTP stands for Time-based One-Time Passwords and is a common form of two factor authentication (2FA). Unique numeric passwords are generated with a standardized algorithm that uses the current time as an input. The time-based passwords are available offline and provide user friendly, increased account security when used as a second factor.
 
@@ -82,6 +82,7 @@ type: tab
     "deviceName": "Mydevice",
     "secret": "LXXXWKFKAKKIGOSP62SORVM67GECU6P2",
     "registrationUri": "otpauth://totp/APM0000003$jdoe?secret=LXXXWKFKAKKIGOSP62SORVM67GECU6P2"
+}
 ```
 
 <!-- type: tab-end -->

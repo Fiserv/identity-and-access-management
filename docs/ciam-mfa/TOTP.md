@@ -1,136 +1,36 @@
 # MFA using TOTP 
 
-- A user attempts to access a protected resource that is configured to use CIAM MFA, such as a gated website.  
+TOTP stands for Time-based One-Time Passwords and is a common form of two factor authentication (2FA). Unique numeric passwords are generated with a standardized algorithm that uses the current time as an input. The time-based passwords are available offline and provide user friendly, increased account security when used as a second factor.
 
-- The CIAM MFA API  sends a notification on an out-of-band (OOB) channel to the user’s authentication device (possession factor), for further verification of the user’s identity.  
+TOTP 2FA benefits - 
 
-- The notification to the user is communicated on a separate network channel, isolated from the network channel that the user used when entering their username and password. Use of an OOB channel enhances security, reducing the possibility of man-in-the-middle (MITM), phishing, and other security vulnerability attacks.  
+- Offline support
 
-- CIAM MFA is configured to provide a one-time passcode (OTP) through Time-based One-Time Password (TOTP) authenticator app. The user must enter that passcode before it expires.
+- PII-less registration 
 
-There are steps  required at the application-side that should meet the below criteria:  
+- Standardized authentication solution 
 
-- Can make http/REST calls  
+- Software based, not dependent on carrier fees or telephony access and deliverability 
 
-- Has a user base that have either e-mail addresses, mobile phone for SMS or TOTP  
-
-
-
----  
-
-- [Step 1: Getting an access token](#step-1-getting-an-access-token)  
-
-- [Step 2: Request OTP](#step-2-request-otp)  
-
-- [Step 3: Validate OTP](#step-3-validate-otp)  
+- Faster average time to authenticate
 
 
----
+TOTP authentication is a multi-step process where  device registration as a pre-requisite before it  can be used for  MFA, refer below information device registration and authentication. 
 
-## Step 1: Getting an access token     
+<!-- type: row -->
 
-Access tokens are credential strings that represent authorization to access a protected resource. Applications obtain access tokens by making OAuth 2 or OpenID Connect requests to an authorization server; MFA API resource servers require clients to authenticate using access tokens. Access tokens are obtained from the token endpoint (when using the client credentials grant type).
-
-To get an access token, the following must be true:  
-
-- The application is configured for MFA using  application onboarding process.
-
-- The credentials are provided to application owner for getting an access token.  
-
-- The application runtime  has access to the client secret and token endpoint.  
-
-
-## Step 2: Request OTP 
-
-API to initiate Second factor authentication by contacting the user using  email or SMS provided. 
-
-- API will send one-time passcode to user device i.e. EMAIl address or a phone number. 
-
-- API will return   authId in response which will be required during device validation.  
-
-- API supports custom templates that can be configured during application onboarding process. Custom template will allow to customize email and SMS messaging.
-
-
-<!--
-type: tab
-titles: Request, Response
+<!-- type: card
+title: TOTP Device registration
+description: Registration of user TOTP device.
+link: ?path=docs/ciam-mfa/TOTP-Registration.md
 -->
 
-### Example of a request OTP  payload request using email 
-
-
-
-```json
-{
-    "deviceType": "TOTP",
-    "deviceName": "Mydevice",
-    "templateName": "demotemplate"
-}
-```
-<!--
-type: tab
+<!-- type: card
+title:  MFA using TOTP Device
+description: User Multi-factor authentication using TOTP device.
+link: ?path=docs/ciam-mfa/TOTP-Authentication.md
 -->
 
-### Example of authentication request (201: Created) response
-
-<!-- theme: info -->
-> See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
-
-```json
-{
-    "authId": "0063f27c-787b-4046-8b8e-a75e241b5ea6",
-    "status": "SUCCESS",
-    "message": "Please get the OTP from registered device to authenticate "
-}
-```
-
-<!-- type: tab-end -->
-## Step 3: Validate OTP 
-
-API to validate one-time passcode that was sent on email or SMS provided.
-
-- API will authId in path and otp in the body to complete the validation.
-
-- API will HTTP code ,  status and message in response to the validation process. 
-
-<!--
-type: tab
-titles: Request, Response
--->
-
-### Example of a validation request
-
-```json
- {
-  "otp": "523471"
-}
-```
-
-<!--
-type: tab
--->
-
-### Example of a validation (200: Created) response
-
-<!-- theme: info -->
-> See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
-
-```json
-{
-  "status": "SUCCESS",
-  "message": "OTP has been validated successfully"
-}
-
-```
-
-<!-- type: tab-end -->
-
-
----  
-
-## See also  
-
-- [API Explorer](./api/?type=post&path=/payments/v1/charges) 
-
+<!-- type: row-end -->
 
 ---
