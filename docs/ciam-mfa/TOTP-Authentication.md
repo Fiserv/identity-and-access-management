@@ -1,43 +1,109 @@
-# MFA using TOTP 
+# MFA using TOTP Device
 
-TOTP stands for Time-based One-Time Passwords and is a common form of two factor authentication (2FA). Unique numeric passwords are generated with a standardized algorithm that uses the current time as an input. The time-based passwords are available offline and provide user friendly, increased account security when used as a second factor.
 
-TOTP 2FA benefits - 
+---  
 
-- Offline support
+- [Step 1: Getting an access token](#step-1-getting-an-access-token)  
 
-- PII-less registration 
+- [Step 2: Initialize authentication](#step-2-initialize-authentication)  
 
-- Standardized authentication solution 
+- [Step 3: Validate OTP](#step-3-validate-otp)  
 
-- Software based, not dependent on carrier fees or telephony access and deliverability 
 
-- Faster average time to authenticate
+---
 
-## Device registration
+## Step 1: Getting an access token     
 
-CIAM MFA has various configuration possibilities that allow application to determine their balance between security needs and demands for convenience (end-user experience). These options include the following:
+Access tokens are credential strings that represent authorization to access a protected resource. Applications obtain access tokens by making OAuth 2 or OpenID Connect requests to an authorization server; MFA API resource servers require clients to authenticate using access tokens. Access tokens are obtained from the token endpoint (when using the client credentials grant type).
 
-<!-- type: row -->
+To get an access token, the following must be true:  
 
-<!-- type: card
-title: TOTP Device registration
-description: Commerce Hub allows integration with Apple Pay and Google Pay mobile wallets.
-link: ?path=docs/ciam-mfa/TOTP-Registration.md
+- The application is configured for MFA using  application onboarding process.
+
+- The credentials are provided to application owner for getting an access token.  
+
+- The application runtime  has access to the client secret and token endpoint.  
+
+
+## Step 2: Initialize  authentication 
+
+API will initalize TOTP device authentication return authId in response which will be required during OTP validation.  
+
+
+
+<!--
+type: tab
+titles: Request, Response
 -->
 
-<!-- type: card
-title:  MFA using TOTP
-description: A split shipment is an ability to capture an authorization for the full order amount by performing a capture for each item shipped.
-link: ?path=docs/ciam-mfa/TOTP.md
+### Example of a request OTP  payload request using email 
+
+
+
+```json
+{
+	"userName":"demouser",
+    "deviceName": "mydevice",
+    "deviceType": "TOTP"
+}
+```
+<!--
+type: tab
 -->
 
-<!-- type: card
-title: MFA using Yubikey
-description: Stored Credentials also known as Credentials on File or Card on File, allows customer to authorize the storage of their payment source details for future transactionst as a Cardholder Initiated Transaction (CIT).
-link: ?path=docs/ciam-mfa/yubikey.md
+### Example of authentication request (201: Created) response
+
+```json
+{
+    "authId": "0063f27c-787b-4046-8b8e-a75e241b5ea6",
+    "status": "SUCCESS",
+    "message": "Please get the OTP from registered device to authenticate"
+}
+```
+
+<!-- type: tab-end -->
+## Step 3: Validate OTP 
+
+- API will authId in path and otp in the body to complete the validation.
+
+- API will HTTP code ,  status and message in response to the validation process.
+
+<!--
+type: tab
+titles: Request, Response
 -->
 
-<!-- type: row-end -->
+### Example of a validation request
+
+```json
+ {
+  "otp": "523471"
+}
+```
+
+<!--
+type: tab
+-->
+
+### Example of a validation (200: Created) response
+
+
+```json
+{
+  "status": "SUCCESS",
+  "message": "OTP has been validated successfully"
+}
+
+```
+
+<!-- type: tab-end -->
+
+
+---  
+
+## See also  
+
+- [API Explorer](./api/?type=post&path=/payments/v1/charges) 
+
 
 ---
