@@ -40,9 +40,9 @@
        - title: MFA using TOTP 
          sections:
           - title: TOTP Device Registration 
-            link: docs/ciam-mfa/TOTP.md
+            link: docs/ciam-mfa/TOTP-Registration.md
             type: recipe
-          - title: MFA FLow 
+          - title: MFA  
             link: docs/ciam-mfa/TOTP.md
             type: recipe
        - link: docs/ciam-mfa/yubikey.md
