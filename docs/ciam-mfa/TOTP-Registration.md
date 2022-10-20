@@ -24,7 +24,7 @@ To Verify user using TOTP, first step required is to  register Time-based One-ti
 
 - [Step 3: Device pairing](#step-3-device-pairing)
 
-- [Step 3: Register TOTP device](#step-4-register-totp-device)  
+- [Step 4: Register TOTP device](#step-4-register-totp-device)  
 
 
 ---
@@ -95,7 +95,7 @@ type: tab
 - To enable MFA, user should their  mobile device's authenticator app to scan generated  QR code that is generated using regsitration URI and secret returned by the CIAM API. 
 
 
-## Step 3: Register TOTP device 
+## Step 4: Register TOTP device 
 
 - API to complete device registration process.
 
