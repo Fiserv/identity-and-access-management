@@ -275,7 +275,7 @@ paths:
                 $ref: '#/components/examples/ValidationResponse'
               SMSAuthentication:
                 summary: SMS otp validation response
-                $ref: '#/components/examples/ValidationReesponse'
+                $ref: '#/components/examples/ValidationResponse'
               TOTPAuthentication:
                 summary: TOTP otp validation response
                 $ref: '#/components/examples/ValidationResponse'
