@@ -504,7 +504,6 @@ components:
       flows:
         clientCredentials:
           tokenUrl: https://ciam-mfa-api-dev.1dc.com/ciam-mfa/v1/get/token
-          refreshUrl: ''
           scopes: {}
   headers: {}
   parameters: {}
