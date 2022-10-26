@@ -269,16 +269,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationResponse'
-            examples:
-              EmailAuthentication:
-                summary: Email otp validation response
-                $ref: '#/components/examples/ValidationResponse'
-              SMSAuthentication:
-                summary: SMS otp validation response
-                $ref: '#/components/examples/ValidationResponse'
-              TOTPAuthentication:
-                summary: TOTP otp validation response
-                $ref: '#/components/examples/ValidationResponse'
+              examples:
+                EmailAuthentication:
+                  summary: Email otp validation response
+                  $ref: '#/components/examples/ValidationResponse'
+                SMSAuthentication:
+                  summary: SMS otp validation response
+                  $ref: '#/components/examples/ValidationResponse'
+                TOTPAuthentication:
+                  summary: TOTP otp validation response
+                  $ref: '#/components/examples/ValidationResponse'
           description: Successful operation.
         '400':
           $ref: '#/components/responses/BadRequest'
