@@ -502,24 +502,10 @@ components:
       type: oauth2
       description: ''
       flows:
-        implicit:
-          authorizationUrl: ''
-          refreshUrl: ''
-          scopes: {}
-        password:
-          tokenUrl: ''
-          refreshUrl: ''
-          scopes: {}
         clientCredentials:
           tokenUrl: https://ciam-mfa-api-dev.1dc.com/ciam-mfa/v1/get/token
           refreshUrl: ''
           scopes: {}
-        authorizationCode:
-          authorizationUrl: ''
-          tokenUrl: ''
-          refreshUrl: ''
-          scopes: {}
-      x-last-modified: 1666799826205
   headers: {}
   parameters: {}
 tags: []
