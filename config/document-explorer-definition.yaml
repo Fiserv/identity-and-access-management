@@ -30,8 +30,6 @@
 - sections:
   - title: Introduction
     link: docs/getting-started.md
-  - title: Developer Portal
-    link: docs/getting-started-development-studio.md
 - sections:
   - title: CIAM MFA
     link: docs/getting-started-mfa.md
