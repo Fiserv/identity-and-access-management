@@ -1,6 +1,6 @@
 # Getting Started with CIAM API
 
-Fiserv Identity and access managment API  provides a simple way through [Developer Studio](?path=docs/getting-started-dev-portal) to integrate Identity and access managment functionality such as multi-factor authentication functionality. 
+Fiserv Identity and access managment API  provides a simple way through [Developer Studio](?path=docs/getting-started-dev-portal.md) to integrate Identity and access managment functionality such as multi-factor authentication functionality. 
 
 
 ---
