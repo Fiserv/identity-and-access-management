@@ -14,7 +14,6 @@ paths:
     get:
       x-group-name: 'MFA'
       x-proxy-name: 'list Devices'
-      x-default-example: Devices
       tags:
         - MFA device endpoint definition
       summary: Get All  User Devices registered for MFA.
@@ -171,6 +170,7 @@ paths:
     post:
       x-group-name: 'MFA'
       x-proxy-name: 'Initialize Authentication'
+      x-default-example: EmailAuthentication
       summary: Initialize Device Authentication
       description: >-
         The POST deviceAuthentications operation initiates an MFA device
@@ -246,13 +246,13 @@ paths:
               $ref: '#/components/schemas/ValidationRequest'
             examples:
               EmailAuthentication:
-                summary: Email authentication response
+                summary: Email otp validation request
                 $ref: '#/components/examples/ValidationRequest'
               SMSAuthentication:
-                summary: SMS authentication response
+                summary: SMS otp validation request
                 $ref: '#/components/examples/ValidationRequest'
               TOTPAuthentication:
-                summary: TOTP authentication response
+                summary: TOTP  validation request
                 $ref: '#/components/examples/ValidationRequest'
         required: true
       tags:
@@ -269,6 +269,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationResponse'
+            examples:
+              EmailAuthentication:
+                summary: Email otp validation response
+                $ref: '#/components/examples/ValidationResponse'
+              SMSAuthentication:
+                summary: SMS otp validation response
+                $ref: '#/components/examples/ValidationReesponse'
+              TOTPAuthentication:
+                summary: TOTP otp validation response
+                $ref: '#/components/examples/ValidationResponse'
           description: Successful operation.
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -294,6 +304,10 @@ components:
     ValidationRequest:
       value:
         - otp: '3423423'
+    ValidationResponse:
+      value:
+        - status: 'Success'
+          message: 'OTP has been validated successfully '
     EmailAuthenticationRequest:
       value:
         - userName: jdoe
@@ -325,7 +339,7 @@ components:
           message: OTP has been sent to the device
     SmsAuthenticationResponse:
       value:
-        - authId: TOTP
+        - authId: '798798789'
           status: Success
           message: OTP has been sent to the device
     TOTPDeviceRegistrationRequest:
@@ -346,8 +360,8 @@ components:
         - otp: '312312'
     TOTPDeviceActivationResponse:
       value:
-        - deviceType: TOTP
-          status: ''
+        - status: 'Success'
+          message: 'OTP has been validated successfully '
   responses:
     BadRequest:
       x-model-version: 1
@@ -415,9 +429,6 @@ components:
           format: password
           type: string
     ActivationResponse:
-      allOf:
-        - $ref: '#/components/schemas/MFADevice'
-        - type: object
       properties:
         status:
           type: string
@@ -446,9 +457,6 @@ components:
           type: string
           example: emailTemplate
     AuthenticationResponse:
-      allOf:
-        - $ref: '#/components/schemas/MFADevice'
-        - type: object
       properties:
         authId:
           type: string
