@@ -2,7 +2,7 @@
 
 - A user attempts to access a protected resource that is configured to use CIAM MFA, such as a gated website.  
 
-- The CIAM MFA API  sends a notification on an out-of-band (OOB) channel to the users authentication device (possession factor), for further verification of the user’s identity.  
+- The CIAM MFA API  sends a notification on an out-of-band (OOB) channel to the users authentication device (possession factor), for further verification of the users identity.  
 
 - The notification to the user is communicated on a separate network channel, isolated from the network channel that the user used when entering their username and password. Use of an OOB channel enhances security, reducing the possibility of man-in-the-middle (MITM), phishing, and other security vulnerability attacks.  
 
