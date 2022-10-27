@@ -1,7 +1,3 @@
----
-tags: [Getting Started, Sandbox, Developer Portal, Enroll, API Key]
----
-
 # Getting Started with Developer Studio 
 
 ## Access Commerce Hub APIs
