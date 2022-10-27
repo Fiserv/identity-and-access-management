@@ -96,7 +96,7 @@ type: tab
 
 - Option: 1 requires application to provide user with the enter secret key that was  within Step-1 response. To enable MFA, user should key in secret key  manually and attach it to authenticator application.
 
-- Option: 2 provides a better user experience where application should create a QR code using registration URI returned within  Step -1  API  response. To enable MFA, user should use their  mobile device's authenticator app to scan generated  QR code. 
+- Option: 2 provides a better user experience where application should create a QR code using registration URI returned within  Step -1  API  response. To enable MFA, user should use their  mobile devices authenticator app to scan generated  QR code. 
 
 
 ## Step 4: Register TOTP device 
