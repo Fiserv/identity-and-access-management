@@ -61,7 +61,10 @@ paths:
             examples:
               TOTPDeviceRegistration:
                 $ref: '#/components/examples/TOTPDeviceRegistrationRequest'
-                summary: Request to register TOTP Devices
+                summary: Request to register TOTP Devices. Request body requires deviceType and deviceName as additional attribute.
+              YubiKeyDeviceRegistration:
+                $ref: '#/components/examples/YubiKeyDeviceRegistrationRequest'
+                summary: Request to register TOTP Devices. Request body requires deviceType,  deviceName as additional attribute along with Relying party domain information
         required: true
       tags:
         - MFA device creation endpoint definition
@@ -81,7 +84,18 @@ paths:
               examples:
                 TOTPDeviceRegistration:
                   $ref: '#/components/examples/TOTPDeviceRegistrationResponse'
-                  summary: Request to register TOTP Devices
+                  summary: Response returns a  authentication ID that
+                        is required for the next steps in the flow to validate and activate the
+                        device for authentication.  Response also returns registration URI that
+                        will be a  string that specifies the authenticator key URI (for example,
+                        otpauth://totp/abc@example.com?secret={secretValue}.
+                YubiKeyDeviceRegistration:
+                  $ref: '#/components/examples/YubiKeyDeviceRegistrationResponse'
+                  summary: Response returns a  authentication ID that
+                        is required for the next steps in the flow to validate and activate the
+                        device for authentication.  Response also returns registration URI that
+                        will be a  string that specifies the authenticator key URI (for example,
+                        otpauth://totp/abc@example.com?secret={secretValue}.
           description: Created
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -94,16 +108,9 @@ paths:
       operationId: createMFADevice
       summary: Add  User device.
       description: >
-        Operation to add a Time-based One-time Password (TOTP) authenticator 
-        device type to the specified user resource. Username is required as in
-        path attribute. Username should be unique for your application. Request
-        body requires deviceType and deviceName as additional attribute.
-        deviceName will be associated with a specific device for a user.
-        deviceType will be TOTP. The response returns a  authentication ID that
-        is required for the next steps in the flow to validate and activate the
-        device for authentication.  Response also returns registration URI that
-        will be a  string that specifies the authenticator key URI (for example,
-        otpauth://totp/abc@example.com?secret={secretValue}.
+        Operation to add a MFA device to a user resource. 
+        MFA device type supported are  Time-based One-time Password (TOTP) authenticator
+        or FIPS compliant Security Key like YubiKey. 
       x-proxy-name: Add Device
       x-group-name: MFA
   /users/{username}/mfadevices/{authId}:
@@ -119,7 +126,7 @@ paths:
             examples:
               TOTPDeviceActivation:
                 $ref: '#/components/examples/TOTPDeviceActivationRequest'
-                summary: TOTP  Device acticvation request
+                summary: TOTP  Device activation request
         required: true
       tags:
         - mfa device activation endpoint
@@ -164,8 +171,8 @@ paths:
       description: >-
         Device is activated and registered using TOTP displayed on the
         authenticator application.
+      x-proxy-name: Activate Device
       x-group-name: MFA
-      x-proxy-name: Register Device
   /deviceAuthentications:
     post:
       requestBody:
@@ -269,7 +276,7 @@ paths:
                 TOTPAuthentication:
                   $ref: '#/components/examples/ValidationResponse'
                   summary: TOTP otp validation response
-          description: Successful operation.
+            description: Successful operation.
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -303,6 +310,12 @@ components:
           type: string
     ActivationRequest:
       properties:
+        deviceType:
+          $ref: '#/components/schemas/Type'
+        origin:
+          type: string
+        attestation:
+          type: string
         otp:
           format: password
           type: string
@@ -317,7 +330,15 @@ components:
         - EMAIL
         - SMS
         - TOTP
+        - SECURITY_KEY
+        - PLATFORM
       type: string
+    FIDORPDomain:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
     AuthenticationRequest:
       properties:
         userName:
@@ -376,6 +397,9 @@ components:
           type: string
         registrationUri:
           type: string
+        rpDomain:
+          $ref: '#/components/schemas/FIDORPDomain'
+          
   responses:
     BadRequest:
       content:
@@ -485,6 +509,23 @@ components:
       value:
         deviceType: TOTP
         deviceName: Google
+        status: ACTIVATION_REQUIRED
+        authId: 30706e95-5e38-4148-b0e3-1e801cd87660"
+        registrationUri: >-
+          otpauth://totp/tomjones@example.com?secret=BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
+        secret: BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
+    YubiKeyDeviceRegistrationRequest:
+       value:
+        deviceType: SECURITY_KEY
+        deviceName: yubikey
+        rpDomain: 
+            id: pingone.com
+            name: PingOne
+    
+    YubiKeyDeviceRegistrationResponse:
+       value:
+        deviceType: SECURITY_KEY
+        deviceName: yubikey
         status: ACTIVATION_REQUIRED
         authId: 30706e95-5e38-4148-b0e3-1e801cd87660"
         registrationUri: >-
