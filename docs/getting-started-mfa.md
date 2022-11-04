@@ -35,19 +35,19 @@ CIAM MFA has various configuration possibilities that allow application to deter
 
 <!-- type: card
 title: MFA using SMS or Email
-description: Commerce Hub allows integration with Apple Pay and Google Pay mobile wallets.
+description: CIAM MFA API allows application to use Email ar SMS as authetnication factor.
 link: ?path=docs/ciam-mfa/sms-email.md
 -->
 
 <!-- type: card
 title:  MFA using TOTP
-description: A split shipment is an ability to capture an authorization for the full order amount by performing a capture for each item shipped.
+description:  CIAM MFA API allows application to use Modern TOTP  authentication..
 link: ?path=docs/ciam-mfa/TOTP.md
 -->
 
 <!-- type: card
 title: MFA using Yubikey
-description: Stored Credentials also known as Credentials on File or Card on File, allows customer to authorize the storage of their payment source details for future transactionst as a Cardholder Initiated Transaction (CIT).
+description: Allows used to authenticate using hardware token device.
 link: ?path=docs/ciam-mfa/yubikey.md
 -->
 

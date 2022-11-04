@@ -50,7 +50,7 @@ paths:
         have array of  devices. Each array object will have an individual device
         information consisting of deviceType , deviceName, CreateDate.
       x-group-name: MFA
-      x-proxy-name: list Devices
+      x-proxy-name: List Devices
     post:
       requestBody:
         description: Request object of a device.
@@ -111,7 +111,7 @@ paths:
         Operation to add a MFA device to a user resource. 
         MFA device type supported are  Time-based One-time Password (TOTP) authenticator
         or FIPS compliant Security Key like YubiKey. 
-      x-proxy-name: Add Device
+      x-proxy-name: 'Add Device'
       x-group-name: MFA
   /users/{username}/mfadevices/{authId}:
     post:
