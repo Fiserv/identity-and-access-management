@@ -276,7 +276,7 @@ paths:
                 TOTPAuthentication:
                   $ref: '#/components/examples/ValidationResponse'
                   summary: TOTP otp validation response
-            description: Successful operation.
+          description: Successful operation.
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
