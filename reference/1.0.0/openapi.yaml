@@ -107,12 +107,12 @@ paths:
           $ref: '#/components/responses/ServerError'
       operationId: createMFADevice
       summary: Add  User device.
-      description: >
+      description: >-
         Operation to add a MFA device to a user resource. 
         MFA device type supported are  Time-based One-time Password (TOTP) authenticator
         or FIPS compliant Security Key like YubiKey. 
-      x-proxy-name: 'Add Device'
       x-group-name: MFA
+      x-proxy-name: Add Device   
   /users/{username}/mfadevices/{authId}:
     post:
       requestBody:
