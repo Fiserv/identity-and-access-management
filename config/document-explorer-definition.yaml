@@ -48,7 +48,13 @@
             type: recipe
        - link: docs/ciam-mfa/yubikey.md
          title: MFA using Yubikey 
-         type: recipe
+         sections:
+          - title: Yubikey Device registration 
+            link: docs/ciam-mfa/yubikey-pairing.md
+            type: recipe
+          - title: Authentication using YubiKey
+            link: docs/ciam-mfa/yubikey-authentication.md
+            type: recipe
 - sections:
   - title: Release notes
     sections:
