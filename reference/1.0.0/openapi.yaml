@@ -51,6 +51,8 @@ paths:
         information consisting of deviceType , deviceName, CreateDate.
       x-group-name: MFA
       x-proxy-name: Get Devices
+      x-default-example: Devices 
+
     post:
       requestBody:
         description: Request object of a device.
@@ -111,7 +113,8 @@ paths:
         Operation to add a MFA device to a user resource.
       x-group-name: MFA
       x-proxy-name: Add Device
-      x-default-example: TOTPDevice
+      x-default-example: TOTP 
+
   /users/{username}/mfadevices/{authId}:
     post:
       requestBody:
@@ -151,7 +154,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/RegistrationResponse'
               examples:
-                TOTPDeviceActivation:
+                TOTP:
                   $ref: '#/components/examples/TOTPDeviceRegistrationResponse'
                   summary: TOTP Device registration request
           description: Successful Response
@@ -169,7 +172,8 @@ paths:
         Device is activated and registered using TOTP displayed on the
         authenticator application.
       x-proxy-name: Register Device
-      x-group-name: MFA
+      x-group-name: MFA 
+      x-default-example: TOTP
   /deviceAuthentications:
     post:
       requestBody:
