@@ -217,13 +217,16 @@ type: tab
 titles: Request, Response
 -->
 
-### Example of a attestation request
+### Example of a attestation request 
+
+
 ```json
 {
     "origin": "https://app.pingone.com",
     "attestation": "{\"id\":\"ARacmDOuRE7DJV6L7w\",\"type\":\"public-key\",\"rawId\":\"ARacmDOuRE7DJV6L7w=\",\"response\":{\"clientDataJSON\":\"eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRYWxzZX0=\",\"attestationObject\":\"o2NmbXRmcGFja2VkZ2F0dFFO29h8n6WKBn6tHCQ=\"},\"clientExtensionResults\":{}}"
 }
-``` 
+```
+
 <!--
 type: tab
 -->
