@@ -12,4 +12,4 @@ CIAM API provides support of OTP using modern authentication type such as TOTP.
 
 ## See also  
 
-- [API Explorer](./api/?type=post&path=/payments/v1/charges) 
+- [API Explorer](./api/?type=post&path=/payments/v1/charges)
