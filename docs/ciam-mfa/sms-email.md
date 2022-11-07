@@ -131,11 +131,4 @@ type: tab
 <!-- type: tab-end -->
 
 
----  
 
-## See also  
-
-- [API Explorer](./api/?type=post&path=/payments/v1/charges) 
-
-
----
