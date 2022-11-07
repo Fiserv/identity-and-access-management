@@ -46,7 +46,7 @@ featuredFeatures:
         link: ./docs/biometrics.md
     relatedAPIs:
       - relatedAPI: 
-        title: Get device 
+        title: Get devices 
         description: Get list of user devices
         type: "get"        
         path: "/users/{username}/mfadevices"  

@@ -50,7 +50,7 @@ paths:
         have array of  devices. Each array object will have an individual device
         information consisting of deviceType , deviceName, CreateDate.
       x-group-name: MFA
-      x-proxy-name: List Devices
+      x-proxy-name: Get Devices
     post:
       requestBody:
         description: Request object of a device.
@@ -170,7 +170,7 @@ paths:
       description: >-
         Device is activated and registered using TOTP displayed on the
         authenticator application.
-      x-proxy-name: Activate Device
+      x-proxy-name: Resgiter Device
       x-group-name: MFA
   /deviceAuthentications:
     post:
