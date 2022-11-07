@@ -49,17 +49,17 @@ featuredFeatures:
         title: Get device 
         description: Get list of user devices
         type: "get"        
-        path: "/v1/users/{username}/device"  
+        path: "/v1/users/{username}/mfadevices"  
       - relatedAPI: 
         title: Add Device
         description: Operation to add mfa  device to the specified user.
         type: "post"        
-        path: "/v1/users/{username}/device"
+        path: "/v1/users/{username}/mfadevices"
       - relatedAPI: 
         title: Register Device
         description:  Operation to register the device that was added but requires activation.
         type: "post"        
-        path: "/v1/users/{username}/device/{authId}"
+        path: "/v1/users/{username}/mfadevices/{authId}"
       - relatedAPI: 
         title: Initialize  Authentication
         description: API for initiating multi factor authentication process. 
