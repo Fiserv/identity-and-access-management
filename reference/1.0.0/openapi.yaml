@@ -108,11 +108,9 @@ paths:
       operationId: createMFADevice
       summary: Add  User device.
       description: >-
-        Operation to add a MFA device to a user resource. 
-        MFA device type supported are  Time-based One-time Password (TOTP) authenticator
-        or FIPS compliant Security Key like YubiKey. 
+        Operation to add a MFA device to a user resource.
       x-group-name: MFA
-      x-proxy-name: Add Device   
+      x-proxy-name: Add Device
   /users/{username}/mfadevices/{authId}:
     post:
       requestBody:
