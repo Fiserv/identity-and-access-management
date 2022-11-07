@@ -1,6 +1,6 @@
 # MFA using TOTP 
 
-TOTP stands for Time-based One-Time Passwords and is a common form of two factor authentication (2FA). Unique numeric passwords are generated with a standardized algorithm that uses the current time as an input. The time-based passwords are available offline and provide user friendly, increased account security when used as a second factor.
+TOTP stands for Time-based One-Time Passwords uses time as a moving factor and is a common form of two factor authentication (2FA). Unique numeric passwords are generated with a standardized algorithm that uses the current time as an input. The time-based passwords are available offline and provide user friendly, increased account security when used as a second factor.
 
 TOTP 2FA benefits - 
 
