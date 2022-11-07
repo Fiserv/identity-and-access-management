@@ -11,6 +11,46 @@ servers:
   - url: https://ciam-mfa-api-dev.1dc.com/ciam-mfa/v1
 paths:
   /users/{username}/mfadevices:
+    get:
+      tags:
+        - MFA device endpoint definition
+      parameters:
+        - name: username
+          description: Username
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MFADevice'
+              examples:
+                Devices:
+                  $ref: '#/components/examples/DeviceList'
+                  summary: List of Devices
+          description: Successful response
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      operationId: getDeviceDetails
+      summary: Get All  User Devices registered for MFA.
+      description: >-
+        Returns a list of all device resources associated with the specified
+        username. Request required username in the path and response body will
+        have array of  devices. Each array object will have an individual device
+        information consisting of deviceType , deviceName, CreateDate.
+      x-group-name: MFA
+      x-proxy-name: List Devices
     post:
       requestBody:
         description: Request object of a device.
@@ -72,46 +112,6 @@ paths:
       x-group-name: MFA
       x-proxy-name: Add Device
       x-default-example: TOTPDeviceRegistration
-    get:
-      tags:
-        - MFA device endpoint definition
-      parameters:
-        - name: username
-          description: Username
-          schema:
-            type: string
-          in: path
-          required: true
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MFADevice'
-              examples:
-                Devices:
-                  $ref: '#/components/examples/DeviceList'
-                  summary: List of Devices
-          description: Successful response
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '500':
-          $ref: '#/components/responses/ServerError'
-      operationId: getDeviceDetails
-      summary: Get All  User Devices registered for MFA.
-      description: >-
-        Returns a list of all device resources associated with the specified
-        username. Request required username in the path and response body will
-        have array of  devices. Each array object will have an individual device
-        information consisting of deviceType , deviceName, CreateDate.
-      x-group-name: MFA
-      x-proxy-name: List Devices
   /users/{username}/mfadevices/{authId}:
     post:
       requestBody:
