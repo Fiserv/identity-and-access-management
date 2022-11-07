@@ -13,7 +13,7 @@ paths:
   /users/{username}/mfadevices:
     get:
       tags:
-        - MFA device endpoint definition
+        - device endpoint definition
       parameters:
         - name: username
           description: Username
@@ -59,15 +59,15 @@ paths:
             schema:
               $ref: '#/components/schemas/MFADevice'
             examples:
-              TOTPDeviceRegistration:
-                $ref: '#/components/examples/TOTPDeviceRegistrationRequest'
-                summary: Request to register TOTP Devices. Request body requires deviceType and deviceName as additional attribute.
-              YubiKeyDeviceRegistration:
-                $ref: '#/components/examples/YubiKeyDeviceRegistrationRequest'
-                summary: Request to register TOTP Devices. Request body requires deviceType,  deviceName as additional attribute along with Relying party domain information
+              TOTP:
+                $ref: '#/components/examples/TOTPDeviceAddRequest'
+                summary: Request to add TOTP Devices. Request body requires deviceType and deviceName as additional attribute.
+              YubiKey:
+                $ref: '#/components/examples/YubiKeyDeviceAddRequest'
+                summary: Request to add TOTP Devices. Request body requires deviceType,  deviceName as additional attribute along with Relying party domain information
         required: true
       tags:
-        - MFA device creation endpoint definition
+        - device creation endpoint definition
       parameters:
         - name: username
           description: User Name associated associated with the device.
@@ -82,15 +82,15 @@ paths:
               schema:
                 $ref: '#/components/schemas/MFADevice'
               examples:
-                TOTPDeviceRegistration:
-                  $ref: '#/components/examples/TOTPDeviceRegistrationResponse'
+                TOTP:
+                  $ref: '#/components/examples/TOTPDeviceAddResponse'
                   summary: Response returns a  authentication ID that
                         is required for the next steps in the flow to validate and activate the
                         device for authentication.  Response also returns registration URI that
                         will be a  string that specifies the authenticator key URI (for example,
                         otpauth://totp/abc@example.com?secret={secretValue}.
-                YubiKeyDeviceRegistration:
-                  $ref: '#/components/examples/YubiKeyDeviceRegistrationResponse'
+                YubiKey:
+                  $ref: '#/components/examples/YubiKeyDeviceAddResponse'
                   summary: Response returns a  authentication ID that
                         is required for the next steps in the flow to validate and activate the
                         device for authentication.  Response also returns registration URI that
@@ -111,24 +111,22 @@ paths:
         Operation to add a MFA device to a user resource.
       x-group-name: MFA
       x-proxy-name: Add Device
-      x-default-example: TOTPDeviceRegistration
+      x-default-example: TOTPDevice
   /users/{username}/mfadevices/{authId}:
     post:
       requestBody:
-        description: >-
-          operation to activate the TOTP device specified in the request URL. 
-          Request body
+        description: operation to activate the TOTP device specified in the request URL. 
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ActivationRequest'
+              $ref: '#/components/schemas/RegistrationRequest'
             examples:
-              TOTPDeviceActivation:
-                $ref: '#/components/examples/TOTPDeviceActivationRequest'
-                summary: TOTP  Device activation request
+              TOTP:
+                $ref: '#/components/examples/TOTPDeviceRegistrationRequest'
+                summary: TOTP  Device registration request
         required: true
       tags:
-        - mfa device activation endpoint
+        - device registration endpoint
       parameters:
         - name: username
           description: >-
@@ -151,11 +149,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ActivationResponse'
+                $ref: '#/components/schemas/RegistrationResponse'
               examples:
                 TOTPDeviceActivation:
-                  $ref: '#/components/examples/TOTPDeviceActivationResponse'
-                  summary: TOTP Device acticvation request
+                  $ref: '#/components/examples/TOTPDeviceRegistrationResponse'
+                  summary: TOTP Device registration request
           description: Successful Response
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -165,12 +163,12 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'
-      operationId: activateDevice
+      operationId: registerDevice
       summary: Register  device
       description: >-
         Device is activated and registered using TOTP displayed on the
         authenticator application.
-      x-proxy-name: Resgiter Device
+      x-proxy-name: Register Device
       x-group-name: MFA
   /deviceAuthentications:
     post:
@@ -307,7 +305,7 @@ components:
           type: string
         timestamp:
           type: string
-    ActivationRequest:
+    RegistrationRequest:
       properties:
         deviceType:
           $ref: '#/components/schemas/Type'
@@ -318,7 +316,7 @@ components:
         otp:
           format: password
           type: string
-    ActivationResponse:
+    RegistrationResponse:
       properties:
         status:
           type: string
@@ -461,7 +459,7 @@ components:
           createdAt: 07/16/2022
     ValidationRequest:
       value:
-        - otp: '3423423'
+        otp: '3423423'
     ValidationResponse:
       value:
         - status: Success
@@ -500,11 +498,11 @@ components:
         - authId: '798798789'
           status: Success
           message: OTP has been sent to the device
-    TOTPDeviceRegistrationRequest:
+    TOTPDeviceAddRequest:
       value:
         deviceType: TOTP
         deviceName: Google
-    TOTPDeviceRegistrationResponse:
+    TOTPDeviceAddResponse:
       value:
         deviceType: TOTP
         deviceName: Google
@@ -513,15 +511,14 @@ components:
         registrationUri: >-
           otpauth://totp/tomjones@example.com?secret=BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
         secret: BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
-    YubiKeyDeviceRegistrationRequest:
+    YubiKeyDeviceAddRequest:
        value:
         deviceType: SECURITY_KEY
         deviceName: yubikey
         rpDomain: 
             id: pingone.com
-            name: PingOne
-    
-    YubiKeyDeviceRegistrationResponse:
+            name: PingOne    
+    YubiKeyDeviceAddResponse:
        value:
         deviceType: SECURITY_KEY
         deviceName: yubikey
@@ -530,10 +527,10 @@ components:
         registrationUri: >-
           otpauth://totp/tomjones@example.com?secret=BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
         secret: BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
-    TOTPDeviceActivationRequest:
+    TOTPDeviceRegistrationRequest:
       value:
-        - otp: '312312'
-    TOTPDeviceActivationResponse:
+         otp: '312312'
+    TOTPDeviceRegistrationResponse:
       value:
         - status: Success
           message: 'OTP has been validated successfully '
