@@ -26,6 +26,14 @@ CIAM MFA API provides MFA for the customer use case that protects Fiserv applica
 
 3. CIAM MFA is configured to provide a one-time passcode (OTP) through SMS  or email notification, or Time-based One-Time Password (TOTP) authenticator app. The user must enter that passcode before it expires.  
 
+## Onboarding 
+
+- CIAM MFA API requires registration of application.
+
+- Application team should submit a service point ticket to get yourself onboarded.
+
+- Service Catalog > Application Services > Customer IAM Application Onboarding
+
 
 ## Integration use cases  
 
