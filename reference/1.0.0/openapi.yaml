@@ -52,7 +52,7 @@ paths:
       x-group-name: MFA
       x-proxy-name: Get Devices
       x-default-example: Devices 
-
+  /users/{username}/mfadevices:
     post:
       requestBody:
         description: Request object of a device.
