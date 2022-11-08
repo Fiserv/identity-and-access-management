@@ -12,6 +12,16 @@ servers:
 paths:
   /users/{username}/mfadevices:
     get:
+      operationId: getDeviceDetails
+      summary: Get All  User Devices registered for MFA.
+      description: >-
+        Returns a list of all device resources associated with the specified
+        username. Request required username in the path and response body will
+        have array of  devices. Each array object will have an individual device
+        information consisting of deviceType , deviceName, CreateDate.
+      x-group-name: MFA
+      x-proxy-name: Get Devices
+      x-default-example: Devices
       tags:
         - device endpoint definition
       parameters:
@@ -42,17 +52,15 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'
-      operationId: getDeviceDetails
-      summary: Get All  User Devices registered for MFA.
-      description: >-
-        Returns a list of all device resources associated with the specified
-        username. Request required username in the path and response body will
-        have array of  devices. Each array object will have an individual device
-        information consisting of deviceType , deviceName, CreateDate.
-      x-group-name: MFA
-      x-proxy-name: Get Devices
-      x-default-example: Devices 
+ 
     post:
+      operationId: createMFADevice
+      summary: Add  User device.
+      description: >-
+        Operation to add a MFA device to a user resource.
+      x-group-name: MFA
+      x-proxy-name: Add Device
+      x-default-example: TOTP 
       requestBody:
         description: Request object of a device.
         content:
@@ -106,13 +114,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'
-      operationId: createMFADevice
-      summary: Add  User device.
-      description: >-
-        Operation to add a MFA device to a user resource.
-      x-group-name: MFA
-      x-proxy-name: Add Device
-      x-default-example: TOTP 
+
 
   /users/{username}/mfadevices/{authId}:
     post:
