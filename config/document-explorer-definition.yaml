@@ -55,8 +55,3 @@
           - title: Authentication using YubiKey
             link: docs/ciam-mfa/yubikey-authentication.md
             type: recipe
-- sections:
-  - title: Release notes
-    sections:
-        - title: March 2022
-          link: docs/release-notes/2022/march.md
