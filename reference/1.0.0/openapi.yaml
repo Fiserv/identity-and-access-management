@@ -1,3 +1,33 @@
+################################################################################
+# Copyrights © 2021-2022 Fiserv, Inc. or its affiliates. 
+# Fiserv is a trademark of Fiserv, Inc., 
+# registered or used in the United States and foreign countries, 
+# and may or may not be registered in your country.  
+# All trademarks, service marks, 
+# and trade names referenced in this 
+# material are the property of their 
+# respective owners. This work, including its contents 
+# and programming, is confidential and its use 
+# is strictly limited. This work is furnished only 
+# for use by duly authorized licensees of Fiserv, Inc. 
+# or its affiliates, and their designated agents 
+# or employees responsible for installation or 
+# operation of the products. Any other use, 
+# duplication, or dissemination without the 
+# prior written consent of Fiserv, Inc. 
+# or its affiliates is strictly prohibited. 
+# Except as specified by the agreement under 
+# which the materials are furnished, Fiserv, Inc. 
+# and its affiliates do not accept any liabilities 
+# with respect to the information contained herein 
+# and are not responsible for any direct, indirect, 
+# special, consequential or exemplary damages 
+# resulting from the use of this information. 
+# No warranties, either express or implied, 
+# are granted or extended by this work or 
+# the delivery of this work
+################################################################################
+
 openapi: 3.0.0
 info:
   title: CIAM MFA API
@@ -10,30 +40,38 @@ info:
 servers:
   - url: https://ciam-mfa-api-dev.1dc.com/ciam-mfa/v1
 paths:
-  /users/{username}/mfadevices:
+  /users/{username}/devices:
     get:
+      x-group-name: 'Device'
+      x-proxy-name: 'list'
       tags:
         - MFA device endpoint definition
+      summary: Get All  User Devices registered for MFA.
+      description: >-
+        Returns a list of all device resources associated with the specified
+        username. Request required username in the path and response body will
+        have array of devices. Each array object will have an individual device
+        information consisting of deviceType , deviceName, CreateDate.
       parameters:
         - name: username
-          description: Username
           schema:
             type: string
           in: path
           required: true
+          description: Username
       responses:
         '200':
+          description: Successful response
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/MFADevice'
+                  $ref: '#/components/schemas/Device'
               examples:
                 Devices:
-                  $ref: '#/components/examples/DeviceList'
                   summary: List of Devices
-          description: Successful response
+                  $ref: '#/components/examples/DeviceList'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -43,56 +81,12 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
       operationId: getDeviceDetails
-      summary: Get All  User Devices registered for MFA.
-      description: >-
-        Returns a list of all device resources associated with the specified
-        username. Request required username in the path and response body will
-        have array of  devices. Each array object will have an individual device
-        information consisting of deviceType , deviceName, CreateDate.
-      x-group-name: MFA
-      x-proxy-name: list Devices
     post:
-      requestBody:
-        description: Request object of a device.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/MFADevice'
-            examples:
-              TOTPDeviceRegistration:
-                $ref: '#/components/examples/TOTPDeviceRegistrationRequest'
-                summary: Request to register TOTP Devices
-        required: true
       tags:
         - MFA device creation endpoint definition
-      parameters:
-        - name: username
-          description: User Name associated associated with the device.
-          schema:
-            type: string
-          in: path
-          required: true
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MFADevice'
-              examples:
-                TOTPDeviceRegistration:
-                  $ref: '#/components/examples/TOTPDeviceRegistrationResponse'
-                  summary: Request to register TOTP Devices
-          description: Created
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '500':
-          $ref: '#/components/responses/ServerError'
-      operationId: createMFADevice
-      summary: Add  User device.
+      x-group-name: 'Device'
+      x-proxy-name: 'Add'
+      summary: Create  MFA User Device.
       description: >
         Operation to add a Time-based One-time Password (TOTP) authenticator 
         device type to the specified user resource. Username is required as in
@@ -104,10 +98,55 @@ paths:
         device for authentication.  Response also returns registration URI that
         will be a  string that specifies the authenticator key URI (for example,
         otpauth://totp/abc@example.com?secret={secretValue}.
-      x-proxy-name: Add Device
-      x-group-name: MFA
-  /users/{username}/mfadevices/{authId}:
+      parameters:
+        - name: username
+          description: User Name associated associated with the device.
+          schema:
+            type: string
+          in: path
+          required: true
+      requestBody:
+        description: Request object of a device.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Device'
+            examples:
+              TOTPDeviceRegistration:
+                summary: Request to register TOTP Devices
+                $ref: '#/components/examples/TOTPDeviceRegistrationRequest'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+              examples:
+                TOTPDeviceRegistration:
+                  summary: Request to register TOTP Devices
+                  $ref: '#/components/examples/TOTPDeviceRegistrationResponse'
+          description: Created
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      operationId: createMFADevice
+  /users/{username}/devices/{authId}:
     post:
+      tags:
+        - mfa device activation endpoint
+      x-group-name: 'Device'
+      x-proxy-name: 'Register'
+      summary: Register  device
+      description: >-
+        Device is activated and registered using TOTP displayed on the authenticator
+        application.
+        
       requestBody:
         description: >-
           operation to activate the TOTP device specified in the request URL. 
@@ -118,27 +157,25 @@ paths:
               $ref: '#/components/schemas/ActivationRequest'
             examples:
               TOTPDeviceActivation:
+                summary: TOTP Device acticvation request
                 $ref: '#/components/examples/TOTPDeviceActivationRequest'
-                summary: TOTP  Device acticvation request
         required: true
-      tags:
-        - mfa device activation endpoint
       parameters:
-        - name: username
+        - in: path
+          name: username
           description: >-
             Username of the user activating the device. This should be similar
             to username used during registration
           schema:
             type: string
-          in: path
           required: true
-        - name: authId
+        - in: path
+          name: authId
           description: >-
             Username of the user activating the device. This should be similar
             to username used during registration
           schema:
             type: string
-          in: path
           required: true
       responses:
         '200':
@@ -148,8 +185,8 @@ paths:
                 $ref: '#/components/schemas/ActivationResponse'
               examples:
                 TOTPDeviceActivation:
-                  $ref: '#/components/examples/TOTPDeviceActivationResponse'
                   summary: TOTP Device acticvation request
+                  $ref: '#/components/examples/TOTPDeviceActivationResponse'
           description: Successful Response
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -160,59 +197,10 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
       operationId: activateDevice
-      summary: Register  device
-      description: >-
-        Device is activated and registered using TOTP displayed on the
-        authenticator application.
-      x-group-name: MFA
-      x-proxy-name: Register Device
   /deviceAuthentications:
     post:
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AuthenticationRequest'
-            examples:
-              EmailAuthentication:
-                $ref: '#/components/examples/EmailAuthenticationRequest'
-                summary: Email authentication request
-              SMSAuthentication:
-                $ref: '#/components/examples/SmsAuthenticationRequest'
-                summary: SMS authentication request
-              TOTPAuthentication:
-                $ref: '#/components/examples/TotpAuthenticationRequest'
-                summary: TOTP authentication request
-        required: true
-      tags:
-        - device authentication
-      responses:
-        '201':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/AuthenticationResponse'
-              examples:
-                EmailAuthentication:
-                  $ref: '#/components/examples/EmailAuthenticationResponse'
-                  summary: Email authentication response
-                SMSAuthentication:
-                  $ref: '#/components/examples/SmsAuthenticationResponse'
-                  summary: SMS authentication response
-                TOTPAuthentication:
-                  $ref: '#/components/examples/TotpAuthenticationResponse'
-                  summary: TOTP authentication response
-          description: Successfully created.
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '500':
-          $ref: '#/components/responses/ServerError'
-      operationId: initializeDeviceAuthentication
-      summary: Initialize Device Authentication
+      x-group-name: 'Device'
+      x-proxy-name: 'Authenticate'
       description: >-
         The POST deviceAuthentications operation initiates an MFA device
         authentication flow.  Operation supports authentication using SMS, EMAIL
@@ -224,11 +212,62 @@ paths:
         device registration  refer device registration API. The response returns
         a  authentication ID that is required for the next steps in the flow.
         The response also includes a status and message.
-      x-group-name: MFA
-      x-proxy-name: Initialize Authentication
-      x-default-example: EmailAuthentication
+      summary: Request Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthenticationRequest'
+            examples:
+              EmailAuthentication:
+                summary: Email authentication request
+                $ref: '#/components/examples/EmailAuthenticationRequest'
+              SMSAuthentication:
+                summary: SMS authentication request
+                $ref: '#/components/examples/SmsAuthenticationRequest'
+              TOTPAuthentication:
+                summary: TOTP authentication request
+                $ref: '#/components/examples/TotpAuthenticationRequest'
+        required: true
+      tags:
+        - device authentication
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationResponse'
+              examples:
+                EmailAuthentication:
+                  summary: Email authentication response
+                  $ref: '#/components/examples/EmailAuthenticationResponse'
+                SMSAuthentication:
+                  summary: SMS authentication response
+                  $ref: '#/components/examples/SmsAuthenticationResponse'
+                TOTPAuthentication:
+                  summary: TOTP authentication response
+                  $ref: '#/components/examples/TotpAuthenticationResponse'
+          description: Successfully created.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      operationId: initializeDeviceAuthentication
   /deviceAuthentications/{authId}:
     post:
+      x-group-name: 'Device'
+      x-proxy-name: 'Validate'
+      summary: Validate Device authentication request
+      description: >-
+        The multi-factor authentication flow uses a one-time passcode (OTP) sent
+        to the user's device to continue the flow. The user receives the OTP on
+        a specified device and submits it as a step in the authentication
+        process. Prerequisite is to call Initialize device authentication to get
+        a {{authID}} for the endpoint.
       requestBody:
         content:
           application/json:
@@ -236,14 +275,14 @@ paths:
               $ref: '#/components/schemas/ValidationRequest'
             examples:
               EmailAuthentication:
+                summary: Email authentication response
                 $ref: '#/components/examples/ValidationRequest'
-                summary: Email otp validation request
               SMSAuthentication:
+                summary: SMS authentication response
                 $ref: '#/components/examples/ValidationRequest'
-                summary: SMS otp validation request
               TOTPAuthentication:
+                summary: TOTP authentication response
                 $ref: '#/components/examples/ValidationRequest'
-                summary: TOTP  validation request
         required: true
       tags:
         - device authentication
@@ -259,16 +298,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ValidationResponse'
-              examples:
-                EmailAuthentication:
-                  $ref: '#/components/examples/ValidationResponse'
-                  summary: Email otp validation response
-                SMSAuthentication:
-                  $ref: '#/components/examples/ValidationResponse'
-                  summary: SMS otp validation response
-                TOTPAuthentication:
-                  $ref: '#/components/examples/ValidationResponse'
-                  summary: TOTP otp validation response
           description: Successful operation.
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -279,16 +308,124 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
       operationId: validateOTP
-      summary: Validate Device authentication request
-      description: >-
-        The multi-factor authentication flow uses a one-time passcode (OTP) sent
-        to the user's device to continue the flow. The user receives the OTP on
-        a specified device and submits it as a step in the authentication
-        process. Prerequisite is to call Initialize device authentication to get
-        a {{authID}} for the endpoint.
-      x-group-name: MFA
-      x-proxy-name: Validate Authentication
 components:
+  examples:
+    DeviceList:
+      value:
+        - deviceType: TOTP
+          deviceName: Google
+          status: Active
+          createdAt: 06/16/2022
+        - deviceType: TOTP
+          deviceName: MSFT
+          status: Active
+          createdAt: 07/16/2022
+    ValidationRequest:
+      value:
+        - otp: '3423423'
+    EmailAuthenticationRequest:
+      value:
+        - userName: jdoe
+          deviceType: EMAIL
+          email: a@b.com
+          deviceName: MyEmail
+          templateName: emailTemplate
+    SmsAuthenticationRequest:
+      value:
+        - userName: jdoe
+          deviceType: SMS
+          email: 999-000-9999
+          deviceName: MySMS
+          templateName: SMSTemplate
+    TotpAuthenticationRequest:
+      value:
+        - userName: jdoe
+          deviceType: TOTP
+          deviceName: Google
+    TotpAuthenticationResponse:
+      value:
+        - authId: '654564645'
+          status: Success
+          message: OTP has been sent to the device
+    EmailAuthenticationResponse:
+      value:
+        - authId: '798798789'
+          status: Success
+          message: OTP has been sent to the device
+    SmsAuthenticationResponse:
+      value:
+        - authId: TOTP
+          status: Success
+          message: OTP has been sent to the device
+    TOTPDeviceRegistrationRequest:
+      value:
+        deviceType: TOTP
+        deviceName: Google
+    TOTPDeviceRegistrationResponse:
+      value:
+        deviceType: TOTP
+        deviceName: Google
+        status: ACTIVATION_REQUIRED
+        authId: 30706e95-5e38-4148-b0e3-1e801cd87660"
+        registrationUri: >-
+          otpauth://totp/tomjones@example.com?secret=BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
+        secret: BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
+    TOTPDeviceActivationRequest:
+      value:
+        - otp: '312312'
+    TOTPDeviceActivationResponse:
+      value:
+        - deviceType: TOTP
+          status: ''
+  responses:
+    BadRequest:
+      x-model-version: 1
+      description: The request cannot be validated.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10008'
+            message: Invalid Authid
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+    Unauthorized:
+      x-model-version: 1
+      description: The request was unauthorized.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10001'
+            message: Access token has expired
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+    NotFound:
+      x-model-version: 1
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10003'
+            message: User not found, please check the username
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+    ServerError:
+      x-model-version: 1
+      description: An unexpected internal server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10010'
+            message: An unexpected internal server error occurred. Try again later
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
   schemas:
     ErrorResponse:
       properties:
@@ -323,7 +460,7 @@ components:
         userName:
           type: string
         deviceType:
-          type: string
+          $ref: '#/components/schemas/Type'
         phoneNumber:
           type: string
         email:
@@ -353,7 +490,7 @@ components:
           type: string
         message:
           type: string
-    MFADevice:
+    Device:
       properties:
         authId:
           type: string
@@ -376,138 +513,9 @@ components:
           type: string
         registrationUri:
           type: string
-  responses:
-    BadRequest:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: '10008'
-            message: Invalid Authid
-            traceId: 7027b61dbf7645399d204dbfa0de0870
-            timestamp: 2022-06-24-15.30.20
-      description: The request cannot be validated.
-      x-model-version: 1
-    Unauthorized:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: '10001'
-            message: Access token has expired
-            traceId: 7027b61dbf7645399d204dbfa0de0870
-            timestamp: 2022-06-24-15.30.20
-      description: The request was unauthorized.
-      x-model-version: 1
-    NotFound:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: '10003'
-            message: User not found, please check the username
-            traceId: 7027b61dbf7645399d204dbfa0de0870
-            timestamp: 2022-06-24-15.30.20
-      description: The requested resource does not exist.
-      x-model-version: 1
-    ServerError:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-          example:
-            code: '10010'
-            message: An unexpected internal server error occurred. Try again later
-            traceId: 7027b61dbf7645399d204dbfa0de0870
-            timestamp: 2022-06-24-15.30.20
-      description: An unexpected internal server error occurred.
-      x-model-version: 1
-  examples:
-    DeviceList:
-      value:
-        - deviceType: TOTP
-          deviceName: Google
-          status: Active
-          createdAt: 06/16/2022
-        - deviceType: TOTP
-          deviceName: MSFT
-          status: Active
-          createdAt: 07/16/2022
-    ValidationRequest:
-      value:
-        - otp: '3423423'
-    ValidationResponse:
-      value:
-        - status: Success
-          message: 'OTP has been validated successfully '
-    EmailAuthenticationRequest:
-      value:
-        - userName: jdoe
-          deviceType: EMAIL
-          email: a@b.com
-          deviceName: MyEmail
-          templateName: emailTemplate
-    SmsAuthenticationRequest:
-      value:
-        - userName: jdoe
-          deviceType: SMS
-          email: 999-000-9999
-          deviceName: MySMS
-          templateName: SMSTemplate
-    TotpAuthenticationRequest:
-      value:
-        - userName: jdoe
-          deviceType: TOTP
-          deviceName: Google
-    TotpAuthenticationResponse:
-      value:
-        - authId: '654564645'
-          status: Success
-          message: OTP has been sent to the device
-    EmailAuthenticationResponse:
-      value:
-        - authId: '798798789'
-          status: Success
-          message: OTP has been sent to the device
-    SmsAuthenticationResponse:
-      value:
-        - authId: '798798789'
-          status: Success
-          message: OTP has been sent to the device
-    TOTPDeviceRegistrationRequest:
-      value:
-        deviceType: TOTP
-        deviceName: Google
-    TOTPDeviceRegistrationResponse:
-      value:
-        deviceType: TOTP
-        deviceName: Google
-        status: ACTIVATION_REQUIRED
-        authId: 30706e95-5e38-4148-b0e3-1e801cd87660"
-        registrationUri: >-
-          otpauth://totp/tomjones@example.com?secret=BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
-        secret: BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
-    TOTPDeviceActivationRequest:
-      value:
-        - otp: '312312'
-    TOTPDeviceActivationResponse:
-      value:
-        - status: Success
-          message: 'OTP has been validated successfully '
-  securitySchemes:
-    Bearer:
-      type: oauth2
-      description: ''
-      flows:
-        clientCredentials:
-          tokenUrl: https://ciam-mfa-api-dev.1dc.com/ciam-mfa/v1/get/token
-          scopes: {}
+  securitySchemes: {}
   headers: {}
   parameters: {}
 tags: []
-security:
-  - Bearer: []
+security: []
 
