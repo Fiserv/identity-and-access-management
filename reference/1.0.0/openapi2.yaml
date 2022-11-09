@@ -1,0 +1,330 @@
+openapi: 3.0.0
+info:
+  title: CIAM MFA API
+  version: 1.0.0
+  description: >-
+    This API Specification is designed to provide technical guidance required to
+    consume and integrate with our APIs for multi factor authentication.
+  x-logo:
+    url: ''
+servers:
+  - url: https://ciam-mfa-api-dev.1dc.com/ciam-mfa/v1
+paths:
+  /users/{username}/mfadevices:
+    post:
+      operationId: createMFADevice
+      summary: Add  User device.
+      description: >-
+        Operation to add a MFA device to a user resource.
+      x-group-name: 'MFA'
+      x-proxy-name: 'Add Device'
+      x-default-example: TOTP 
+      requestBody:
+        description: Request object of a device.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MFADevice'
+            examples:
+              TOTP:
+                $ref: '#/components/examples/TOTPDeviceAddRequest'
+                summary: Request to add TOTP Devices. Request body requires deviceType and deviceName as additional attribute.
+              YubiKey:
+                $ref: '#/components/examples/YubiKeyDeviceAddRequest'
+                summary: Request to add TOTP Devices. Request body requires deviceType,  deviceName as additional attribute along with Relying party domain information
+        required: true
+      tags:
+        - device creation endpoint definition
+      parameters:
+        - name: username
+          description: User Name associated associated with the device.
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MFADevice'
+              examples:
+                TOTP:
+                  $ref: '#/components/examples/TOTPDeviceAddResponse'
+                  summary: Response returns a  authentication ID that
+                        is required for the next steps in the flow to validate and activate the
+                        device for authentication.  Response also returns registration URI that
+                        will be a  string that specifies the authenticator key URI (for example,
+                        otpauth://totp/abc@example.com?secret={secretValue}.
+                YubiKey:
+                  $ref: '#/components/examples/YubiKeyDeviceAddResponse'
+                  summary: Response returns a  authentication ID that
+                        is required for the next steps in the flow to validate and activate the
+                        device for authentication.  Response also returns registration URI that
+                        will be a  string that specifies the authenticator key URI (for example,
+                        otpauth://totp/abc@example.com?secret={secretValue}.
+          description: Created
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  schemas:
+    ErrorResponse:
+      properties:
+        error:
+          format: int32
+          type: integer
+        message:
+          type: string
+        traceid:
+          type: string
+        timestamp:
+          type: string
+    RegistrationRequest:
+      properties:
+        deviceType:
+          $ref: '#/components/schemas/Type'
+        origin:
+          type: string
+        attestation:
+          type: string
+        otp:
+          format: password
+          type: string
+    RegistrationResponse:
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    Type:
+      enum:
+        - EMAIL
+        - SMS
+        - TOTP
+        - SECURITY_KEY
+        - PLATFORM
+      type: string
+    FIDORPDomain:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    AuthenticationRequest:
+      properties:
+        userName:
+          type: string
+        deviceType:
+          type: string
+        phoneNumber:
+          type: string
+        email:
+          type: string
+        deviceName:
+          type: string
+          example: iphone/android
+        templateName:
+          type: string
+          example: emailTemplate
+    AuthenticationResponse:
+      properties:
+        authId:
+          type: string
+        status:
+          type: string
+        message:
+          type: string
+    ValidationRequest:
+      properties:
+        otp:
+          format: password
+          type: string
+    ValidationResponse:
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+    MFADevice:
+      properties:
+        authId:
+          type: string
+        deviceType:
+          $ref: '#/components/schemas/Type'
+        status:
+          type: string
+        phoneNumber:
+          type: string
+        email:
+          type: string
+        deviceName:
+          type: string
+          example: iphone/android
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        secret:
+          type: string
+        registrationUri:
+          type: string
+        rpDomain:
+          $ref: '#/components/schemas/FIDORPDomain'
+          
+  responses:
+    BadRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10008'
+            message: Invalid Authid
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+      description: The request cannot be validated.
+      x-model-version: 1
+    Unauthorized:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10001'
+            message: Access token has expired
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+      description: The request was unauthorized.
+      x-model-version: 1
+    NotFound:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10003'
+            message: User not found, please check the username
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+      description: The requested resource does not exist.
+      x-model-version: 1
+    ServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10010'
+            message: An unexpected internal server error occurred. Try again later
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+      description: An unexpected internal server error occurred.
+      x-model-version: 1
+  examples:
+    DeviceList:
+      value:
+        - deviceType: TOTP
+          deviceName: Google
+          status: Active
+          createdAt: 06/16/2022
+        - deviceType: TOTP
+          deviceName: MSFT
+          status: Active
+          createdAt: 07/16/2022
+    ValidationRequest:
+      value:
+        otp: '3423423'
+    ValidationResponse:
+      value:
+        - status: Success
+          message: 'OTP has been validated successfully '
+    EmailAuthenticationRequest:
+      value:
+        - userName: jdoe
+          deviceType: EMAIL
+          email: a@b.com
+          deviceName: MyEmail
+          templateName: emailTemplate
+    SmsAuthenticationRequest:
+      value:
+        - userName: jdoe
+          deviceType: SMS
+          email: 999-000-9999
+          deviceName: MySMS
+          templateName: SMSTemplate
+    TotpAuthenticationRequest:
+      value:
+        - userName: jdoe
+          deviceType: TOTP
+          deviceName: Google
+    TotpAuthenticationResponse:
+      value:
+        - authId: '654564645'
+          status: Success
+          message: OTP has been sent to the device
+    EmailAuthenticationResponse:
+      value:
+        - authId: '798798789'
+          status: Success
+          message: OTP has been sent to the device
+    SmsAuthenticationResponse:
+      value:
+        - authId: '798798789'
+          status: Success
+          message: OTP has been sent to the device
+    TOTPDeviceAddRequest:
+      value:
+        deviceType: TOTP
+        deviceName: Google
+    TOTPDeviceAddResponse:
+      value:
+        deviceType: TOTP
+        deviceName: Google
+        status: ACTIVATION_REQUIRED
+        authId: 30706e95-5e38-4148-b0e3-1e801cd87660"
+        registrationUri: >-
+          otpauth://totp/tomjones@example.com?secret=BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
+        secret: BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
+    YubiKeyDeviceAddRequest:
+       value:
+        deviceType: SECURITY_KEY
+        deviceName: yubikey
+        rpDomain: 
+            id: pingone.com
+            name: PingOne    
+    YubiKeyDeviceAddResponse:
+       value:
+        deviceType: SECURITY_KEY
+        deviceName: yubikey
+        status: ACTIVATION_REQUIRED
+        authId: 30706e95-5e38-4148-b0e3-1e801cd87660"
+        registrationUri: >-
+          otpauth://totp/tomjones@example.com?secret=BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
+        secret: BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
+    TOTPDeviceRegistrationRequest:
+      value:
+         otp: '312312'
+    TOTPDeviceRegistrationResponse:
+      value:
+        - status: Success
+          message: 'OTP has been validated successfully '
+  securitySchemes:
+    Bearer:
+      type: oauth2
+      description: ''
+      flows:
+        clientCredentials:
+          tokenUrl: https://ciam-mfa-api-dev.1dc.com/ciam-mfa/v1/get/token
+          scopes: {}
+  headers: {}
+  parameters: {}
+tags: []
+security:
+  - Bearer: []
+
