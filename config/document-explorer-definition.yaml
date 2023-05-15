@@ -55,3 +55,18 @@
           - title: Authentication using YubiKey
             link: docs/ciam-mfa/yubikey-authentication.md
             type: recipe
+  - title: CIAM Provisioning API
+    link: docs/ciam-provisioning/getting-started-provisioning-api.md
+    sections:
+       - title: Manage Application
+         link: docs/ciam-provisioning/Application-Setup.md
+         type: recipe
+       - title: Domain Operations 
+         link: docs/ciam-provisioning/Domain.md
+         type: recipe
+       - title: Service Account Administration
+         link: docs/ciam-provisioning/Domain-service-account.md
+         type: recipe
+       - title: User Administration 
+         link: docs/ciam-provisioning/Domain-user.md
+         type: recipe

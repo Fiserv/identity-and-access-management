@@ -57,7 +57,7 @@ featuredFeatures:
         path: "/users/{username}/mfadevices"
       - relatedAPI: 
         title: Register Device
-        description:  Operation to register the device that was added but requires activation.
+        description: Operation to register the device that was added but requires activation.
         type: "post"        
         path: "/users/{username}/mfadevices/{authId}"
       - relatedAPI: 
@@ -70,3 +70,142 @@ featuredFeatures:
         description: API for validating requested authentication.
         type: "post"        
         path: "/deviceauthentications/{authid}"
+  - title: Provisioning API
+    description: CIAM Provisioning API provides the REST endpoints to connect and perform various operations on directory. API support the CRUD operations for Users, Service Accounts and Domains. It also enables to perform account administration operations like enabling the account, password reset, account unlock. One can also retrieve the account status details using Provisioning API.
+    tags: ["tag1", "tag2"]
+    bullets: ["REPLACEME", "REPLACEME" ]  
+    relatedDocs:
+      - relatedDoc: 
+        title: On-Time-Password (OTP) device or software
+        description: OTP 
+        link: ./docs/otp.md
+      - relatedDoc: 
+        title: Cryptographic device or software
+        description: This section is for authentication using 
+        link: ./docs/biometrics.md
+    relatedAPIs:
+      - relatedAPI: 
+        title: Search Applications 
+        description: Get list of Applications
+        type: "get"        
+        path: "/Applications"      
+      - relatedAPI: 
+        title: Get an Application 
+        description: Get an Application by Application Id 
+        type: "get"        
+        path: "/Applications/{applicationId}"  
+      - relatedAPI: 
+        title: Onboard Application 
+        description: Create a new Application
+        type: "post"        
+        path: "/Applications"  
+      - relatedAPI: 
+        title: Update Application 
+        description: Update an Application
+        type: "put"        
+        path: "/Applications/{applicationId}"  
+      - relatedAPI: 
+        title: Delete an Application 
+        description: Delete an Application
+        type: "delete"        
+        path: "/Applications/{applicationId}"  
+      - relatedAPI: 
+        title: Get Application OAuth Client
+        description: Get application OAuth client settings.
+        type: "get"        
+        path: "/Applications/{applicationId}/Client"
+      - relatedAPI: 
+        title: Update Application OAuth Client
+        description: Update application OAuth client settings.
+        type: "put"        
+        path: "/Applications/{applicationId}/Client"
+      - relatedAPI: 
+        title: Get Application Token Mapping
+        description: Get application OAuth client access token settings.
+        type: "get"        
+        path: "/Applications/{applicationId}/AccessTokenMapping"
+      - relatedAPI: 
+        title: Update Application Token Mapping
+        description: updates oauth client custom access token settings.
+        type: "put"        
+        path: "/Applications/{applicationId}/AccessTokenMapping"
+      - relatedAPI: 
+        title: Delete Application Token Mapping
+        description: Reverts custom access token mappings to default.
+        type: "delete"        
+        path: "/Applications/{applicationId}/AccessTokenMapping"
+      - relatedAPI: 
+        title: Search Domain
+        description: search Domain.
+        type: "get"        
+        path: "/Domains"
+      - relatedAPI: 
+        title: Create Domain
+        description: Create Domain.
+        type: "post"        
+        path: "/Domains"
+      - relatedAPI: 
+        title: Get Domain by Id
+        description: Get Domain by Id.
+        type: "get"        
+        path: "/Domains/{domainId}"
+      - relatedAPI: 
+        title: Update Domain
+        description: Update Domain.
+        type: "put"        
+        path: "/Domains/{domainId}"
+      - relatedAPI: 
+        title: Delete Domain
+        description: Delete Domain.
+        type: "delete"        
+        path: "/Domains/{domainId}"
+      - relatedAPI: 
+        title: Search Domain User
+        description: list all users of domain.
+        type: "get"        
+        path: "/Domains/{domainId}/Users"
+      - relatedAPI: 
+        title: Create user for a Domain
+        description: Create user for a Domain.
+        type: "post"        
+        path: "/Domains/{domainId}/Users"
+      - relatedAPI: 
+        title: Get Domain by Id
+        description: Get Domain by Id.
+        type: "get"        
+        path: "/Domains/{domainId}/Users/{userId}"
+      - relatedAPI: 
+        title: update user
+        description: update user.
+        type: "put"        
+        path: "/Domains/{domainId}/Users/{userId}"
+      - relatedAPI: 
+        title: Delete user
+        description: Delete user.
+        type: "delete"        
+        path: "/Domains/{domainId}/Users/{userId}"
+      - relatedAPI: 
+        title: Search Domain service accounts
+        description: list all service accounts of domain.
+        type: "get"        
+        path: "/Domains/{domainId}/ServiceAccounts"
+      - relatedAPI: 
+        title: Create service account for domain
+        description: Create service account for domain.
+        type: "post"        
+        path: "/Domains/{domainId}/ServiceAccounts"
+      - relatedAPI: 
+        title: get service account by id
+        description: Get service account by id.
+        type: "get"        
+        path: "/Domains/{domainId}/ServiceAccounts/{accountId}"
+      - relatedAPI: 
+        title: update service account
+        description: update service account.
+        type: "put"        
+        path: "/Domains/{domainId}/ServiceAccounts/{accountId}"
+      - relatedAPI: 
+        title: Delete service account
+        description: Delete service account.
+        type: "delete"        
+        path: "/Domains/{domainId}/ServiceAccounts/{accountId}"
