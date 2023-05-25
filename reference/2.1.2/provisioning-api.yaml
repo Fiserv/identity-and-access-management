@@ -2,6 +2,9 @@ openapi: 3.0.2
 info:
   title: CIAM Provisioning API
   version: 2.1.2-SNAPSHOT
+  description: >-
+    This API Specification is designed to provide technical guidance required to
+    consume and integrate with our APIs for multi factor authentication.
   x-logo:
     url: ''
 servers:
@@ -9,6 +12,8 @@ servers:
 paths:
   /Applications/{applicationId}/AccessTokenMapping:
     get:
+      x-group-name: 'Application Token Mapping'
+      x-proxy-name: 'Get Token Mapping'
       tags:
         - Application Token Mapping
       parameters:
@@ -87,6 +92,8 @@ paths:
         required: true
       tags:
         - Application Token Mapping
+      x-group-name: 'Application Token Mapping'
+      x-proxy-name: 'Update Token Mapping'
       parameters:
         - name: applicationId
           schema:
@@ -154,6 +161,8 @@ paths:
     delete:
       tags:
         - Application Token Mapping
+      x-group-name: 'Application Token Mapping'
+      x-proxy-name: 'Delete Token Mapping'
       parameters:
         - name: applicationId
           schema:
@@ -204,6 +213,8 @@ paths:
     get:
       tags:
         - Application
+      x-group-name: 'Application'
+      x-proxy-name: 'Get Application'
       parameters:
         - name: attributes
           description: list of attributes
@@ -312,6 +323,8 @@ paths:
         required: true
       tags:
         - Application
+      x-group-name: 'Application'
+      x-proxy-name: 'Create Application'
       summary: Onboard Application
       security: 
         - Oauth2CC:
@@ -406,6 +419,8 @@ paths:
     get:
       tags:
         - Application
+      x-group-name: 'Application'
+      x-proxy-name: 'Get Application by Id'
       parameters:
         - name: applicationId
           schema:
@@ -464,6 +479,8 @@ paths:
         required: true
       tags:
         - Application
+      x-group-name: 'Application'
+      x-proxy-name: 'Update Application'
       parameters:
         - name: applicationId
           schema:
@@ -530,6 +547,8 @@ paths:
     delete:
       tags:
         - Application
+      x-group-name: 'Application'
+      x-proxy-name: 'Delete Application'
       security:
         - Oauth2CC:
           - "application.client domain.manage"
@@ -567,6 +586,8 @@ paths:
     get:
       tags:
         - Application OAuth Client
+      x-group-name: 'Application OAuth Client'
+      x-proxy-name: 'Get OAuth Client'
       parameters:
         - name: applicationId
           schema:
@@ -631,6 +652,8 @@ paths:
         required: true
       tags:
         - Application OAuth Client
+      x-group-name: 'Application OAuth Client'
+      x-proxy-name: 'Update OAuth Client'
       parameters:
         - name: applicationId
           schema:
@@ -681,6 +704,8 @@ paths:
     get:
       tags:
         - Domain User
+      x-group-name: 'Domain User'
+      x-proxy-name: 'Get Domain User by Id'
       parameters:
         - name: domainId
           schema:
@@ -732,6 +757,8 @@ paths:
         required: true
       tags:
         - Domain User
+      x-group-name: 'Domain User'
+      x-proxy-name: 'Update user'
       parameters:
         - name: domainId
           schema:
@@ -788,6 +815,8 @@ paths:
     delete:
       tags:
         - Domain User
+      x-group-name: 'Domain User'
+      x-proxy-name: 'Delete User'
       parameters:
         - name: domainId
           schema:
@@ -831,6 +860,8 @@ paths:
     get:
       tags:
         - Domain ServiceAccount
+      x-group-name: 'Domain ServiceAccount'
+      x-proxy-name: 'Get ServiceAccount by Id'
       parameters:
         - name: domainId
           schema:
@@ -883,6 +914,8 @@ paths:
         required: true
       tags:
         - Domain ServiceAccount
+      x-group-name: 'Domain ServiceAccount'
+      x-proxy-name: 'Update Service Account'
       parameters:
         - name: domainId
           schema:
@@ -940,6 +973,8 @@ paths:
     delete:
       tags:
         - Domain ServiceAccount
+      x-group-name: 'Domain ServiceAccount'
+      x-proxy-name: 'Delete Service Account'
       parameters:
         - name: domainId
           schema:
@@ -984,6 +1019,8 @@ paths:
     get:
       tags:
         - Domain
+      x-group-name: 'Domain'
+      x-proxy-name: 'Domain by Id'
       parameters:
         - name: domainId
           schema:
@@ -1030,6 +1067,8 @@ paths:
         required: true
       tags:
         - Domain
+      x-group-name: 'Domain'
+      x-proxy-name: 'Update Domain'
       parameters:
         - name: domainId
           schema:
@@ -1081,6 +1120,8 @@ paths:
     delete:
       tags:
         - Domain
+      x-group-name: 'Domain'
+      x-proxy-name: 'Delete Domain'
       parameters:
         - name: domainId
           schema:
@@ -1109,6 +1150,8 @@ paths:
     get:
       tags:
         - Domain
+      x-group-name: 'Domain'
+      x-proxy-name: 'Get All Domain'
       parameters:
         - name: attributes
           description: list of attributes
@@ -1199,6 +1242,8 @@ paths:
         required: true
       tags:
         - Domain
+      x-group-name: 'Domain'
+      x-proxy-name: 'Create Domain'
       parameters:
         - name: attributes
           description: list of attributes
@@ -1264,6 +1309,8 @@ paths:
     get:
       tags:
         - Domain User
+      x-group-name: 'Domain User'
+      x-proxy-name: 'Get All Domain Users'
       parameters:
         - name: domainId
           schema:
@@ -1351,6 +1398,8 @@ paths:
         required: true
       tags:
         - Domain User
+      x-group-name: 'Domain User'
+      x-proxy-name: 'Create Domain User'
       parameters:
         - name: domainId
           schema:
@@ -1401,6 +1450,8 @@ paths:
     get:
       tags:
         - Domain ServiceAccount
+      x-group-name: 'Domain ServiceAccount'
+      x-proxy-name: 'Get All Domain Service Accounts'
       parameters:
         - name: domainId
           schema:
@@ -1491,6 +1542,8 @@ paths:
         required: true
       tags:
         - Domain ServiceAccount
+      x-group-name: 'Domain ServiceAccount'
+      x-proxy-name: 'Create Domain Service Account'
       parameters:
         - name: domainId
           schema:
@@ -1541,6 +1594,8 @@ paths:
     get:
       tags:
         - Search
+      x-group-name: 'Domain Service Account'
+      x-proxy-name: 'Get All Domain Service Accounts'
       parameters:
         - name: attributes
           description: list of attributes
@@ -1643,6 +1698,8 @@ paths:
     get:
       tags:
         - Search
+      x-group-name: 'Domain User'
+      x-proxy-name: 'Get All Domain Users'
       parameters:
         - name: attributes
           description: list of attributes
