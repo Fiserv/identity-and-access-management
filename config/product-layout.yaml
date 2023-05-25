@@ -32,9 +32,10 @@ header:
   productionDescription: With developer-friendly, rest  communication standards, CIAM API  reduces development time and accelerates integration of access services and capabilities. Multi region availablitly brings the solution wherever integration is required, we bring highly secure and modern authentication practices  in a standardized  and for easier  integration.
 featuredFeatures:
   - title: Multi-Factor Authentication API
-    description: CIAM MFA API provides capabilities for enabling MFA actions in authentication flows. API supports email, SMS, TOTP authenticator application, and native application method types for use in an MFA flow. Multiple MFA methods can be associated with a user. 
-    tags: ["tag1", "tag2"]
-    bullets: ["REPLACEME", "REPLACEME" ]  
+    description: >
+      CIAM MFA API provides capabilities for enabling MFA actions in authentication flows. API supports email, SMS, TOTP authenticator application, and native application method types for use in an MFA flow. Multiple MFA methods can be associated with a user. 
+#    tags: ["tag1", "tag2"]
+#    bullets: ["REPLACEME", "REPLACEME" ]  
     relatedDocs:
       - relatedDoc: 
         title: On-Time-Password (OTP) device or software
@@ -71,18 +72,14 @@ featuredFeatures:
         type: "post"        
         path: "/deviceauthentications/{authid}"
   - title: Provisioning API
-    description: CIAM Provisioning API provides the REST endpoints to connect and perform various operations on directory. API support the CRUD operations for Users, Service Accounts and Domains. It also enables to perform account administration operations like enabling the account, password reset, account unlock. One can also retrieve the account status details using Provisioning API.
-    tags: ["tag1", "tag2"]
-    bullets: ["REPLACEME", "REPLACEME" ]  
+    description: >
+      CIAM Provisioning API provides the REST endpoints to connect and perform various operations on directory. API support the CRUD operations for Users, Service Accounts and Domains. It also enables to perform account administration operations like enabling the account, password reset, account unlock. One can also retrieve the account status details using Provisioning API.
+#    tags: [Getting Started, Developer Portal, CIAM, Identity And Access Management, Provisioning API]
     relatedDocs:
       - relatedDoc: 
-        title: On-Time-Password (OTP) device or software
-        description: OTP 
-        link: ./docs/otp.md
-      - relatedDoc: 
-        title: Cryptographic device or software
-        description: This section is for authentication using 
-        link: ./docs/biometrics.md
+        title: OAuth Token Generation
+        description: generate the OAuth token required to invoke the API.
+        link: ./docs/oauth-token-generation.md
     relatedAPIs:
       - relatedAPI: 
         title: Search Applications 

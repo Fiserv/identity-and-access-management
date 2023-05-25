@@ -58,15 +58,59 @@
   - title: CIAM Provisioning API
     link: docs/ciam-provisioning/getting-started-provisioning-api.md
     sections:
-       - title: Manage Application
-         link: docs/ciam-provisioning/Application-Setup.md
-         type: recipe
-       - title: Domain Operations 
-         link: docs/ciam-provisioning/Domain.md
-         type: recipe
-       - title: Service Account Administration
-         link: docs/ciam-provisioning/Domain-service-account.md
-         type: recipe
-       - title: User Administration 
-         link: docs/ciam-provisioning/Domain-user.md
-         type: recipe
+       - title: Generate Access Token
+         link: docs/ciam-provisioning/oauth-token-generation.md
+         sections:
+            - title: Application Onboarding
+              link: docs/ciam-provisioning/Application/application-setup.md
+            - title: Application OAuth Client
+              sections:
+                - title: Read Application OAuth Client Settings
+                  link: docs/ciam-provisioning/Application/application-oauth-client/get-oauth-client.md
+                - title: Update Application OAuth Client Settings
+                  link: docs/ciam-provisioning/Application/application-oauth-client/update-oauth-client.md
+            - title: Application Token Mapping
+              sections:
+                - title: Read Application OAuth Client Access Token Settings
+                  link: docs/ciam-provisioning/Application/application-token-mapping/get-application-token.md
+                - title: Customize Application OAuth Client Access Token Settings
+                  link: docs/ciam-provisioning/Application/application-token-mapping/update-application-token.md
+                - title: Reset Application OAuth Client Access Token Settings
+                  link: docs/ciam-provisioning/Application/application-token-mapping/delete-application-token.md
+            - title: Domain
+              sections:
+                - title: Search Domain
+                  link: docs/ciam-provisioning/Domain/search-domains.md
+                - title: Create Domain
+                  link: docs/ciam-provisioning/Domain/create-domain.md
+                - title: Get Domain by Id
+                  link: docs/ciam-provisioning/Domain/search-doamin-by-Id.md
+                - title: Update Domain
+                  link: docs/ciam-provisioning/Domain/update-domain.md
+                - title: Delete Domain
+                  link: docs/ciam-provisioning/Domain/delete-domain.md
+            - title: Domain User
+              sections:
+                - title: Search All Domain Users
+                  link: docs/ciam-provisioning/Domain/User/search-users.md
+                - title: Create User
+                  link: docs/ciam-provisioning/Domain/User/create-user.md
+                - title: Get User By Id
+                  link: docs/ciam-provisioning/Domain/User/search-user-by-Id.md
+                - title: Update User
+                  link: docs/ciam-provisioning/Domain/User/update-user.md
+                - title: Delete User
+                  link: docs/ciam-provisioning/Domain/User/delete-user.md
+            - title: Domain Service Account
+              sections:
+                - title: Search All Domain Service Accounts
+                  link: docs/ciam-provisioning/Domain/service-account/search-service-accounts.md
+                - title: Create User
+                  link: docs/ciam-provisioning/Domain/service-account/create-service-account.md
+                - title: Get User By Id
+                  link: docs/ciam-provisioning/Domain/service-account/search-service-account-by-Id.md
+                - title: Update User
+                  link: docs/ciam-provisioning/Domain/service-account/update-service-account.md
+                - title: Delete User
+                  link: docs/ciam-provisioning/Domain/service-account/delete-service-account.md
+

@@ -1,0 +1,2533 @@
+openapi: 3.0.2
+info:
+  title: CIAM Provisioning API
+  version: 2.1.2-SNAPSHOT
+  x-logo:
+    url: ''
+servers:
+  - url: https://ciam-api-dev.1dc.com
+paths:
+  /Applications/{applicationId}/AccessTokenMapping:
+    get:
+      tags:
+        - Application Token Mapping
+      parameters:
+        - name: applicationId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthAccessTokenMappingResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/OAuthAccessTokenMappingResponse'
+          description: Successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: >-
+            Parameter count exceeds the maximum allowed value or the filter
+            supplied was unparsable
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: getOAuthClientAccessTokenMapping
+      summary: ''
+      description: get application oauth client access token settings
+    put:
+      requestBody:
+        description: Payload that represents an access token mapping
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthAccessTokenMapping'
+        required: true
+      tags:
+        - Application Token Mapping
+      parameters:
+        - name: applicationId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: successful operation
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: Successful operation
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: updateOAuthClientAccessTokenMapping
+      summary: ''
+      description: updates oauth client custom access token settings
+    delete:
+      tags:
+        - Application Token Mapping
+      parameters:
+        - name: applicationId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: successful operation
+        '204':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: Successful operation.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: revertOAuthClientAccessTokenMapping
+      summary: ''
+      description: Reverts custom access token mappings to default
+  /Applications:
+    get:
+      tags:
+        - Application
+      parameters:
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: filter
+          description: scim filter
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: startIndex
+          description: start index (1-based)
+          schema:
+            format: int32
+            type: integer
+          in: query
+          required: false
+        - name: count
+          description: page size
+          schema:
+            format: int32
+            default: 100
+            type: integer
+          in: query
+          required: false
+        - name: sortBy
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: sortOrder
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationListResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ApplicationListResponse'
+          description: Successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: >-
+            Parameter count exceeds the maximum allowed value or the filter
+            supplied was unparsable
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: searchAllApplications
+      summary: 'Search Applications'
+      description: search application
+    post:
+      requestBody:
+        description: Payload that represents the Application to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationResource'
+        required: true
+      tags:
+        - Application
+      summary: Onboard Application
+      security: 
+        - Oauth2CC:
+          - "iam.root"
+      parameters:
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: successful operation
+          headers: {}
+          links: {}
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: Successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: >-
+            Parameter count exceeds the maximum allowed value or the filter
+            supplied was unparsable
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: duplicate entry
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: createApplication
+      description: Create application
+  /Applications/{applicationId}:
+    get:
+      tags:
+        - Application
+      parameters:
+        - name: applicationId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResourceResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResourceResponse'
+          description: Successful operation
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: getApplication
+      summary: 'Get an Application'
+      description: Get application by Id
+    put:
+      requestBody:
+        description: >-
+          Payload with the data to update the existing group identified by the
+          applicationId param
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationResource'
+          application/scim+json:
+            schema:
+              $ref: '#/components/schemas/ApplicationResource'
+        required: true
+      tags:
+        - Application
+      parameters:
+        - name: applicationId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResourceResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ApplicationResourceResponse'
+          description: Successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: >-
+            Parameter count exceeds the maximum allowed value or the filter
+            supplied was unparsable
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: duplicate entry
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: updateApplication
+      summary: ''
+      description: Update application
+    delete:
+      tags:
+        - Application
+      security:
+        - Oauth2CC:
+          - "application.client domain.manage"
+      parameters:
+        - name: applicationId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '204':
+          description: Successful operation. Empty response
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: deleteApplication
+      summary: ''
+      description: Delete application
+  /Applications/{applicationId}/Client:
+    get:
+      tags:
+        - Application OAuth Client
+      parameters:
+        - name: applicationId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthClientResourceResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/OAuthClientResourceResponse'
+          description: Successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: >-
+            Parameter count exceeds the maximum allowed value or the filter
+            supplied was unparsable
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: getApplicationOAuthClient
+      summary: ''
+      description: get application oauth client settings
+    put:
+      requestBody:
+        description: Payload that represents a role
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuthClientResource'
+        required: true
+      tags:
+        - Application OAuth Client
+      parameters:
+        - name: applicationId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: successful operation
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: Successful operation
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: updateOAuthClient
+      summary: 'Update OAuth Client settings'
+      description: update oauth client
+  /Domains/{domainId}/Users/{userId}:
+    get:
+      tags:
+        - Domain User
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: userId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResourceResponse'
+          description: Successful operation
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: getDomainUser
+      summary: ''
+      description: get user by id
+    put:
+      requestBody:
+        description: >-
+          Payload with the data to update the existing user identified by the
+          userId param
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserResource'
+        required: true
+      tags:
+        - Domain User
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: userId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResourceResponse'
+          description: Successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: >-
+            Parameter count exceeds the maximum allowed value or the filter
+            supplied was unparsable
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: duplicate entry
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: updateDomainUser
+      summary: ''
+      description: update user
+    delete:
+      tags:
+        - Domain User
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: userId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: successful operation
+        '204':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: Successful operation.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: deleteDomainUser
+      summary: ''
+      description: Delete user
+  /Domains/{domainId}/ServiceAccounts/{accountId}:
+    get:
+      tags:
+        - Domain ServiceAccount
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: accountId
+          description: Account Id
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccountResourceResponse'
+          description: Successful operation
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: getDomainServiceAccount
+      summary: ''
+      description: get service account by id
+    put:
+      requestBody:
+        description: >-
+          Payload with the data to update the existing service account
+          identified by the accountId param
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceAccountResource'
+        required: true
+      tags:
+        - Domain ServiceAccount
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: accountId
+          description: Account Id
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccountResourceResponse'
+          description: Successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: >-
+            Parameter count exceeds the maximum allowed value or the filter
+            supplied was unparsable
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: duplicate entry
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: updateDomainServiceAccount
+      summary: ''
+      description: update service account
+    delete:
+      tags:
+        - Domain ServiceAccount
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: accountId
+          description: Account Id
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: successful operation
+        '204':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: Successful operation.
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: deleteDomainServiceAccount
+      summary: ''
+      description: Delete service account
+  /Domains/{domainId}:
+    get:
+      tags:
+        - Domain
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainResource'
+          description: Successful operation
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: getDomain
+      summary: ''
+      description: Get Domain by Id
+    put:
+      requestBody:
+        description: >-
+          Payload with the data to update the existing Domain identified by the
+          domainId param
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainResourceRequest'
+        required: true
+      tags:
+        - Domain
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainResource'
+          description: Successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: >-
+            Parameter count exceeds the maximum allowed value or the filter
+            supplied was unparsable
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: duplicate entry
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: updateDomain
+      summary: ''
+      description: Update Domain
+    delete:
+      tags:
+        - Domain
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '204':
+          description: Successful operation. Empty response
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: not found
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: deleteDomain
+      summary: ''
+      description: Delete Domain
+  /Domains:
+    get:
+      tags:
+        - Domain
+      parameters:
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: filter
+          description: scim filter
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: startIndex
+          description: start index (1-based)
+          schema:
+            format: int32
+            type: integer
+          in: query
+          required: false
+        - name: count
+          description: page size
+          schema:
+            format: int32
+            default: 100
+            type: integer
+          in: query
+          required: false
+        - name: sortBy
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: sortOrder
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainListResponse'
+          description: Successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: >-
+            Parameter count exceeds the maximum allowed value or the filter
+            supplied was unparsable
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: searchAllDomains
+      summary: ''
+      description: search Domain
+    post:
+      requestBody:
+        description: Payload that represents the Domain to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DomainResourceRequest'
+        required: true
+      tags:
+        - Domain
+      parameters:
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainListResponse'
+          description: successful operation
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DomainListResponse'
+          description: Successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: >-
+            Parameter count exceeds the maximum allowed value or the filter
+            supplied was unparsable
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '409':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: duplicate entry
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: createDomain
+      summary: ''
+      description: Create Domain
+  /Domains/{domainId}/Users:
+    get:
+      tags:
+        - Domain User
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: filter
+          description: scim filter
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: startIndex
+          description: start index (1-based)
+          schema:
+            format: int32
+            type: integer
+          in: query
+          required: false
+        - name: count
+          description: page size
+          schema:
+            format: int32
+            default: 100
+            type: integer
+          in: query
+          required: false
+        - name: sortBy
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: sortOrder
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+          description: Successful operation
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: searchDomainUsers
+      summary: ''
+      description: list all users of domain
+    post:
+      requestBody:
+        description: Payload that represents a user
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserResource'
+        required: true
+      tags:
+        - Domain User
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: successful operation
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: Successful operation
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: createDomainUser
+      summary: ''
+      description: Create user for a Domain
+  /Domains/{domainId}/ServiceAccounts:
+    get:
+      tags:
+        - Domain ServiceAccount
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: filter
+          description: scim filter
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: startIndex
+          description: start index (1-based)
+          schema:
+            format: int32
+            type: integer
+          in: query
+          required: false
+        - name: count
+          description: page size
+          schema:
+            format: int32
+            default: 100
+            type: integer
+          in: query
+          required: false
+        - name: sortBy
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: sortOrder
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccountListResponse'
+          description: Successful operation
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: searchDomainServiceAccounts
+      summary: ''
+      description: list all service accounts of domain
+    post:
+      requestBody:
+        description: Payload that represents a service account
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceAccountResource'
+          application/scim+json:
+            schema:
+              $ref: '#/components/schemas/ServiceAccountResource'
+        required: true
+      tags:
+        - Domain ServiceAccount
+      parameters:
+        - name: domainId
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: successful operation
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+          description: Successful operation
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: createDomainServiceAccount
+      summary: ''
+      description: Create service account for domain
+  /ServiceAccounts:
+    get:
+      tags:
+        - Search
+      parameters:
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: filter
+          description: scim filter
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: startIndex
+          description: start index (1-based)
+          schema:
+            format: int32
+            type: integer
+          in: query
+          required: false
+        - name: count
+          description: page size
+          schema:
+            format: int32
+            default: 100
+            type: integer
+          in: query
+          required: false
+        - name: sortBy
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: sortOrder
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccountListResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ServiceAccountListResponse'
+          description: Successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: >-
+            Parameter count exceeds the maximum allowed value or the filter
+            supplied was unparsable
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: searchAllServiceAccounts
+      summary: ''
+      description: list all service accounts of the organization
+  /Users:
+    get:
+      tags:
+        - Search
+      parameters:
+        - name: attributes
+          description: list of attributes
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: domainId
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: domainName
+          description: the friendly name of the domain
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: externalId
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: filter
+          description: scim filter
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: friendlyId
+          description: the canonical friendly name of the object
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: friendlyName
+          description: the friendly name of the object
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: startIndex
+          description: start index (1-based)
+          schema:
+            format: int32
+            type: integer
+          in: query
+          required: false
+        - name: count
+          description: page size
+          schema:
+            format: int32
+            default: 100
+            type: integer
+          in: query
+          required: false
+        - name: sortBy
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: sortOrder
+          schema:
+            type: string
+          in: query
+          required: false
+        - name: userId
+          schema:
+            type: string
+          in: query
+          required: false
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/UserListResponse'
+          description: Successful operation
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: >-
+            Parameter count exceeds the maximum allowed value or the filter
+            supplied was unparsable
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: authorization failure
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: permissions denied
+        '429':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: too many requests
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+            application/scim+json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+          description: internal server error
+      operationId: searchAllUsers
+      summary: ''
+      description: search or list users
+components:
+  schemas:
+    ErrorResponse:
+      description: error response schema
+      required:
+        - status
+      type: object
+      properties:
+        schemas:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+        subject:
+          type: string
+        scimType:
+          type: string
+        detail:
+          type: string
+        additionalDetails:
+          type: array
+          items:
+            type: string
+    AccountDisabledStatusResponse:
+      required:
+        - isDisabled
+      type: object
+      properties:
+        accountId:
+          description: account identifier
+          type: string
+        isDisabled:
+          type: boolean
+        disabledReasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateReasonResource'
+    AccountLockedStatusResponse:
+      required:
+        - isLocked
+      type: object
+      properties:
+        accountId:
+          description: account identifier
+          type: string
+        isLocked:
+          type: boolean
+        lockedReasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateReasonResource'
+    AccountPasswordStatusResponse:
+      required:
+        - isMustChange
+      type: object
+      properties:
+        accountId:
+          description: account identifier
+          type: string
+        isMustChange:
+          type: boolean
+        mustChangeReasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/UpdateReasonResource'
+        lastChanged:
+          format: date-time
+          type: string
+    AccountStatusResponse:
+      description: account status response schema
+      required:
+        - isDisabledStatus
+        - isLockedStatus
+        - isMustChangePasswordStatus
+      type: object
+      properties:
+        accountId:
+          description: account identifier
+          type: string
+        usable:
+          description: boolean aggregating overall status if the account is usable or not
+          type: boolean
+        activeDate:
+          format: date-time
+          type: string
+        deactiveDate:
+          format: date-time
+          type: string
+        lastSuccessfulLogin:
+          format: date-time
+          type: string
+        lastSuccessfulLoginIp:
+          type: string
+        lastFailedLogin:
+          format: date-time
+          type: string
+        failedLoginCount:
+          format: int32
+          type: integer
+        schemas:
+          type: array
+          items:
+            type: string
+        isLockedStatus:
+          $ref: '#/components/schemas/AccountLockedStatusResponse'
+        isDisabledStatus:
+          $ref: '#/components/schemas/AccountDisabledStatusResponse'
+        isMustChangePasswordStatus:
+          $ref: '#/components/schemas/AccountPasswordStatusResponse'
+    UpdateReasonResource:
+      required:
+        - reasonMessage
+      type: object
+      properties:
+        reasonCode:
+          format: int32
+          type: integer
+        reasonMessage:
+          type: string
+    SuccessResponse:
+      description: success response schema
+      required:
+        - status
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        data:
+          type: string
+    OAuthAccessTokenMapping:
+      description: represents a custom OAuth Access Token Mapping
+      type: object
+      properties:
+        name:
+          type: string
+        applicationId:
+          description: application global unique identifier
+          type: string
+        accessTokenManagerName:
+          type: string
+        oidcPolicyName:
+          type: string
+        validatorName:
+          type: string
+        attrMappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/OAuthAccessTokenMappingAttrMappings'
+        constants:
+          type: array
+          items:
+            $ref: '#/components/schemas/OAuthAccessTokenMappingConstants'
+    OAuthAccessTokenMappingAttrMappings:
+      type: object
+      properties:
+        name:
+          type: string
+        attr:
+          type: string
+    OAuthAccessTokenMappingConstants:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    ApplicationListResponse:
+      description: application list response
+      type: object
+      properties:
+        totalResults:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        itemsPerPage:
+          format: int32
+          type: integer
+        Resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationResource'
+    ApplicationResource:
+      description: Represents an Application
+      type: object
+      properties:
+        applicationId:
+          description: application global unique identifier
+          type: string
+        presentationAddress:
+          description: presentation Address
+          type: string
+        redirectUrls:
+          type: array
+          items:
+            type: string
+        friendlyName:
+          type: string
+        description:
+          type: string
+        uaid:
+          type: string
+        secret:
+          type: string
+        resourceType:
+          type: string
+        transactionId:
+          type: string
+        owner:
+          type: array
+          items:
+            type: string
+    ServiceAccountListResponse:
+      description: service account list response
+      type: object
+      properties:
+        totalResults:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        itemsPerPage:
+          format: int32
+          type: integer
+        Resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceAccountResource'
+    ServiceAccountResource:
+      description: Service Account resource
+      type: object
+      properties:
+        accountId:
+          description: account identifier
+          type: string
+        friendlyId:
+          type: string
+        friendlyName:
+          type: string
+        surname:
+          type: string
+        givenName:
+          type: string
+        userPassword:
+          type: string
+        description:
+          type: string
+        extendedAttr1:
+          type: array
+          items:
+            type: string
+        extendedAttr2:
+          type: array
+          items:
+            type: string
+        extendedAttr3:
+          type: string
+        extendedAttr4:
+          type: string
+        extendedAttr5:
+          type: string
+        extendedAttr6:
+          type: string
+        extendedAttr7:
+          type: string
+        extendedAttr8:
+          type: string
+        extendedAttr9:
+          type: string
+        resourceType:
+          type: string
+        transactionId:
+          type: string
+        owner:
+          type: array
+          items:
+            type: string
+    ServiceAccountResourceResponse:
+      description: service account resource response
+      type: object
+      properties:
+        schemas:
+          type: array
+          items:
+            type: string
+        resourceType:
+          type: string
+        transactionId:
+          type: string
+        owner:
+          type: array
+          items:
+            type: string
+        accountId:
+          description: account identifier
+          type: string
+        friendlyId:
+          type: string
+        friendlyName:
+          type: string
+        surname:
+          type: string
+        givenName:
+          type: string
+        userPassword:
+          type: string
+        description:
+          type: string
+        extendedAttr1:
+          type: array
+          items:
+            type: string
+        extendedAttr2:
+          type: array
+          items:
+            type: string
+        extendedAttr3:
+          type: string
+        extendedAttr4:
+          type: string
+        extendedAttr5:
+          type: string
+        extendedAttr6:
+          type: string
+        extendedAttr7:
+          type: string
+        extendedAttr8:
+          type: string
+        extendedAttr9:
+          type: string
+    DomainListResponse:
+      description: Domain list response
+      type: object
+      properties:
+        totalResults:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        itemsPerPage:
+          format: int32
+          type: integer
+        Resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/DomainResource'
+    DomainResource:
+      description: Represents a Domain
+      type: object
+      properties:
+        domainId:
+          description: Domain identifier
+          type: string
+        hasApplicationIds:
+          description: associated applications
+          type: array
+          items:
+            type: string
+        creationDate:
+          format: date-time
+          description: creation date
+          type: string
+        displayName:
+          type: string
+        description:
+          type: string
+        friendlyName:
+          type: string
+        externalId:
+          description: external identifier
+          type: string
+        resourceType:
+          type: string
+        transactionId:
+          type: string
+        owner:
+          type: array
+          items:
+            type: string
+    ApplicationResourceResponse:
+      description: application resource response
+      type: object
+      properties:
+        resourceType:
+          type: string
+        transactionId:
+          type: string
+        owner:
+          type: array
+          items:
+            type: string
+        applicationId:
+          description: application global unique identifier
+          type: string
+        presentationAddress:
+          description: presentation Address
+          type: string
+        redirectUrls:
+          type: array
+          items:
+            type: string
+        friendlyName:
+          type: string
+        description:
+          type: string
+        uaid:
+          type: string
+        secret:
+          type: string
+    OAuthAccessTokenMappingResponse:
+      description: represents an OAuth Client's access token mapping'
+      type: object
+      properties:
+        name:
+          type: string
+        applicationId:
+          description: application global unique identifier
+          type: string
+        accessTokenManagerName:
+          type: string
+        oidcPolicyName:
+          type: string
+        validatorName:
+          type: string
+        attrMappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/OAuthAccessTokenMappingAttrMappings'
+        constants:
+          type: array
+          items:
+            $ref: '#/components/schemas/OAuthAccessTokenMappingConstants'
+    OAuthClientResource:
+      description: represents an OAuth Client
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        redirectUrls:
+          type: array
+          items:
+            type: string
+        oidcPolicyName:
+          type: string
+        accessTokenMapping:
+          $ref: '#/components/schemas/OAuthAccessTokenMapping'
+        resourceType:
+          type: string
+        transactionId:
+          type: string
+        owner:
+          type: array
+          items:
+            type: string
+    OAuthClientResourceResponse:
+      description: represents an OAuth Client
+      type: object
+      properties:
+        resourceType:
+          type: string
+        transactionId:
+          type: string
+        owner:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+        description:
+          type: string
+        redirectUrls:
+          type: array
+          items:
+            type: string
+        oidcPolicyName:
+          type: string
+        accessTokenMapping:
+          $ref: '#/components/schemas/OAuthAccessTokenMapping'
+    DomainResourceRequest:
+      description: Represents a Domain Request Object
+      required:
+        - description
+        - friendlyName
+      type: object
+      properties:
+        friendlyName:
+          description: Provide a friendly name between 3 to 50 characters
+          maxLength: 50
+          minLength: 3
+          type: string
+        description:
+          description: Description is required.
+          maxLength: 1000
+          minLength: 1
+          type: string
+    Email:
+      description: See section 4.1.2 of RFC 7643
+      type: object
+      properties:
+        value:
+          type: string
+          example: name@domain.com
+        display:
+          type: string
+        type:
+          type: string
+          example: work
+        primary:
+          type: boolean
+    PhoneNumber:
+      description: See section 4.1.2 of RFC 7643
+      type: object
+      properties:
+        value:
+          type: string
+          example: +1-555-555-8377
+        display:
+          type: string
+        type:
+          type: string
+          example: fax
+        primary:
+          type: boolean
+    UserResourceResponse:
+      description: user resource response
+      type: object
+      properties:
+        resourceType:
+          type: string
+        transactionId:
+          type: string
+        owner:
+          type: array
+          items:
+            type: string
+        userId:
+          description: user identifier
+          type: string
+        parentContainer:
+          enum:
+            - Users
+            - Workforce
+            - Customers
+          type: string
+        active:
+          type: boolean
+        description:
+          type: string
+        displayName:
+          type: string
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/Email'
+        externalId:
+          description: See section 3.1 of RFC 7643
+          type: string
+        friendlyId:
+          type: string
+        friendlyName:
+          type: string
+        givenName:
+          type: string
+        manager:
+          type: string
+        middleInitial:
+          type: string
+        orgFriendlyName:
+          type: string
+        password:
+          type: string
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+        populationUids:
+          type: array
+          items:
+            type: string
+        preferredLanguage:
+          type: string
+        profileUrl:
+          type: string
+        surname:
+          type: string
+        title:
+          type: array
+          items:
+            type: string
+        userType:
+          type: string
+        extendedAttr1:
+          type: array
+          items:
+            type: string
+        extendedAttr2:
+          type: array
+          items:
+            type: string
+        extendedAttr3:
+          type: string
+        extendedAttr4:
+          type: string
+        extendedAttr5:
+          type: string
+        extendedAttr6:
+          type: string
+        extendedAttr7:
+          type: string
+        extendedAttr8:
+          type: string
+        extendedAttr9:
+          type: string
+        accountStatus:
+          $ref: '#/components/schemas/AccountStatusResponse'
+    UserResource:
+      description: User resource
+      type: object
+      properties:
+        userId:
+          description: user identifier
+          type: string
+        parentContainer:
+          enum:
+            - Users
+            - Workforce
+            - Customers
+          type: string
+        active:
+          type: boolean
+        description:
+          type: string
+        displayName:
+          type: string
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/Email'
+        externalId:
+          description: See section 3.1 of RFC 7643
+          type: string
+        friendlyId:
+          type: string
+        friendlyName:
+          type: string
+        givenName:
+          type: string
+        manager:
+          type: string
+        middleInitial:
+          type: string
+        orgFriendlyName:
+          type: string
+        password:
+          type: string
+        phoneNumbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumber'
+        populationUids:
+          type: array
+          items:
+            type: string
+        preferredLanguage:
+          type: string
+        profileUrl:
+          type: string
+        surname:
+          type: string
+        title:
+          type: array
+          items:
+            type: string
+        userType:
+          type: string
+        accountStatus:
+          $ref: '#/components/schemas/AccountStatusResponse'
+        extendedAttr1:
+          type: array
+          items:
+            type: string
+        extendedAttr2:
+          type: array
+          items:
+            type: string
+        extendedAttr3:
+          type: string
+        extendedAttr4:
+          type: string
+        extendedAttr5:
+          type: string
+        extendedAttr6:
+          type: string
+        extendedAttr7:
+          type: string
+        extendedAttr8:
+          type: string
+        extendedAttr9:
+          type: string
+        resourceType:
+          type: string
+        transactionId:
+          type: string
+        owner:
+          type: array
+          items:
+            type: string
+    UserListResponse:
+      description: user list response
+      type: object
+      properties:
+        totalResults:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        itemsPerPage:
+          format: int32
+          type: integer
+        Resources:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserResource'
+  securitySchemes:
+    Oauth2CC:
+      type: oauth2
+      description: Description of OAuth2 client credentials grant flow.
+      flows:
+        clientCredentials:
+          tokenUrl: https://oauth2.token
+          scopes:
+            application.client: Application client scope for allowed CIAM Provisioning API ACL
+            application.client domain.manage: Application client scope allowed for Delete of App Owned Domain
+            iam.root: Root scope used to onboard applications
+  headers: {}
+  responses: {}
+  parameters: {}
+tags:
+  - name: Application
+  - name: Application OAuth Client
+  - name: Application Token Mapping
+  - name: Domain
+  - name: Domain User
+  - name: Domain ServiceAccount
+security:
+  - Oauth2CC:
+    - "application.client"
+    

@@ -1,8 +1,15 @@
+---
+tags: [CIAM, Provisioning API, Onboard Application]
+---
+
 # Initial application setup
 
-- IAM Service Team creates the application.
+<!--theme: warning -->
+> IAM Service Team onboard the application. The API requires admin credentials to generate the OAuth token needed for application onboarding.
 
-- To use the features provided by CIAM Provisioning, the application needs to be setup first. Provisioning API provides a REST endpoint to create an Application with the specified domain client, in return the API provides the on-boarded application details. The application detail contains the application Id, roles, permissions, client Id and client secret. The same client Id and secret would be used to generate the session token using OAuth2 required for all operations.
+---
+
+- Provisioning API provides a REST endpoint to create an Application with the specified domain client, in return the API provides the on-boarded application details. The application detail contains the application Id, roles, permissions, client Id and client secret. The same client Id and secret would be used to generate the session token using OAuth2 required for all operations.
 
 There are steps required at the application-side that should meet the below criteria:  
 
@@ -11,14 +18,24 @@ There are steps required at the application-side that should meet the below crit
 - Has the UAID and domain Id to create an application
 
 
-## Create Application    
+## Onboard Application    
 
 <!--
 type: tab
 titles: Request, Response
 -->
 
-### Example of create an application payload
+The below table identifies the parameter required for `Application OAuth Client`.
+
+| Variable | Type | Maximum Length | Required | Description |
+| -------- | -- |------------| ------- | ---- |
+| `uaid` | *string* | - | &#10004; | A unique ID used to identify the application. |
+| `friendlyName` | *string* | - | &#10004; | provide a friendlyName for the application. |
+| `presentationAddress` | *string* | - | &#10004; | domain name for application. |
+| `description` | *string* | - | &#10004; | a brief description about the application. |
+| `redirectUrls` | *list* | - | &#10004; | redirect url for the application. |
+
+### Payload that represents the Application to create
 
 ```json
 {
@@ -34,9 +51,6 @@ type: tab
 -->
 
 ### Example of create an application (200: OK) response
-
-<!-- theme: info -->
-> See [Response Handling](?path=docs/Resources/Guides/Response-Codes/Response-Handling.md) for more information.
 
 ```json
 {
@@ -146,5 +160,4 @@ type: tab
     "secret": "xxxxxxxxxxxxxxxxxxxxxxxxxxx"
 }
 ```
-
 <!-- type: tab-end -->

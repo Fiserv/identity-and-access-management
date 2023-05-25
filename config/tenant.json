@@ -24,6 +24,12 @@
       "versionType": "major",
       "releaseNotesPath": "docs/release-notes/2022/march.md",
       "apiSpecFileNames": [ "openapi", "openapi2" ]
+    },    
+	{
+      "version": "2.1.2",
+      "versionType": "major",
+      "releaseNotesPath": "docs/release-notes/2023/may.md",
+      "apiSpecFileNames": [ "provisioning-api" ]
     }
   ],
   "product": {
@@ -58,19 +64,19 @@
   },
   "supportConfig": [{ 
     "bug": {
-      "label": "bug,CommerceHub",
+      "label": "bug,CIAM",
       "template": "bug.md",
-      "assignees": "ankitsinghal2"
+      "assignees": "ankitsinghal2,anujfiserv"
     },  
     "feedback": {
-      "label": "feedback,CommerceHub",
+      "label": "feedback,CIAM",
       "template": "feedback.md",
-      "assignees": "ankitsinghal2"
+      "assignees": "ankitsinghal2,anujfiserv"
     },
     "enhancement": {
-      "label": "enhancement,CommerceHub",
+      "label": "enhancement,CIAM",
       "template": "feature.md",
-      "assignees": "ankitsinghal2"
+      "assignees": "ankitsinghal2,anujfiserv"
     }
   }]
 }

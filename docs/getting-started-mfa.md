@@ -64,3 +64,47 @@ link: ?path=docs/ciam-mfa/yubikey.md
 <!-- type: row-end -->
 
 ---
+
+## Error Codes and messages
+
+<!--
+type: tab
+-->
+
+| Error Code | Error Message |
+| ---------- | ------------- |
+| `10001` | access token has been expired. |
+| `10002` | Either access token is invalid or client is not registered. |
+| `10003` | User not found please check the username. |
+| `10004` | username must be unique. |
+| `10005` | Validation Failed. |
+| `10006` | No registered TOTP device found please register one. |
+| `10006` | user found however no registered SECURITY_KEY device found for the user please register one. |
+| `10006` | Device is already ACTIVE. |
+| `10007` | please request a new otp. |
+| `10007` | Invalid authId please try again. |
+| `10008` | incorrect otp. |
+| `10009` | otp must be six digit value. |
+| `10010` | Template already exists. |
+| `10010` | Device name already exists. |
+| `10011` | Template not found. |
+| `10012` | Error occurred while processing template please contact to the administrator. |
+| `10014` | Maximum allowed devices has been reached for this account. |
+| `10015` | Some error occurred please contact to the administrator. |
+| `10026` | QUOTA_EXCEEDED Too many unsuccessful OTP attempts. |
+| `10027` | PASSWORD_LOCKED_OUT Account is locked out. |
+| `10028` | please provide: 'grant_type''client_id' and 'client_secret' under body: x-www-form-urlencoded to get the token. |
+| `10029` | client credentials not allowed in Authorization: Basic Auth please provide: client credentials under body: x-www-form-urlencoded to get the token. |
+| `10030` | please provide: 'client_id' - 'Key' and 'Value' under body: x-www-form-urlencoded to get the token. |
+| `10031` | please provide: 'client_secret' - 'Key' and 'Value' under body: x-www-form-urlencoded to get the token. |
+| `10050` | Device name not found. |
+| `10051` | Device unpair failed. |
+| `100001` | Phone Number is invalid. |
+| `100016` | totp device not found please check the name. |
+| `100016` | NO_USABLE_DEVICES No active totp device is available. |
+| `100017` | please provide correct rpID no active FIDO device found for given rpId. |
+| `100021` | Error while fetching detail. |
+| `100025` | No FIDO device found please pair one. |
+
+
+<!-- type: tab-end -->
