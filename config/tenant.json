@@ -21,15 +21,9 @@
   "apiVersions": [
     {
       "version": "1.0.0",
-      "versionType": "minor",
-      "releaseNotesPath": "docs/release-notes/2022/march.md",
-      "apiSpecFileNames": [ "openapi", "openapi2" ]
-    },    
-	{
-      "version": "2.1.2",
       "versionType": "major",
-      "releaseNotesPath": "docs/release-notes/2023/may.md",
-      "apiSpecFileNames": [ "provisioning-api" ]
+      "releaseNotesPath": "docs/release-notes/2022/march.md",
+      "apiSpecFileNames": [ "MFA/openapi", "MFA/openapi2","Provisioning/prov-openapi" ]
     }
   ],
   "product": {
