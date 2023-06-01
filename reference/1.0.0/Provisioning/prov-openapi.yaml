@@ -12,6 +12,7 @@ servers:
 paths:
   /Applications/{applicationId}/AccessTokenMapping:
     get:
+      x-child-product-name: 'Provisioning'
       x-group-name: 'Application Token Mapping'
       x-proxy-name: 'Get Token Mapping'
       tags:
@@ -92,6 +93,7 @@ paths:
         required: true
       tags:
         - Application Token Mapping
+      x-child-product-name: 'Provisioning'  
       x-group-name: 'Application Token Mapping'
       x-proxy-name: 'Update Token Mapping'
       parameters:
@@ -163,6 +165,7 @@ paths:
         - Application Token Mapping
       x-group-name: 'Application Token Mapping'
       x-proxy-name: 'Delete Token Mapping'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: applicationId
           schema:
@@ -215,6 +218,7 @@ paths:
         - Application
       x-group-name: 'Application'
       x-proxy-name: 'Get Application'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: attributes
           description: list of attributes
@@ -325,6 +329,7 @@ paths:
         - Application
       x-group-name: 'Application'
       x-proxy-name: 'Create Application'
+      x-child-product-name: 'Provisioning'
       summary: Onboard Application
       security: 
         - Oauth2CC:
@@ -421,6 +426,7 @@ paths:
         - Application
       x-group-name: 'Application'
       x-proxy-name: 'Get Application by Id'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: applicationId
           schema:
@@ -481,6 +487,7 @@ paths:
         - Application
       x-group-name: 'Application'
       x-proxy-name: 'Update Application'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: applicationId
           schema:
@@ -549,6 +556,7 @@ paths:
         - Application
       x-group-name: 'Application'
       x-proxy-name: 'Delete Application'
+      x-child-product-name: 'Provisioning'
       security:
         - Oauth2CC:
           - "application.client domain.manage"
@@ -588,6 +596,7 @@ paths:
         - Application OAuth Client
       x-group-name: 'Application OAuth Client'
       x-proxy-name: 'Get OAuth Client'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: applicationId
           schema:
@@ -654,6 +663,7 @@ paths:
         - Application OAuth Client
       x-group-name: 'Application OAuth Client'
       x-proxy-name: 'Update OAuth Client'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: applicationId
           schema:
@@ -706,6 +716,7 @@ paths:
         - Domain User
       x-group-name: 'Domain User'
       x-proxy-name: 'Get Domain User by Id'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -759,6 +770,7 @@ paths:
         - Domain User
       x-group-name: 'Domain User'
       x-proxy-name: 'Update user'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -817,6 +829,7 @@ paths:
         - Domain User
       x-group-name: 'Domain User'
       x-proxy-name: 'Delete User'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -862,6 +875,7 @@ paths:
         - Domain ServiceAccount
       x-group-name: 'Domain ServiceAccount'
       x-proxy-name: 'Get ServiceAccount by Id'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -916,6 +930,7 @@ paths:
         - Domain ServiceAccount
       x-group-name: 'Domain ServiceAccount'
       x-proxy-name: 'Update Service Account'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -975,6 +990,7 @@ paths:
         - Domain ServiceAccount
       x-group-name: 'Domain ServiceAccount'
       x-proxy-name: 'Delete Service Account'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -1021,6 +1037,7 @@ paths:
         - Domain
       x-group-name: 'Domain'
       x-proxy-name: 'Domain by Id'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -1069,6 +1086,7 @@ paths:
         - Domain
       x-group-name: 'Domain'
       x-proxy-name: 'Update Domain'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -1122,6 +1140,7 @@ paths:
         - Domain
       x-group-name: 'Domain'
       x-proxy-name: 'Delete Domain'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -1152,6 +1171,7 @@ paths:
         - Domain
       x-group-name: 'Domain'
       x-proxy-name: 'Get All Domain'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: attributes
           description: list of attributes
@@ -1244,6 +1264,7 @@ paths:
         - Domain
       x-group-name: 'Domain'
       x-proxy-name: 'Create Domain'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: attributes
           description: list of attributes
@@ -1311,6 +1332,7 @@ paths:
         - Domain User
       x-group-name: 'Domain User'
       x-proxy-name: 'Get All Domain Users'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -1400,6 +1422,7 @@ paths:
         - Domain User
       x-group-name: 'Domain User'
       x-proxy-name: 'Create Domain User'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -1452,6 +1475,7 @@ paths:
         - Domain ServiceAccount
       x-group-name: 'Domain ServiceAccount'
       x-proxy-name: 'Get All Domain Service Accounts'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -1544,6 +1568,7 @@ paths:
         - Domain ServiceAccount
       x-group-name: 'Domain ServiceAccount'
       x-proxy-name: 'Create Domain Service Account'
+      x-child-product-name: 'Provisioning'
       parameters:
         - name: domainId
           schema:
@@ -1594,8 +1619,9 @@ paths:
     get:
       tags:
         - Search
-      x-group-name: 'Domain Service Account'
-      x-proxy-name: 'Get All Domain Service Accounts'
+      x-child-product-name: 'Provisioning'
+      x-group-name: 'Search'
+      x-proxy-name: 'Get All Service Accounts'
       parameters:
         - name: attributes
           description: list of attributes
@@ -1698,8 +1724,9 @@ paths:
     get:
       tags:
         - Search
-      x-group-name: 'Domain User'
-      x-proxy-name: 'Get All Domain Users'
+      x-child-product-name: 'Provisioning'  
+      x-group-name: 'Search'
+      x-proxy-name: 'Get All Users'
       parameters:
         - name: attributes
           description: list of attributes
