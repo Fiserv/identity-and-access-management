@@ -1,13 +1,13 @@
 # Getting Started with CIAM API
 
-Fiserv Identity and access managment API  provides a simple way through [Developer Studio](?path=docs/getting-started-dev-portal.md) to integrate Identity and access managment functionality such as multi-factor authentication functionality. 
+Fiserv Identity and access management API  provides a simple way through [Developer Studio](?path=docs/getting-started-dev-portal.md) to integrate Identity and access management functionality such as multi-factor authentication functionality. 
 
 
 ---
 
 ## Services and capabilities
 
-Build secure solution using IAM provided services and capbilties.
+Build secure solution using IAM provided services and capabilities.
 
 <!-- type: row -->
 
@@ -17,6 +17,11 @@ description: CIAM MFA API provides capabilities for enabling MFA actions in auth
 link: ?path=docs/getting-started-mfa.md
 -->
 
+<!-- type: card
+title: Provisioning API
+description: Provisioning API is a set of APIs which simplifies all the directory operations like managing domains, service accounts, users. It also provides the operations which allows the administration for users and service accounts. 
+link: ?path=docs/ciam-provisioning/getting-started-provisioning-api.md
+-->
 
 <!-- type: row-end -->
 
