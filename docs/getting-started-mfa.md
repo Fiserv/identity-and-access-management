@@ -67,9 +67,7 @@ link: ?path=docs/ciam-mfa/yubikey.md
 
 ## Error Codes and messages
 
-<!--
-type: tab
--->
+The below table contains the list of error codes and messages.
 
 | Error Code | Error Message |
 | ---------- | ------------- |
@@ -105,6 +103,3 @@ type: tab
 | `100017` | please provide correct rpID no active FIDO device found for given rpId. |
 | `100021` | Error while fetching detail. |
 | `100025` | No FIDO device found please pair one. |
-
-
-<!-- type: tab-end -->
