@@ -46,7 +46,7 @@ CIAM MFA has various configuration possibilities that allow application to deter
 <!-- type: card
 title: MFA using SMS or Email
 description: CIAM MFA API allows application to use Email ar SMS as authetnication factor.
-link: ?path=docs/ciam-mfa/sms-email.md
+link: ?path=docs/ciam-mfa/SMS-EMAIL.md
 -->
 
 <!-- type: card
