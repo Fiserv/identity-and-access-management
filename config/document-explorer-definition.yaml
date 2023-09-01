@@ -112,4 +112,10 @@
               link: docs/ciam-provisioning/Domain/service-account/update-service-account.md
             - title: Delete User
               link: docs/ciam-provisioning/Domain/service-account/delete-service-account.md
-
+  - title: CIAM Risk
+    link: docs/ciam-risk/getting-started-risk-api.md
+    sections:
+        - title: Generate Access Token
+          link: docs/ciam-risk/oauth-token-generation.md
+        - link: docs/ciam-risk/risk-evaluation.md
+          title: Risk Evaluations
