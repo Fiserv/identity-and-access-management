@@ -12,7 +12,7 @@ CIAM Risk's intelligence-based policies combine the results of multiple risk pre
 
 Predictors include bot detection, IP velocity, user velocity, geovelocity anomaly, user location anomaly, IP reputation, anonymous network, user risk behavior, user-based risk model, new device detection, suspicious device detection, custom/third-party predictors, and composite predictors.
 
-![CIAM Risk](../../assets/images/risk/risk.jpg)
+![CIAM Risk](../../assets/images/risk/risk.png)
 
 ## Address MFA Fatigue
 
