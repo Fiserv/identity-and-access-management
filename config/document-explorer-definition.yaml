@@ -117,23 +117,23 @@
     sections:
         - title: Generate Access Token
           link: docs/ciam-risk/oauth-token-generation.md
-        - link: docs/ciam-risk/risk-evaluation.md
-          title: Risk Evaluations
+        - title: Risk Evaluations
+          link: docs/ciam-risk/risk-evaluation.md
         - title: Risk Policies Operations
           sections:
-            -title: Create Policy
-             link: docs/ciam-risk/risk-policy/create-policy.md
-            -title: Delete Risk Policy by ID
-             link: docs/ciam-risk/risk-policy/delete-risk-policy.md
-            -title: Get Risk Policy
-             link: docs/ciam-risk/risk-policy/get-policy-by-id.md
-            -title: Retreive All Risk Policies
-             link: docs/ciam-risk/risk-policy/retreive-all-risk-policies.md
-            -title: Update Risk Policy
-             link: docs/ciam-risk/risk-policy/update-policy-by-id.md
-        -title: Risk Config
+            - title: Create Policy
+              link: docs/ciam-risk/risk-policy/create-policy.md
+            - title: Delete Risk Policy by ID
+              link: docs/ciam-risk/risk-policy/delete-risk-policy.md
+            - title: Get Risk Policy
+              link: docs/ciam-risk/risk-policy/get-policy-by-id.md
+            - title: Retreive All Risk Policies
+              link: docs/ciam-risk/risk-policy/retreive-all-risk-policies.md
+            - title: Update Risk Policy
+              link: docs/ciam-risk/risk-policy/update-policy-by-id.md
+        - title: Risk Config
           sections:
-            -title: Register App
-             link: docs/ciam-risk/risk-config/register-app.md
-            -title: Risk Service Config
-             link: docs/ciam-risk/risk-config/risk-service-config.md
+            - title: Register App
+              link: docs/ciam-risk/risk-config/register-app.md
+            - title: Risk Service Config
+              link: docs/ciam-risk/risk-config/risk-service-config.md
