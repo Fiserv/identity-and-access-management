@@ -15,7 +15,7 @@ titles: Request, Response
 ```json
 {
     "enableRisk": true,
-    "policyID": {{policyId}}
+    "policyID": "{{policyId}}"
 }
 ```
 
@@ -32,7 +32,7 @@ titles: Request, Response
 ```json
 {
     "enableRisk": false,
-    "policyID": {{policyId}}
+    "policyID": "{{policyId}}"
 }
 ```
 <!--
