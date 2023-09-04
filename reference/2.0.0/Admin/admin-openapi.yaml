@@ -39,6 +39,40 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
+  /riskService/ServiceAccount/{svcAccount}/config:
+    put:
+      summary: Enable/Disable Risk Services
+      description: >- 
+        Use this API to enable/disable risk services.
+      x-child-product-name: 'Admin API'
+      x-group-name: 'Prerequisites'
+      x-proxy-name: 'Risk Service Configuration'
+      parameters:
+        - name: svcAccId
+          in: path
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RiskConfigRequest'
+      responses:
+        '200':
+          description: CREATED
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'  
   /riskPolicy:
     post:
       summary: Create Risk Policy
@@ -73,7 +107,7 @@ paths:
         Use this API to retrieve all risk policies.
       x-child-product-name: 'Admin API'
       x-group-name: 'Risk Services'
-      x-proxy-name: 'Get All Risk Policies'
+      x-proxy-name: 'Retrieve All Risk Policies'
       responses:
         '200':
           description: OK
@@ -96,7 +130,7 @@ paths:
         Use this API to retrieve a policy using the policy Id.
       x-child-product-name: 'Admin API'
       x-group-name: 'Risk Services'
-      x-proxy-name: 'Get Risk Policy'
+      x-proxy-name: 'Get Risk Policy By Id'
       parameters:
         - name: policyId
           in: path
@@ -157,7 +191,7 @@ paths:
         Use this API to delete a risk policy using the policy Id.
       x-child-product-name: 'Admin API'
       x-group-name: 'Risk Services'
-      x-proxy-name: 'Get Risk Policy'
+      x-proxy-name: 'Delete Risk Policy'
       parameters:
         - name: policyId
           in: path
@@ -283,6 +317,12 @@ components:
           format: int64
           minimum: 0
           maximum: 1000
+    RiskConfigRequest:
+      properties:
+        enableRisk:
+          type: boolean
+        policyID:
+          type: string
   responses:
     BadRequest:
       content:
