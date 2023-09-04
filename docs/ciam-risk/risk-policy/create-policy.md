@@ -52,7 +52,7 @@ titles: Request, Response
 type: tab
 -->
 
-### Example of Risk Evaluation (201: Created) response
+### Example of Policy Creation (201: Created) response
 
 ```json
 {

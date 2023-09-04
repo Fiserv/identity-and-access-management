@@ -17,10 +17,7 @@ The below table identifies the parameter required
 type: tab
 -->
 
-### Example of Search Domain By Domain Id (200: Created) response
+### 204: No Content response
 
-```json
-
-```
 
 <!-- type: tab-end -->

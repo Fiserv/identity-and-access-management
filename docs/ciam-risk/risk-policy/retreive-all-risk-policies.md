@@ -5,11 +5,7 @@ type: tab
 titles: Request, Response
 -->
 
-### Payload that represents the Risk Evaluation
-
-```json
-
-```
+### No Payload to Retreive all Policies
 <!--
 type: tab
 -->

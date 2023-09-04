@@ -5,7 +5,7 @@ type: tab
 titles: Request, Response
 -->
 
-### Payload that represents the Updated Policy
+### Payload to Register App
 
 ```json
 {
@@ -22,7 +22,7 @@ titles: Request, Response
 type: tab
 -->
 
-### Example of Update Risk (201: Created) response
+###  (201: Created) response example
 
 ```json
 {
