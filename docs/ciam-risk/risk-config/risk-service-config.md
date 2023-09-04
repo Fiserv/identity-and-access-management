@@ -1,4 +1,7 @@
 ## Risk Service Configuration
+API to enable or disable Risk Policy.
+
+If client want to enable/disable any particular policy, then he can provide that policyID in body of the request, else if no policyID is mentioned in the body, our default policy would be enabled.
 
 <!--
 type: tab
@@ -12,7 +15,7 @@ titles: Request, Response
 ```json
 {
     "enableRisk": true,
-    "policyID": {{policyId}}
+    "policyID": "{{policyId}}"
 }
 ```
 
@@ -29,7 +32,7 @@ titles: Request, Response
 ```json
 {
     "enableRisk": false,
-    "policyID": {{policyId}}
+    "policyID": "{{policyId}}"
 }
 ```
 <!--
