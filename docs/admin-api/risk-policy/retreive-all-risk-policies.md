@@ -1,5 +1,6 @@
 ## Retreive All Risk Policies   
 
+API to retreive all existing risk policies. No path parameter or payload is required.
 <!--
 type: tab
 titles: Request, Response

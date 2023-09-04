@@ -1,5 +1,6 @@
 ## Delete Risk Policy by ID
 
+API to delete any existing Risk Policy. The policyId to be deleted is provided as path parameter. No payload need to be provided.
 <!--
 type: tab
 titles: Request, Response
