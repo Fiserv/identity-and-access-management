@@ -34,6 +34,8 @@
   - title: CIAM MFA
     link: docs/getting-started-mfa.md
     sections:
+       - title: Risk Evaluations
+         link: docs/ciam-mfa/risk-evaluation.md
        - link: docs/ciam-mfa/SMS-EMAIL.md
          title: MFA using SMS/EMAIL
          type: recipe
@@ -113,27 +115,25 @@
             - title: Delete User
               link: docs/ciam-provisioning/Domain/service-account/delete-service-account.md
   - title: CIAM Risk
-    link: docs/ciam-risk/getting-started-risk-api.md
+    link: docs/admin-api/getting-started-risk-api.md
     sections:
         - title: Generate Access Token
-          link: docs/ciam-risk/oauth-token-generation.md
-        - title: Risk Evaluations
-          link: docs/ciam-risk/risk-evaluation.md
+          link: docs/admin-api/oauth-token-generation.md
+        - title: Register App
+          link: docs/admin-api/register-app.md
         - title: Risk Policies Operations
           sections:
             - title: Create Policy
-              link: docs/ciam-risk/risk-policy/create-policy.md
+              link: docs/admin-api/risk-policy/create-policy.md
             - title: Delete Risk Policy by ID
-              link: docs/ciam-risk/risk-policy/delete-risk-policy.md
+              link: docs/admin-api/risk-policy/delete-risk-policy.md
             - title: Get Risk Policy
-              link: docs/ciam-risk/risk-policy/get-policy-by-id.md
+              link: docs/admin-api/risk-policy/get-policy-by-id.md
             - title: Retreive All Risk Policies
-              link: docs/ciam-risk/risk-policy/retreive-all-risk-policies.md
+              link: docs/admin-api/risk-policy/retreive-all-risk-policies.md
             - title: Update Risk Policy
-              link: docs/ciam-risk/risk-policy/update-policy-by-id.md
+              link: docs/admin-api/risk-policy/update-policy-by-id.md
         - title: Risk Config
           sections:
-            - title: Register App
-              link: docs/ciam-risk/risk-config/register-app.md
             - title: Risk Service Config
-              link: docs/ciam-risk/risk-config/risk-service-config.md
+              link: docs/admin-api/risk-config/risk-service-config.md
