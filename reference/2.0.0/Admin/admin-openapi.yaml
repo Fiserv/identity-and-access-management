@@ -16,6 +16,7 @@ paths:
       summary: Onboard the application
       description: >- 
         Use this API to create a custom risk policy.
+      x-child-product-name: 'Admin API'
       x-group-name: 'Prerequisites'
       x-proxy-name: 'Application Registration'
       requestBody:
@@ -43,6 +44,7 @@ paths:
       summary: Create Risk Policy
       description: >- 
         Use this API to create a custom risk policy.
+      x-child-product-name: 'Admin API'
       x-group-name: 'Risk Services'
       x-proxy-name: 'Create Risk Policy'
       requestBody:
@@ -70,6 +72,7 @@ paths:
       summary: Read a Risk Policy by policy Id
       description: >- 
         Use this API to retrieve a policy using the policy Id.
+      x-child-product-name: 'Admin API'
       x-group-name: 'Risk Services'
       x-proxy-name: 'Get Risk Policy'
       parameters:
@@ -93,33 +96,12 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
-  /riskPolicy:
-    get:
-      summary: Read all Risk Policies
-      description: >- 
-        Use this API to retrieve all policies.
-      x-group-name: 'Risk Services'
-      x-proxy-name: 'Get All Risk Policies'
-      responses:
-        '200':
-          description: OK
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/PolicyResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '500':
-          $ref: '#/components/responses/ServerError'  
   /riskPolicy/{policyId}:
     put:
       summary: Update the Risk Policy using policy Id
       description: >- 
         Use this API to update the risk policy.
+      x-child-product-name: 'Admin API'
       x-group-name: 'Risk Services'
       x-proxy-name: 'Update Risk Policy'
       requestBody:
@@ -153,6 +135,7 @@ paths:
       summary: Delete a Risk Policy by policy Id
       description: >- 
         Use this API to delete a risk policy using the policy Id.
+      x-child-product-name: 'Admin API'
       x-group-name: 'Risk Services'
       x-proxy-name: 'Get Risk Policy'
       parameters:
