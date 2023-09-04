@@ -67,6 +67,28 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
+    get:
+      summary: Retrieve all the Policies
+      description: >- 
+        Use this API to retrieve all risk policies.
+      x-child-product-name: 'Admin API'
+      x-group-name: 'Risk Services'
+      x-proxy-name: 'Get All Risk Policies'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'  
   /riskPolicy/{policyId}:
     get:
       summary: Read a Risk Policy by policy Id
@@ -96,7 +118,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
-  /riskPolicy/{policyId}:
     put:
       summary: Update the Risk Policy using policy Id
       description: >- 
@@ -130,7 +151,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
-  /riskPolicy/{policyId}:
     delete:
       summary: Delete a Risk Policy by policy Id
       description: >- 
