@@ -118,9 +118,9 @@
               link: docs/ciam-provisioning/Domain/service-account/delete-service-account.md
   - title: Admin APIs
     sections:
-        - title: Register App
+        - title: Application Onboarding
           link: docs/admin-api/application-onboarding.md
-        - title: Risk Policies Operations
+        - title: Risk Services
           link: docs/admin-api/risk-services/getting-started-risk-api.md
           sections:
             - title: Create Policy
