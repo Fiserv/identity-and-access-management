@@ -1,5 +1,6 @@
 ## Get Risk Policy by ID
 
+API to get any specific policy. Provide the policyId as path parameter in the request to get the policy.
 <!--
 type: tab
 titles: Request, Response

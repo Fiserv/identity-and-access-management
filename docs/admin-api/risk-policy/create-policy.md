@@ -1,5 +1,5 @@
 ## Create Risk Policy
-
+API to create new Risk Policy. Critical risks are mentioned under overridenPredictors and score to risks are given under aggregatedPredictors.
 <!--
 type: tab
 titles: Request, Response

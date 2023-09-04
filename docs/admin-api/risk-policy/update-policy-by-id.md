@@ -1,5 +1,6 @@
 ## Update Risk Policy by PolicyId   
 
+API to update any existing risk policy. The policyId of the risk to be updated is provided as path parameter, and the update is provided as payload of the request.
 <!--
 type: tab
 titles: Request, Response

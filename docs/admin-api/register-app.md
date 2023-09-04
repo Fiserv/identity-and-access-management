@@ -1,5 +1,6 @@
 ## Register App
 
+API to generate service account and password.
 <!--
 type: tab
 titles: Request, Response
