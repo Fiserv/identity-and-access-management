@@ -126,7 +126,7 @@
             - title: Create Policy
               link: docs/admin-api/risk-services/create-risk-policy.md
             - title: Delete Risk Policy by ID
-              link: docs/admin-api/risk-services/delete-risk-services.md
+              link: docs/admin-api/risk-services/delete-risk-policy.md
             - title: Get Risk Policy
               link: docs/admin-api/risk-services/get-risk-policy-by-id.md
             - title: Retreive All Risk Policies
