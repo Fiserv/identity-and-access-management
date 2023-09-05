@@ -117,6 +117,7 @@
             - title: Delete User
               link: docs/ciam-provisioning/Domain/service-account/delete-service-account.md
   - title: Admin APIs
+    link: docs/admin-api/getting-started-admin-api.md
     sections:
         - title: Application Onboarding
           link: docs/admin-api/application-onboarding.md
