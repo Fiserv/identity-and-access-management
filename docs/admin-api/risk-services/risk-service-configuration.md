@@ -10,6 +10,13 @@ titles: Request, Response
 
 ### Payload to Register App
 
+The parameters of payload request are as:
+
+| Variable | Type | Value | Required | Description |
+| -------- | -- |------------| ------- | ---- |
+| `enableRisk` | *boolean* | true/false | &#10004; | set true to enable the risk policy or false otherwise |
+| `policyID` | *string* | policy Id | - | mention it if you want to enable/disable any particular policy |
+
 ##### If specific policyId is provided to enable/disable
 
 ```json
