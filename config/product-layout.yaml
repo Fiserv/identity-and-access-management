@@ -39,13 +39,13 @@ featuredFeatures:
 #    bullets: ["REPLACEME", "REPLACEME" ]  
     relatedDocs:
       - relatedDoc: 
-        title: On-Time-Password (OTP) device or software
-        description: OTP 
-        link: ./docs/otp.md
-      - relatedDoc: 
-        title: Cryptographic device or software
-        description: This section is for authentication using 
-        link: ./docs/biometrics.md
+        title: CIAM MFA
+        description: CIAM MFA 
+        link: ./docs/getting-started-mfa.md
+      # - relatedDoc: 
+      #   title: Cryptographic device or software
+      #   description: This section is for authentication using 
+      #   link: ./docs/biometrics.md
     relatedAPIs:
       - relatedAPI: 
         title: Get devices 

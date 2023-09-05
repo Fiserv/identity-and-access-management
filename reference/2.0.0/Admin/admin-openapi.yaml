@@ -1,0 +1,374 @@
+openapi: 3.0.0
+info:
+  title: CIAM Admin API
+  version: 1.0.0
+  description: >-
+    This API Specification is designed to provide technical guidance required to
+    consume and integrate with our APIs.
+  x-logo:
+    url: ''
+servers:
+  - url: https://ciam-mfa-api-dev.1dc.com/app-reg/v1
+  - url: https://ciam-mfa-api-dev.1dc.com/app-reg/v2
+paths:
+  /registerapp:
+    post:
+      summary: Onboard the application
+      description: >- 
+        Use this API to create a custom risk policy.
+      x-child-product-name: 'Admin API'
+      x-group-name: 'Prerequisites'
+      x-proxy-name: 'Application Registration'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterAppRequest'
+      responses:
+        '201':
+          description: CREATED
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RegisterAppResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'  
+  /riskService/ServiceAccount/{svcAccount}/config:
+    put:
+      summary: Enable/Disable Risk Services
+      description: >- 
+        Use this API to enable/disable risk services.
+      x-child-product-name: 'Admin API'
+      x-group-name: 'Prerequisites'
+      x-proxy-name: 'Risk Service Configuration'
+      parameters:
+        - name: svcAccId
+          in: path
+          schema:
+            type: string
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RiskConfigRequest'
+      responses:
+        '200':
+          description: CREATED
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'  
+  /riskPolicy:
+    post:
+      summary: Create Risk Policy
+      description: >- 
+        Use this API to create a custom risk policy.
+      x-child-product-name: 'Admin API'
+      x-group-name: 'Risk Services'
+      x-proxy-name: 'Create Risk Policy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyRequest'
+      responses:
+        '201':
+          description: CREATED
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'  
+    get:
+      summary: Retrieve all the Policies
+      description: >- 
+        Use this API to retrieve all risk policies.
+      x-child-product-name: 'Admin API'
+      x-group-name: 'Risk Services'
+      x-proxy-name: 'Retrieve All Risk Policies'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'  
+  /riskPolicy/{policyId}:
+    get:
+      summary: Read a Risk Policy by policy Id
+      description: >- 
+        Use this API to retrieve a policy using the policy Id.
+      x-child-product-name: 'Admin API'
+      x-group-name: 'Risk Services'
+      x-proxy-name: 'Get Risk Policy By Id'
+      parameters:
+        - name: policyId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'  
+    put:
+      summary: Update the Risk Policy using policy Id
+      description: >- 
+        Use this API to update the risk policy.
+      x-child-product-name: 'Admin API'
+      x-group-name: 'Risk Services'
+      x-proxy-name: 'Update Risk Policy'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PolicyRequest'
+      parameters:
+        - name: policyId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PolicyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'  
+    delete:
+      summary: Delete a Risk Policy by policy Id
+      description: >- 
+        Use this API to delete a risk policy using the policy Id.
+      x-child-product-name: 'Admin API'
+      x-group-name: 'Risk Services'
+      x-proxy-name: 'Delete Risk Policy'
+      parameters:
+        - name: policyId
+          in: path
+          schema:
+            type: string
+          required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'  
+components:
+  schemas:
+    ErrorResponse:
+      properties:
+        error:
+          format: int32
+          type: integer
+        message:
+          type: string
+        traceid:
+          type: string
+        timestamp:
+          type: string
+    RegisterAppRequest:
+      properties:
+        apm:
+          type: string
+        appName:
+          type: string
+        uaid:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        maxUsers:
+          type: string
+        owner:
+          type: string
+    RegisterAppResponse:
+      properties:
+        appName:
+          type: string
+        owner:
+          type: string
+        uaid:
+          type: string
+        svcAcctFriendlyID:
+          type: string
+        svcAcctFriendlyName:
+          type: string
+        emailStatus:
+          type: string
+    PolicyRequest:
+      properties:
+        id:
+          type: string
+        appID:
+          type: string
+        weightBasedPolicy:
+          type: boolean
+        defaultRiskLevel:
+          type: string
+        overriddenPredictors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Predictor'
+        aggregatedPredictors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Predictor'
+        minMaxScoresPerRiskLevel:
+          type: array
+          items:
+            $ref: '#/components/schemas/MinMaxScore'
+    PolicyResponse:
+      properties:
+        appName:
+          type: string
+        owner:
+          type: string
+        uaid:
+          type: string
+        svcAcctFriendlyID:
+          type: string
+        svcAcctFriendlyName:
+          type: string
+        emailStatus:
+          type: string
+    Predictor:
+      properties:
+        name:
+          type: string
+        resultLevel:
+          type: string
+        condition:
+          type: string
+        score:
+          type: integer
+          format: int64
+        ipRange:
+          type: array
+          items:
+            type: string
+    MinMaxScore:
+      properties:
+        riskLevel:
+          type: string
+        minScore:
+          type: integer
+          format: int64
+          minimum: 0
+          maximum: 1000
+        maxScore:
+          type: integer
+          format: int64
+          minimum: 0
+          maximum: 1000
+    RiskConfigRequest:
+      properties:
+        enableRisk:
+          type: boolean
+        policyID:
+          type: string
+  responses:
+    BadRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10008'
+            message: Invalid Authid
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+      description: The request cannot be validated.
+      x-model-version: 1
+    Unauthorized:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10001'
+            message: Access token has expired
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+      description: The request was unauthorized.
+      x-model-version: 1
+    NotFound:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10003'
+            message: User not found, please check the username
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+      description: The requested resource does not exist.
+      x-model-version: 1
+    ServerError:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10010'
+            message: An unexpected internal server error occurred. Try again later
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+      description: An unexpected internal server error occurred.
+      x-model-version: 1
