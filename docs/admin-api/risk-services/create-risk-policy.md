@@ -5,6 +5,17 @@ type: tab
 titles: Request, Response
 -->
 
+Parameters Used in Payload of request are as:
+
+| Variable | Type | Value | Required | Description |
+| -------- | -- |------------| ------- | ---- |
+| `weightBasedPolicy` | *boolean* | true/false | - | If risk to be determined is weight based or score based |
+| `appID` | *string* | apm name | &#10004; | Id of the policy |
+| `overriddenPredictors` | *list* | list of risk object | - | Specifies critical risks or priority risks |
+| `aggregatedPredictors` | *list* | list of score/weight based risk object | - | Specifies score or weights of different risks | 
+| `minMaxScoresPerRiskLevel` | *list* | object | - | assign risk based on score/weights interval |
+| `defaultRiskLevel` | *string* | default value | &#10004; | sets the default value |
+
 ### Payload to Create Risk Policy
 
 ```json
