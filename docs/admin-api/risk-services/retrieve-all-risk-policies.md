@@ -6,7 +6,7 @@ type: tab
 titles: Request, Response
 -->
 
-### No Payload to Retreive all Policies
+#### No Payload to Retreive all Policies
 <!--
 type: tab
 -->
