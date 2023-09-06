@@ -34,6 +34,10 @@
   - title: CIAM MFA
     link: docs/getting-started-mfa.md
     sections:
+       - title: Generate Access Token
+         link: docs/ciam-mfa/oauth-token-generation.md
+       - title: Risk Evaluations
+         link: docs/ciam-mfa/risk-evaluation.md
        - link: docs/ciam-mfa/SMS-EMAIL.md
          title: MFA using SMS/EMAIL
          type: recipe
@@ -112,4 +116,23 @@
               link: docs/ciam-provisioning/Domain/service-account/update-service-account.md
             - title: Delete User
               link: docs/ciam-provisioning/Domain/service-account/delete-service-account.md
-
+  - title: Admin APIs
+    link: docs/admin-api/getting-started-admin-api.md
+    sections:
+        - title: Application Onboarding
+          link: docs/admin-api/application-onboarding.md
+        - title: Risk Services
+          link: docs/admin-api/risk-services/getting-started-risk-api.md
+          sections:
+            - title: Create Policy
+              link: docs/admin-api/risk-services/create-risk-policy.md
+            - title: Delete Risk Policy by ID
+              link: docs/admin-api/risk-services/delete-risk-policy.md
+            - title: Get Risk Policy
+              link: docs/admin-api/risk-services/get-risk-policy-by-id.md
+            - title: Retreive All Risk Policies
+              link: docs/admin-api/risk-services/retrieve-all-risk-policies.md
+            - title: Update Risk Policy
+              link: docs/admin-api/risk-services/update-risk-policy.md
+            - title: Risk Service Config
+              link: docs/admin-api/risk-services/risk-service-configuration.md
