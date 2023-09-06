@@ -42,10 +42,10 @@ featuredFeatures:
         title: CIAM MFA
         description: CIAM MFA 
         link: ./docs/getting-started-mfa.md
-      # - relatedDoc: 
-      #   title: Cryptographic device or software
-      #   description: This section is for authentication using 
-      #   link: ./docs/biometrics.md
+      - relatedDoc: 
+        title: Cryptographic device or software
+        description: This section is for authentication using 
+        link: ./docs/biometrics.md
     relatedAPIs:
       - relatedAPI: 
         title: Get devices 
@@ -78,9 +78,9 @@ featuredFeatures:
 #    tags: [Getting Started, Developer Portal, CIAM, Identity And Access Management, Provisioning API]
     relatedDocs:
       - relatedDoc: 
-        title: OAuth Token Generation
-        description: generate the OAuth token required to invoke the API.
-        link: ./docs/oauth-token-generation.md
+        title: Provisioning APIs
+        description: Provisioning Documentation
+        link: ./docs/ciam-provisioning/getting-started-provisioning-api.md
     relatedAPIs:
       - relatedAPI: 
         title: Search Applications 
@@ -207,3 +207,34 @@ featuredFeatures:
         description: Delete service account.
         type: "delete"        
         path: "/Domains/{domainId}/ServiceAccounts/{accountId}"
+  - title: Admin-API
+    description: >
+      IAM Service Team onboard the application. The API requires admin credentials to generate the OAuth token needed for application onboarding.
+#    tags: [Getting Started, Developer Portal, CIAM, Identity And Access Management, Admin API]
+    relatedDocs:
+      - relatedDoc: 
+        title: Admin API
+        description: Admin API Documentation
+        link: ./docs/admin-api/getting-started-admin-api.md
+    relatedAPIs:
+      - relatedAPI: 
+        title: Register App
+        description: Generate service account and password
+        type: "post"        
+        path: "/registerapp"      
+      - relatedAPI: 
+        title: Enable/Disable Risk Services
+        description: Use this API to enable/disable risk services.
+        type: "put"        
+        path: "/riskService/ServiceAccount/{svcAccount}/config"  
+      - relatedAPI: 
+        title: Create Risk Policy 
+        description: Use this API to create a custom risk policy.
+        type: "post"        
+        path: "/riskPolicy"  
+      - relatedAPI: 
+        title: Read a Risk Policy by policy Id 
+        description: Use this API to retrieve a policy using the policy Id.
+        type: "get"        
+        path: "/riskPolicy/{policyId}"  
+      
