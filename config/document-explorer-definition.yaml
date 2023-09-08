@@ -71,7 +71,7 @@
             link: docs/ciam-mfa/FIDO2/create-mfa-device.md
             type: recipe
           - title: Initiate Auth Request OTP
-            link: docs/ciam-mfa/FIDO2/inititate-auth-request-otp.md
+            link: docs/ciam-mfa/FIDO2/initiate-auth-request-otp.md
             type: recipe
   - title: CIAM Provisioning API
     link: docs/ciam-provisioning/getting-started-provisioning-api.md
