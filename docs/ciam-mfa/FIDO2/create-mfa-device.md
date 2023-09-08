@@ -10,7 +10,7 @@ titles: Request, Response
 Parameters Used in Payload of request are as:
 
 | Variable | Type | Required | Description |
-| -------- | -- |------------| ------- | ---- |
+| -------- | ---- | ------- | ---- |
 | `deviceType` | *string* | &#10004; | The device type which must be provided. Options: EMAIL, MOBILE, SMS,VOICE, TOTP (third-party TOTP authenticator applications), FIDO2, PLATFORM - FIDO2 bound biometrics devices (deprecated, use FIDO2 instead), SECURITY_KEY - FIDO2 or U2F security key devices (deprecated, use FIDO2 instead) |
 | `rp.id` | *string* | &#10004; | The ID of the relying party. The value should be a domain name, such as example.com (in lower-case characters). |
 | `rp.name` | *string* | &#10004; | The relying party's human-readable display name (for example, acme). |
