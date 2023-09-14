@@ -391,8 +391,9 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AuthenticateDeviceFIDO2Payload'
-            example:
-              $ref: '#/components/examples/AuthenticateDeviceFIDO2Payload'
+            examples:
+              FIDO2:
+                $ref: '#/components/examples/AuthenticateDeviceFIDO2Payload'
       responses:
         '200':
           description: OK
@@ -401,7 +402,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/AuthenticateDeviceFIDO2Response'
               examples:
-                $ref: '#/components/examples/AuthenticateDeviceFIDO2Response'
+                FIDO2:
+                  $ref: '#/components/examples/AuthenticateDeviceFIDO2Response'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
