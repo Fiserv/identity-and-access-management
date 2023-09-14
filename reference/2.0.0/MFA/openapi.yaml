@@ -74,8 +74,6 @@ paths:
               YubiKey:
                 $ref: '#/components/examples/YubiKeyDeviceAddRequest'
                 summary: Request to add TOTP Devices. Request body requires deviceType,  deviceName as additional attribute along with Relying party domain information
-              FIDO2:
-                $ref: '#/components/examples/FIDO2DeviceAddRequest'
         required: true
       tags:
         - device creation endpoint definition
@@ -107,8 +105,6 @@ paths:
                         device for authentication.  Response also returns registration URI that
                         will be a  string that specifies the authenticator key URI (for example,
                         otpauth://totp/abc@example.com?secret={secretValue}.
-                FIDO2:
-                  $ref: '#/components/examples/FIDO2DeviceAddResponse'
           description: Created
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -130,9 +126,6 @@ paths:
               TOTP:
                 $ref: '#/components/examples/TOTPDeviceRegistrationRequest'
                 summary: TOTP  Device registration request
-              FIDO2:
-                $ref: '#/components/examples/ActivateFIDO2Request'
-                summary: API to activate the device specified in the request URL. 
         required: true
       tags:
         - device registration endpoint
@@ -163,9 +156,6 @@ paths:
                 TOTP:
                   $ref: '#/components/examples/TOTPDeviceRegistrationResponse'
                   summary: TOTP Device registration request
-                FIDO2:
-                  $ref: '#/components/examples/ActivateFIDO2Response'
-                  summary: Displays activate status
           description: Successful Response
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -200,8 +190,6 @@ paths:
               TOTPAuthentication:
                 $ref: '#/components/examples/TotpAuthenticationRequest'
                 summary: TOTP authentication request
-              FIDO2Authentication:
-                $ref: '#/components/examples/FIDO2AuthenticationRequest'
         required: true
       tags:
         - device authentication
@@ -221,9 +209,6 @@ paths:
                 TOTPAuthentication:
                   $ref: '#/components/examples/TotpAuthenticationResponse'
                   summary: TOTP authentication response
-                FIDO2Authentication:
-                  $ref: '#/components/examples/FIDO2AuthenticationResponse'
-                  summary: FIDO2 authentication response
           description: Successfully created.
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -376,42 +361,6 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'
-
-  # /deviceAuthentications/00d6df92-16c6-4bfb-9ff7-27e6d2b91349:
-  #   post:
-  #     tags:
-  #       - V2
-  #     summary: Authenticate Device
-  #     description: >- 
-  #       This api is used to validate the assertion used in the multi-factor authentication flow.
-  #     x-group-name: 'FIDO2 API'
-  #     x-proxy-name: 'Authenticate Device'
-  #     requestBody:
-  #       content:
-  #         application/json:
-  #           schema:
-  #             $ref: '#/components/schemas/AuthenticateDeviceFIDO2Payload'
-  #           examples:
-  #             FIDO2:
-  #               $ref: '#/components/examples/AuthenticateDeviceFIDO2Payload'
-  #     responses:
-  #       '200':
-  #         description: OK
-  #         content:
-  #           text/plain:
-  #             schema:
-  #               $ref: '#/components/schemas/AuthenticateDeviceFIDO2Response'
-  #             examples:
-  #               FIDO2:
-  #                 $ref: '#/components/examples/AuthenticateDeviceFIDO2Response'
-  #       '400':
-  #         $ref: '#/components/responses/BadRequest'
-  #       '401':
-  #         $ref: '#/components/responses/Unauthorized'
-  #       '404':
-  #         $ref: '#/components/responses/NotFound'
-  #       '500':
-  #         $ref: '#/components/responses/ServerError'
    
 components:
   schemas:
@@ -560,44 +509,6 @@ components:
         message:
           type: string
         publicKeyCredentialRequestOptions:
-          type: string
-    ActivateFIDO2Response:
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        rawId:
-          type: string
-        response:
-          type: object
-    AuthenticateDeviceFIDO2Payload:
-      properties:
-        origin:
-          type: string
-        assertion:
-          type: string
-    AuthenticateDeviceFIDO2Response:
-      properties:
-        deviceType:
-          type: string
-        origin:
-          type: string
-        assertion:
-          type: string
-    CreateDeviceFIDO2Response:
-      properties:
-        authId:
-          type: string
-        deviceType:
-          type: string
-        status:
-          type: string
-        rp.id:
-          type: string
-        rp.name:
-          type: string
-        publicKeyCredentialCreationOptions:
           type: string
   responses:
     BadRequest:
@@ -755,155 +666,6 @@ components:
         riskLevel: HIGH
         riskScore: '75.0'
         evaluationId: 19fb4d99-3332-4c21-88c9-dc3cdb3df5e6
-    FIDO2AuthenticationRequest:
-      value:
-        userName: prasad
-        rpID: iam-demo.1dc.com
-        deviceType: FIDO2
-    FIDO2AuthenticationResponse:
-      value:
-        authId: 038273f3-7d84-4c80-9477-99f88646797d
-        status: SUCCESS
-        message: Please generate the assertion with 'publicKeyCredentialRequestOptions' using Web Authentication API and authenticate FIDO device with assertion
-        publicKeyCredentialRequestOptions: "{\"challenge\":[13,93,-97,-86,-108,28,22,-98,-9,-53,37,23,-105,-122,-64,-75,57,-88,-13,57,-112,96,-33,42,-119,-72,116,-94,95,-50,-42,99],\"timeout\":120000,\"rpId\":\"iam-demo.1dc.com\",\"allowCredentials\":[{\"type\":\"public-key\",\"id\":[-114,11,-40,2,-85,-109,-107,-126,-25,-5,-80,113,-9,-25,-24,-98,123,27,-25,-34,6,-66,65,-8,60,-88,-56,16,-78,88,-57,-29,0,-93,23,-50,61,-11,-31,-128,-62,-14,-43,-59,-52,33,-110,-127,-60,31,-26,36,-45,77,64,94,-83,56,3,87,-122,-31,94,-107]}],\"userVerification\":\"preferred\"}"
-    ActivateFIDO2Request:
-      value:
-        deviceType: SECURITY_KEY
-        origin: https://iam-demo.1dc.com
-        attestation: 
-          "id: HozFCJ2txaDCTYPEmWmhwAKzwvccLhNPcKr6LM77XVtLgZ0unaJb-PRa8daCVnYfasodB3KPPXrxrgTmehY07A
-          type: public-key
-          rawId: HozFCJ2txaDCTYPEmWmhwAKzwvccLhNPcKr6LM77XVtLgZ0unaJb+PRa8daCVnYfasodB3KPPXrxrgTmehY07A==
-          response:
-            clientDataJSON: eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRlIiwiY2hhbGxlbmdlIjoiUW4tV2V6SmRnRnoxYXp2Q3FDRW81Q0Y0Z3pEbGdsSEtZdnBBT1VmNHVITSIsIm9yaWdpbiI6Imh0dHBzOi8vaWFtLWRlbW8uMWRjLmNvbSIsImNyb3NzT3JpZ2luIjpmYWxzZX0=
-            attestationObject: o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YVjEWvc+/XkaVwxa012pCZWAzWXwWSy8IupI6+2BznkpxM5FAAAAAgAAAAAAAAAAAAAAAAAAAAAAQB6MxQidrcWgwk2DxJlpocACs8L3HC4TT3Cq+izO+11bS4GdLp2iW/j0WvHWglZ2H2rKHQdyjz168a4E5noWNOylAQIDJiABIVggy/inGDF9alhbIY072g8+ImX1kpYIocLm0yo1Pcri4b4iWCD9l1YQdWQJbOGSBMwy6huh0+6iPaUvCXfmN5a/Wo9FUA=="
-    ActivateFIDO2Response:
-      value:
-        status: ACTIVE
-    AuthenticateDeviceFIDO2Payload:
-      value:
-        deviceType: SECURITY_KEY
-        origin: https://iam-demo.1dc.com
-        assertion: >-
-          "id: jgvYAquTlYLn-7Bx9-fonnsb594GvkH4PKjIELJYx-MAoxfOPfXhgMLy1cXMIZKBxB_mJNNNQF6tOANXhuFelQ
-          rawId: jgvYAquTlYLn+7Bx9+fonnsb594GvkH4PKjIELJYx+MAoxfOPfXhgMLy1cXMIZKBxB/mJNNNQF6tOANXhuFelQ==
-          type: public-key
-          response:
-            clientDataJSON: eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiOHVVQTA2dVB1VFRGNmI2dkhXcTdkZWt6QVo3Y2V2MDMtNnJSQzZoTEFhVSIsIm9yaWdpbiI6Imh0dHBzOi8vaWFtLWRlbW8uMWRjLmNvbSIsImNyb3NzT3JpZ2luIjpmYWxzZSwib3RoZXJfa2V5c19jYW5fYmVfYWRkZWRfaGVyZSI6ImRvIG5vdCBjb21wYXJlIGNsaWVudERhdGFKU09OIGFnYWluc3QgYSB0ZW1wbGF0ZS4gU2VlIGh0dHBzOi8vZ29vLmdsL3lhYlBleCJ9
-            authenticatorData: Wvc+/XkaVwxa012pCZWAzWXwWSy8IupI6+2BznkpxM4FAAAACw==
-            signature: MEYCIQDp7wBeYYv+02m56wbQaLUstoZWIDxpKI2IvmgeOMUHYQIhAP2W5tDVqKHAQbTsAAZzTdXD/px9ZOtYtIysZyKs4Ws7
-            userHandle: ''" 
-    AuthenticateDeviceFIDO2Response:
-      value:
-        id: jgvYAquTlYLn-7Bx9-fonnsb594GvkH4PKjIELJYx-MAoxfOPfXhgMLy1cXMIZKBxB_mJNNNQF6tOANXhuFelQ
-        rawId: jgvYAquTlYLn+7Bx9+fonnsb594GvkH4PKjIELJYx+MAoxfOPfXhgMLy1cXMIZKBxB/mJNNNQF6tOANXhuFelQ==
-        type: public-key
-        response:
-          clientDataJSON: eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiOHVVQTA2dVB1VFRGNmI2dkhXcTdkZWt6QVo3Y2V2MDMtNnJSQzZoTEFhVSIsIm9yaWdpbiI6Imh0dHBzOi8vaWFtLWRlbW8uMWRjLmNvbSIsImNyb3NzT3JpZ2luIjpmYWxzZSwib3RoZXJfa2V5c19jYW5fYmVfYWRkZWRfaGVyZSI6ImRvIG5vdCBjb21wYXJlIGNsaWVudERhdGFKU09OIGFnYWluc3QgYSB0ZW1wbGF0ZS4gU2VlIGh0dHBzOi8vZ29vLmdsL3lhYlBleCJ9
-          authenticatorData: Wvc+/XkaVwxa012pCZWAzWXwWSy8IupI6+2BznkpxM4FAAAACw==
-          signature: MEYCIQDp7wBeYYv+02m56wbQaLUstoZWIDxpKI2IvmgeOMUHYQIhAP2W5tDVqKHAQbTsAAZzTdXD/px9ZOtYtIysZyKs4Ws7
-          userHandle: ''
-    FIDO2DeviceAddRequest:
-      value:
-        deviceType: FIDO2
-        rp:
-          id: app.fiserv.com
-          name: CartApp
-    FIDO2DeviceAddResponse:
-      value:
-        authId: 67e07830-3636-4479-a407-da0a16b85c3c
-        deviceType: FIDO2
-        status: ACTIVATION_REQUIRED
-        rp:
-          id: pingone.com
-          name: pingone.com
-        publicKeyCredentialCreationOptions: 
-          "rp:
-            id:pingone.com
-            name:pingone.com
-          user:
-            id:
-              - -121
-              - 2
-              - 76
-              - 83
-              - 98
-              - -86
-              - -48
-              - 1
-              - -114
-              - 31
-              - -30
-              - -9
-              - 116
-              - 52
-              - -37
-              - -78
-              - 68
-              - -51
-              - 63
-              - 37
-              - 14
-              - 68
-              - -112
-              - 56
-              - -104
-              - -7
-              - -41
-              - -116
-              - -121
-              - -46
-              - -38
-              - 22
-            displayName: APM_NA_TEST_RUN_2102231126$demouser
-            name: APM_NA_TEST_RUN_2102231126$demouser
-          challenge:
-            - -19
-            - 41
-            - 45
-            - -102
-            - -21
-            - 109
-            - -109
-            - -125
-            - 32
-            - 121
-            - -4
-            - -78
-            - -123
-            - 80
-            - 53
-            - 58
-            - 81
-            - 29
-            - -111
-            - 81
-            - 75
-            - 11
-            - -44
-            - 73
-            - -81
-            - 90
-            - 4
-            - 42
-            - -27
-            - 108
-            - 75
-            - 20
-          pubKeyCredParams:
-            - type: public-key
-              alg: -7
-            - type: public-key
-              alg: -37
-            - type: public-key
-              alg: -257
-          timeout: 120000
-          excludeCredentials: []
-          authenticatorSelection:
-            residentKey: required
-            requireResidentKey: true
-            userVerification: required
-          attestation: none"
   securitySchemes:
     Bearer:
       type: oauth2
