@@ -1,6 +1,6 @@
 ## Create MFA Device
 
-API to add a FIDO2 device to the specified user resource.
+API to add a FIDO2 device to the specified user resource. When a user wants to pair a FIDO security key or a FIDO supported biometrics device, the service provider initiates the authentication process with the Create MFA Device API, which returns parameter data required for public key credentials.
 
 <!--
 type: tab
