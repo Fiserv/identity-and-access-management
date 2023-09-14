@@ -7,7 +7,7 @@ type: tab
 titles: Request, Response
 -->
 
-Parameters Used in Payload of request are as:
+Attributes in Payload of request are as:
 
 | Variable | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
