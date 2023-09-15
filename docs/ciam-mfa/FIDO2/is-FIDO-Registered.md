@@ -1,6 +1,6 @@
 ## isFIDO Registered
 
-Checks if user is registered for FIDO the given device; and if user has activated any device for FIDO.
+Checks if user is registered for FIDO for the given device; and if user has activated any device for FIDO.
 
 ### API Parameter
 

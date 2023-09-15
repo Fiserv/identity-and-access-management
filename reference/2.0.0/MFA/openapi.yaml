@@ -392,8 +392,8 @@ paths:
       summary: Authenticate Device
       description: >- 
         This api is used to validate the assertion used in the multi-factor authentication flow.
-      x-group-name: 'MFA'
-      x-proxy-name: 'Authenticate Device'
+      x-group-name: MFA
+      x-proxy-name: Authenticate Device
       requestBody:
         content:
           application/json:
@@ -422,12 +422,11 @@ paths:
           $ref: '#/components/responses/ServerError'
   /users/{username}/isFidoRegistered:
     get:
-      operationId: Check Device Registration
       summary: Device details about FIDO
       description: >-
-        Checks if user is registered for FIDO the given device; and if user has activated any device for FIDO.
-      x-group-name: 'MFA'
-      x-proxy-name: 'Registration Details'
+        Checks if user is registered for FIDO for the given device; and if user has activated any device for FIDO.
+      x-group-name: MFA
+      x-proxy-name: Registration Details
       x-default-example: Devices
       tags:
         - device endpoint definition
