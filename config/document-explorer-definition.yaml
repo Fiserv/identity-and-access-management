@@ -74,6 +74,12 @@
           - title: Initiate Auth Request OTP
             link: docs/ciam-mfa/FIDO2/initiate-auth-request-otp.md
             type: recipe
+          - title: MFA Device - Check Device Type
+            link: docs/ciam-mfa/FIDO2/check-device-type.md
+            type: recipe
+          - title: Is FIDO Registered
+            link: docs/ciam-mfa/FIDO2/is-FIDO-Registered.md
+            type: recipe
   - title: CIAM Provisioning API
     link: docs/ciam-provisioning/getting-started-provisioning-api.md
     sections:

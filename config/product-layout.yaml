@@ -51,7 +51,7 @@ featuredFeatures:
         title: Get devices 
         description: Get list of user devices
         type: "get"        
-        path: "/users/{username}/mfadevices"  
+        path: "/users/{username}/mfadevices?type=****"  
       - relatedAPI: 
         title: Add Device
         description: Operation to add mfa  device to the specified user.
@@ -73,25 +73,15 @@ featuredFeatures:
         type: "post"        
         path: "/deviceauthentications/{authid}"
       - relatedAPI: 
-        title: FIDO2- Activate MFA Device
-        description: API to activate the device specified in the request URL.
-        type: "post"        
-        path: "/users/{username}/mfadevices/{authId}"
-      - relatedAPI: 
         title: Authenticate Device
         description: API to validate the assertion used in the multi-factor authentication flow.
         type: "post"        
         path: "/deviceAuthentications/00d6df92-16c6-4bfb-9ff7-27e6d2b91349"
-      - relatedAPI: 
-        title: Create MFA Device
-        description: API to add a FIDO2 device to the specified user resource.
-        type: "post"        
-        path: "/users/{username}/mfadevices"
-      - relatedAPI: 
-        title: Initiate Auth Request OTP
-        description:  Initiates an MFA device authentication flow.
-        type: "post"        
-        path: "/deviceAuthentications"
+      - relatedAPI:
+        title: Check Device's FIDO Registration
+        description: Checks if user is registered for FIDO the given device; and if user has activated any device for FIDO.
+        type: "get"
+        path: "/users/{username}/isFidoRegistered"
   - title: Provisioning API
     description: >
       CIAM Provisioning API provides the REST endpoints to connect and perform various operations on directory. API support the CRUD operations for Users, Service Accounts and Domains. It also enables to perform account administration operations like enabling the account, password reset, account unlock. One can also retrieve the account status details using Provisioning API.

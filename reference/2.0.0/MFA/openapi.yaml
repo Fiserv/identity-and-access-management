@@ -32,6 +32,12 @@ paths:
             type: string
           in: path
           required: true
+        - name: type
+          description: TOTP/FIDO
+          schema:
+            type: string
+          in: query
+          required: false
       responses:
         '200':
           content:
@@ -44,6 +50,8 @@ paths:
                 Devices:
                   $ref: '#/components/examples/DeviceList'
                   summary: List of Devices
+                Filtered Devices:
+                  $ref: '#/components/examples/TypeFilteredDeviceList'
           description: Successful response
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -412,6 +420,49 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'
+  /users/{username}/isFidoRegistered:
+    get:
+      operationId: Check Device Registration
+      summary: Device details about FIDO
+      description: >-
+        Checks if user is registered for FIDO the given device; and if user has activated any device for FIDO.
+      x-group-name: 'FIDO'
+      x-proxy-name: 'Registration Details'
+      x-default-example: Devices
+      tags:
+        - device endpoint definition
+      parameters:
+        - name: username
+          description: Username
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/isFIDO2RegisteredResponse'
+              examples:
+                User Not Registered:
+                  $ref: '#/components/examples/isFIDO2RegisteredResponse1'
+                No Active FIDO Device:
+                  $ref: '#/components/examples/isFIDO2RegisteredResponse2'
+                Active FIDO Device:
+                  $ref: '#/components/examples/isFIDO2RegisteredResponse3'
+          description: Successful response
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+
    
 components:
   schemas:
@@ -599,6 +650,12 @@ components:
           type: string
         publicKeyCredentialCreationOptions:
           type: string
+    isFIDO2RegisteredResponse:
+      properties:
+        status:
+          type: string
+        message:
+          type: string
   responses:
     BadRequest:
       content:
@@ -655,10 +712,16 @@ components:
           deviceName: Google
           status: Active
           createdAt: 06/16/2022
-        - deviceType: TOTP
+        - deviceType: FIDO
           deviceName: MSFT
           status: Active
           createdAt: 07/16/2022
+    TypeFilteredDeviceList:
+      value:
+        - deviceType: TOTP
+          deviceName: Google
+          status: Active
+          createdAt: 06/16/2022
     ValidationRequest:
       value:
         otp: '3423423'
@@ -904,6 +967,18 @@ components:
             requireResidentKey: true
             userVerification: required
           attestation: none"
+    isFIDO2RegisteredResponse1:
+      value:
+        status: FAILURE
+        message: User not found, please check the username
+    isFIDO2RegisteredResponse2:
+      value:
+        status: FAILURE
+        message: No registered FIDO2 Device Found
+    isFIDO2RegisteredResponse3:
+      value:
+        status: FAILURE
+        message: Registered FIDO2 Device Found
   securitySchemes:
     Bearer:
       type: oauth2
