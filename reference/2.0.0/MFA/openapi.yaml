@@ -392,7 +392,7 @@ paths:
       summary: Authenticate Device
       description: >- 
         This api is used to validate the assertion used in the multi-factor authentication flow.
-      x-group-name: 'FIDO2 API'
+      x-group-name: 'MFA'
       x-proxy-name: 'Authenticate Device'
       requestBody:
         content:
@@ -426,7 +426,7 @@ paths:
       summary: Device details about FIDO
       description: >-
         Checks if user is registered for FIDO the given device; and if user has activated any device for FIDO.
-      x-group-name: 'FIDO'
+      x-group-name: 'MFA'
       x-proxy-name: 'Registration Details'
       x-default-example: Devices
       tags:
