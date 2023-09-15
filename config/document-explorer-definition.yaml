@@ -59,7 +59,8 @@
           - title: Authentication using YubiKey
             link: docs/ciam-mfa/yubikey-authentication.md
             type: recipe
-       - title: FIDO2
+       - title: MFA using FIDO2
+         link: docs/ciam-mfa/FIDO2/getting-started-FIDO2.md
          sections: 
           - title: Activate MFA Device
             link: docs/ciam-mfa/FIDO2/activate-mfa-device.md
@@ -72,6 +73,12 @@
             type: recipe
           - title: Initiate Auth Request OTP
             link: docs/ciam-mfa/FIDO2/initiate-auth-request-otp.md
+            type: recipe
+          - title: MFA Device - Check Device Type
+            link: docs/ciam-mfa/FIDO2/check-device-type.md
+            type: recipe
+          - title: Is FIDO Registered
+            link: docs/ciam-mfa/FIDO2/is-FIDO-Registered.md
             type: recipe
   - title: CIAM Provisioning API
     link: docs/ciam-provisioning/getting-started-provisioning-api.md

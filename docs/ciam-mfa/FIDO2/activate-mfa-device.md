@@ -1,6 +1,6 @@
 ## Activate MFA Device
 
-API to activate the device specified in the request URL. This operation uses the application/vnd.pingidentity.device.activate+json custom content type in the request header to specify the activation action.
+API to activate the device specified in the request URL. 
 <!--
 type: tab
 titles: Request, Response
