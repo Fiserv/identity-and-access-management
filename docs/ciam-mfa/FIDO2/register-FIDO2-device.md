@@ -12,9 +12,7 @@ Attributes used in Payload of request are as:
 
 | Variable | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
-| `deviceType` | *string* | &#10004; | The type of device which user want to register for MFA.
-  Note: irespective of device type user wants to register MOBILE/YUBIKY/PLATFORM
-  for FIDO2 device registration fields value will always be "FIDO2". |
+| `deviceType` | *string* | &#10004; | The type of device which user want to register for MFA. Note: irespective of device type user wants to register MOBILE/YUBIKY/PLATFORM for FIDO2 device registration fields value will always be "FIDO2". |
 | `rp.id` | *string* | &#10004; | The ID of the relying party, used for logging in without having to provide a password. The value of the field should be a domain name, such as sample.com / fiserv.com |
 | `rp.name` | *string* | &#10004; | The relying party's human-readable display name (for example, acme). |
 | `email` | *string* | &#10004; | Email Address |

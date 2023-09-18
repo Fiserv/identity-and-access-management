@@ -389,19 +389,19 @@ paths:
     post:
       tags:
         - V2
-      summary: Authenticate Device
+      summary: Authenticate FIDO2 Device
       description: >- 
         This api is used to validate the assertion used in the multi-factor authentication flow.
       x-group-name: MFA
-      x-proxy-name: Authenticate Device
+      x-proxy-name: Authenticate FIDO2 Device
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AuthenticateDeviceFIDO2Payload'
+              $ref: '#/components/schemas/AuthenticateFIDO2DevicePayload'
             examples:
               FIDO2:
-                $ref: '#/components/examples/AuthenticateDeviceFIDO2Payload'
+                $ref: '#/components/examples/AuthenticateFIDO2DevicePayload'
       responses:
         '200':
           description: OK
@@ -621,7 +621,7 @@ components:
           type: string
         response:
           type: object
-    AuthenticateDeviceFIDO2Payload:
+    AuthenticateFIDO2DevicePayload:
       properties:
         origin:
           type: string
@@ -842,7 +842,7 @@ components:
     ActivateFIDO2Response:
       value:
         status: ACTIVE
-    AuthenticateDeviceFIDO2Payload:
+    AuthenticateFIDO2DevicePayload:
       value:
         deviceType: SECURITY_KEY
         origin: https://iam-demo.1dc.com
