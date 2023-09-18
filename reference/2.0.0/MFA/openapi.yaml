@@ -65,9 +65,9 @@ paths:
       operationId: createMFADevice
       summary: Add  User device.
       description: >-
-        Operation to add a MFA device to a user resource.
+        Operation to register user MFA device.
       x-group-name: 'MFA'
-      x-proxy-name: 'Add Device'
+      x-proxy-name: 'Add MFA Device'
       x-default-example: TOTP 
       requestBody:
         description: Request object of a device.
@@ -871,6 +871,7 @@ components:
         rp:
           id: app.fiserv.com
           name: CartApp
+        email: wellsforgo.com
     FIDO2DeviceAddResponse:
       value:
         authId: 67e07830-3636-4479-a407-da0a16b85c3c

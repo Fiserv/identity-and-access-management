@@ -1,4 +1,4 @@
-## Activate MFA Device
+## Activate FIDO2 Device
 
 API to activate the device specified in the request URL. 
 <!--
@@ -22,17 +22,6 @@ Attributes Used in Payload of request are as:
     "attestation": "{\"id\":\"77uQp6RD3aHCT1LhvtM1DcA9-eW0WBbux8SmsQ8V9ScNUsXTVdJhmX_G4VQo5bxckTl7XGZJmEH0fY9NOO8IcA\",\"type\":\"public-key\",\"rawId\":\"77uQp6RD3aHCT1LhvtM1DcA9+eW0WBbux8SmsQ8V9ScNUsXTVdJhmX/G4VQo5bxckTl7XGZJmEH0fY9NOO8IcA==\",\"response\":{\"clientDataJSON\":\"eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRlIiwiY2hhbGxlbmdlIjoiR21YS2hTdm9KeHNVRFUzZ3paejdPdWVXYU0zSjJwMmRjVHFBZnNxbHFwUSIsIm9yaWdpbiI6Imh0dHBzOi8vaWFtLWRlbW8uMWRjLmNvbSIsImNyb3NzT3JpZ2luIjpmYWxzZX0=\",\"attestationObject\":\"o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YVjEWvc+/XkaVwxa012pCZWAzWXwWSy8IupI6+2BznkpxM5BAAAAAAAAAAAAAAAAAAAAAAAAAAAAQO+7kKekQ92hwk9S4b7TNQ3APfnltFgW7sfEprEPFfUnDVLF01XSYZl/xuFUKOW8XJE5e1xmSZhB9H2PTTjvCHClAQIDJiABIVggayJaP/ZZRzCNMttX+cDGZ9c0W7uT68RWuYLYhyFv9lEiWCDpO9YnN5wHBNUrI9TgMV1I169SI1oQn87dyQ5nbYDbCQ==\"}}"
 } 
 
-++++++++++++++++++++++++++++++++++++++++++++++++++
-
-"attestation": {
-  "id": "HozFCJ2txaDCTYPEmWmhwAKzwvccLhNPcKr6LM77XVtLgZ0unaJb-PRa8daCVnYfasodB3KPPXrxrgTmehY07A",
-  "type": "public-key",
-  "rawId": "HozFCJ2txaDCTYPEmWmhwAKzwvccLhNPcKr6LM77XVtLgZ0unaJb+PRa8daCVnYfasodB3KPPXrxrgTmehY07A==",
-  "response": {
-    "clientDataJSON": "eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRlIiwiY2hhbGxlbmdlIjoiUW4tV2V6SmRnRnoxYXp2Q3FDRW81Q0Y0Z3pEbGdsSEtZdnBBT1VmNHVITSIsIm9yaWdpbiI6Imh0dHBzOi8vaWFtLWRlbW8uMWRjLmNvbSIsImNyb3NzT3JpZ2luIjpmYWxzZX0=",
-    "attestationObject": "o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YVjEWvc+/XkaVwxa012pCZWAzWXwWSy8IupI6+2BznkpxM5FAAAAAgAAAAAAAAAAAAAAAAAAAAAAQB6MxQidrcWgwk2DxJlpocACs8L3HC4TT3Cq+izO+11bS4GdLp2iW/j0WvHWglZ2H2rKHQdyjz168a4E5noWNOylAQIDJiABIVggy/inGDF9alhbIY072g8+ImX1kpYIocLm0yo1Pcri4b4iWCD9l1YQdWQJbOGSBMwy6huh0+6iPaUvCXfmN5a/Wo9FUA=="
-  }
-}
 ```
 <!--
 type: tab

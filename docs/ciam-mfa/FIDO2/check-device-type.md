@@ -4,7 +4,7 @@ API to check the device type of the registered MFA Device.
 
 ### API Parameters
 
-Takes 'type' as query parameter.
+Takes 'type' as query parameter. It takes value out of TOTP or FIDO.
 
 <!--
 type: tab
