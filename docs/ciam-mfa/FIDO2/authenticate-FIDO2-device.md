@@ -1,4 +1,4 @@
-## Authenticate Device
+## Authenticate FIDO2 Device
 
 This api is used to validate the assertion used in the multi-factor authentication flow. This operation uses the application/vnd.pingidentity.assertion.check+json custom media type as the content type in the request header.
 
@@ -24,21 +24,6 @@ Attributes in Payload of request are as:
   "assertion": "{\"id\":\"jgvYAquTlYLn-7Bx9-fonnsb594GvkH4PKjIELJYx-MAoxfOPfXhgMLy1cXMIZKBxB_mJNNNQF6tOANXhuFelQ\",\"rawId\":\"jgvYAquTlYLn+7Bx9+fonnsb594GvkH4PKjIELJYx+MAoxfOPfXhgMLy1cXMIZKBxB/mJNNNQF6tOANXhuFelQ==\",\"type\":\"public-key\",\"response\":{\"clientDataJSON\":\"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiOHVVQTA2dVB1VFRGNmI2dkhXcTdkZWt6QVo3Y2V2MDMtNnJSQzZoTEFhVSIsIm9yaWdpbiI6Imh0dHBzOi8vaWFtLWRlbW8uMWRjLmNvbSIsImNyb3NzT3JpZ2luIjpmYWxzZSwib3RoZXJfa2V5c19jYW5fYmVfYWRkZWRfaGVyZSI6ImRvIG5vdCBjb21wYXJlIGNsaWVudERhdGFKU09OIGFnYWluc3QgYSB0ZW1wbGF0ZS4gU2VlIGh0dHBzOi8vZ29vLmdsL3lhYlBleCJ9\",\"authenticatorData\":\"Wvc+/XkaVwxa012pCZWAzWXwWSy8IupI6+2BznkpxM4FAAAACw==\",\"signature\":\"MEYCIQDp7wBeYYv+02m56wbQaLUstoZWIDxpKI2IvmgeOMUHYQIhAP2W5tDVqKHAQbTsAAZzTdXD/px9ZOtYtIysZyKs4Ws7\",\"userHandle\":\"\"}}"
 }
 
-+++++++++++++++++++++++++
-
-
-"assertion":{
-  "id": "jgvYAquTlYLn-7Bx9-fonnsb594GvkH4PKjIELJYx-MAoxfOPfXhgMLy1cXMIZKBxB_mJNNNQF6tOANXhuFelQ",
-  "rawId": "jgvYAquTlYLn+7Bx9+fonnsb594GvkH4PKjIELJYx+MAoxfOPfXhgMLy1cXMIZKBxB/mJNNNQF6tOANXhuFelQ==",
-  "type": "public-key",
-  "response": {
-    "clientDataJSON": "eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiOHVVQTA2dVB1VFRGNmI2dkhXcTdkZWt6QVo3Y2V2MDMtNnJSQzZoTEFhVSIsIm9yaWdpbiI6Imh0dHBzOi8vaWFtLWRlbW8uMWRjLmNvbSIsImNyb3NzT3JpZ2luIjpmYWxzZSwib3RoZXJfa2V5c19jYW5fYmVfYWRkZWRfaGVyZSI6ImRvIG5vdCBjb21wYXJlIGNsaWVudERhdGFKU09OIGFnYWluc3QgYSB0ZW1wbGF0ZS4gU2VlIGh0dHBzOi8vZ29vLmdsL3lhYlBleCJ9",
-    "authenticatorData": "Wvc+/XkaVwxa012pCZWAzWXwWSy8IupI6+2BznkpxM4FAAAACw==",
-    "signature": "MEYCIQDp7wBeYYv+02m56wbQaLUstoZWIDxpKI2IvmgeOMUHYQIhAP2W5tDVqKHAQbTsAAZzTdXD/px9ZOtYtIysZyKs4Ws7",
-    "userHandle": ""
-  }
-}
-```
 <!--
 type: tab
 -->
