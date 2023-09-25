@@ -3,14 +3,18 @@
 ## What is FIDO2?
 
 •	FIDO2 is the term for a Passworldless authentication open standard developed by the Fast Identity Online (FIDO) Alliance
+
 •	FIDO2 enable users to simply sign in with passkeys using their devices (authenticator) with a biometric or a security key.
 
 
 ## What is Authenticator?
 
 FIDO2 Authenticator is a piece of hardware possessed by the user that is capable of performing authentication by accepting user biometrics or PIN.
+
 In Passworldless authentication users authenticate with two types of authenticators.
+
 	1.	Platform authenticators, its same device from where user is trying to login. To authenticate with a platform authenticator, device should be capable of taking user biometrics. Some examples are MacBook’s Touch Bar, Windows Hello, iOS Touch/FaceId, and Android’s fingerprint/face recognition.
+	
 	2.	Roaming authenticators are removable and cross-platform, like a YubiKey, Mobile and can be used on multiple devices. To authenticate with a roaming authenticator, you need to connect it to the device (through USB, NFC, or Bluetooth), provide proof of presence (by touching it, for example), and optionally provide user verification, for example, by entering a PIN.
 
 ## How does FIDO2 work?
