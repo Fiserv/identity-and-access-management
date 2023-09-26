@@ -28,7 +28,6 @@ link: ?path=docs/ciam-mfa/Authenticate/initiate-FIDO2-Device-auth.md
 ## FIDO2 Devices
 
 In FIDO2 authentication, users use FIDO2 devices to authenticate themselves.
-	
 FIDO2 devices are divided into two categories as below.
 
 * **Platform Devices**, its same device from where user is trying to login. To authenticate with a platform authenticator, device should be capable of taking user biometrics. Some examples are MacBook’s Touch Bar, Windows Hello, iOS Touch/FaceId, and Android’s fingerprint/face recognition.
