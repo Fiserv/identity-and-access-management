@@ -1,5 +1,5 @@
-# Register FIDO2 Device
-A FIDO2 device, uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
+## Register FIDO2 Device
+FIDO2 registration flow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
 
 ## Step 1: Getting an access token     
 
@@ -71,7 +71,7 @@ type: tab
 
 ## Step 3: Device pairing
 
-Call the `navigator.credentials.create` method using the publicKeyCredentialOptions value returned from the Add  Device API:
+Call the `navigator.credentials.create` method using the publicKeyCredentialOptions value returned from the Create MFA Device API:
 
 
 ```javascript
@@ -226,7 +226,7 @@ titles: Request, Response
 
 ```json
 {
-    "origin": "https://app.pingone.com",
+    "origin": "app.fiserv.com",
     "attestation": "{\"id\":\"ARacmDOuRE7DJV6L7w\",\"type\":\"public-key\",\"rawId\":\"ARacmDOuRE7DJV6L7w=\",\"response\":{\"clientDataJSON\":\"eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRYWxzZX0=\",\"attestationObject\":\"o2NmbXRmcGFja2VkZ2F0dFFO29h8n6WKBn6tHCQ=\"},\"clientExtensionResults\":{}}"
 }
 ```
