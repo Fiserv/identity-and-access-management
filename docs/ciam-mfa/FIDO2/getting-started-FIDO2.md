@@ -1,6 +1,6 @@
 # MFA using FIDO2
 
-CIAM MFA API allows you to use FIDO2 device to access/login your account without password, with the added security of multi-factor authentication.
+* CIAM MFA API allows you to use FIDO2 device to access/login your account without password, with the added security of multi-factor authentication.
 
 * FIDO2 is the term for a Passworldless authentication open standard developed by the Fast Identity Online (FIDO) Alliance.
 
@@ -18,22 +18,22 @@ link: ?path=docs/ciam-mfa/FIDO2/Register/register-FIDO2-device.md
 -->
 
 <!-- type: card
-title:  Yubikey Authentication
-description: Authentication usign Yubikey
+title:  FIDO2 Authentication
+description: Authentication usign FIDO2
 link: ?path=docs/ciam-mfa/Authenticate/initiate-FIDO2-Device-auth.md
 -->
 
 <!-- type: row-end -->
 
-## What is Authenticator?
+## FIDO2 Devices
 
 In FIDO2 authentication, users use FIDO2 devices to authenticate themselves.
 	
 FIDO2 devices are divided into two categories as below.
 
-1	Platform authenticators, its same device from where user is trying to login. To authenticate with a platform authenticator, device should be capable of taking user biometrics. Some examples are MacBook’s Touch Bar, Windows Hello, iOS Touch/FaceId, and Android’s fingerprint/face recognition.
+* **Platform Devices**, its same device from where user is trying to login. To authenticate with a platform authenticator, device should be capable of taking user biometrics. Some examples are MacBook’s Touch Bar, Windows Hello, iOS Touch/FaceId, and Android’s fingerprint/face recognition.
 	
-2	Roaming authenticators are removable and cross-platform, like a YubiKey, Mobile and can be used on multiple devices. To authenticate with a roaming authenticator, you need to connect it to the device (through USB, NFC, or Bluetooth), provide proof of presence (by touching it, for example), and optionally provide user verification, for example, by entering a PIN.
+* **Roaming Devices** are removable and cross-platform, like a YubiKey, Mobile and can be used on multiple devices. To authenticate with a roaming authenticator, you need to connect it to the device (through USB, NFC, or Bluetooth), provide proof of presence (by touching it, for example), and optionally provide user verification, for example, by entering a PIN.
 
 **Note**: FIDO2 devices are also referred to as authenticators.
 
