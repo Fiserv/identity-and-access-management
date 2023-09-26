@@ -8,9 +8,9 @@ FIDO2 authentication flow uses functions from the Web Authentication API (webaut
 
 - [Step 2: Initialize authentication](#step-2-initiate-device-authentication---fido2-device)  
 
-- [Step 3: Device Pairing](#Step-3-device-pairing)  
+- [Step 3: Device Pairing](#step-3-device-pairing)  
 
-- [Step 4: Validate assertion](#Step-4:-Validate-assertion)
+- [Step 4: Validate assertion](#step-4-validate-assertion)
 
 ---
 
