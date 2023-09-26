@@ -63,16 +63,10 @@
          link: docs/ciam-mfa/FIDO2/getting-started-FIDO2.md
          sections: 
           - title: Register FIDO2 Device
-            link: docs/ciam-mfa/FIDO2/register-FIDO2-device.md
-            type: recipe
-          - title: Activate FIDO2 Device
-            link: docs/ciam-mfa/FIDO2/activate-FIDO2-device.md
-            type: recipe
-          - title: Initiate FIDO2 Device Authentication
-            link: docs/ciam-mfa/FIDO2/initiate-FIDO2-Device-auth.md
+            link: docs/ciam-mfa/FIDO2/Register/register-FIDO2-device.md
             type: recipe
           - title: Authenticate FIDO2 Device
-            link: docs/ciam-mfa/FIDO2/authenticate-FIDO2-device.md
+            link: docs/ciam-mfa/FIDO2/Authenticate/initiate-FIDO2-Device-auth.md
             type: recipe  
           - title: MFA Device - Check Device Type
             link: docs/ciam-mfa/FIDO2/check-device-type.md
