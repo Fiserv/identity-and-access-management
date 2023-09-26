@@ -13,9 +13,9 @@ FIDO2 Authenticator is a piece of hardware possessed by the user that is capable
 
 In Passworldless authentication users authenticate with two types of authenticators.
 
-	1.	Platform authenticators, its same device from where user is trying to login. To authenticate with a platform authenticator, device should be capable of taking user biometrics. Some examples are MacBook’s Touch Bar, Windows Hello, iOS Touch/FaceId, and Android’s fingerprint/face recognition.
+1.	Platform authenticators, its same device from where user is trying to login. To authenticate with a platform authenticator, device should be capable of taking user biometrics. Some examples are MacBook’s Touch Bar, Windows Hello, iOS Touch/FaceId, and Android’s fingerprint/face recognition.
 	
-	2.	Roaming authenticators are removable and cross-platform, like a YubiKey, Mobile and can be used on multiple devices. To authenticate with a roaming authenticator, you need to connect it to the device (through USB, NFC, or Bluetooth), provide proof of presence (by touching it, for example), and optionally provide user verification, for example, by entering a PIN.
+2.	Roaming authenticators are removable and cross-platform, like a YubiKey, Mobile and can be used on multiple devices. To authenticate with a roaming authenticator, you need to connect it to the device (through USB, NFC, or Bluetooth), provide proof of presence (by touching it, for example), and optionally provide user verification, for example, by entering a PIN.
 
 ## How does FIDO2 work?
 User need to register the device once and use that device every time for login.
