@@ -9,7 +9,7 @@ FIDO2 registration flow is multistep process as below.
 
 - [Step 3: Create a passkey (browser side JavaScript WebAuthn API)](#step-3-create-a-passkey-browser-side-javascript-webauthn-api)  
 
-- [Step 4: Activate device (CIAM MFA API)](#step-4-activate-mfa-device---fido2-device-ciam-mfa-api)
+- [Step 4: Activate device (CIAM MFA API)](#step-4-activate-device-ciam-mfa-api)
 
 ---
 
@@ -34,7 +34,7 @@ To get an access token, the following must be true:
 
 - API will return "publicKeyCredentialCreationOptions" in response which will be required for browser side JavaScript WebAuthn API to consume and [create a passkey](#step-3-create-a-passkey-browser-side-javascript-webauthn-api)
 
-- API will return "authId" in response which will be required during [device activation](#step-4-activate-mfa-device---fido2-device-ciam-mfa-api).
+- API will return "authId" in response which will be required during [device activation](#step-4-activate-device-ciam-mfa-api).
 
 - Refer API explorer -> MFA -> Register Device for API reference. 
 
