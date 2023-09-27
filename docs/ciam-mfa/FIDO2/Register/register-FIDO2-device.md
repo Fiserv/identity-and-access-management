@@ -1,6 +1,18 @@
 ## Register FIDO2 Device
 FIDO2 registration flow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
 
+---  
+
+- [Step 1: Getting an access token](#step-1-getting-an-access-token)  
+
+- [Step 2: Create MFA Device](#step-2-create-mfa-device---fido2-device)  
+
+- [Step 3: Device Pairing](#step-3-device-pairing)  
+
+- [Step 4: Activate MFA device - FIDO2 Device](#step-4-activate-mfa-device---fido2-device)
+
+---
+
 ## Step 1: Getting an access token     
 
 Access tokens are credential strings that represent authorization to access a protected resource. Applications obtain access tokens by making OAuth 2 or OpenID Connect requests to an authorization server; MFA API resource servers require clients to authenticate using access tokens. Access tokens are obtained from the token endpoint (when using the client credentials grant type).
