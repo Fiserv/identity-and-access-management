@@ -53,7 +53,7 @@ Payload
         "id": "app.fiserv.com",
         "name": "fiserv"
     },
-    "email": "username.fiserv.com"
+    "email": "username@fiserv.com"
 }
 ```
 
