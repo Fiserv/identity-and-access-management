@@ -95,7 +95,7 @@ type: tab
 
 - To create a passkey, browser side java script need to be executed. 
 
-- Script requires input of "publicKeyCredentialCreationOptions" recevied in Initiate device registration.
+- Script requires input of "publicKeyCredentialCreationOptions" recevied in [initiate device registration](#step-2-initiate-device-registration-ciam-mfa-api).
 
 - During script exceution browser will prompt user to choose available authenticator, request is been sent to the authenticator, user approves the request and authenticate himself, once user approves, passkey is been created.
 
