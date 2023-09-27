@@ -39,13 +39,13 @@ To get an access token, the following must be true:
 - Refer API explorer -> MFA -> Register Device for API reference. 
 
 
-**POST /ciam-mfa/v2/users/{{username}}/mfadevices**
+
 <!--
 type: tab
 titles: Request, Response
 -->
-
-**Example Payload to Inititate Device Registration**
+**POST /ciam-mfa/v2/users/{{username}}/mfadevices**
+Payload
 ```json
 {
     "deviceType": "FIDO2",
