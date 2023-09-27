@@ -819,8 +819,8 @@ components:
         evaluationId: 19fb4d99-3332-4c21-88c9-dc3cdb3df5e6
     FIDO2AuthenticationRequest:
       value:
-        userName: prasad
-        rpID: iam-demo.1dc.com
+        userName: username
+        rpID: app.fiserv.com
         deviceType: FIDO2
     FIDO2AuthenticationResponse:
       value:
@@ -830,8 +830,8 @@ components:
         publicKeyCredentialRequestOptions: "{\"challenge\":[13,93,-97,-86,-108,28,22,-98,-9,-53,37,23,-105,-122,-64,-75,57,-88,-13,57,-112,96,-33,42,-119,-72,116,-94,95,-50,-42,99],\"timeout\":120000,\"rpId\":\"iam-demo.1dc.com\",\"allowCredentials\":[{\"type\":\"public-key\",\"id\":[-114,11,-40,2,-85,-109,-107,-126,-25,-5,-80,113,-9,-25,-24,-98,123,27,-25,-34,6,-66,65,-8,60,-88,-56,16,-78,88,-57,-29,0,-93,23,-50,61,-11,-31,-128,-62,-14,-43,-59,-52,33,-110,-127,-60,31,-26,36,-45,77,64,94,-83,56,3,87,-122,-31,94,-107]}],\"userVerification\":\"preferred\"}"
     ActivateFIDO2Request:
       value:
-        deviceType: SECURITY_KEY
-        origin: https://iam-demo.1dc.com
+        deviceType: FIDO2
+        origin: app.fiserv.com
         attestation: 
           "id: HozFCJ2txaDCTYPEmWmhwAKzwvccLhNPcKr6LM77XVtLgZ0unaJb-PRa8daCVnYfasodB3KPPXrxrgTmehY07A
           type: public-key
@@ -844,8 +844,8 @@ components:
         status: ACTIVE
     AuthenticateFIDO2DevicePayload:
       value:
-        deviceType: SECURITY_KEY
-        origin: https://iam-demo.1dc.com
+        deviceType: FIDO2
+        origin: app.fiserv.com
         assertion: >-
           "id: jgvYAquTlYLn-7Bx9-fonnsb594GvkH4PKjIELJYx-MAoxfOPfXhgMLy1cXMIZKBxB_mJNNNQF6tOANXhuFelQ
           rawId: jgvYAquTlYLn+7Bx9+fonnsb594GvkH4PKjIELJYx+MAoxfOPfXhgMLy1cXMIZKBxB/mJNNNQF6tOANXhuFelQ==
@@ -870,20 +870,20 @@ components:
         deviceType: FIDO2
         rp:
           id: app.fiserv.com
-          name: CartApp
-        email: wellsforgo.com
+          name: fiserv
+        email: username@fiserv.com
     FIDO2DeviceAddResponse:
       value:
         authId: 67e07830-3636-4479-a407-da0a16b85c3c
         deviceType: FIDO2
         status: ACTIVATION_REQUIRED
         rp:
-          id: pingone.com
-          name: pingone.com
+          id: app.fiserv.com
+          name: fiserv
         publicKeyCredentialCreationOptions: 
           "rp:
-            id:pingone.com
-            name:pingone.com
+            id:app.fiserv.com
+            name:fiserv
           user:
             id:
               - -121
