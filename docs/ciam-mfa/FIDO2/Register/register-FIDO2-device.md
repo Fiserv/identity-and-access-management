@@ -44,9 +44,12 @@ To get an access token, the following must be true:
 type: tab
 titles: Request, Response
 -->
+Endpoint to inititate device registration: 
+
 **POST /ciam-mfa/v2/users/{{username}}/mfadevices**
 
-Payload
+Payload to Inititate Device Registration
+
 ```json
 {
     "deviceType": "FIDO2",
@@ -90,12 +93,21 @@ type: tab
 
 ## Step 3: Create a passkey (browser side JavaScript WebAuthn API)
 
-- As a pre-requisite client browser should be compatible for FIDO2 (WebAuthn).
+- Passwordless implmentation flow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication.
 
-- Passwordless implmentation flow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication. 
+- To create a passkey, browser side java script need to be executed. 
+
+- Script requires input of "publicKeyCredentialCreationOptions" recevied in Initiate device registration.
+
+- During script exceution browser will prompt user to choose available authenticator, request is been sent to the authenticator, user approves the request and authenticate himself, once user approves, passkey is been created.
+
+- Once Passkey gets generated on device, attestation object gets created.
+
+- Use this attetstaion object created by Java script in device activation call,last step of device resgitration.
+
+**Note**: As a pre-requisite client browser should be compatible for FIDO2 (WebAuthn).
 
 The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
-
 
 ```javascript
 
