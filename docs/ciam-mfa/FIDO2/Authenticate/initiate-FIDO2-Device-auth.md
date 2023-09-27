@@ -65,9 +65,9 @@ type: tab
 <!-- type: tab-end -->
 
 
-## Step 3: Device pairing
+## Step 3: Execute browser side JavaScript - webauthn API
 
-A  Yubikey device flow uses functions from the Web Authentication API (webauthn API) to manage device authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
+ FIDO2 device authentication flow uses functions from the Web Authentication API (webauthn API) to manage device authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
 
 Call the navigator.credentials.get method using the publicKeyCredentialOptions returned from the assertion.check
 
@@ -222,13 +222,11 @@ function getCompatibility() {
 
 ```
 
-## Step 4: Validate assertion
+## Step 4: Authenticate FIDO2 Device
 
 - The multi-factor authentication flow for FIDO2 device checks the authenticator assertion response, which contains the signed challenge needed to complete the MFA flow. The MFA actions service validates the challenge.
 
 - The following sample shows the operation to validate the assertion used in the multi-factor authentication flow. 
-
-- This operation uses the application/vnd.pingidentity.assertion.check+json custom media type as the content type in the request header.
 
 <!--
 type: tab
