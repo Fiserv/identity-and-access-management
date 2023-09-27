@@ -1,13 +1,15 @@
 ## Register FIDO2 Device
 FIDO2 registration flow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
 
+FIDO2 registration flow is multistep process as below.
+
 ---  
 
 - [Step 1: Getting an access token](#step-1-getting-an-access-token)  
 
-- [Step 2: Create MFA Device](#step-2-create-mfa-device---fido2-device)  
+- [Step 2: Initiate device registration](#step-2-initiate-device-registration)  
 
-- [Step 3: Device Pairing](#step-3-device-pairing)  
+- [Step 3: Create a passkey](#step-3-create-a-passkey)  
 
 - [Step 4: Activate MFA device - FIDO2 Device](#step-4-activate-mfa-device---fido2-device)
 
@@ -26,11 +28,13 @@ To get an access token, the following must be true:
 - The application runtime  has access to the client secret and token endpoint. 
 
 
-## Step 2: Create MFA Device - FIDO2 Device
+## Step 2: Initiate device registration
 
-- As a pre-requisite the FIDO2 service must be enabled for application and client browser should be compatible for FIDO2 (WebAuthn).
+- As a pre-requisite the FIDO2 service must be enabled for application.
 
-- API to Create MFA device for user.
+- POST /ciam-mfa/v2/users/{{username}}/mfadevices operation initiate FIDO2 device registration to the specified user resource.
+
+- API will return "authId" in response which will be required during device activation.
 
 
 
@@ -81,9 +85,13 @@ type: tab
 ```
 <!-- type: tab-end -->
 
-## Step 3: Device pairing
+## Step 3: Create a passkey
 
-Call the `navigator.credentials.create` method using the publicKeyCredentialOptions value returned from the Create MFA Device API:
+- As a pre-requisite client browser should be compatible for FIDO2 (WebAuthn).
+
+- Passwordless implmentation flow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication. 
+
+The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
 
 
 ```javascript
