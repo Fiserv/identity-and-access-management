@@ -1,21 +1,19 @@
 ## Register FIDO2 Device
-FIDO2 registration flow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
-
 FIDO2 registration flow is multistep process as below.
 
 ---  
 
-- [Step 1: Getting an access token](#step-1-getting-an-access-token)  
+- [Step 1: Getting access token (CIAM MFA API)](#step-1-getting-an-access-token-(ciam-mfa-api))  
 
-- [Step 2: Initiate device registration](#step-2-initiate-device-registration)  
+- [Step 2: Initiate device registration (CIAM MFA API)](#step-2-initiate-device-registration-(ciam-mfa-api))  
 
-- [Step 3: Create a passkey](#step-3-create-a-passkey)  
+- [Step 3: Create a passkey (browser side JavaScript WebAuthn API)](#step-3-create-a-passkey-(browser-side-javascript-webauthn-api))  
 
-- [Step 4: Activate MFA device - FIDO2 Device](#step-4-activate-mfa-device---fido2-device)
+- [Step 4: Activate device (CIAM MFA API)](#step-4-activate-mfa-device---fido2-device-(ciam-mfa-api))
 
 ---
 
-## Step 1: Getting an access token     
+## Step 1: Getting access token (CIAM MFA API)     
 
 Access tokens are credential strings that represent authorization to access a protected resource. Applications obtain access tokens by making OAuth 2 or OpenID Connect requests to an authorization server; MFA API resource servers require clients to authenticate using access tokens. Access tokens are obtained from the token endpoint (when using the client credentials grant type).
 
@@ -28,32 +26,26 @@ To get an access token, the following must be true:
 - The application runtime  has access to the client secret and token endpoint. 
 
 
-## Step 2: Initiate device registration
+## Step 2: Initiate device registration (CIAM MFA API)
 
 - As a pre-requisite the FIDO2 service must be enabled for application.
 
-- POST /ciam-mfa/v2/users/{{username}}/mfadevices operation initiate FIDO2 device registration to the specified user resource.
+- API requires user details, username and user email address along with relying party information.
 
-- API will return "authId" in response which will be required during device activation.
+- API will return "publicKeyCredentialCreationOptions" in response which will be required for browser side JavaScript WebAuthn API to consume and [create a passkey](#step-3-create-a-passkey-(browser-side-javascript-webauthn-api))
+
+- API will return "authId" in response which will be required during [device activation](#step-4-activate-mfa-device---fido2-device-(ciam-mfa-api)).
+
+- Refer API explorer -> MFA -> Register Device for API reference. 
 
 
-
+**POST /ciam-mfa/v2/users/{{username}}/mfadevices**
 <!--
 type: tab
 titles: Request, Response
 -->
 
-Attributes used in Payload of request are as:
-
-| Variable | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| `deviceType` | *string* | &#10004; | The type of device which user want to register for MFA. Note: irespective of device type user wants to register MOBILE/YUBIKY/PLATFORM for FIDO2 device registration fields value will always be "FIDO2". |
-| `rp.id` | *string* | &#10004; | The ID of the relying party, used for logging in without having to provide a password. The value of the field should be a domain name, such as sample.com / fiserv.com |
-| `rp.name` | *string* | &#10004; | The relying party's human-readable display name (for example, acme). |
-| `email` | *string* | &#10004; | Email Address |
-
-### Example Payload to Create MFA Device
-
+**Example Payload to Inititate Device Registration**
 ```json
 {
     "deviceType": "FIDO2",
@@ -64,6 +56,16 @@ Attributes used in Payload of request are as:
     "email": "username.fiserv.com"
 }
 ```
+
+Attributes used in Payload of request are as:
+
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `deviceType` | *string* | &#10004; | The type of device which user want to register for MFA. Note: irespective of device type user wants to register MOBILE/YUBIKY/PLATFORM for FIDO2 device registration fields value will always be "FIDO2". |
+| `rp.id` | *string* | &#10004; | The ID of the relying party, used for logging in without having to provide a password. The value of the field should be a domain name, such as sample.com / fiserv.com |
+| `rp.name` | *string* | &#10004; | The relying party's human-readable display name (for example, acme). |
+| `email` | *string* | &#10004; | Email address of the user |
+
 <!--
 type: tab
 -->
@@ -85,7 +87,7 @@ type: tab
 ```
 <!-- type: tab-end -->
 
-## Step 3: Create a passkey
+## Step 3: Create a passkey (browser side JavaScript WebAuthn API)
 
 - As a pre-requisite client browser should be compatible for FIDO2 (WebAuthn).
 
@@ -228,7 +230,7 @@ function toBase64Str(bin){
 
 ```
 
-## Step 4: Activate MFA device - FIDO2 Device
+## Step 4: Activate device (CIAM MFA API)
 
 - Devices with a status of ACTIVATION_REQUIRED are activated with a valid attestation and origin. The attestation is generated by the browser as a response to a user action, such as a fingerprint or clicks on the FIDO2 device.
 
