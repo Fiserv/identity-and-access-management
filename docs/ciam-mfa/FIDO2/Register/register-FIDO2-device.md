@@ -44,10 +44,8 @@ To get an access token, the following must be true:
 type: tab
 titles: Request, Response
 -->
-Endpoint to inititate device registration: 
-
-**POST /ciam-mfa/v2/users/{{username}}/mfadevices**
-
+Endpoint to inititate device registration:\
+**POST /ciam-mfa/v2/users/{{username}}/mfadevices**\
 Payload to Inititate Device Registration
 
 ```json
@@ -61,7 +59,7 @@ Payload to Inititate Device Registration
 }
 ```
 
-Attributes used in Payload of request are as:
+Attributes used in payload of request are as:
 
 | Variable | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
