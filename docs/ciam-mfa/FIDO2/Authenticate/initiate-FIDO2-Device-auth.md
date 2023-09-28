@@ -35,8 +35,11 @@ To get an access token, the following must be true:
 type: tab
 titles: Request, Response
 -->
+Endpoint to inititate device authentication **:**
 
-### Example of a Inititate Device Authentication
+**POST /deviceAuthentications**
+
+Payload to inititate device authentication **:**
 
 ```json
 {
@@ -233,7 +236,11 @@ type: tab
 titles: Request, Response
 -->
 
-### Example of a check assertion request 
+Endpoint to authenticate device **:**
+
+**POST /deviceAuthentications**
+
+Payload to authenticate device **:**
 
 
 ```json
