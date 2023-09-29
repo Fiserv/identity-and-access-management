@@ -11,6 +11,36 @@ servers:
   - url: https://ciam-mfa-api-dev.1dc.com/app-reg/v1
   - url: https://ciam-mfa-api-dev.1dc.com/app-reg/v2
 paths:
+  /app-reg/admin/v1/registerapp:
+    post:
+      summary: App registration Admin Risk
+      description: >-
+        Use this API for admin app reg admin.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppRegRiskAdminRequest'
+            examples:
+              request:
+                $ref: '#/components/examples/AppRegRiskAdminRequest'
+      responses:
+        '201':
+          description: CREATED
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AppRegRiskAdminResponse'
+              response:
+                $ref: '#/components/examples/AppRegRiskAdminResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
   /registerapp:
     post:
       summary: Onboard the application
@@ -73,7 +103,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
-  /riskPolicy:
+  group/{groupid}/riskPolicy:
     post:
       summary: Create Risk Policy
       description: >- 
@@ -81,6 +111,12 @@ paths:
       x-child-product-name: 'Admin API'
       x-group-name: 'Risk Services'
       x-proxy-name: 'Create Risk Policy'
+      parameters:
+        - name: groupid
+          in: path
+          schema:
+            type: string
+          required: true
       requestBody:
         content:
           application/json:
@@ -108,6 +144,12 @@ paths:
       x-child-product-name: 'Admin API'
       x-group-name: 'Risk Services'
       x-proxy-name: 'Retrieve All Risk Policies'
+      parameters:
+        - name: groupid
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: OK
@@ -123,7 +165,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
-  /riskPolicy/{policyId}:
+  group/{groupid}/riskPolicy/{policyId}:
     get:
       summary: Read a Risk Policy by policy Id
       description: >- 
@@ -133,6 +175,11 @@ paths:
       x-proxy-name: 'Get Risk Policy By Id'
       parameters:
         - name: policyId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: groupid
           in: path
           schema:
             type: string
@@ -170,6 +217,11 @@ paths:
           schema:
             type: string
           required: true
+        - name: groupid
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: OK
@@ -194,6 +246,11 @@ paths:
       x-proxy-name: 'Delete Risk Policy'
       parameters:
         - name: policyId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: groupid
           in: path
           schema:
             type: string
@@ -323,6 +380,26 @@ components:
           type: boolean
         policyID:
           type: string
+    AppRegRiskAdminRequest:
+      properties:
+        apm:
+          type: string
+        appName:
+          type: string
+        uaid:
+          type: string
+        name:
+          type: string
+        maxUsers:
+          type: integer
+        owner:
+          type: string
+        enableCIAMRiskServices:
+          type: string
+        buGroupId:
+          type: string
+        customCIAMRiskPolicy:
+          type: string
   responses:
     BadRequest:
       content:
@@ -372,3 +449,22 @@ components:
             timestamp: 2022-06-24-15.30.20
       description: An unexpected internal server error occurred.
       x-model-version: 1
+    AppRegRiskAdminRequest:
+      value:
+        - apm: APM0006238,
+          appName: MANUAL_TEST_{{current_timestamp}},
+          uaid: UAID-10624,
+          id: {{user_id}},
+          name: ,
+          maxUsers: 1000,
+          owner: {{user_email}},
+          enableCIAMRiskServices: true,
+          buGroupId:CIAMNPCAO,
+          customCIAMRiskPolicy : c7b032a6-bb0b-4dc5-b8e0-ed85bc862012
+    AppRegRiskAdminResponse:
+      value:
+        - appName: MANUAL_TEST_20230929172782,
+          owner: venkatesh.parthasarathy@fiserv.com,
+          uaid: UAID-10624,
+          ciamRiskSvcAcctFriendlyID: D4lrivl2w.MANUAL_TEST_20230929172782_CIAM_RISK,
+          ciamRiskEmailStatus: Email initiated to user successfully

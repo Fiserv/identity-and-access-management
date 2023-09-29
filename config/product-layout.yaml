@@ -241,10 +241,20 @@ featuredFeatures:
         title: Create Risk Policy 
         description: Use this API to create a custom risk policy.
         type: "post"        
-        path: "/riskPolicy"  
+        path: "group/{groupid}/riskPolicy"  
       - relatedAPI: 
         title: Read a Risk Policy by policy Id 
         description: Use this API to retrieve a policy using the policy Id.
         type: "get"        
-        path: "/riskPolicy/{policyId}"  
+        path: "group/{groupid}/riskPolicy/{policyId}"  
+      - relatedAPI: 
+        title: Update a Risk Policy by policy Id 
+        description: Use this API to update a policy using the policy Id.
+        type: "post"        
+        path: "group/{groupid}/riskPolicy/{policyId}"
+      - relatedAPI: 
+        title: Delete a Risk Policy by policy Id 
+        description: Use this API to delete a policy using the policy Id.
+        type: "post"        
+        path: "group/{groupid}/riskPolicy/{policyId}"    
       

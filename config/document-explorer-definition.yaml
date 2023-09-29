@@ -134,6 +134,8 @@
   - title: Admin APIs
     link: docs/admin-api/getting-started-admin-api.md
     sections:
+        - title: App Reg Risk
+          link: docs/admin-api/app-reg-risk.md
         - title: Application Onboarding
           link: docs/admin-api/application-onboarding.md
         - title: Risk Services
