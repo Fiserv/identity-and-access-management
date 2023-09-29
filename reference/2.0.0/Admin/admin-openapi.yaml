@@ -23,7 +23,7 @@ paths:
               $ref: '#/components/schemas/AppRegRiskAdminRequest'
             examples:
               request:
-                $ref: '#/components/examples/AppRegRiskAdminRequest'
+                $ref: '#/components/responses/AppRegRiskAdminRequest'
       responses:
         '201':
           description: CREATED
@@ -32,7 +32,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/AppRegRiskAdminResponse'
               response:
-                $ref: '#/components/examples/AppRegRiskAdminResponse'
+                $ref: '#/components/responses/AppRegRiskAdminResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
