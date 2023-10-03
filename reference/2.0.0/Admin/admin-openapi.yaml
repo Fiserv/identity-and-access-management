@@ -463,20 +463,20 @@ components:
       x-model-version: 1
     AppRegRiskAdminRequest:
       value:
-        apm: APM0006238,
-        appName: MANUAL_TEST_{{current_timestamp}},
-        uaid: UAID-10624,
-        id: user_id,
-        name: username,
-        maxUsers: 1000,
-        owner: user_email,
-        enableCIAMRiskServices: true,
-        buGroupId: CIAMNPCAO,
+        apm: APM0006238
+        appName: MANUAL_TEST_{{current_timestamp}}
+        uaid: UAID-10624
+        id: user_id
+        name: username
+        maxUsers: 1000
+        owner: user_email
+        enableCIAMRiskServices: true
+        buGroupId: CIAMNPCAO
         customCIAMRiskPolicy : c7b032a6-bb0b-4dc5-b8e0-ed85bc862012
     AppRegRiskAdminResponse:
       value:
-        appName: MANUAL_TEST_20230929172782,
-        owner: user_email,
-        uaid: UAID-10624,
-        ciamRiskSvcAcctFriendlyID: D4lrivl2w.MANUAL_TEST_20230929172782_CIAM_RISK,
+        appName: MANUAL_TEST_20230929172782
+        owner: user_email
+        uaid: UAID-10624
+        ciamRiskSvcAcctFriendlyID: D4lrivl2w.MANUAL_TEST_20230929172782_CIAM_RISK
         ciamRiskEmailStatus: Email initiated to user successfully
