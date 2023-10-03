@@ -246,17 +246,19 @@ function toBase64Str(bin){
 
 ## Step 4: Activate device 
 
-- Activation is last step of resgitration.
+- Activate device is last step of registration. In this step user registration details get saved in server which is used to authenticate user later on.
 
-- Activation Step required API call with below payload.
+- Once the passkey is created at step 3, an attestion object gets created by browser side script.
 
-- "authId" recived in Initiate device registration.
+- Activate Device is an API call with below payload.
 
-- "attestation" created during Create a passkey.
+- *authId* recieved in initiate device registration.
 
-- "Origin" is name of the site.
+- *attestation* created during create a passkey.
 
-- The attestation property passed in the attestation JSON from the browser. The JSON looks like this:
+- *Origin* is name of the site from where the cilent is requesting.
+
+- The attestation is the JSON object and the JSON looks like this:
 
 <!--
 type: tab

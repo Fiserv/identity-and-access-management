@@ -8,7 +8,7 @@ FIDO2 authentication flow is multistep process as depicted below.
 
 - [Step 2: Initialize authentication](#step-2-initiate-device-authentication---fido2-device)  
 
-- [Step 3: User Authentication (JavaScript WebAuthn API - Browser Side )](#step-3-user-authentication-javascript-webauthn-api---browser-side ))  
+- [Step 3: Validate User (JavaScript WebAuthn API - Browser Side )](#step-3-user-authentication-javascript-webauthn-api---browser-side)  
 
 - [Step 4: Validate assertion](#step-4-validate-assertion)
 
@@ -35,7 +35,7 @@ To get an access token, the following must be true:
 
 - API requires username, rpID and deviceType as request payload.
 
-- API will return *publicKeyCredentialCreationOptions* in response which will be required for browser side JavaScript WebAuthn API to consume and [create a passkey](#step-3-user-authentication-javascript-webauthn-api---browser-side )
+- API will return *publicKeyCredentialCreationOptions* in response which will be required for browser side JavaScript WebAuthn API to consume and [create a passkey](#step-3-validate-user-javascript-webauthn-api---browser-side )
 
 - API will return *authId* in response which will be required during [validate assertion](#step-4-validate-assertion).
 
@@ -47,7 +47,7 @@ titles: Request, Response
 -->
 Endpoint to inititate device authentication **:**
 
-**POST /deviceAuthentications**
+**POST /ciam-mfa/v2/users/deviceAuthentications**
 
 Payload to inititate device authentication **:**
 
@@ -78,9 +78,9 @@ type: tab
 <!-- type: tab-end -->
 
 
-## Step 3: Execute browser side JavaScript - webauthn API
+## Step 3: Validate User (JavaScript WebAuthn API - Browser Side )
 
- FIDO2 device authentication flow uses functions from the Web Authentication API (webauthn API) to manage device authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
+FIDO2 device authentication flow uses functions from the Web Authentication API (webauthn API) to manage device authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
 
 Call the navigator.credentials.get method using the publicKeyCredentialOptions returned from the assertion.check
 
@@ -237,17 +237,19 @@ function getCompatibility() {
 
 ## Step 4:  Validate assertion
 
-- Validate assertion is last step of resgitration.
+- Validate assertion is last step of authentication. In this step assertion gets validated with server to verify if the same registered user is trying to login.
 
-- Validation step required API call with below payload.
+- Once the user is validated at step 3, an assertion object gets created by browser side script.
 
-- *authId* recived in Initiate device registration.
+- Validation assertion is an API call with below payload.
 
-- *assertion* created during Create a passkey.
+- *authId* recieved in initiate device authentication.
 
-- *Origin* is name of the site.
+- *assertion* created during create a passkey step.
 
-- The assertion property passed in the attestation JSON from the browser. The JSON looks like this:
+- *Origin* is name of the site from where the cilent is requesting.
+
+- The assertion is the JSON object and the JSON looks like this:
 
 
 <!--
@@ -257,7 +259,7 @@ titles: Request, Response
 
 Endpoint for  validate assertion **:**
 
-**POST /ciam-mfa/v2/users/deviceAuthentications**
+**POST /ciam-mfa/v2/users/deviceAuthentications/{authId}**
 
 Payload for validate assertion **:**
 
@@ -287,18 +289,4 @@ type: tab
 ```
 
 <!-- type: tab-end --> 
-
-
-Initiates an MFA device authentication flow.
-<!--
-type: tab
-titles: Request, Response
--->
-
-Attributes used in Payload of request are as:
-
-| Variable | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| `rpID` | *string* | &#10004; | The ID of the relying party. The value should be a domain name, such as example.com |
-
 
