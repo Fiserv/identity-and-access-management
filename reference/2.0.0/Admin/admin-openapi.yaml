@@ -16,6 +16,9 @@ paths:
       summary: App registration Admin Risk
       description: >-
         Use this API for admin app reg admin.
+      x-child-product-name: 'Admin API'
+      x-group-name: 'Prerequisites'
+      x-proxy-name: 'Risk Service Configuration'
       requestBody:
         content:
           application/json:
