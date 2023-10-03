@@ -459,7 +459,7 @@ components:
           maxUsers: 1000,
           owner: user_email,
           enableCIAMRiskServices: true,
-          buGroupId:CIAMNPCAO,
+          buGroupId: CIAMNPCAO,
           customCIAMRiskPolicy : c7b032a6-bb0b-4dc5-b8e0-ed85bc862012
     AppRegRiskAdminResponse:
       value:
