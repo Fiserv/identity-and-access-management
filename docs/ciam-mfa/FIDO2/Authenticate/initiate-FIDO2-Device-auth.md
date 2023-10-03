@@ -1,6 +1,6 @@
 ## Authenticate FIDO2 Device
 
-FIDO2 authentication flow uses functions from the Web Authentication API (webauthn API) for FIDO2 device  authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
+FIDO2 authentication flow is multistep process as depicted below.
 
 ---  
 
@@ -8,7 +8,7 @@ FIDO2 authentication flow uses functions from the Web Authentication API (webaut
 
 - [Step 2: Initialize authentication](#step-2-initiate-device-authentication---fido2-device)  
 
-- [Step 3: Device Pairing](#step-3-device-pairing)  
+- [Step 3: User Authentication (JavaScript WebAuthn API - Browser Side )](#step-3-user-authentication-javascript-webauthn-api---browser-side ))  
 
 - [Step 4: Validate assertion](#step-4-validate-assertion)
 
@@ -27,9 +27,19 @@ To get an access token, the following must be true:
 - The application runtime  has access to the client secret and token endpoint. 
 
 
-## Step 2: Initiate Device Authentication - FIDO2 Device 
+## Step 2: Initiate Device Authentication 
 
-- API will initiate  device authentication and return authId in response which will be required during  validation.  
+- API will initiate  device authentication and return authId in response which will be required during assertion validation.  
+
+- As a pre-requisite the FIDO2 service must be enabled for application.
+
+- API requires username, rpID and deviceType as request payload.
+
+- API will return *publicKeyCredentialCreationOptions* in response which will be required for browser side JavaScript WebAuthn API to consume and [create a passkey](#step-3-user-authentication-javascript-webauthn-api---browser-side )
+
+- API will return *authId* in response which will be required during [validate assertion](#step-4-validate-assertion).
+
+- Refer API explorer -> MFA -> Authenticate FIDO2 Device.
 
 <!--
 type: tab
@@ -225,27 +235,37 @@ function getCompatibility() {
 
 ```
 
-## Step 4: Authenticate FIDO2 Device
+## Step 4:  Validate assertion
 
-- The multi-factor authentication flow for FIDO2 device checks the authenticator assertion response, which contains the signed challenge needed to complete the MFA flow. The MFA actions service validates the challenge.
+- Validate assertion is last step of resgitration.
 
-- The following sample shows the operation to validate the assertion used in the multi-factor authentication flow. 
+- Validation step required API call with below payload.
+
+- *authId* recived in Initiate device registration.
+
+- *assertion* created during Create a passkey.
+
+- *Origin* is name of the site.
+
+- The assertion property passed in the attestation JSON from the browser. The JSON looks like this:
+
 
 <!--
 type: tab
 titles: Request, Response
 -->
 
-Endpoint to authenticate device **:**
+Endpoint for  validate assertion **:**
 
-**POST /deviceAuthentications**
+**POST /ciam-mfa/v2/users/deviceAuthentications**
 
-Payload to authenticate device **:**
+Payload for validate assertion **:**
 
 
 ```json
 {
-    "origin": "app.fiserv.com",
+    "deviceType": "FIDO2",
+    "origin": "https://app.fiserv.com",
     "assertion": "{{assertionFromBrowser}}"
 }
     
