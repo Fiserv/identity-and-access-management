@@ -400,6 +400,18 @@ components:
           type: string
         customCIAMRiskPolicy:
           type: string
+    AppRegRiskAdminResponse:
+      properties:
+        appName:
+          type: string
+        owner:
+          type: string
+        uaid:
+          type: string
+        ciamRiskSvcAcctFriendlyID:
+          type: string
+        ciamRiskEmailStatus:
+          type: string
   responses:
     BadRequest:
       content:
