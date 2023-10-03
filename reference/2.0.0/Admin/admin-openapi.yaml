@@ -104,7 +104,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
-  group/{groupid}/riskPolicy:
+  /group/{groupid}/riskPolicy:
     post:
       summary: Create Risk Policy
       description: >- 
@@ -166,7 +166,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
-  group/{groupid}/riskPolicy/{policyId}:
+  /group/{groupid}/riskPolicy/{policyId}:
     get:
       summary: Read a Risk Policy by policy Id
       description: >- 
