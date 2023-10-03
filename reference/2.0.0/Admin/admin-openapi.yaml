@@ -21,9 +21,9 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AppRegRiskAdminRequest'
-            examples:
-              request:
-                $ref: '#/components/responses/AppRegRiskAdminRequest'
+            # examples:
+            #   request:
+            #     $ref: '#/components/responses/AppRegRiskAdminRequest'
       responses:
         '201':
           description: CREATED
@@ -31,9 +31,9 @@ paths:
             text/plain:
               schema:
                 $ref: '#/components/schemas/AppRegRiskAdminResponse'
-              examples:
-                response:
-                  $ref: '#/components/responses/AppRegRiskAdminResponse'
+              # examples:
+              #   response:
+              #     $ref: '#/components/responses/AppRegRiskAdminResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
