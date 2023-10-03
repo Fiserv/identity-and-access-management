@@ -392,6 +392,8 @@ components:
           type: string
         uaid:
           type: string
+        id:
+          type: string
         name:
           type: string
         maxUsers:
