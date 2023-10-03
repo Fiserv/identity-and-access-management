@@ -273,10 +273,18 @@ Payload to activate device **:**
 
 ```json
 {
-    "origin": "app.fiserv.com",
+    "origin": "https://app.fiserv.com",
     "attestation": "{\"id\":\"ARacmDOuRE7DJV6L7w\",\"type\":\"public-key\",\"rawId\":\"ARacmDOuRE7DJV6L7w=\",\"response\":{\"clientDataJSON\":\"eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRYWxzZX0=\",\"attestationObject\":\"o2NmbXRmcGFja2VkZ2F0dFFO29h8n6WKBn6tHCQ=\"},\"clientExtensionResults\":{}}"
 }
 ```
+
+Attributes used in payload of request are as:
+
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `origin` | *string* | &#10004; | App origin |
+| `attestation` | *string* | &#10004; | Object |
+
 
 <!--
 type: tab

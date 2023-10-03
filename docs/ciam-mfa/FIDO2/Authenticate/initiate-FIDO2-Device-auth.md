@@ -54,10 +54,19 @@ Payload to inititate device authentication **:**
 ```json
 {
 	"userName":"username",
-    "rpID": "app.fiserv.com",
+    "rpID": "https://app.fiserv.com",
     "deviceType": "FIDO2"
 }
 ```
+
+Attributes used in payload of request are as:
+
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `userName` | *string* | &#10004; | userName |
+| `rpID` | *string* | &#10004; | URL |
+| `deviceType` | *string* | &#10004; | Authentication Device |
+
 <!--
 type: tab
 -->
@@ -272,6 +281,11 @@ Payload for validate assertion **:**
 }
     
 ```
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `deviceType` | *string* | &#10004; | Authentication Device |
+| `origin` | *string* | &#10004; | URL |
+| `assertion` | *string* | &#10004; | assertion object |
 
 <!--
 type: tab
