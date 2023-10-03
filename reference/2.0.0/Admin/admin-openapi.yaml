@@ -24,9 +24,9 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/AppRegRiskAdminRequest'
-            # examples:
-            #   request:
-            #     $ref: '#/components/responses/AppRegRiskAdminRequest'
+            examples:
+              request:
+                $ref: '#/components/responses/AppRegRiskAdminRequest'
       responses:
         '201':
           description: CREATED
@@ -465,18 +465,18 @@ components:
             timestamp: 2022-06-24-15.30.20
       description: An unexpected internal server error occurred.
       x-model-version: 1
-    # AppRegRiskAdminRequest:
-    #   value:
-    #     apm: APM0006238
-    #     appName: MANUAL_TEST_{{current_timestamp}}
-    #     uaid: UAID-10624
-    #     id: user_id
-    #     name: username
-    #     maxUsers: 1000
-    #     owner: user_email
-    #     enableCIAMRiskServices: true
-    #     buGroupId: CIAMNPCAO
-    #     customCIAMRiskPolicy : c7b032a6-bb0b-4dc5-b8e0-ed85bc862012
+    AppRegRiskAdminRequest:
+      value:
+        apm: APM0006238
+        appName: MANUAL_TEST_{{current_timestamp}}
+        uaid: UAID-10624
+        id: user_id
+        name: username
+        maxUsers: 1000
+        owner: user_email
+        enableCIAMRiskServices: true
+        buGroupId: CIAMNPCAO
+        customCIAMRiskPolicy : c7b032a6-bb0b-4dc5-b8e0-ed85bc862012
     # AppRegRiskAdminResponse:
     #   value:
     #     appName: MANUAL_TEST_20230929172782
