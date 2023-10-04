@@ -397,7 +397,7 @@ components:
         name:
           type: string
         maxUsers:
-          type: integer
+          type: string
         owner:
           type: string
         enableCIAMRiskServices:
@@ -474,7 +474,7 @@ components:
         uaid: UAID-10624
         id: user_id
         name: username
-        maxUsers: 1000
+        maxUsers: "1000"
         owner: user_email
         enableCIAMRiskServices: true
         buGroupId: CIAMNPCAO

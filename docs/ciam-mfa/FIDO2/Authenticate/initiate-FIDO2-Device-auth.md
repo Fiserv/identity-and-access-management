@@ -89,6 +89,23 @@ type: tab
 
 ## Step 3: Validate User (JavaScript WebAuthn API - Browser Side )
 
+- Passwordless implmentation flow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication.
+
+- To validate user(ask for user biometrics to validate), browser side java script need to be executed. 
+
+- Script requires input of "publicKeyCredentialCreationOptions" recevied in [initiate device authentication](#step-2-initiate-device-authentication---fido2-device).
+
+- During script exceution browser will prompt user to choose available authenticator, request is been sent to the authenticator, user authenticate themself by providing the biometrics.
+
+- Once the user is authenticated successfully, an assertion object is created by the browser side script.
+
+- Assertion object is required during [Validate Assertion](#step-4-validate-assertion).
+
+
+**Note**: As a pre-requisite client browser should be compatible for FIDO2 (WebAuthn).
+
+The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
+
 FIDO2 device authentication flow uses functions from the Web Authentication API (webauthn API) to manage device authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
 
 Call the navigator.credentials.get method using the publicKeyCredentialOptions returned from the assertion.check
