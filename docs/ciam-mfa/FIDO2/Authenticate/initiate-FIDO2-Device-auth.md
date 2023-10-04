@@ -1,14 +1,13 @@
 ## Authenticate FIDO2 Device
 
 FIDO2 authentication flow is multistep process as depicted below.
-
 ---  
 
 - [Step 1: Getting an access token](#step-1-getting-an-access-token)  
 
 - [Step 2: Initialize authentication](#step-2-initiate-device-authentication---fido2-device)  
 
-- [Step 3: Validate User (JavaScript WebAuthn API - Browser Side )](#step-3-user-authentication-javascript-webauthn-api---browser-side)  
+- [Step 3: Validate user (JavaScript WebAuthn API - Browser Side )](#step-3-validate-user-javascript-webauthn-api---browser-side)  
 
 - [Step 4: Validate assertion](#step-4-validate-assertion)
 

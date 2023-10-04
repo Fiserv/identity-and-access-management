@@ -18,7 +18,7 @@ paths:
         Use this API for admin app reg admin.
       x-child-product-name: 'Admin API'
       x-group-name: 'Prerequisites'
-      x-proxy-name: 'Risk Service Configuration'
+      x-proxy-name: 'Admin App Reg'
       requestBody:
         content:
           application/json:
