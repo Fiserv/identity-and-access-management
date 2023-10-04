@@ -18,7 +18,7 @@ The payload parameters are as:
 | `uaid` | *string* | &#10004; | uaid of application |
 | `id` | *string* | &#10004; | id of the user | 
 | `name` | *string* | - | user name |
-| `maxUsers` | *integer* | &#10004; | maximum number of users for the application |
+| `maxUsers` | *string* | &#10004; | maximum number of users for the application |
 | `owner` | *string* | &#10004; | email id of the user |
 | `enableCIAMRiskServices` | *boolean* | &#10004; | set true to enable risk service, false otherwise |
 | `buGroupId` | *string* | &#10004; | Business Unit ID |
