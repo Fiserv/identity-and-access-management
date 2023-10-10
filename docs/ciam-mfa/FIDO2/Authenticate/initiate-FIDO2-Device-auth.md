@@ -5,9 +5,9 @@ FIDO2 authentication flow is multistep process as depicted below.
 
 - [Step 1: Getting an access token](#step-1-getting-an-access-token)  
 
-- [Step 2: Initialize authentication](#step-2-initiate-device-authentication---fido2-device)  
+- [Step 2: Initiate device authentication](#step-2-initiate-device-authentication)  
 
-- [Step 3: Validate user (JavaScript WebAuthn API - Browser Side )](#step-3-validate-user-javascript-webauthn-api---browser-side)  
+- [Step 3: Validate user (JavaScript WebAuthn API - Browser Side)](#step-3-validate-user-javascript-webauthn-api---browser-side)  
 
 - [Step 4: Validate assertion](#step-4-validate-assertion)
 
@@ -86,7 +86,7 @@ type: tab
 <!-- type: tab-end -->
 
 
-## Step 3: Validate User (JavaScript WebAuthn API - Browser Side )
+## Step 3: Validate User (JavaScript WebAuthn API - Browser Side)
 
 - Passwordless implmentation flow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication.
 
@@ -260,7 +260,7 @@ function getCompatibility() {
 
 ```
 
-## Step 4:  Validate assertion
+## Step 4: Validate assertion
 
 - Validate assertion is last step of authentication. In this step assertion gets validated with server to verify if the same registered user is trying to login.
 

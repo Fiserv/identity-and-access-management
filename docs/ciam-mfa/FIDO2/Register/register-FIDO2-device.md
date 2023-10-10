@@ -7,7 +7,7 @@ FIDO2 registration flow is multistep process as depicted below.
 
 - [Step 2: Initiate device registration ](#step-2-initiate-device-registration)  
 
-- [Step 3: Create a passkey (JavaScript WebAuthn API - Browser Side ) ](#step-3-create-a-passkey-javascript-webauthn-api---browser-side)  
+- [Step 3: Create a passkey (JavaScript WebAuthn API - Browser Side) ](#step-3-create-a-passkey-javascript-webauthn-api---browser-side)  
 
 - [Step 4: Activate device ](#step-4-activate-device)
 
@@ -91,7 +91,7 @@ type: tab
 ```
 <!-- type: tab-end -->
 
-## Step 3: Create a passkey (JavaScript WebAuthn API - Browser Side )
+## Step 3: Create a passkey (JavaScript WebAuthn API - Browser Side)
 
 - Passwordless implmentation flow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication.
 
