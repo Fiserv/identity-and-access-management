@@ -1,6 +1,6 @@
 ## Authenticate FIDO2 Device
-
 FIDO2 authentication flow is multistep process as depicted below.
+
 ---  
 
 - [Step 1: Getting an access token](#step-1-getting-an-access-token)  
@@ -92,7 +92,7 @@ type: tab
 
 - To validate user(ask for user biometrics to validate), browser side java script need to be executed. 
 
-- Script requires input of "publicKeyCredentialCreationOptions" recevied in [initiate device authentication](#step-2-initiate-device-authentication---fido2-device).
+- Script requires input of "publicKeyCredentialCreationOptions" recevied in [initiate device authentication](#step-2-initiate-device-authentication).
 
 - During script exceution browser will prompt user to choose available authenticator, request is been sent to the authenticator, user authenticate themself by providing the biometrics.
 

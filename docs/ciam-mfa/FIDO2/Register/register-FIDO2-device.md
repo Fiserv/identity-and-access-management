@@ -32,7 +32,7 @@ To get an access token, the following must be true:
 
 - API requires user details, username and user email address along with relying party information.
 
-- API will return "publicKeyCredentialCreationOptions" in response which will be required for browser side JavaScript WebAuthn API to consume and [create a passkey](#step-3-create-a-passkey-browser-side-javascript-webauthn-api)
+- API will return "publicKeyCredentialCreationOptions" in response which will be required for browser side JavaScript WebAuthn API to consume and [create a passkey](#step-3-create-a-passkey-javascript-webauthn-api---browser-side)
 
 - API will return "authId" in response which will be required during [device activation](#step-4-activate-device).
 
