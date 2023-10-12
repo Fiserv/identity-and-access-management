@@ -1,6 +1,8 @@
 ## isFIDO Registered
 
-Checks if user is registered for FIDO for the given device; and if user has activated any device for FIDO.
+- Prereqsuite is to get access token.
+
+- Is there a registered Fido device for a specific user?
 
 ### API Parameter
 

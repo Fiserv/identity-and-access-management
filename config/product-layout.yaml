@@ -51,7 +51,7 @@ featuredFeatures:
         title: Get devices 
         description: Get list of user devices
         type: "get"        
-        path: "/users/{username}/mfadevices?type=****"  
+        path: "/users/{username}/mfadevices"  
       - relatedAPI: 
         title: Add Device
         description: Operation to add mfa  device to the specified user.
@@ -82,6 +82,11 @@ featuredFeatures:
         description: Checks if user is registered for FIDO the given device; and if user has activated any device for FIDO.
         type: "get"
         path: "/users/{username}/isFidoRegistered"
+      - relatedAPI:
+        title: Unpair MFA Device
+        description: Unpairs the registered device
+        type: "get"
+        path: "/ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}?code="all""
   - title: Provisioning API
     description: >
       CIAM Provisioning API provides the REST endpoints to connect and perform various operations on directory. API support the CRUD operations for Users, Service Accounts and Domains. It also enables to perform account administration operations like enabling the account, password reset, account unlock. One can also retrieve the account status details using Provisioning API.
