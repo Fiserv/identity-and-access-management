@@ -15,9 +15,7 @@ Endpoint to unpair MFA device **:**
 
 **GET /ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}?code="all"**
 
-### Example Payload to unpair MFA device
-
-##### No Payload required
+### No payload 
 
 <!--
 type: tab
