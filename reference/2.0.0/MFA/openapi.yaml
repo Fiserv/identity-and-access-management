@@ -129,10 +129,8 @@ paths:
   
   /ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}?code="all":
     get:
-      requestBody:
-        description: API to unpair the device 
       tags:
-        - device registration endpoint
+        - unpair device endpoint
       parameters:
         - name: user_name
           description: >-
@@ -157,8 +155,7 @@ paths:
           in: query
           required: true
       responses:
-        '204':
-          description: No Response
+        '204': No Response
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
