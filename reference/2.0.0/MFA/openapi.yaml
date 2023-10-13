@@ -127,50 +127,50 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
   
-  /ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}?code="all":
-    get:
-      tags:
-        - unpair device endpoint
-      parameters:
-        - name: user_name
-          description: >-
-            Username of the user unpairing the device. This should be similar
-            to username used during registration
-          schema:
-            type: string
-          in: path
-          required: true
-        - name: device_type
-          description: >-
-            The type of the device to be unpaired.
-          schema:
-            type: string
-          in: path
-          required: true
-        - name: code
-          description: >-
-            Code
-          schema:
-            type: string
-          in: query
-          required: true
-      responses:
-        # '204': 
-        #   description: No Response
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '500':
-          $ref: '#/components/responses/ServerError'
-      operationId: unpairDevice
-      summary: Unpair  device
-      description: >-
-        Unpair the device
-      x-proxy-name: Unpair Device
-      x-group-name: MFA
+  # /ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}?code="all":
+  #   get:
+  #     tags:
+  #       - unpair device endpoint
+  #     parameters:
+  #       - name: user_name
+  #         description: >-
+  #           Username of the user unpairing the device. This should be similar
+  #           to username used during registration
+  #         schema:
+  #           type: string
+  #         in: path
+  #         required: true
+  #       - name: device_type
+  #         description: >-
+  #           The type of the device to be unpaired.
+  #         schema:
+  #           type: string
+  #         in: path
+  #         required: true
+  #       - name: code
+  #         description: >-
+  #           Code
+  #         schema:
+  #           type: string
+  #         in: query
+  #         required: true
+  #     responses:
+  #       # '204': 
+  #       #   description: No Response
+  #       '400':
+  #         $ref: '#/components/responses/BadRequest'
+  #       '401':
+  #         $ref: '#/components/responses/Unauthorized'
+  #       '404':
+  #         $ref: '#/components/responses/NotFound'
+  #       '500':
+  #         $ref: '#/components/responses/ServerError'
+  #     operationId: unpairDevice
+  #     summary: Unpair  device
+  #     description: >-
+  #       Unpair the device
+  #     x-proxy-name: Unpair Device
+  #     x-group-name: MFA
 
   /users/{username}/mfadevices/{authId}:
     post:
