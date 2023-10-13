@@ -155,8 +155,8 @@ paths:
           in: query
           required: true
       responses:
-        '204': 
-          description: No Response
+        # '204': 
+        #   description: No Response
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
