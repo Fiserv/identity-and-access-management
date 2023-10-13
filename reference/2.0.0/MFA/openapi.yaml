@@ -156,7 +156,7 @@ paths:
           required: true
       responses:
         '204': 
-            string: No Response
+          description: No Response
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
