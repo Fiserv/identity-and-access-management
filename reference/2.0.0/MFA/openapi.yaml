@@ -470,7 +470,7 @@ paths:
       description: >-
         Checks if user is registered for FIDO for the given device; and if user has activated any device for FIDO.
       x-group-name: MFA
-      x-proxy-name: Registration Details
+      x-proxy-name: isFIDORegistered
       x-default-example: Devices
       tags:
         - device endpoint definition
