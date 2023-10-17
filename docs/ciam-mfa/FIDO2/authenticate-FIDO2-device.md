@@ -293,7 +293,7 @@ Payload for validate assertion **:**
 {
     "deviceType": "FIDO2",
     "origin": "https://app.fiserv.com",
-    "assertion": "{{assertionFromBrowser}}"
+    "assertion": "{\"id\":\"j6I9tovjxsVtndQQZJ43rQ\",\"rawId\":\"j6I9tovjxsVtndQQZJ43rQ==\",\"type\":\"public-key\",\"response\":{\"clientDataJSON\":\"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiU2NmbktzSmNWNnR4WXBrWTd4bW5Yd3BQeXJRYTZ0SlJxVENmak9uN1hzUSIsIm9yaWdpbiI6Imh0dHBzOi8vbG9jYWxob3N0Ojk0NDMiLCJjcm9zc09yaWdpbiI6ZmFsc2V9\",\"authenticatorData\":\"SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MdAAAAAA==\",\"signature\":\"MEUCIQD8miXpRynxQ+cV9utI7E2Cs/mS47IagF2RqbfKK+DMlAIgWNS6sJA0R4NoNBt+aW1Z9NZGm7hUQDMyw6GwNYFBRQc=\",\"userHandle\":\"\"}}"
 }
     
 ```

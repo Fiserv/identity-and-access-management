@@ -13,7 +13,7 @@ titles: Request, Response
 
 Endpoint to unpair MFA device **:**
 
-**GET /ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}?code="all"**
+**GET /ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}/all**
 
 ### No payload 
 

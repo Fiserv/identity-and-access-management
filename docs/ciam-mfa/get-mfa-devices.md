@@ -1,6 +1,8 @@
 ## Get MFA Devices
 API to return list of registerd mfa devices for a specific user.
 
+- get CIAM MFA access token. 
+
 <!--
 type: tab
 titles: Request, Response

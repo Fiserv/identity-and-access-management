@@ -13,6 +13,10 @@ type: tab
 titles: Request, Response
 -->
 
+Endpoint to get MFA devices **:**
+
+**GET /ciam-mfa/v2/users/{{username}}/isFidoRegistered/{{rpId}}**
+
 ### Example Payload to Authenticate Device
 
 ##### No Payload required
@@ -23,7 +27,7 @@ type: tab
 
 ### Example of Authenticate Device (200: OK) response
 
-#### 1 - If user is not even registered for FIDO 
+#### 1 - If user itself does not exist 
 ```json
 {
     "status": "FAILURE",
@@ -31,7 +35,7 @@ type: tab
 }
 ```
 
-#### 2 - If user is registered but has not activated any device
+#### 2 - Not a single device registered for given user.
 ```json
 {
     "status": "FAILURE",
@@ -39,7 +43,7 @@ type: tab
 }
 ```
 
-#### 3 - Whne user is registered and has activated FIDO Device 
+#### 3 - At least one device registered for user.
 ```json
 {
     "status": "SUCCESS",

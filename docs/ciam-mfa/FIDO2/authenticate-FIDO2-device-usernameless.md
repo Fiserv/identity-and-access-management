@@ -1,11 +1,11 @@
-## Authenticate FIDO2 Device
+## Authenticate FIDO2 Device - usernameless
 FIDO2 authentication flow is multistep process as depicted below.
 
 ---  
 
 - [Step 1: Getting an access token](#step-1-getting-an-access-token)  
 
-- [Step 2: Initiate device authentication usernameless](#step-2-initiate-device-authentication)  
+- [Step 2: Initiate device authentication usernameless](#step-2-initiate-device-authentication-usernameless)  
 
 - [Step 3: Validate user (JavaScript WebAuthn API - Browser Side)](#step-3-validate-user-javascript-webauthn-api---browser-side)  
 
@@ -26,7 +26,7 @@ To get an access token, the following must be true:
 - The application runtime  has access to the client secret and token endpoint. 
 
 
-## Step 2: Initiate Device Authentication 
+## Step 2: Initiate Device Authentication Usernameless
 
 - API will initiate  device authentication and return authId in response which will be required during assertion validation.  
 
@@ -52,7 +52,6 @@ Payload to inititate device authentication **:**
 
 ```json
 {
-	"userName":"username",
     "rpID": "https://app.fiserv.com",
     "deviceType": "FIDO2"
 }
@@ -88,7 +87,7 @@ type: tab
 
 ## Step 3: Validate User (JavaScript WebAuthn API - Browser Side)
 
-- Passwordless implmentation flow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication.
+- Passwordless implmentation flow uses functions from the Web Authentication API (webauthn API) to manage FIDO2 device authentication.
 
 - To validate user(ask for user biometrics to validate), browser side java script need to be executed. 
 
@@ -102,6 +101,13 @@ type: tab
 
 
 **Note**: As a pre-requisite client browser should be compatible for FIDO2 (WebAuthn).
+
+Differnece: In usernamless flow, autheticator like mobile will showcase the list of all the accounts whose passkeys are stored for given rpID and user need to select one apropriate account followed by providind biometrics to generate assertion with right userHandle.
+
+For authticator like security key or platform no account selection required just providing biometrics will genrate assertion with the right userHandle.
+
+Note: With the help of "userHandle" server identifies which user's authetication request is this. 
+
 
 The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
 
@@ -276,7 +282,7 @@ function getCompatibility() {
 
 - The assertion is the JSON object and the JSON looks like this:
 
-
+**Note**: In usernamless flow assertion object has "userHandle" value which tells server which user is requesting for authetication
 <!--
 type: tab
 titles: Request, Response
@@ -286,14 +292,14 @@ Endpoint for  validate assertion **:**
 
 **POST /ciam-mfa/v2/users/deviceAuthentications/{authId}**
 
-Payload for validate assertion **:**
+Payload for validate assertion - usernameless **:**
 
 
 ```json
 {
     "deviceType": "FIDO2",
     "origin": "https://app.fiserv.com",
-    "assertion": "{{assertionFromBrowser}}"
+    "assertion": "{\"id\":\"j6I9tovjxsVtndQQZJ43rQ\",\"rawId\":\"j6I9tovjxsVtndQQZJ43rQ==\",\"type\":\"public-key\",\"response\":{\"clientDataJSON\":\"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiU2NmbktzSmNWNnR4WXBrWTd4bW5Yd3BQeXJRYTZ0SlJxVENmak9uN1hzUSIsIm9yaWdpbiI6Imh0dHBzOi8vbG9jYWxob3N0Ojk0NDMiLCJjcm9zc09yaWdpbiI6ZmFsc2V9\",\"authenticatorData\":\"SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MdAAAAAA==\",\"signature\":\"MEUCIQD8miXpRynxQ+cV9utI7E2Cs/mS47IagF2RqbfKK+DMlAIgWNS6sJA0R4NoNBt+aW1Z9NZGm7hUQDMyw6GwNYFBRQc=\",\"userHandle\":\"ey2q99IUCnLDfygPtwwrvhr7q/XycIe1IjgMXDKildk=\"}}"
 }
     
 ```

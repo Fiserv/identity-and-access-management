@@ -191,7 +191,7 @@ paths:
       x-proxy-name: Register Device
       x-group-name: MFA 
       x-default-example: TOTP
-  /ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}:
+  /ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/all:
     get:
       tags:
         - unpair device endpoint
@@ -210,13 +210,6 @@ paths:
           schema:
             type: string
           in: path
-          required: true
-        - name: code
-          description: >-
-            Code
-          schema:
-            type: string
-          in: query
           required: true
       responses:
         '204': 
