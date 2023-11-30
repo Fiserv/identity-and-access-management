@@ -41,6 +41,10 @@
        - link: docs/ciam-mfa/SMS-EMAIL.md
          title: MFA using SMS/EMAIL
          type: recipe
+       - title: Unpair MFA Device
+         link: docs/ciam-mfa/unpair-mfa-device.md
+       - title: Get MFA Devices
+         link: docs/ciam-mfa/get-mfa-devices.md
        - title: MFA using TOTP 
          link: docs/ciam-mfa/TOTP.md
          sections:
@@ -63,11 +67,14 @@
          link: docs/ciam-mfa/FIDO2/getting-started-FIDO2.md
          sections: 
           - title: Register FIDO2 Device
-            link: docs/ciam-mfa/FIDO2/Register/register-FIDO2-device.md
+            link: docs/ciam-mfa/FIDO2/register-FIDO2-device.md
             type: recipe
           - title: Authenticate FIDO2 Device
-            link: docs/ciam-mfa/FIDO2/Authenticate/initiate-FIDO2-Device-auth.md
-            type: recipe  
+            link: docs/ciam-mfa/FIDO2/authenticate-FIDO2-device.md
+            type: recipe
+          - title: Authenticate FIDO2 Device- usernameless
+            link: docs/ciam-mfa/FIDO2/authenticate-FIDO2-device-usernameless.md
+            type: recipe    
           - title: MFA Device - Check Device Type
             link: docs/ciam-mfa/FIDO2/check-device-type.md
             type: recipe
@@ -134,6 +141,8 @@
   - title: Admin APIs
     link: docs/admin-api/getting-started-admin-api.md
     sections:
+        - title: App Reg Risk
+          link: docs/admin-api/app-reg-risk.md
         - title: Application Onboarding
           link: docs/admin-api/application-onboarding.md
         - title: Risk Services

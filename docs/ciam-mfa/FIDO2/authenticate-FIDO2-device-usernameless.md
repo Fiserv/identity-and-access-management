@@ -1,14 +1,13 @@
-## Authenticate FIDO2 Device
-
-FIDO2 authentication flow uses functions from the Web Authentication API (webauthn API) for FIDO2 device  authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
+## Authenticate FIDO2 Device - usernameless
+FIDO2 authentication flow is multistep process as depicted below.
 
 ---  
 
 - [Step 1: Getting an access token](#step-1-getting-an-access-token)  
 
-- [Step 2: Initialize authentication](#step-2-initiate-device-authentication---fido2-device)  
+- [Step 2: Initiate device authentication usernameless](#step-2-initiate-device-authentication-usernameless)  
 
-- [Step 3: Device Pairing](#step-3-device-pairing)  
+- [Step 3: Validate user (JavaScript WebAuthn API - Browser Side)](#step-3-validate-user-javascript-webauthn-api---browser-side)  
 
 - [Step 4: Validate assertion](#step-4-validate-assertion)
 
@@ -27,24 +26,45 @@ To get an access token, the following must be true:
 - The application runtime  has access to the client secret and token endpoint. 
 
 
-## Step 2: Initiate Device Authentication - FIDO2 Device 
+## Step 2: Initiate Device Authentication Usernameless
 
-- API will initiate  device authentication and return authId in response which will be required during  validation.  
+- API will initiate  device authentication and return authId in response which will be required during assertion validation.  
+
+- As a pre-requisite the FIDO2 service must be enabled for application.
+
+- API requires username, rpID and deviceType as request payload.
+
+- API will return *publicKeyCredentialCreationOptions* in response which will be required for browser side JavaScript WebAuthn API to consume and [create a passkey](#step-3-validate-user-javascript-webauthn-api---browser-side )
+
+- API will return *authId* in response which will be required during [validate assertion](#step-4-validate-assertion).
+
+- Refer API explorer -> MFA -> Authenticate FIDO2 Device.
 
 <!--
 type: tab
 titles: Request, Response
 -->
+Endpoint to inititate device authentication **:**
 
-### Example of a Inititate Device Authentication
+**POST /ciam-mfa/v2/users/deviceAuthentications**
+
+Payload to inititate device authentication **:**
 
 ```json
 {
-	"userName":"username",
-    "rpID": "app.fiserv.com",
+    "rpID": "https://app.fiserv.com",
     "deviceType": "FIDO2"
 }
 ```
+
+Attributes used in payload of request are as:
+
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `userName` | *string* | &#10004; | userName |
+| `rpID` | *string* | &#10004; | URL |
+| `deviceType` | *string* | &#10004; | Authentication Device |
+
 <!--
 type: tab
 -->
@@ -65,9 +85,33 @@ type: tab
 <!-- type: tab-end -->
 
 
-## Step 3: Execute browser side JavaScript - webauthn API
+## Step 3: Validate User (JavaScript WebAuthn API - Browser Side)
 
- FIDO2 device authentication flow uses functions from the Web Authentication API (webauthn API) to manage device authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
+- Passwordless implmentation flow uses functions from the Web Authentication API (webauthn API) to manage FIDO2 device authentication.
+
+- To validate user(ask for user biometrics to validate), browser side java script need to be executed. 
+
+- Script requires input of "publicKeyCredentialCreationOptions" recevied in [initiate device authentication](#step-2-initiate-device-authentication).
+
+- During script exceution browser will prompt user to choose available authenticator, request is been sent to the authenticator, user authenticate themself by providing the biometrics.
+
+- Once the user is authenticated successfully, an assertion object is created by the browser side script.
+
+- Assertion object is required during [Validate Assertion](#step-4-validate-assertion).
+
+
+**Note**: As a pre-requisite client browser should be compatible for FIDO2 (WebAuthn).
+
+Differnece: In usernamless flow, autheticator like mobile will showcase the list of all the accounts whose passkeys are stored for given rpID and user need to select one apropriate account followed by providind biometrics to generate assertion with right userHandle.
+
+For authticator like security key or platform no account selection required just providing biometrics will genrate assertion with the right userHandle.
+
+Note: With the help of "userHandle" server identifies which user's authetication request is this. 
+
+
+The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
+
+FIDO2 device authentication flow uses functions from the Web Authentication API (webauthn API) to manage device authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
 
 Call the navigator.credentials.get method using the publicKeyCredentialOptions returned from the assertion.check
 
@@ -222,27 +266,48 @@ function getCompatibility() {
 
 ```
 
-## Step 4: Authenticate FIDO2 Device
+## Step 4: Validate assertion
 
-- The multi-factor authentication flow for FIDO2 device checks the authenticator assertion response, which contains the signed challenge needed to complete the MFA flow. The MFA actions service validates the challenge.
+- Validate assertion is last step of authentication. In this step assertion gets validated with server to verify if the same registered user is trying to login.
 
-- The following sample shows the operation to validate the assertion used in the multi-factor authentication flow. 
+- Once the user is validated at step 3, an assertion object gets created by browser side script.
 
+- Validation assertion is an API call with below payload.
+
+- *authId* recieved in initiate device authentication.
+
+- *assertion* created during create a passkey step.
+
+- *Origin* is name of the site from where the cilent is requesting.
+
+- The assertion is the JSON object and the JSON looks like this:
+
+**Note**: In usernamless flow assertion object has "userHandle" value which tells server which user is requesting for authetication
 <!--
 type: tab
 titles: Request, Response
 -->
 
-### Example of a check assertion request 
+Endpoint for  validate assertion **:**
+
+**POST /ciam-mfa/v2/users/deviceAuthentications/{authId}**
+
+Payload for validate assertion - usernameless **:**
 
 
 ```json
 {
-    "origin": "app.fiserv.com",
-    "assertion": "{{assertionFromBrowser}}"
+    "deviceType": "FIDO2",
+    "origin": "https://app.fiserv.com",
+    "assertion": "{\"id\":\"j6I9tovjxsVtndQQZJ43rQ\",\"rawId\":\"j6I9tovjxsVtndQQZJ43rQ==\",\"type\":\"public-key\",\"response\":{\"clientDataJSON\":\"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiU2NmbktzSmNWNnR4WXBrWTd4bW5Yd3BQeXJRYTZ0SlJxVENmak9uN1hzUSIsIm9yaWdpbiI6Imh0dHBzOi8vbG9jYWxob3N0Ojk0NDMiLCJjcm9zc09yaWdpbiI6ZmFsc2V9\",\"authenticatorData\":\"SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MdAAAAAA==\",\"signature\":\"MEUCIQD8miXpRynxQ+cV9utI7E2Cs/mS47IagF2RqbfKK+DMlAIgWNS6sJA0R4NoNBt+aW1Z9NZGm7hUQDMyw6GwNYFBRQc=\",\"userHandle\":\"ey2q99IUCnLDfygPtwwrvhr7q/XycIe1IjgMXDKildk=\"}}"
 }
     
 ```
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `deviceType` | *string* | &#10004; | Authentication Device |
+| `origin` | *string* | &#10004; | URL |
+| `assertion` | *string* | &#10004; | assertion object |
 
 <!--
 type: tab
@@ -260,18 +325,4 @@ type: tab
 ```
 
 <!-- type: tab-end --> 
-
-
-Initiates an MFA device authentication flow.
-<!--
-type: tab
-titles: Request, Response
--->
-
-Attributes used in Payload of request are as:
-
-| Variable | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| `rpID` | *string* | &#10004; | The ID of the relying party. The value should be a domain name, such as example.com |
-
 

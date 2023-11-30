@@ -191,6 +191,43 @@ paths:
       x-proxy-name: Register Device
       x-group-name: MFA 
       x-default-example: TOTP
+  /ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/all:
+    get:
+      tags:
+        - unpair device endpoint
+      parameters:
+        - name: user_name
+          description: >-
+            Username of the user unpairing the device. This should be similar
+            to username used during registration
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: device_type
+          description: >-
+            The type of the device to be unpaired.
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '204': 
+          description: No Response
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      operationId: unpairDevice
+      summary: Unpair  device
+      description: >-
+        Unpair the device
+      x-proxy-name: Unpair Device
+      x-group-name: MFA
   /deviceAuthentications:
     post:
       requestBody:
@@ -426,7 +463,7 @@ paths:
       description: >-
         Checks if user is registered for FIDO for the given device; and if user has activated any device for FIDO.
       x-group-name: MFA
-      x-proxy-name: Registration Details
+      x-proxy-name: isFIDORegistered
       x-default-example: Devices
       tags:
         - device endpoint definition
