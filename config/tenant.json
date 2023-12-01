@@ -5,6 +5,7 @@
   "brandLogoURL": "https://raw.githubusercontent.com/Fiserv/Developer-Portal-Tenant-API/develop/assets/images/Fiserv_Logo.jpg",
   "solution": ["merchants", "financial-institutions", "fintech"],
   "brandDescription": "",
+  "getStartedFilePath": "../docs/getting-started.md",
   "categories": [
     {
       "name": "businessTypes",
@@ -43,7 +44,6 @@
     "documenttree": "/v1/docs/IdentityAndAccessManagement",
     "documenttreeV2": "/v2/docs/IdentityAndAccessManagement",
     "sandbox": "/v1/sandboxrun/IdentityAndAccessManagement",
-    "getStartedFilePath": "../docs/getting-started.md",
     "feature":[
       {
         "name": "sandBox",
