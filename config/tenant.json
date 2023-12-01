@@ -43,6 +43,7 @@
     "documenttree": "/v1/docs/IdentityAndAccessManagement",
     "documenttreeV2": "/v2/docs/IdentityAndAccessManagement",
     "sandbox": "/v1/sandboxrun/IdentityAndAccessManagement",
+    "getStartedFilePath": "../docs/getting-started.md",
     "feature":[
       {
         "name": "sandBox",
