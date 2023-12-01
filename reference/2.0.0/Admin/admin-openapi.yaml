@@ -264,6 +264,58 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
+  /app-reg/v1/fido2Service/ServiceAccount/{svc_acc}/config:
+    put:
+      summary: API to enable FIDO2 service for the given service account
+      parameters:
+        - name: svc_acc
+          description: the service account for which fido service need to be enabled
+          in: path
+          required: true
+          schema: 
+            type: string
+      x-child-product-name: 'Admin API'
+      x-group-name: 'FIDO2 Services'
+      x-proxy-name: 'Enable/Disable FIDO2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                enableFIDO2:
+                  type: boolean
+            example:
+              enable:
+                value:
+                  enableFIDO2: true
+              disable:
+                value:
+                  enableFIDO2: false
+      responses:
+        '201':
+          description: Created
+          content:
+            string:
+              schema:
+                type: object
+              example:
+                enable:
+                  value:
+                    message: FIDO2 Service has been now enabled for your application
+                disable:
+                  value:
+                    message: FIDO2 Service has been now disabled for your application
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError' 
+
+        
 components:
   schemas:
     ErrorResponse:
