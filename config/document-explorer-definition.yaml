@@ -145,18 +145,24 @@
           link: docs/admin-api/app-reg-risk.md
         - title: Application Onboarding
           link: docs/admin-api/application-onboarding.md
-        - title: Risk Services
-          link: docs/admin-api/ciam-mfa/risk-services/getting-started-risk-api.md
-          sections:
-            - title: Create Policy
-              link: docs/admin-api/ciam-mfa/risk-services/create-risk-policy.md
-            - title: Delete Risk Policy by ID
-              link: docs/admin-api/ciam-mfa/risk-services/delete-risk-policy.md
-            - title: Get Risk Policy
-              link: docs/admin-api/ciam-mfa/risk-services/get-risk-policy-by-id.md
-            - title: Retreive All Risk Policies
-              link: docs/admin-api/ciam-mfa/risk-services/retrieve-all-risk-policies.md
-            - title: Update Risk Policy
-              link: docs/admin-api/ciam-mfa/risk-services/update-risk-policy.md
-            - title: Risk Service Config
-              link: docs/admin-api/ciam-mfa/risk-services/enable-risk.md
+        - title: CIAM MFA
+          sections:    
+          - title: Risk Services
+            link: docs/admin-api/ciam-mfa/risk-services/getting-started-risk-api.md
+            sections:
+              - title: Create Policy
+                link: docs/admin-api/ciam-mfa/risk-services/create-risk-policy.md
+              - title: Delete Risk Policy by ID
+                link: docs/admin-api/ciam-mfa/risk-services/delete-risk-policy.md
+              - title: Get Risk Policy
+                link: docs/admin-api/ciam-mfa/risk-services/get-risk-policy-by-id.md
+              - title: Retreive All Risk Policies
+                link: docs/admin-api/ciam-mfa/risk-services/retrieve-all-risk-policies.md
+              - title: Update Risk Policy
+                link: docs/admin-api/ciam-mfa/risk-services/update-risk-policy.md
+              - title: Risk Service Config
+                link: docs/admin-api/ciam-mfa/risk-services/enable-risk.md
+          - title: FIDO2
+            sections:
+              - title: Enable FIDO2
+                link: docs/admin-api/ciam-mfa/FIDO2/enable-FIDO2.md
