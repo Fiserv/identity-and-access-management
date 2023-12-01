@@ -163,107 +163,107 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
-  /group/{groupid}/riskPolicy/{policyId}:
-    get:
-      summary: Read a Risk Policy by policy Id
-      description: >- 
-        Use this API to retrieve a policy using the policy Id.
-      x-child-product-name: 'Admin API'
-      x-group-name: 'Risk Services'
-      x-proxy-name: 'Get Risk Policy By Id'
-      parameters:
-        - name: policyId
-          in: path
-          schema:
-            type: string
-          required: true
-        - name: groupid
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/PolicyResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '500':
-          $ref: '#/components/responses/ServerError'  
-    put:
-      summary: Update the Risk Policy using policy Id
-      description: >- 
-        Use this API to update the risk policy.
-      x-child-product-name: 'Admin API'
-      x-group-name: 'Risk Services'
-      x-proxy-name: 'Update Risk Policy'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/PolicyRequest'
-      parameters:
-        - name: policyId
-          in: path
-          schema:
-            type: string
-          required: true
-        - name: groupid
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: OK
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/PolicyResponse'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '500':
-          $ref: '#/components/responses/ServerError'  
-    delete:
-      summary: Delete a Risk Policy by policy Id
-      description: >- 
-        Use this API to delete a risk policy using the policy Id.
-      x-child-product-name: 'Admin API'
-      x-group-name: 'Risk Services'
-      x-proxy-name: 'Delete Risk Policy'
-      parameters:
-        - name: policyId
-          in: path
-          schema:
-            type: string
-          required: true
-        - name: groupid
-          in: path
-          schema:
-            type: string
-          required: true
-      responses:
-        '204':
-          description: No Content
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '500':
-          $ref: '#/components/responses/ServerError'  
+  # /group/{groupid}/riskPolicy/{policyId}:
+  #   get:
+  #     summary: Read a Risk Policy by policy Id
+  #     description: >- 
+  #       Use this API to retrieve a policy using the policy Id.
+  #     x-child-product-name: 'Admin API'
+  #     x-group-name: 'Risk Services'
+  #     x-proxy-name: 'Get Risk Policy By Id'
+  #     parameters:
+  #       - name: policyId
+  #         in: path
+  #         schema:
+  #           type: string
+  #         required: true
+  #       - name: groupid
+  #         in: path
+  #         schema:
+  #           type: string
+  #         required: true
+  #     responses:
+  #       '200':
+  #         description: OK
+  #         content:
+  #           text/plain:
+  #             schema:
+  #               $ref: '#/components/schemas/PolicyResponse'
+  #       '400':
+  #         $ref: '#/components/responses/BadRequest'
+  #       '401':
+  #         $ref: '#/components/responses/Unauthorized'
+  #       '404':
+  #         $ref: '#/components/responses/NotFound'
+  #       '500':
+  #         $ref: '#/components/responses/ServerError'  
+  #   put:
+  #     summary: Update the Risk Policy using policy Id
+  #     description: >- 
+  #       Use this API to update the risk policy.
+  #     x-child-product-name: 'Admin API'
+  #     x-group-name: 'Risk Services'
+  #     x-proxy-name: 'Update Risk Policy'
+  #     requestBody:
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: '#/components/schemas/PolicyRequest'
+  #     parameters:
+  #       - name: policyId
+  #         in: path
+  #         schema:
+  #           type: string
+  #         required: true
+  #       - name: groupid
+  #         in: path
+  #         schema:
+  #           type: string
+  #         required: true
+  #     responses:
+  #       '200':
+  #         description: OK
+  #         content:
+  #           text/plain:
+  #             schema:
+  #               $ref: '#/components/schemas/PolicyResponse'
+  #       '400':
+  #         $ref: '#/components/responses/BadRequest'
+  #       '401':
+  #         $ref: '#/components/responses/Unauthorized'
+  #       '404':
+  #         $ref: '#/components/responses/NotFound'
+  #       '500':
+  #         $ref: '#/components/responses/ServerError'  
+  #   delete:
+  #     summary: Delete a Risk Policy by policy Id
+  #     description: >- 
+  #       Use this API to delete a risk policy using the policy Id.
+  #     x-child-product-name: 'Admin API'
+  #     x-group-name: 'Risk Services'
+  #     x-proxy-name: 'Delete Risk Policy'
+  #     parameters:
+  #       - name: policyId
+  #         in: path
+  #         schema:
+  #           type: string
+  #         required: true
+  #       - name: groupid
+  #         in: path
+  #         schema:
+  #           type: string
+  #         required: true
+  #     responses:
+  #       '204':
+  #         description: No Content
+  #       '400':
+  #         $ref: '#/components/responses/BadRequest'
+  #       '401':
+  #         $ref: '#/components/responses/Unauthorized'
+  #       '404':
+  #         $ref: '#/components/responses/NotFound'
+  #       '500':
+  #         $ref: '#/components/responses/ServerError'  
   /app-reg/v1/fido2Service/ServiceAccount/{svc_acc}/config:
     put:
       summary: API to enable FIDO2 service for the given service account
