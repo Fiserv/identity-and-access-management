@@ -289,7 +289,7 @@ paths:
               disable:
                 value:
                   enableFIDO2: false
-      response:
+      responses:
         '201':
           description: Created
           content:
