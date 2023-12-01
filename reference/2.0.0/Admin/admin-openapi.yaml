@@ -268,12 +268,12 @@ paths:
     put:
       summary: API to enable FIDO2 service for the given service account
       parameters:
-        name: svc_acc
-        description: the service account for which fido service need to be enabled
-        in: path
-        required: true
-        schema: 
-          type: string
+        - name: svc_acc
+          description: the service account for which fido service need to be enabled
+          in: path
+          required: true
+          schema: 
+            type: string
       requestBody:
         content:
           application/json:
