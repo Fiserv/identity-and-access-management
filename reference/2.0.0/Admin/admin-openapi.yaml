@@ -274,6 +274,9 @@ paths:
           required: true
           schema: 
             type: string
+      x-child-product-name: 'Admin API'
+      x-group-name: 'FIDO2 Services'
+      x-proxy-name: 'Enable/Disable FIDO2'
       requestBody:
         content:
           application/json:
