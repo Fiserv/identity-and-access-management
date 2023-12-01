@@ -146,17 +146,17 @@
         - title: Application Onboarding
           link: docs/admin-api/application-onboarding.md
         - title: Risk Services
-          link: docs/admin-api/risk-services/getting-started-risk-api.md
+          link: docs/admin-api/ciam-mfa/risk-services/getting-started-risk-api.md
           sections:
             - title: Create Policy
-              link: docs/admin-api/risk-services/create-risk-policy.md
+              link: docs/admin-api/ciam-mfa/risk-services/create-risk-policy.md
             - title: Delete Risk Policy by ID
-              link: docs/admin-api/risk-services/delete-risk-policy.md
+              link: docs/admin-api/ciam-mfa/risk-services/delete-risk-policy.md
             - title: Get Risk Policy
-              link: docs/admin-api/risk-services/get-risk-policy-by-id.md
+              link: docs/admin-api/ciam-mfa/risk-services/get-risk-policy-by-id.md
             - title: Retreive All Risk Policies
-              link: docs/admin-api/risk-services/retrieve-all-risk-policies.md
+              link: docs/admin-api/ciam-mfa/risk-services/retrieve-all-risk-policies.md
             - title: Update Risk Policy
-              link: docs/admin-api/risk-services/update-risk-policy.md
+              link: docs/admin-api/ciam-mfa/risk-services/update-risk-policy.md
             - title: Risk Service Config
-              link: docs/admin-api/risk-services/risk-service-configuration.md
+              link: docs/admin-api/ciam-mfa/risk-services/enable-risk.md
