@@ -1,4 +1,4 @@
-## Unpair FIDO2 Device
+## Unpair TOTP Device
 
 This API is used to unpair any device registered for TOTP authentication.
 
