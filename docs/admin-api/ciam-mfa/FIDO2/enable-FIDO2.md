@@ -9,7 +9,7 @@ titles: Request, Response
 
 Endpoint to enable/disable FIDO2 service **:**
 
-**Put app-reg/v1/fido2Service/ServiceAccount/Sa2l0bvhz/config**
+**Put app-reg/v1/fido2Service/ServiceAccount/{{svc_acc}}/config**
 
 Payload **:**
 
@@ -27,14 +27,20 @@ Payload **:**
 type: tab
 -->
 
-### 201-Created Response example
+### 200-OK Response example
 
 **If enableFIDO2 is true in payload**
 
-FIDO2 Service has been now enabled for your application.
+```json
+{
+    "message": "FIDO2 Service has been now enabled for your application."
+}
 
 **If enableFIDO2 is false in payload**
 
-FIDO2 Service has been now disabled for your application.
+```json
+{
+    "message": "FIDO2 Service has been now disabled for your application."
+}
 
 <!-- type: tab-end -->
