@@ -3,24 +3,8 @@
 
 - If user gets disbale by any reason, app team should ensure to unpair all regsitred FODO2 devices.
 
-- This API will help to de-registared FIDO2 Devices  for a specific user.
+- For FIDO2 device unpairing, follow: [ Unpair FIDO2 Device ](./FIDO2/unpair-FIDO2-device.md)
+
+- For TOTP device unpairing, follow: [ Unpair TOTP Device ](./TOTP-unpair-device.md)
 
 
-<!--
-type: tab
-titles: Request, Response
--->
-
-Endpoint to unpair MFA device **:**
-
-**GET /ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}/all**
-
-### No payload 
-
-<!--
-type: tab
--->
-
-### Response: 204 No Response
-
-<!-- type: tab-end -->

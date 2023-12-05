@@ -20,7 +20,7 @@ paths:
         username. Request required username in the path and response body will
         have array of  devices. Each array object will have an individual device
         information consisting of deviceType , deviceName, CreateDate.
-      x-group-name: 'MFA'
+      x-group-name: 'CIAM-MFA'
       x-proxy-name: 'Get Devices'
       x-default-example: Devices
       tags:
@@ -66,7 +66,7 @@ paths:
       summary: Add  User device.
       description: >-
         Operation to register user MFA device.
-      x-group-name: 'MFA'
+      x-group-name: 'CIAM-MFA'
       x-proxy-name: 'Add MFA Device'
       x-default-example: TOTP 
       requestBody:
@@ -189,12 +189,55 @@ paths:
         Device is activated and registered using TOTP displayed on the
         authenticator application.
       x-proxy-name: Register Device
-      x-group-name: MFA 
+      x-group-name: CIAM-MFA 
       x-default-example: TOTP
+  /ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/{device_name}:
+    get:
+      tags:
+        - unpair TOTP device endpoint
+      parameters:
+        - name: user_name
+          description: >-
+            Username of the user unpairing the device. This should be similar
+            to username used during registration
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: device_type
+          description: >-
+            The type of the device to be unpaired.
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: device_name
+          description: The name of the device that need to be unpaired
+          schema:
+            type: string
+          in: path
+          required: true
+      responses:
+        '204': 
+          description: No Response
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+      operationId: unpairDevice
+      summary: Unpair TOTP device
+      description: >-
+        Unpair the device
+      x-proxy-name: Unpair TOTP Device
+      x-group-name: CIAM-MFA
   /ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/all:
     get:
       tags:
-        - unpair device endpoint
+        - unpair FIDO2 device endpoint
       parameters:
         - name: user_name
           description: >-
@@ -223,11 +266,11 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
       operationId: unpairDevice
-      summary: Unpair  device
+      summary: Unpair FIDO2 device
       description: >-
         Unpair the device
-      x-proxy-name: Unpair Device
-      x-group-name: MFA
+      x-proxy-name: Unpair FIDO2 Device
+      x-group-name: CIAM-MFA
   /deviceAuthentications:
     post:
       requestBody:
@@ -291,7 +334,7 @@ paths:
         device registration  refer device registration API. The response returns
         a  authentication ID that is required for the next steps in the flow.
         The response also includes a status and message.
-      x-group-name: MFA
+      x-group-name: CIAM-MFA
       x-proxy-name: Initialize Authentication
       x-default-example: EmailAuthentication
   /deviceAuthentications/{authId}:
@@ -353,7 +396,7 @@ paths:
         a specified device and submits it as a step in the authentication
         process. Prerequisite is to call Initialize device authentication to get
         a {{authID}} for the endpoint.
-      x-group-name: MFA
+      x-group-name: CIAM-MFA
       x-proxy-name: Validate Authentication
   /riskEvaluations:
     post:
@@ -429,7 +472,7 @@ paths:
       summary: Authenticate FIDO2 Device
       description: >- 
         This api is used to validate the assertion used in the multi-factor authentication flow.
-      x-group-name: MFA
+      x-group-name: CIAM-MFA
       x-proxy-name: Authenticate FIDO2 Device
       requestBody:
         content:
@@ -462,7 +505,7 @@ paths:
       summary: Device details about FIDO
       description: >-
         Checks if user is registered for FIDO for the given device; and if user has activated any device for FIDO.
-      x-group-name: MFA
+      x-group-name: CIAM-MFA
       x-proxy-name: isFIDORegistered
       x-default-example: Devices
       tags:
