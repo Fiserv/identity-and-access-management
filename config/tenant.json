@@ -24,7 +24,7 @@
       "version": "1.0.0",
       "versionType": "minor",
       "releaseNotesPath": "docs/release-notes/2022/march.md",
-      "apiSpecFileNames": [ "MFA/openapi", "MFA/openapi2" ]
+      "apiSpecFileNames": [ "MFA/openapi" ]
     },
 	{
       "version": "2.0.0",

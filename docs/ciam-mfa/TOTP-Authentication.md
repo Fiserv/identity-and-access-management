@@ -43,8 +43,8 @@ titles: Request, Response
 ```json
 {
 	"userName":"demouser",
-    "deviceName": "mydevice",
-    "deviceType": "TOTP"
+  "deviceName": "mydevice",
+  "deviceType": "TOTP"
 }
 ```
 <!--
