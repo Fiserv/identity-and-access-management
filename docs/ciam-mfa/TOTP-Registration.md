@@ -103,7 +103,7 @@ type: tab
 
 - API to complete device registration process.
 
-- After sucessfull  paring device activation is required for completing sevice registration.
+- After successfull paring device activation is required for completing sevice registration.
 
 - Authenticator app will device a code after pairing that will be sent in request for activation.
 

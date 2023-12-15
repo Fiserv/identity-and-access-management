@@ -30,6 +30,14 @@ To get an access token, the following must be true:
 
 - API will initiate  device authentication and return authId in response which will be required during  validation.  
 
+The payload parameters are as: 
+
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `userName` | *string* | &#10004; | General Name |
+| `deviceName` | *string* | &#10004; | Name of the device |
+| `deviceType` | *string* | &#10004; | Fixed(SECURITY_KEY) |
+
 <!--
 type: tab
 titles: Request, Response
@@ -236,12 +244,21 @@ function getCompatibility() {
 
 - This operation uses the application/vnd.pingidentity.assertion.check+json custom media type as the content type in the request header.
 
+Attributes used in payload of request are as:
+
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `origin` | *string* | &#10004; | App origin |
+| `attestation` | *string* | &#10004; | Object |
+
 <!--
 type: tab
 titles: Request, Response
 -->
 
-### Example of a check assetion request 
+**POST /ciam-mfa/v2/deviceAuthentications/{{authId}}**
+
+### Example of a check assertion request 
 
 
 ```json
