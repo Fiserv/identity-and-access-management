@@ -59,8 +59,9 @@ The payload parameters are as:
 | Variable | Type | Required | Description |
 | -------- | -----| -------  | ----------- |
 | `userName` | *string* | &#10004; | General Name |
-| `phoneNumber` | *string* | &#10004; | Mobile number of the user |
-| `deviceType` | *string* | &#10004; | Fixed(EMAIL) |
+| `phoneNumber` | *string* | &#10004; | Mobile number of the user or Email address|
+| `deviceType` | *string* | &#10004; | EMAIL or sms |
+
 <!--
 type: tab
 titles: Request, Response
@@ -72,7 +73,7 @@ titles: Request, Response
 {
     "userName": "jdoe",
     "phoneNumber": "+91-8212345212",
-    "deviceType": "EMAIL"
+    "deviceType": "sms"
 }
 ```
 <!--
