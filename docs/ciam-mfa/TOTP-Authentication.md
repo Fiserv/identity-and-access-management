@@ -29,7 +29,13 @@ To get an access token, the following must be true:
 
 API will initalize TOTP device authentication return authId in response which will be required during OTP validation.  
 
+The payload parameters are as: 
 
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `userName` | *string* | &#10004; | General Name |
+| `deviceName` | *string* | &#10004; | Name of the device |
+| `deviceType` | *string* | &#10004; | Fixed(TOTP) |
 
 <!--
 type: tab
@@ -43,8 +49,8 @@ titles: Request, Response
 ```json
 {
 	"userName":"demouser",
-    "deviceName": "mydevice",
-    "deviceType": "TOTP"
+  "deviceName": "mydevice",
+  "deviceType": "TOTP"
 }
 ```
 <!--
@@ -68,6 +74,11 @@ type: tab
 
 - API will HTTP code ,  status and message in response to the validation process.
 
+The payload parameters are as: 
+
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `OTP` | *string* | &#10004; | The OTP sent on TOTP device |
 <!--
 type: tab
 titles: Request, Response

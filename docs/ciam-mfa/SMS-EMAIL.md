@@ -54,6 +54,13 @@ API to initiate Second factor authentication by contacting the user using  email
 
 - API supports custom templates that can be configured during application onboarding process. Custom template will allow to customize email and SMS messaging.
 
+The payload parameters are as: 
+
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `userName` | *string* | &#10004; | General Name |
+| `phoneNumber` | *string* | &#10004; | Mobile number of the user or Email address|
+| `deviceType` | *string* | &#10004; | EMAIL or sms |
 
 <!--
 type: tab
@@ -62,14 +69,11 @@ titles: Request, Response
 
 ### Example of a request OTP  payload request using email 
 
-
-
 ```json
 {
     "userName": "jdoe",
-    "email": "jon.doe@gmail.com",
-    "deviceType": "EMAIL",
-    "templateName": "demotemplate"
+    "phoneNumber": "+91-8212345212",
+    "deviceType": "sms"
 }
 ```
 <!--
@@ -98,6 +102,11 @@ API to validate one-time passcode that was sent on email or SMS provided.
 
 - API will HTTP code ,  status and message in response to the validation process.
 
+The payload parameters are as: 
+
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `otp` | *string* | &#10004; | OTP received |
 <!--
 type: tab
 titles: Request, Response

@@ -85,7 +85,7 @@ type: tab
         "id": "app.fiserv.com",
         "name": "fiserv"
     },
-    "publicKeyCredentialCreationOptions": "{"rp":{"id":"pingone.com","name":"pingone.com"},"user":{"id":[-121,2,76,83,98,-86,-48,1,-114,31,-30,-9,116,52,-37,-78,68,-51,63,37,14,68,-112,56,-104,-7,-41,-116,-121,-46,-38,22],"displayName":"APM_NA_TEST_RUN_2102231126$demouser","name":"APM_NA_TEST_RUN_2102231126$demouser"},"challenge":[-19,41,45,-102,-21,109,-109,-125,32,121,-4,-78,-123,80,53,58,81,29,-111,81,75,11,-44,73,-81,90,4,42,-27,108,75,20],"pubKeyCredParams":[{"type":"public-key","alg":"-7"},{"type":"public-key","alg":"-37"},{"type":"public-key","alg":"-257"}],"timeout":120000,"excludeCredentials":[],"authenticatorSelection":{"residentKey":"required","requireResidentKey":true,"userVerification":"required"},"attestation":"none"}"
+    "publicKeyCredentialCreationOptions": "{"rp":{"id":"app.fiserv.com","name":"fiserv"},"user":{"id":[-121,2,76,83,98,-86,-48,1,-114,31,-30,-9,116,52,-37,-78,68,-51,63,37,14,68,-112,56,-104,-7,-41,-116,-121,-46,-38,22],"displayName":"APM_NA_TEST_RUN_2102231126$demouser","name":"APM_NA_TEST_RUN_2102231126$demouser"},"challenge":[-19,41,45,-102,-21,109,-109,-125,32,121,-4,-78,-123,80,53,58,81,29,-111,81,75,11,-44,73,-81,90,4,42,-27,108,75,20],"pubKeyCredParams":[{"type":"public-key","alg":"-7"},{"type":"public-key","alg":"-37"},{"type":"public-key","alg":"-257"}],"timeout":120000,"excludeCredentials":[],"authenticatorSelection":{"residentKey":"required","requireResidentKey":true,"userVerification":"required"},"attestation":"none"}"
 }
 
 ```
