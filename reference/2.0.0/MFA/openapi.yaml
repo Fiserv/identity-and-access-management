@@ -505,9 +505,9 @@ paths:
               examples:
                 User Not Registered:
                   $ref: '#/components/examples/isFIDO2RegisteredResponse1'
-                No Active FIDO Device:
+                No Active FIDO2 Device:
                   $ref: '#/components/examples/isFIDO2RegisteredResponse2'
-                Active FIDO Device:
+                Active FIDO2 Device:
                   $ref: '#/components/examples/isFIDO2RegisteredResponse3'
           description: Successful response
         '400':
@@ -531,7 +531,7 @@ paths:
       responses:
         '200':
           content:
-            application/json"
+            application/json:
               schema:
                 $ref: '#/components/schemas/TokenGenerationResponse'
               example:
