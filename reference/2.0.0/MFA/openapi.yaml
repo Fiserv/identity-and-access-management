@@ -343,7 +343,10 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ValidationRequest'
+              sms/email/TOTP:
+                $ref: '#/components/schemas/ValidationRequest'
+              FIDO2:
+                $ref: '#/components/schemas/AuthenticateFIDO2DevicePayload'
             examples:
               EmailAuthentication:
                 $ref: '#/components/examples/ValidationRequest'
@@ -354,6 +357,9 @@ paths:
               TOTPAuthentication:
                 $ref: '#/components/examples/ValidationRequest'
                 summary: TOTP  validation request
+              FIDO2:
+                $ref: '#/components/examples/AuthenticateFIDO2DevicePayload'
+                summary: FIDO2 validation request
         required: true
       tags:
         - device authentication
@@ -368,7 +374,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationResponse'
+                email/sms/TOTP:
+                  $ref: '#/components/schemas/ValidationResponse'
+                FIDO2:
+                  $ref: '#/components/schemas/AuthenticateDeviceFIDO2Response'
               examples:
                 EmailAuthentication:
                   $ref: '#/components/examples/ValidationResponse'
@@ -379,6 +388,9 @@ paths:
                 TOTPAuthentication:
                   $ref: '#/components/examples/ValidationResponse'
                   summary: TOTP otp validation response
+                FIDO2:
+                  $ref: '#/components/examples/AuthenticateDeviceFIDO2Response'
+                  summary: FIDO2 authentication response 
           description: Successful operation.
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -465,41 +477,6 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 
-  /deviceAuthentications/{authId}:
-    post:
-      tags:
-        - V2
-      summary: Authenticate FIDO2 Device
-      description: >- 
-        This api is used to validate the assertion used in the multi-factor authentication flow.
-      x-group-name: CIAM-MFA
-      x-proxy-name: Authenticate FIDO2 Device
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AuthenticateFIDO2DevicePayload'
-            examples:
-              FIDO2:
-                $ref: '#/components/examples/AuthenticateFIDO2DevicePayload'
-      responses:
-        '200':
-          description: OK
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/AuthenticateDeviceFIDO2Response'
-              examples:
-                FIDO2:
-                  $ref: '#/components/examples/AuthenticateDeviceFIDO2Response'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '500':
-          $ref: '#/components/responses/ServerError'
   /users/{username}/isFidoRegistered/{rpId}:
     get:
       summary: FIDO2 Device registration info
@@ -659,6 +636,8 @@ components:
       properties:
         otp:
           format: password
+          type: string
+        deviceType:
           type: string
     ValidationResponse:
       properties:
