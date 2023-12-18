@@ -343,10 +343,9 @@ paths:
         content:
           application/json:
             schema:
-              sms/email/TOTP:
-                $ref: '#/components/schemas/ValidationRequest'
-              FIDO2:
-                $ref: '#/components/schemas/AuthenticateFIDO2DevicePayload'
+              oneOf:
+                - $ref: '#/components/schemas/ValidationRequest'
+                - $ref: '#/components/schemas/AuthenticateFIDO2DevicePayload'
             examples:
               EmailAuthentication:
                 $ref: '#/components/examples/ValidationRequest'
@@ -374,10 +373,9 @@ paths:
           content:
             application/json:
               schema:
-                email/sms/TOTP:
-                  $ref: '#/components/schemas/ValidationResponse'
-                FIDO2:
-                  $ref: '#/components/schemas/AuthenticateDeviceFIDO2Response'
+                oneOf:
+                  - $ref: '#/components/schemas/ValidationResponse'
+                  - $ref: '#/components/schemas/AuthenticateDeviceFIDO2Response'
               examples:
                 EmailAuthentication:
                   $ref: '#/components/examples/ValidationResponse'
