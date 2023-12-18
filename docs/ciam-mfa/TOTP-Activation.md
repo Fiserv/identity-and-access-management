@@ -58,6 +58,8 @@ type: tab
 titles: Request, Response
 -->
 
+**POST /users/{username}/mfadevices**
+
 ### Example of a request OTP  payload request using email 
 
 ```json
@@ -111,15 +113,25 @@ type: tab
 
 - API will HTTP code,  status and message in response to the validation process. 
 
+The payload parameters are as: 
+
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `DeviceType` | *string* | &#10004; | Fixed(TOTP) |
+| `OTP` | *string* | &#10004; | The OTP sent on TOTP device |
+
 <!--
 type: tab
 titles: Request, Response
 -->
 
+**POST /users/{username}/mfadevices/{authId}**
+
 ### Example of a validation request
 
 ```json
- {
+{
+  "deviceType":"TOTP",
   "otp": "523471"
 }
 ```

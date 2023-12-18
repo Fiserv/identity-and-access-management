@@ -49,7 +49,7 @@
          link: docs/ciam-mfa/TOTP.md
          sections:
           - title: TOTP Device Registration 
-            link: docs/ciam-mfa/TOTP-Registration.md
+            link: docs/ciam-mfa/TOTP-Activation.md
             type: recipe
           - title: Authentication using TOTP device
             link: docs/ciam-mfa/TOTP-Authentication.md

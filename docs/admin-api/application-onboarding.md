@@ -18,6 +18,8 @@ type: tab
 titles: Request, Response
 -->
 
+**POST /app-reg/v2/registerapp**
+
 ### Payload to Register App
 
 ```json

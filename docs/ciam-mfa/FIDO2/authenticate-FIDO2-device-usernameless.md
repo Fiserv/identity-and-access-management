@@ -1,5 +1,5 @@
 ## Authenticate FIDO2 Device - usernameless
-FIDO2 authentication flow is multistep process as depicted below.
+FIDO2 usernameless authentication flow is multistep process as depicted below.
 
 ---  
 

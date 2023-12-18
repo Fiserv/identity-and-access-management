@@ -2,17 +2,8 @@
 
 - Access tokens are credential strings that represent authorization to access a protected resource. Applications obtain access tokens by making OAuth connect requests to an authorization server; CIAM Provisioning API resource servers require clients to authenticate using access tokens. Access tokens are obtained from the token endpoint (when using the client credentials grant type).
 
-- Scopes are used to grant an application different levels of access to data on behalf of the end user. Each API may declare one or more scopes. 
+- You need to provide client id and client secret and choose client_credentials grant type to generate the access token.
 
-<!--theme: info -->
-Here are the list of allowed scopes:
-- application.client 
-Application client scope for allowed CIAM Provisioning API.
-
-- application.client domain.manage
-Application client scope allowed for Delete of App Owned Domain.
-
----
 
 There are steps required at the application-side that should meet the below criteria:  
 - Can make http/REST calls.
@@ -21,21 +12,21 @@ There are steps required at the application-side that should meet the below crit
 
 - Has the registered application details.
 
+The below table identifies the parameter required for `Application Token Mapping`.
 
-## Getting an access token 
+| Variable | Type | Value | Required | Description |
+| -------- | -- |------------| ------- | ---- |
+| `grant_type` | *string* | client_credentials | &#10004; |  grant type determines the exact sequence of steps that are involved in the OAuth process. |
+| `client_id` | *string* | which is received on mail | &#10004; | The cient id which is received while onboarding the application |
+| `client_secret` | *string* | which is received on mail | &#10004; | The cient secret which is received while onboarding the application |
+
 
 <!--
 type: tab
 titles: Request, Response
 -->
 
-The below table identifies the parameter required for `Application Token Mapping`.
-
-| Variable | Type | Value | Required | Description |
-| -------- | -- |------------| ------- | ---- |
-| `grant_type` | *string* | client_credentials | &#10004; |  grant type determines the exact sequence of steps that are involved in the OAuth process. |
-| `scope` | *string* | application.client domain.manage | &#10004; |  scope defines the access level for the generated token. |
-
+**POST /ciam-mfa/v2/get/token**
 
 <!--
 type: tab
