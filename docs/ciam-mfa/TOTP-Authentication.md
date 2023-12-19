@@ -42,9 +42,9 @@ type: tab
 titles: Request, Response
 -->
 
+**POST /ciam-mfa/v2/deviceAuthentications**
+
 ### Example of a request OTP  payload request using email 
-
-
 
 ```json
 {
@@ -78,16 +78,20 @@ The payload parameters are as:
 
 | Variable | Type | Required | Description |
 | -------- | -----| -------  | ----------- |
+| `DeviceType` | *string* | &#10004; | Fixed(TOTP) |
 | `OTP` | *string* | &#10004; | The OTP sent on TOTP device |
 <!--
 type: tab
 titles: Request, Response
 -->
 
+**POST /ciam-mfa/v2/deviceAuthentications/{{authId}}**
+
 ### Example of a validation request
 
 ```json
- {
+{
+  "deviceType":"TOTP",
   "otp": "523471"
 }
 ```

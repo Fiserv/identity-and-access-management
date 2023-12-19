@@ -1,29 +1,29 @@
 ## Update Risk Policy by PolicyId   
 
 API to update any existing risk policy. The policyId of the risk to be updated is provided as path parameter, and the update is provided as payload of the request.
-<!--
-type: tab
-titles: Request, Response
--->
 
 The below table identifies the parameter required
 
 | Variable | Type | Maximum Length | Required | Description |
 | -------- | -- |------------| ------- | ---- |
 | `policyId` | *string* | - | &#10004; | A unique ID used to identify the policy. |
-
-### Payload that represents the Updated Policy
-
-The payload parameters are as: 
-
-| Variable | Type | Value | Required | Description |
-| -------- | -- |------------| ------- | ---- |
 | `weightBasedPolicy` | *boolean* | true/false | - | If risk to be determined is weight based or score based |
 | `appID` | *string* | apm name | &#10004; | Id of the policy |
 | `overriddenPredictors` | *list* | list of risk object | - | Specifies critical risks or priority risks |
 | `aggregatedPredictors` | *list* | list of score/weight based risk object | - | Specifies score or weights of different risks | 
 | `minMaxScoresPerRiskLevel` | *list* | object | - | assign risk based on score/weights interval |
 | `defaultRiskLevel` | *string* | default value | &#10004; | sets the default value |
+
+<!--
+type: tab
+titles: Request, Response
+-->
+
+**PUT /group/{groupid}/riskPolicy/{policyId}**
+
+### Payload that represents the Updated Policy
+
+The payload parameters are as: 
 
 ```json
 {

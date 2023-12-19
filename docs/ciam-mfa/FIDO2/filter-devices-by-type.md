@@ -11,7 +11,7 @@ type: tab
 titles: Request, Response
 -->
 
-### Example Payload to Authenticate Device
+### Example Payload to check device type
 
 ##### No Payload required
 

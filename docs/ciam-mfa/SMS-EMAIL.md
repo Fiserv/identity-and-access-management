@@ -67,6 +67,8 @@ type: tab
 titles: Request, Response
 -->
 
+**POST /ciam-mfa/v2/deviceAuthentications**
+
 ### Example of a request OTP  payload request using email 
 
 ```json
@@ -100,7 +102,7 @@ API to validate one-time passcode that was sent on email or SMS provided.
 
 - API will authId in path and otp in the body to complete the validation.
 
-- API will HTTP code ,  status and message in response to the validation process.
+- API will HTTP code, status and message in response to the validation process.
 
 The payload parameters are as: 
 
@@ -111,6 +113,8 @@ The payload parameters are as:
 type: tab
 titles: Request, Response
 -->
+
+**POST: /ciam-mfa/v2/deviceAuthentications/{{authId}}**
 
 ### Example of a validation request
 

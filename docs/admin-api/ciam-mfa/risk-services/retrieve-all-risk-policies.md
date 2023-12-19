@@ -6,6 +6,8 @@ type: tab
 titles: Request, Response
 -->
 
+**GET /group/{groupid}/riskPolicy**
+
 #### No Payload to Retreive all Policies
 <!--
 type: tab

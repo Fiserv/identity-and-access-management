@@ -248,6 +248,7 @@ Attributes used in payload of request are as:
 
 | Variable | Type | Required | Description |
 | -------- | ---- | -------- | ----------- |
+| `deviceType` | *string* | &#10004; | SECURITY_KEY |
 | `origin` | *string* | &#10004; | App origin |
 | `attestation` | *string* | &#10004; | Object |
 
@@ -263,6 +264,7 @@ titles: Request, Response
 
 ```json
 {
+    "deviceType": "SECURITY_KEY",
     "origin": "https://app.pingone.com",
     "assertion": "{{assertionFromBrowser}}"
 }

@@ -137,7 +137,7 @@ paths:
             examples:
               TOTP:
                 $ref: '#/components/examples/TOTPDeviceRegistrationRequest'
-                summary: TOTP  Device registration request
+                summary: TOTP  Device activation request
               FIDO2:
                 $ref: '#/components/examples/ActivateFIDO2Request'
                 summary: API to activate the device specified in the request URL. 
@@ -183,12 +183,12 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'
-      operationId: registerDevice
-      summary: Register  device
+      operationId: activateDevice
+      summary: Activate device
       description: >-
         Device is activated and registered using TOTP displayed on the
         authenticator application.
-      x-proxy-name: Register Device
+      x-proxy-name: Activate Device
       x-group-name: CIAM-MFA 
       x-default-example: TOTP
   /ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/{device_name}:
@@ -292,7 +292,7 @@ paths:
                 $ref: '#/components/examples/FIDO2AuthenticationRequest'
         required: true
       tags:
-        - device authentication
+        -  initialize device authentication
       responses:
         '201':
           content:
@@ -343,7 +343,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ValidationRequest'
+              oneOf:
+                - $ref: '#/components/schemas/ValidationRequest'
+                - $ref: '#/components/schemas/AuthenticateFIDO2DevicePayload'
             examples:
               EmailAuthentication:
                 $ref: '#/components/examples/ValidationRequest'
@@ -354,6 +356,9 @@ paths:
               TOTPAuthentication:
                 $ref: '#/components/examples/ValidationRequest'
                 summary: TOTP  validation request
+              FIDO2:
+                $ref: '#/components/examples/AuthenticateFIDO2DevicePayload'
+                summary: FIDO2 validation request
         required: true
       tags:
         - device authentication
@@ -368,7 +373,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationResponse'
+                oneOf:
+                  - $ref: '#/components/schemas/ValidationResponse'
+                  - $ref: '#/components/schemas/AuthenticateDeviceFIDO2Response'
               examples:
                 EmailAuthentication:
                   $ref: '#/components/examples/ValidationResponse'
@@ -379,6 +386,9 @@ paths:
                 TOTPAuthentication:
                   $ref: '#/components/examples/ValidationResponse'
                   summary: TOTP otp validation response
+                FIDO2:
+                  $ref: '#/components/examples/AuthenticateDeviceFIDO2Response'
+                  summary: FIDO2 authentication response 
           description: Successful operation.
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -465,44 +475,9 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 
-  /deviceAuthentications/00d6df92-16c6-4bfb-9ff7-27e6d2b91349:
-    post:
-      tags:
-        - V2
-      summary: Authenticate FIDO2 Device
-      description: >- 
-        This api is used to validate the assertion used in the multi-factor authentication flow.
-      x-group-name: CIAM-MFA
-      x-proxy-name: Authenticate FIDO2 Device
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AuthenticateFIDO2DevicePayload'
-            examples:
-              FIDO2:
-                $ref: '#/components/examples/AuthenticateFIDO2DevicePayload'
-      responses:
-        '200':
-          description: OK
-          content:
-            text/plain:
-              schema:
-                $ref: '#/components/schemas/AuthenticateDeviceFIDO2Response'
-              examples:
-                FIDO2:
-                  $ref: '#/components/examples/AuthenticateDeviceFIDO2Response'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
-        '500':
-          $ref: '#/components/responses/ServerError'
-  /users/{username}/isFidoRegistered:
+  /users/{username}/isFidoRegistered/{rpId}:
     get:
-      summary: Device details about FIDO
+      summary: FIDO2 Device registration info
       description: >-
         Checks if user is registered for FIDO for the given device; and if user has activated any device for FIDO.
       x-group-name: CIAM-MFA
@@ -528,9 +503,9 @@ paths:
               examples:
                 User Not Registered:
                   $ref: '#/components/examples/isFIDO2RegisteredResponse1'
-                No Active FIDO Device:
+                No Active FIDO2 Device:
                   $ref: '#/components/examples/isFIDO2RegisteredResponse2'
-                Active FIDO Device:
+                Active FIDO2 Device:
                   $ref: '#/components/examples/isFIDO2RegisteredResponse3'
           description: Successful response
         '400':
@@ -541,10 +516,55 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'
-
+  /ciam-mfa/v2/get/token:
+    post:
+      summary: generate access token
+      x-group-name: CIAM-MFA
+      x-proxy-name: Generate OAuth Token
+      x-default-example: Devices
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenGenerationRequest'
+            example:
+              $ref: '#/components/examples/TokenGenerationRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenGenerationResponse'
+              example:
+                $ref: '#/components/examples/TokenGenerationResponse'
+          description: Successful Repsonse
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
    
 components:
   schemas:
+    TokenGenerationRequest:
+      properties:
+        grant_type: 
+          type: string
+        client_id:
+          type: string
+        client_secret:
+          type: string
+    TokenGenerationResponse:
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
     ErrorResponse:
       properties:
         error:
@@ -617,6 +637,8 @@ components:
       properties:
         otp:
           format: password
+          type: string
+        deviceType:
           type: string
     ValidationResponse:
       properties:
@@ -785,6 +807,16 @@ components:
       description: An unexpected internal server error occurred.
       x-model-version: 1
   examples:
+    TokenGenerationRequest:
+      value:
+        grant_type: "client_credentials"
+        client_id: "harsh"
+        client_secret: "harsh123"
+    TokenGenerationResponse:
+      value:
+        access_token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IkZKS1VxQUxyQU9kVTQ0eWlNRS1WUlFLSDJrbyIsInBpLmF0bSI6Im51ZDMifQ.eyJzY29wZSI6IiIsImF1dGhvcml6YXRpb25fZGV0YWlscyI6W10sImNsaWVudF9pZCI6IlM4anl3a3lvMCIsImlzcyI6Imh0dHBzOi8vZmRjLWZlZHNzby1kZXYuMWRjLmNvbSIsImV4cCI6MTcwMjg5ODgxNH0.eK0QQQe2HUJ-7Hs3Apk_DbXwOFHE-weZRttVAvQ8zVRmxKHfMG5Oqw6ey_VBw4CKt0RSPfMvtNFSaz56Krgg2uLvYo88qlbmkFEozJVr1SFpO5D785lGxPV8bDB-v3pd3W-Z6DFqe4KrQzaxjUvGzlArst3s3wfCkm6W0XEsjgHdYQHYvE5mf_CTH8-Vr98ypv62hk7oHNRUbRlJ9wH9DiRqxNCp2zMhlE__m1yac09FANz7jXolQwgfZj0w0PiNJhu7-n-cK0nUzQ496iskTiu6NaJvwh4XoTBUbLf8DRxVru7qrr50dgCGDMQ8tGGZnu__3WMFFckeogJ68RmAIA"
+        token_type: "Bearer"
+        expires_in: 7199 
     DeviceList:
       value:
         - deviceType: TOTP

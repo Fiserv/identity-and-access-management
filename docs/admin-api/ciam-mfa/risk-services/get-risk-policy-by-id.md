@@ -1,17 +1,19 @@
 ## Get Risk Policy by ID
 
 API to get any specific policy. Provide the policyId as path parameter in the request to get the policy.
+
+The below table explains about the path parameter:
+
+| Variable | Type | Maximum Length | Required | Description |
+| -------- | -- |------------| ------- | ---- |
+| `policyId` | *string* | - | &#10004; | A unique ID used to identify the policy. |
+
 <!--
 type: tab
 titles: Request, Response
 -->
 
-
-The below table identifies the parameter required
-
-| Variable | Type | Maximum Length | Required | Description |
-| -------- | -- |------------| ------- | ---- |
-| `policyId` | *string* | - | &#10004; | A unique ID used to identify the policy. |
+**GET /group/{groupid}/riskPolicy/{policyId}**
 
 
 <!--

@@ -1,9 +1,5 @@
 ## Create Risk Policy
 API to create new Risk Policy. Critical risks are mentioned under overridenPredictors and score to risks are given under aggregatedPredictors.
-<!--
-type: tab
-titles: Request, Response
--->
 
 Parameters Used in Payload of request are as:
 
@@ -15,6 +11,13 @@ Parameters Used in Payload of request are as:
 | `aggregatedPredictors` | *list* | list of score/weight based risk object | - | Specifies score or weights of different risks | 
 | `minMaxScoresPerRiskLevel` | *list* | object | - | assign risk based on score/weights interval |
 | `defaultRiskLevel` | *string* | default value | &#10004; | sets the default value |
+
+<!--
+type: tab
+titles: Request, Response
+-->
+
+**POST /group/{groupid}/riskPolicy**
 
 ### Payload to Create Risk Policy
 
