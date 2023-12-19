@@ -78,7 +78,7 @@
             link: docs/ciam-mfa/FIDO2/authenticate-FIDO2-device-usernameless.md
             type: recipe    
           - title: MFA Device - Check Device Type
-            link: docs/ciam-mfa/FIDO2/check-device-type.md
+            link: docs/ciam-mfa/FIDO2/filter-devices-by-type.md
             type: recipe
           - title: Is FIDO Registered
             link: docs/ciam-mfa/FIDO2/is-FIDO-Registered.md
