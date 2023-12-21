@@ -9,7 +9,7 @@ titles: Request, Response
 
 Endpoint to enable/disable FIDO2 service **:**
 
-[Put app-reg/v1/fido2Service/ServiceAccount/{{svc_acc}}/config](../)
+[Put app-reg/v1/fido2Service/ServiceAccount/{{svc_acc}}/config](./api/?type=put&path=/app-reg/v1/fido2Service/ServiceAccount/{svc_acc}/config&branch=develop&version=2.0.0)
 
 Payload **:**
 
