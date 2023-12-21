@@ -275,7 +275,7 @@ paths:
           schema: 
             type: string
       x-child-product-name: 'Admin API'
-      x-group-name: 'Risk Services'
+      x-group-name: 'FIDO2'
       x-proxy-name: 'Enable/Disable FIDO2'
       requestBody:
         content:
