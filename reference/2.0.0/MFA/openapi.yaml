@@ -50,7 +50,7 @@ paths:
                 Devices:
                   $ref: '#/components/examples/DeviceList'
                   summary: List of Devices
-                Filtered Devices:
+                Filtered TOTP Devices:
                   $ref: '#/components/examples/TypeFilteredDeviceList'
           description: Successful response
         '400':
@@ -292,7 +292,7 @@ paths:
                 $ref: '#/components/examples/FIDO2AuthenticationRequest'
         required: true
       tags:
-        -  initialize device authentication
+        -  initiate device authentication
       responses:
         '201':
           content:
@@ -335,7 +335,7 @@ paths:
         a  authentication ID that is required for the next steps in the flow.
         The response also includes a status and message.
       x-group-name: CIAM-MFA
-      x-proxy-name: Initialize Authentication
+      x-proxy-name: Initiate Authentication
       x-default-example: EmailAuthentication
   /deviceAuthentications/{authId}:
     post:

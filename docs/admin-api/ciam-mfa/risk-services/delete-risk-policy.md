@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response
 -->
 
-**DELETE /group/{groupid}/riskPolicy/{policyId}**
+**DELETE** [/group/{groupid}/riskPolicy/{policyId}](../api/?type=delete&path=/group/{groupid}/riskPolicy/{policyId}&version=2.0.0)
 
 #### No payload required
 

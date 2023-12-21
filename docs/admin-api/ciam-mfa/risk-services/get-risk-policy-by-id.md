@@ -13,7 +13,7 @@ type: tab
 titles: Request, Response
 -->
 
-**GET /group/{groupid}/riskPolicy/{policyId}**
+**GET** [/group/{groupid}/riskPolicy/{policyId}](../api/?type=get&path=/group/{groupid}/riskPolicy/{policyId}&version=2.0.0)
 
 
 <!--

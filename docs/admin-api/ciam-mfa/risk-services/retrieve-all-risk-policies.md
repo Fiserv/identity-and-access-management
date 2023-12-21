@@ -6,7 +6,7 @@ type: tab
 titles: Request, Response
 -->
 
-**GET /group/{groupid}/riskPolicy**
+**GET** [/group/{groupid}/riskPolicy](../api/?type=get&path=/group/{groupid}/riskPolicy&version=2.0.0)
 
 #### No Payload to Retreive all Policies
 <!--

@@ -15,7 +15,7 @@ type: tab
 titles: Request, Response
 -->
 
-**PUT /riskService/ServiceAccount/{svcAccount}/config**
+**PUT** [/riskService/ServiceAccount/{svcAccount}/config](../api/?type=put&path=/riskService/ServiceAccount/{svcAccount}/config&version=2.0.0)
 
 ### Payload to enable risk service
 
