@@ -17,7 +17,7 @@ type: tab
 titles: Request, Response
 -->
 
-**POST /group/{groupid}/riskPolicy**
+**POST** [/group/{groupid}/riskPolicy](../api/?type=post&path=/group/{groupid}/riskPolicy&version=2.0.0)
 
 ### Payload to Create Risk Policy
 

@@ -46,7 +46,7 @@ titles: Request, Response
 -->
 Endpoint to inititate device authentication **:**
 
-**POST /ciam-mfa/v2/users/deviceAuthentications**
+**POST** [/ciam-mfa/v2/users/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
 
 Payload to inititate device authentication **:**
 
