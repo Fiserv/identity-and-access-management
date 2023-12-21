@@ -46,7 +46,7 @@ titles: Request, Response
 -->
 Endpoint to inititate device registration **:**
 
-**POST /ciam-mfa/v2/users/{{username}}/mfadevices**
+**POST** [/ciam-mfa/v2/users/{{username}}/mfadevices](../api/?type=post&path=/users/{username}/mfadevices&version=2.0.0)
 
 Payload to inititate device registration **:**
 

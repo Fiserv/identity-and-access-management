@@ -15,7 +15,7 @@ titles: Request, Response
 
 Endpoint to get MFA devices **:**
 
-**GET /ciam-mfa/v2/users/{{username}}/isFidoRegistered/{{rpId}}**
+**GET** [/ciam-mfa/v2/users/{{username}}/isFidoRegistered/{{rpId}}](../api/?type=get&path=/users/{username}/isFidoRegistered/{rpId}&version=2.0.0)
 
 ### Example Payload to Authenticate Device
 
