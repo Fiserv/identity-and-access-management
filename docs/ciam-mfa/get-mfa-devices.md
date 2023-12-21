@@ -10,7 +10,7 @@ titles: Request, Response
 
 Endpoint to get MFA devices **:**
 
-**GET /ciam-mfa/v2/users/{{username}}/mfadevices**
+**GET** [/ciam-mfa/v2/users/{{username}}/mfadevices](../api/?type=get&path=/users/{username}/mfadevices&version=2.0.0)
 
 ### No Payload since it is a GET call
 
