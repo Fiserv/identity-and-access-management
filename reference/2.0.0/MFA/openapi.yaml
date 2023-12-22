@@ -528,7 +528,8 @@ paths:
             schema:
               $ref: '#/components/schemas/TokenGenerationRequest'
             examples:
-              $ref: '#/components/examples/TokenGenerationRequest'
+              TokenGeneration:
+                $ref: '#/components/examples/TokenGenerationRequest'
       responses:
         '200':
           content:
@@ -536,7 +537,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/TokenGenerationResponse'
               examples:
-                $ref: '#/components/examples/TokenGenerationResponse'
+                TokenGeneration:
+                  $ref: '#/components/examples/TokenGenerationResponse'
           description: Successful Repsonse
         '400':
           $ref: '#/components/responses/BadRequest'
