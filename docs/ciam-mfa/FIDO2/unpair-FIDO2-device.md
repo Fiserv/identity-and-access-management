@@ -7,9 +7,11 @@ type: tab
 titles: Request, Response
 -->
 
-Endpoint to unpair MFA device **:**
+Endpoint **:**
 
-**GET** [/ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}/all](../api/?type=get&path=/ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/all&branch=develop&version=2.0.0)
+**GET** [/ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}/all](../api/?type=get&path=/ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/all&version=2.0.0)
+
+Payload **:**
 
 ### No payload 
 

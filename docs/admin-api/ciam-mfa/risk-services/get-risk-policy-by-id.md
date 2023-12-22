@@ -13,9 +13,13 @@ type: tab
 titles: Request, Response
 -->
 
+Endpoint **:**
+
 **GET** [/group/{groupid}/riskPolicy/{policyId}](../api/?type=get&path=/group/{groupid}/riskPolicy/{policyId}&version=2.0.0)
 
+Payload **:**
 
+#### No payload required
 <!--
 type: tab
 -->

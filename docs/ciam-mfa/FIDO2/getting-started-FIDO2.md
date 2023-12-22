@@ -14,13 +14,13 @@
 <!-- type: card
 title: Register FIDO2 Device
 description: Registering Device for FIDO2 authentication
-link: ?path=docs/ciam-mfa/FIDO2/Register/register-FIDO2-device.md
+link: ?path=docs/ciam-mfa/FIDO2/register-FIDO2-device.md
 -->
 
 <!-- type: card
 title:  FIDO2 Authentication
-description: Authentication usign FIDO2
-link: ?path=docs/ciam-mfa/Authenticate/initiate-FIDO2-Device-auth.md
+description: Authentication using FIDO2
+link: ?path=docs/ciam-mfa/FIDO2/authenticate-FIDO2-device.md
 -->
 
 <!-- type: row-end -->

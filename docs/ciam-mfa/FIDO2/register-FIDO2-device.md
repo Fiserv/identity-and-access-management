@@ -44,11 +44,11 @@ To get an access token, the following must be true:
 type: tab
 titles: Request, Response
 -->
-Endpoint to inititate device registration **:**
+Endpoint **:**
 
 **POST** [/ciam-mfa/v2/users/{{username}}/mfadevices](../api/?type=post&path=/users/{username}/mfadevices&version=2.0.0)
 
-Payload to inititate device registration **:**
+Payload **:**
 
 ```json
 {

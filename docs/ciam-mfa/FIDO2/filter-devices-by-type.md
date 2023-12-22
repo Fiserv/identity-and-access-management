@@ -11,9 +11,11 @@ type: tab
 titles: Request, Response
 -->
 
-**GET** [/ciam-mfa/v1/users/{{username}}/mfadevices?type=TOTP](./api/?type=get&path=/users/{username}/mfadevices&version=2.0.0)
+Endpoint **:**
 
-### Example Payload to check device type
+**GET** [/ciam-mfa/v1/users/{{username}}/mfadevices?type=TOTP](../api/?type=get&path=/users/{username}/mfadevices&branch=develop&version=2.0.0)
+
+Payload **:**
 
 ##### No Payload required
 

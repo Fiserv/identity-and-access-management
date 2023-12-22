@@ -7,7 +7,7 @@ type: tab
 titles: Request, Response
 -->
 
-Endpoint to enable/disable FIDO2 service **:**
+Endpoint **:**
 
 **Put** [app-reg/v1/fido2Service/ServiceAccount/{{svc_acc}}/config](../api/?type=put&path=/app-reg/v1/fido2Service/ServiceAccount/{svc_acc}/config&version=2.0.0)
 

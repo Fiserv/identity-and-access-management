@@ -27,9 +27,11 @@ type: tab
 titles: Request, Response
 -->
 
+Endpoint **:**
+
 **POST** [{{base_url}}/ciam-mfa/v2/get/token](../api/?type=post&path=/ciam-mfa/v2/get/token&version=2.0.0)
 
-Payload :
+Payload **:**
 
 ```json
 {

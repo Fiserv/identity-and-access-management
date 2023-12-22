@@ -284,11 +284,11 @@ type: tab
 titles: Request, Response
 -->
 
-Endpoint for  validate assertion **:**
+Endpoint **:**
 
-**POST /ciam-mfa/v2/users/deviceAuthentications/{authId}**
+**POST** [{{base_url}}/ciam-mfa/v2/users/deviceAuthentications/{authId}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
 
-Payload for validate assertion **:**
+Payload **:**
 
 
 ```json
