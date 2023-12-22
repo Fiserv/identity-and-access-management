@@ -67,7 +67,7 @@ type: tab
 titles: Request, Response
 -->
 
-**POST /ciam-mfa/v2/deviceAuthentications**
+**POST** [{{base_url}}/ciam-mfa/v2/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
 
 ### Example of a request OTP  payload request using email 
 
@@ -114,7 +114,7 @@ type: tab
 titles: Request, Response
 -->
 
-**POST: /ciam-mfa/v2/deviceAuthentications/{{authId}}**
+**POST** [{{base_url}}/ciam-mfa/v2/deviceAuthentications/{{authId}}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
 
 ### Example of a validation request
 

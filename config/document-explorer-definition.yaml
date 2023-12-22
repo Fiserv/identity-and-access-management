@@ -36,15 +36,11 @@
     sections:
        - title: Generate Access Token
          link: docs/ciam-mfa/oauth-token-generation.md
-       - title: Risk Evaluations
-         link: docs/ciam-mfa/risk-evaluation.md
+       - title: Get MFA Devices
+         link: docs/ciam-mfa/get-mfa-devices.md
        - link: docs/ciam-mfa/SMS-EMAIL.md
          title: MFA using SMS/EMAIL
          type: recipe
-       - title: Unpair MFA Device
-         link: docs/ciam-mfa/unpair-mfa-device.md
-       - title: Get MFA Devices
-         link: docs/ciam-mfa/get-mfa-devices.md
        - title: MFA using TOTP 
          link: docs/ciam-mfa/TOTP.md
          sections:
@@ -86,10 +82,14 @@
           - title: Unpair FIDO2 Device
             link: docs/ciam-mfa/FIDO2/unpair-FIDO2-device.md
             type: recipe
+       - title: Unpair MFA Device
+         link: docs/ciam-mfa/unpair-mfa-device.md
+       - title: Risk Evaluations
+         link: docs/ciam-mfa/risk-evaluation.md
   - title: CIAM Provisioning API
     link: docs/ciam-provisioning/getting-started-provisioning-api.md
     sections:
-        - title: Generate Access Token
+        - title: Access Token
           link: docs/ciam-provisioning/oauth-token-generation.md
         - title: Application Onboarding
           link: docs/ciam-provisioning/Application/application-setup.md

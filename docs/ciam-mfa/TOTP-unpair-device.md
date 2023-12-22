@@ -9,7 +9,7 @@ titles: Request, Response
 
 Endpoint to unpair TOTP device **:**
 
-**GET /ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}/{{device_name}}**
+**GET** [{{base_url}}/ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}/{{device_name}}](../api/?type=get&path=/ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/{device_name}&version=2.0.0)
 
 ### No payload 
 

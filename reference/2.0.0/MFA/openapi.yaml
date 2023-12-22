@@ -520,23 +520,25 @@ paths:
     post:
       summary: generate access token
       x-group-name: CIAM-MFA
-      x-proxy-name: Generate OAuth Token
+      x-proxy-name: Access Token
       x-default-example: Devices
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/TokenGenerationRequest'
-            example:
-              $ref: '#/components/examples/TokenGenerationRequest'
+            examples:
+              TokenGeneration:
+                $ref: '#/components/examples/TokenGenerationRequest'
       responses:
         '200':
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/TokenGenerationResponse'
-              example:
-                $ref: '#/components/examples/TokenGenerationResponse'
+              examples:
+                TokenGeneration:
+                  $ref: '#/components/examples/TokenGenerationResponse'
           description: Successful Repsonse
         '400':
           $ref: '#/components/responses/BadRequest'
