@@ -58,7 +58,7 @@ type: tab
 titles: Request, Response
 -->
 
-**POST /users/{username}/mfadevices**
+**POST** [{{base_url}}/users/{username}/mfadevices](../api/?type=post&path=/users/{username}/mfadevices&version=2.0.0)
 
 ### Example of a request OTP  payload request using email 
 
@@ -125,7 +125,7 @@ type: tab
 titles: Request, Response
 -->
 
-**POST /users/{username}/mfadevices/{authId}**
+**POST** [{{base_url}}/users/{username}/mfadevices/{authId}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
 
 ### Example of a validation request
 

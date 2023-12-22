@@ -520,7 +520,7 @@ paths:
     post:
       summary: generate access token
       x-group-name: CIAM-MFA
-      x-proxy-name: Generate OAuth Token
+      x-proxy-name: Access Token
       x-default-example: Devices
       requestBody:
         content:

@@ -35,7 +35,7 @@ type: tab
 titles: Request, Response
 -->
 
-**POST /ciam-mfa/v2/riskEvaluations**
+**POST** [{{base_url}}/ciam-mfa/v2/riskEvaluations](../api/?type=post&path=/riskEvaluations&version=2.0.0)
 
 ### Payload that represents the Risk Evaluation
 
