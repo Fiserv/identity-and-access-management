@@ -2,8 +2,9 @@
 
 - Access tokens are credential strings that represent authorization to access a protected resource. Applications obtain access tokens by making OAuth connect requests to an authorization server; CIAM Provisioning API resource servers require clients to authenticate using access tokens. Access tokens are obtained from the token endpoint (when using the client credentials grant type).
 
-- You need to provide client id and client secret and choose client_credentials grant type to generate the access token.
+- You need to provide client_id, client_secret and grant_type(fixed, "client_credential") as request payload.
 
+- To get client_id and client_secret, onboard your application through CIAM self service portal, you will receive these credential as mail.
 
 There are steps required at the application-side that should meet the below criteria:  
 - Can make http/REST calls.
@@ -27,6 +28,15 @@ titles: Request, Response
 -->
 
 **POST** [/ciam-mfa/v2/get/token](../api/?type=post&path=/ciam-mfa/v2/get/token&version=2.0.0)
+
+Payload :
+
+```json
+{
+    "grant_type":"client_credential",
+    "client_id":"Sfq5hn4nf",
+    "client_secret":"S^7j|)v,Zd"
+}
 
 <!--
 type: tab
