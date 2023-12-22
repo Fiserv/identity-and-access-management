@@ -34,7 +34,7 @@
   - title: CIAM MFA
     link: docs/getting-started-mfa.md
     sections:
-       - title: Generate Access Token
+       - title: Access Token
          link: docs/ciam-mfa/oauth-token-generation.md
        - title: Get MFA Devices
          link: docs/ciam-mfa/get-mfa-devices.md
