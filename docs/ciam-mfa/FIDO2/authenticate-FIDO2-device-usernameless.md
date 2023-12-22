@@ -44,11 +44,11 @@ To get an access token, the following must be true:
 type: tab
 titles: Request, Response
 -->
-Endpoint to inititate device authentication **:**
+Endpoint **:**
 
 **POST** [/ciam-mfa/v2/users/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
 
-Payload to inititate device authentication **:**
+**Payload :**
 
 ```json
 {
@@ -292,7 +292,7 @@ Endpoint **:**
 
 **POST** [/ciam-mfa/v2/users/deviceAuthentications/{authId}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
 
-Payload **:**
+**Payload** **:**
 
 
 ```json

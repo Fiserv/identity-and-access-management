@@ -85,7 +85,7 @@ paths:
       description: get application oauth client access token settings
     put:
       requestBody:
-        description: Payload that represents an access token mapping
+        description: **Payload** that represents an access token mapping
         content:
           application/json:
             schema:
@@ -319,7 +319,7 @@ paths:
       description: search application
     post:
       requestBody:
-        description: Payload that represents the Application to create
+        description: **Payload** that represents the Application to create
         content:
           application/json:
             schema:
@@ -473,7 +473,7 @@ paths:
     put:
       requestBody:
         description: >-
-          Payload with the data to update the existing group identified by the
+          **Payload** with the data to update the existing group identified by the
           applicationId param
         content:
           application/json:
@@ -653,7 +653,7 @@ paths:
       description: get application oauth client settings
     put:
       requestBody:
-        description: Payload that represents a role
+        description: **Payload** that represents a role
         content:
           application/json:
             schema:
@@ -759,7 +759,7 @@ paths:
     put:
       requestBody:
         description: >-
-          Payload with the data to update the existing user identified by the
+          **Payload** with the data to update the existing user identified by the
           userId param
         content:
           application/json:
@@ -919,7 +919,7 @@ paths:
     put:
       requestBody:
         description: >-
-          Payload with the data to update the existing service account
+          **Payload** with the data to update the existing service account
           identified by the accountId param
         content:
           application/json:
@@ -1075,7 +1075,7 @@ paths:
     put:
       requestBody:
         description: >-
-          Payload with the data to update the existing Domain identified by the
+          **Payload** with the data to update the existing Domain identified by the
           domainId param
         content:
           application/json:
@@ -1254,7 +1254,7 @@ paths:
       description: search Domain
     post:
       requestBody:
-        description: Payload that represents the Domain to create
+        description: **Payload** that represents the Domain to create
         content:
           application/json:
             schema:
@@ -1412,7 +1412,7 @@ paths:
       description: list all users of domain
     post:
       requestBody:
-        description: Payload that represents a user
+        description: **Payload** that represents a user
         content:
           application/json:
             schema:
@@ -1555,7 +1555,7 @@ paths:
       description: list all service accounts of domain
     post:
       requestBody:
-        description: Payload that represents a service account
+        description: **Payload** that represents a service account
         content:
           application/json:
             schema:

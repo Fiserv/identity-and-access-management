@@ -17,7 +17,7 @@ Endpoint **:**
 
 **GET** [{{base_url}}/ciam-mfa/v2/users/{{username}}/isFidoRegistered/{{rpId}}](../api/?type=get&path=/users/{username}/isFidoRegistered/{rpId}&version=2.0.0)
 
-Payload **:**
+**Payload** **:**
 
 ##### No Payload required
 

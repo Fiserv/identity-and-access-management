@@ -345,7 +345,7 @@ paths:
             schema:
               oneOf:
                 - $ref: '#/components/schemas/ValidationRequest'
-                - $ref: '#/components/schemas/AuthenticateFIDO2DevicePayload'
+                - $ref: '#/components/schemas/AuthenticateFIDO2Device**Payload**'
             examples:
               EmailAuthentication:
                 $ref: '#/components/examples/ValidationRequest'
@@ -357,7 +357,7 @@ paths:
                 $ref: '#/components/examples/ValidationRequest'
                 summary: TOTP  validation request
               FIDO2:
-                $ref: '#/components/examples/AuthenticateFIDO2DevicePayload'
+                $ref: '#/components/examples/AuthenticateFIDO2Device**Payload**'
                 summary: FIDO2 validation request
         required: true
       tags:
@@ -725,7 +725,7 @@ components:
           type: string
         response:
           type: object
-    AuthenticateFIDO2DevicePayload:
+    AuthenticateFIDO2Device**Payload**:
       properties:
         origin:
           type: string
@@ -956,7 +956,7 @@ components:
     ActivateFIDO2Response:
       value:
         status: ACTIVE
-    AuthenticateFIDO2DevicePayload:
+    AuthenticateFIDO2Device**Payload**:
       value:
         deviceType: FIDO2
         origin: app.fiserv.com

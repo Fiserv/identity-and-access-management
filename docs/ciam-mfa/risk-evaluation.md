@@ -39,7 +39,7 @@ Endpoint **:**
 
 **POST** [{{base_url}}/ciam-mfa/v2/riskEvaluations](../api/?type=post&path=/riskEvaluations&version=2.0.0)
 
-Payload **:**
+**Payload** **:**
 
 ```json
 {

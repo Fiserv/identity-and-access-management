@@ -11,7 +11,7 @@ Endpoint **:**
 
 **GET** [/ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}/all](../api/?type=get&path=/ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/all&version=2.0.0)
 
-Payload **:**
+**Payload** **:**
 
 ### No payload 
 

@@ -48,7 +48,7 @@ Endpoint **:**
 
 **POST** [/ciam-mfa/v2/users/{{username}}/mfadevices](../api/?type=post&path=/users/{username}/mfadevices&version=2.0.0)
 
-Payload **:**
+**Payload** **:**
 
 ```json
 {
@@ -265,11 +265,11 @@ type: tab
 titles: Request, Response
 -->
 
-Endpoint to activate device **:**
+Endpoint **:**
 
-**POST /ciam-mfa/v2/users/{{username}}/mfadevices/{{authId}}**
+**POST** [/ciam-mfa/v2/users/{{username}}/mfadevices/{{authId}}](../api/?type=post&path=/users/{username}/mfadevices/{authId}&version=2.0.0)
 
-Payload to activate device **:**
+**Payload** **:**
 
 ```json
 {

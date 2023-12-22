@@ -46,7 +46,7 @@ Endpoint **:**
 
 **POST** [{{base_url}}/ciam-mfa/v2/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
 
-Payload **:** 
+**Payload** **:** 
 
 ```json
 {
@@ -91,7 +91,7 @@ Endpoint **:**
 
 **POST** [{{base_url}}/ciam-mfa/v2/deviceAuthentications/{{authId}}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
 
-Payload **:**
+**Payload** **:**
 
 ```json
 {

@@ -9,7 +9,7 @@ Endpoint **:**
 
 **POST** [/app-reg/admin/v1/registerapp](../api/?type=post&path=/app-reg/admin/v1/registerapp&version=2.0.0)
 
-Payload **:**
+**Payload** **:**
 
 The payload parameters are as: 
 
