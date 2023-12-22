@@ -45,22 +45,13 @@
          link: docs/ciam-mfa/TOTP.md
          sections:
           - title: TOTP Device Registration 
-            link: docs/ciam-mfa/TOTP-Activation.md
+            link: docs/ciam-mfa/TOTP-Registration.md
             type: recipe
           - title: Authentication using TOTP device
             link: docs/ciam-mfa/TOTP-Authentication.md
             type: recipe
           - title: Unpair TOTP device
             link: docs/ciam-mfa/TOTP-unpair-device.md
-       - link: docs/ciam-mfa/yubikey.md
-         title: MFA using Yubikey 
-         sections:
-          - title: Yubikey Device registration 
-            link: docs/ciam-mfa/yubikey-pairing.md
-            type: recipe
-          - title: Authentication using YubiKey
-            link: docs/ciam-mfa/yubikey-authentication.md
-            type: recipe
        - title: MFA using FIDO2
          link: docs/ciam-mfa/FIDO2/getting-started-FIDO2.md
          sections: 

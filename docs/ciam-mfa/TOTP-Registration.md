@@ -24,7 +24,7 @@ To Verify user using TOTP, first step required is to  register Time-based One-ti
 
 - [Step 3: Device pairing](#step-3-device-pairing)
 
-- [Step 4: Register TOTP device](#step-4-register-totp-device)  
+- [Step 4: Validate OTP](#step-4-validate-otp)  
 
 
 ---
@@ -58,9 +58,11 @@ type: tab
 titles: Request, Response
 -->
 
+Endpoint **:**
+
 **POST** [{{base_url}}/users/{username}/mfadevices](../api/?type=post&path=/users/{username}/mfadevices&version=2.0.0)
 
-### Example of a request OTP  payload request using email 
+Payload **:** 
 
 ```json
 {
@@ -101,7 +103,7 @@ type: tab
 - Option: 2 provides a better user experience where application should create a QR code using registration URI returned within  Step -1  API  response. To enable MFA, user should use their  mobile devices authenticator app to scan generated  QR code. 
 
 
-## Step 4: Register TOTP device 
+## Step 4: Validate OTP 
 
 - API to complete device registration process.
 
@@ -125,9 +127,11 @@ type: tab
 titles: Request, Response
 -->
 
+Endpoint **:**
+
 **POST** [{{base_url}}/users/{username}/mfadevices/{authId}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
 
-### Example of a validation request
+Payload **:**
 
 ```json
 {

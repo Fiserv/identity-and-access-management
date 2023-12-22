@@ -21,7 +21,7 @@ paths:
         have array of  devices. Each array object will have an individual device
         information consisting of deviceType , deviceName, CreateDate.
       x-group-name: 'CIAM-MFA'
-      x-proxy-name: 'Get Devices'
+      x-proxy-name: 'Get MFA Devices'
       x-default-example: Devices
       tags:
         - device endpoint definition
@@ -63,11 +63,11 @@ paths:
           $ref: '#/components/responses/ServerError'
     post:
       operationId: createMFADevice
-      summary: Add  User device.
+      summary: Create MFA device.
       description: >-
         Operation to register user MFA device.
       x-group-name: 'CIAM-MFA'
-      x-proxy-name: 'Add MFA Device'
+      x-proxy-name: 'Create MFA Device'
       x-default-example: TOTP 
       requestBody:
         description: Request object of a device.
@@ -335,7 +335,7 @@ paths:
         a  authentication ID that is required for the next steps in the flow.
         The response also includes a status and message.
       x-group-name: CIAM-MFA
-      x-proxy-name: Initiate Authentication
+      x-proxy-name: Request OTP
       x-default-example: EmailAuthentication
   /deviceAuthentications/{authId}:
     post:
@@ -407,7 +407,7 @@ paths:
         process. Prerequisite is to call Initialize device authentication to get
         a {{authID}} for the endpoint.
       x-group-name: CIAM-MFA
-      x-proxy-name: Validate Authentication
+      x-proxy-name: Validate OTP
   /riskEvaluations:
     post:
       tags:
@@ -518,7 +518,7 @@ paths:
           $ref: '#/components/responses/ServerError'
   /ciam-mfa/v2/get/token:
     post:
-      summary: generate access token
+      summary: Generate access token
       x-group-name: CIAM-MFA
       x-proxy-name: Access Token
       x-default-example: Devices
