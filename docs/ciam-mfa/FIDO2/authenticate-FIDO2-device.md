@@ -40,6 +40,15 @@ To get an access token, the following must be true:
 
 - Refer API explorer -> MFA -> Authenticate FIDO2 Device.
 
+
+Attributes used in payload of request are as:
+
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `userName` | *string* | &#10004; | userName |
+| `rpID` | *string* | &#10004; | URL |
+| `deviceType` | *string* | &#10004; | Authentication Device |
+
 <!--
 type: tab
 titles: Request, Response
@@ -48,7 +57,7 @@ Endpoint to inititate device authentication **:**
 
 **POST** [/ciam-mfa/v2/users/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
 
-Payload to inititate device authentication **:**
+Payload **:**
 
 ```json
 {
@@ -58,13 +67,6 @@ Payload to inititate device authentication **:**
 }
 ```
 
-Attributes used in payload of request are as:
-
-| Variable | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| `userName` | *string* | &#10004; | userName |
-| `rpID` | *string* | &#10004; | URL |
-| `deviceType` | *string* | &#10004; | Authentication Device |
 
 <!--
 type: tab
