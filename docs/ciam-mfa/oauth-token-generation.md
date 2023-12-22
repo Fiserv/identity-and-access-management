@@ -37,6 +37,7 @@ Payload :
     "client_id":"Sfq5hn4nf",
     "client_secret":"S^7j|)v,Zd"
 }
+```
 
 <!--
 type: tab
