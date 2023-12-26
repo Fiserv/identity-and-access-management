@@ -10,11 +10,11 @@ titles: Request, Response
 
 Endpoint **:**
 
-**GET** [/ciam-mfa/v2/users/{{username}}/mfadevices](../api/?type=get&path=/users/{username}/mfadevices&version=2.0.0)
+**GET** [{{base_url}}/ciam-mfa/v2/users/{{username}}/mfadevices](../api/?type=get&path=/users/{username}/mfadevices&version=2.0.0)
 
 **Payload** **:**
 
-### No **Payload** since it is a GET call
+### No Payload since it is a GET call
 
 <!--
 type: tab

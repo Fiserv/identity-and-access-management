@@ -46,7 +46,7 @@ titles: Request, Response
 -->
 Endpoint **:**
 
-**POST** [/ciam-mfa/v2/users/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
+**POST** [{{base_url}}/ciam-mfa/v2/users/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
 
 **Payload :**
 
@@ -290,7 +290,7 @@ titles: Request, Response
 
 Endpoint **:**
 
-**POST** [/ciam-mfa/v2/users/deviceAuthentications/{authId}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
+**POST** [{{base_url}}/ciam-mfa/v2/users/deviceAuthentications/{authId}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
 
 **Payload** **:**
 

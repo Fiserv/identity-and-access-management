@@ -45,13 +45,13 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/MFADevice'
+                  $ref: '#/components/schemas/RegisteredMFADevicesList'
               examples:
                 Devices:
-                  $ref: '#/components/examples/DeviceList'
+                  $ref: '#/components/examples/RegisteredMFADevicesList'
                   summary: List of Devices
                 Filtered TOTP Devices:
-                  $ref: '#/components/examples/TypeFilteredDeviceList'
+                  $ref: '#/components/examples/TypeFilteredRegisteredDevicesList'
           description: Successful response
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -74,16 +74,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MFADevice'
+              $ref: '#/components/schemas/CreateMFADevicePayload'
             examples:
               TOTP:
-                $ref: '#/components/examples/TOTPDeviceAddRequest'
+                $ref: '#/components/examples/CreateTOTPDevicePayload'
                 summary: Request to add TOTP Devices. Request body requires deviceType and deviceName as additional attribute.
               YubiKey:
-                $ref: '#/components/examples/YubiKeyDeviceAddRequest'
+                $ref: '#/components/examples/CreateYubikeyDevicePayload'
                 summary: Request to add TOTP Devices. Request body requires deviceType,  deviceName as additional attribute along with Relying party domain information
               FIDO2:
-                $ref: '#/components/examples/FIDO2DeviceAddRequest'
+                $ref: '#/components/examples/CreateFIDO2DevicePayload'
         required: true
       tags:
         - device creation endpoint definition
@@ -99,24 +99,24 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MFADevice'
+                $ref: '#/components/schemas/CreateMFADeviceResponse'
               examples:
                 TOTP:
-                  $ref: '#/components/examples/TOTPDeviceAddResponse'
+                  $ref: '#/components/examples/CreateTOTPDeviceResponse'
                   summary: Response returns a  authentication ID that
                         is required for the next steps in the flow to validate and activate the
                         device for authentication.  Response also returns registration URI that
                         will be a  string that specifies the authenticator key URI (for example,
                         otpauth://totp/abc@example.com?secret={secretValue}.
                 YubiKey:
-                  $ref: '#/components/examples/YubiKeyDeviceAddResponse'
+                  $ref: '#/components/examples/CreateYubikeyDeviceResponse'
                   summary: Response returns a  authentication ID that
                         is required for the next steps in the flow to validate and activate the
                         device for authentication.  Response also returns registration URI that
                         will be a  string that specifies the authenticator key URI (for example,
                         otpauth://totp/abc@example.com?secret={secretValue}.
                 FIDO2:
-                  $ref: '#/components/examples/FIDO2DeviceAddResponse'
+                  $ref: '#/components/examples/CreateFIDO2DeviceResponse'
           description: Created
         '400':
           $ref: '#/components/responses/BadRequest'
@@ -133,13 +133,13 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RegistrationRequest'
+              $ref: '#/components/schemas/ActivateDevicePayload'
             examples:
               TOTP:
-                $ref: '#/components/examples/TOTPDeviceRegistrationRequest'
+                $ref: '#/components/examples/ActivateTOTPDevicePayload'
                 summary: TOTP  Device activation request
               FIDO2:
-                $ref: '#/components/examples/ActivateFIDO2Request'
+                $ref: '#/components/examples/ActivateFIDO2DevicePayload'
                 summary: API to activate the device specified in the request URL. 
         required: true
       tags:
@@ -166,13 +166,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RegistrationResponse'
+                $ref: '#/components/schemas/ActivateDeviceResponse'
               examples:
                 TOTP:
-                  $ref: '#/components/examples/TOTPDeviceRegistrationResponse'
+                  $ref: '#/components/examples/ActivateTOTPDeviceResponse'
                   summary: TOTP Device registration request
                 FIDO2:
-                  $ref: '#/components/examples/ActivateFIDO2Response'
+                  $ref: '#/components/examples/ActivateFIDO2DeviceResponse'
                   summary: Displays activate status
           description: Successful Response
         '400':
@@ -277,19 +277,19 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AuthenticationRequest'
+              $ref: '#/components/schemas/InitiateAuthenticationPayload'
             examples:
               EmailAuthentication:
-                $ref: '#/components/examples/EmailAuthenticationRequest'
+                $ref: '#/components/examples/InitiateEmailAuthenticationPayload'
                 summary: Email authentication request
               SMSAuthentication:
-                $ref: '#/components/examples/SmsAuthenticationRequest'
+                $ref: '#/components/examples/InitiateSmsAuthenticationPayload'
                 summary: SMS authentication request
               TOTPAuthentication:
-                $ref: '#/components/examples/TotpAuthenticationRequest'
+                $ref: '#/components/examples/InitiateTotpAuthenticationPayload'
                 summary: TOTP authentication request
               FIDO2Authentication:
-                $ref: '#/components/examples/FIDO2AuthenticationRequest'
+                $ref: '#/components/examples/InitiateFIDO2AuthenticationPayload'
         required: true
       tags:
         -  initiate device authentication
@@ -298,19 +298,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationResponse'
+                $ref: '#/components/schemas/InitiateAuthenticationResponse'
               examples:
                 EmailAuthentication:
-                  $ref: '#/components/examples/EmailAuthenticationResponse'
+                  $ref: '#/components/examples/InitiateEmailAuthenticationResponse'
                   summary: Email authentication response
                 SMSAuthentication:
-                  $ref: '#/components/examples/SmsAuthenticationResponse'
+                  $ref: '#/components/examples/InitiateSmsAuthenticationResponse'
                   summary: SMS authentication response
                 TOTPAuthentication:
-                  $ref: '#/components/examples/TotpAuthenticationResponse'
+                  $ref: '#/components/examples/InitiateTotpAuthenticationResponse'
                   summary: TOTP authentication response
                 FIDO2Authentication:
-                  $ref: '#/components/examples/FIDO2AuthenticationResponse'
+                  $ref: '#/components/examples/InitiateFIDO2AuthenticationResponse'
                   summary: FIDO2 authentication response
           description: Successfully created.
         '400':
@@ -321,8 +321,8 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'
-      operationId: initializeDeviceAuthentication
-      summary: Initialize Device Authentication
+      operationId: initiateDeviceAuthentication
+      summary: Initiate Device Authentication
       description: >-
         The POST deviceAuthentications operation initiates an MFA device
         authentication flow.  Operation supports authentication using SMS, EMAIL
@@ -343,21 +343,19 @@ paths:
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: '#/components/schemas/ValidationRequest'
-                - $ref: '#/components/schemas/AuthenticateFIDO2Device**Payload**'
+              $ref: '#/components/schemas/AuthenticatePayload'
             examples:
               EmailAuthentication:
-                $ref: '#/components/examples/ValidationRequest'
+                $ref: '#/components/examples/AuthenticatePayload'
                 summary: Email otp validation request
               SMSAuthentication:
-                $ref: '#/components/examples/ValidationRequest'
+                $ref: '#/components/examples/AuthenticatePayload'
                 summary: SMS otp validation request
               TOTPAuthentication:
-                $ref: '#/components/examples/ValidationRequest'
+                $ref: '#/components/examples/AuthenticatePayload'
                 summary: TOTP  validation request
               FIDO2:
-                $ref: '#/components/examples/AuthenticateFIDO2Device**Payload**'
+                $ref: '#/components/examples/AuthenticateFIDO2DevicePayload'
                 summary: FIDO2 validation request
         required: true
       tags:
@@ -373,21 +371,19 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: '#/components/schemas/ValidationResponse'
-                  - $ref: '#/components/schemas/AuthenticateDeviceFIDO2Response'
+                $ref: '#/components/schemas/AuthenticateResponse'
               examples:
                 EmailAuthentication:
-                  $ref: '#/components/examples/ValidationResponse'
+                  $ref: '#/components/examples/AuthenticateResponse'
                   summary: Email otp validation response
                 SMSAuthentication:
-                  $ref: '#/components/examples/ValidationResponse'
+                  $ref: '#/components/examples/AuthenticateResponse'
                   summary: SMS otp validation response
                 TOTPAuthentication:
-                  $ref: '#/components/examples/ValidationResponse'
+                  $ref: '#/components/examples/AuthenticateResponse'
                   summary: TOTP otp validation response
                 FIDO2:
-                  $ref: '#/components/examples/AuthenticateDeviceFIDO2Response'
+                  $ref: '#/components/examples/AuthenticateFIDO2DeviceResponse'
                   summary: FIDO2 authentication response 
           description: Successful operation.
         '400':
@@ -407,7 +403,7 @@ paths:
         process. Prerequisite is to call Initialize device authentication to get
         a {{authID}} for the endpoint.
       x-group-name: CIAM-MFA
-      x-proxy-name: Validate OTP
+      x-proxy-name: Authenticate Device
   /riskEvaluations:
     post:
       tags:
@@ -422,7 +418,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RiskRequest'
+              $ref: '#/components/schemas/RiskPayload'
       responses:
         '201':
           content:
@@ -452,7 +448,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RiskRequest'
+              $ref: '#/components/schemas/RiskPayload'
       parameters:
         - name: riskEvaluationID
           in: path
@@ -521,15 +517,15 @@ paths:
       summary: Generate access token
       x-group-name: CIAM-MFA
       x-proxy-name: Access Token
-      x-default-example: Devices
+      x-default-example: TokenGeneration
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TokenGenerationRequest'
+              $ref: '#/components/schemas/TokenGenerationPayload'
             examples:
               TokenGeneration:
-                $ref: '#/components/examples/TokenGenerationRequest'
+                $ref: '#/components/examples/TokenGenerationPayload'
       responses:
         '200':
           content:
@@ -551,7 +547,7 @@ paths:
    
 components:
   schemas:
-    TokenGenerationRequest:
+    TokenGenerationPayload:
       properties:
         grant_type: 
           type: string
@@ -578,7 +574,7 @@ components:
           type: string
         timestamp:
           type: string
-    RegistrationRequest:
+    AuthenticatePayload:
       properties:
         deviceType:
           $ref: '#/components/schemas/Type'
@@ -589,7 +585,7 @@ components:
         otp:
           format: password
           type: string
-    RegistrationResponse:
+    AuthenticateResponse:
       properties:
         status:
           type: string
@@ -609,7 +605,7 @@ components:
           type: string
         name:
           type: string
-    AuthenticationRequest:
+    InitiateAuthenticationPayload:
       properties:
         userName:
           type: string
@@ -627,7 +623,7 @@ components:
           example: emailTemplate
         rpId:
           type: string
-    AuthenticationResponse:
+    InitiateAuthenticationResponse:
       properties:
         authId:
           type: string
@@ -635,20 +631,9 @@ components:
           type: string
         message:
           type: string
-    ValidationRequest:
-      properties:
-        otp:
-          format: password
+        publicKeyCredentialRequestOptions:
           type: string
-        deviceType:
-          type: string
-    ValidationResponse:
-      properties:
-        status:
-          type: string
-        message:
-          type: string
-    RiskRequest:
+    RiskPayload:
       properties:
         appId:
           type: string
@@ -676,7 +661,7 @@ components:
           type: string
         evaluationId:
           type: string
-    MFADevice:
+    RegisteredMFADevicesList:
       properties:
         authId:
           type: string
@@ -705,39 +690,15 @@ components:
           type: string
         rp.name:
           type: string
-    InitiateAuthResponse:
+    ActivateFIDO2Response:
       properties:
-        authId:
+        status:
           type: string
+    AuthenticateFIDO2DeviceResponse:
+      properties:
         status:
           type: string
         message:
-          type: string
-        publicKeyCredentialRequestOptions:
-          type: string
-    ActivateFIDO2Response:
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-        rawId:
-          type: string
-        response:
-          type: object
-    AuthenticateFIDO2Device**Payload**:
-      properties:
-        origin:
-          type: string
-        assertion:
-          type: string
-    AuthenticateDeviceFIDO2Response:
-      properties:
-        deviceType:
-          type: string
-        origin:
-          type: string
-        assertion:
           type: string
     CreateDeviceFIDO2Response:
       properties:
@@ -759,6 +720,33 @@ components:
           type: string
         message:
           type: string
+    CreateMFADevicePayload:
+      properties:
+        deviceType:
+          type: string
+        deviceName:
+          type: string
+    CreateMFADeviceResponse:
+      properties:
+        authId:
+          type: string
+        deviceType:
+          type: string
+        status:
+          type: string
+        deviceName:
+          type: string
+        secret:
+          type: string
+        registrationUri:
+          type: string
+    ActivateDevicePayload:
+      properties:
+        deviceType:
+          type: string
+        otp: 
+          type: string
+
   responses:
     BadRequest:
       content:
@@ -809,7 +797,7 @@ components:
       description: An unexpected internal server error occurred.
       x-model-version: 1
   examples:
-    TokenGenerationRequest:
+    TokenGenerationPayload:
       value:
         grant_type: "client_credentials"
         client_id: "harsh"
@@ -819,7 +807,7 @@ components:
         access_token: "eyJhbGciOiJSUzI1NiIsImtpZCI6IkZKS1VxQUxyQU9kVTQ0eWlNRS1WUlFLSDJrbyIsInBpLmF0bSI6Im51ZDMifQ.eyJzY29wZSI6IiIsImF1dGhvcml6YXRpb25fZGV0YWlscyI6W10sImNsaWVudF9pZCI6IlM4anl3a3lvMCIsImlzcyI6Imh0dHBzOi8vZmRjLWZlZHNzby1kZXYuMWRjLmNvbSIsImV4cCI6MTcwMjg5ODgxNH0.eK0QQQe2HUJ-7Hs3Apk_DbXwOFHE-weZRttVAvQ8zVRmxKHfMG5Oqw6ey_VBw4CKt0RSPfMvtNFSaz56Krgg2uLvYo88qlbmkFEozJVr1SFpO5D785lGxPV8bDB-v3pd3W-Z6DFqe4KrQzaxjUvGzlArst3s3wfCkm6W0XEsjgHdYQHYvE5mf_CTH8-Vr98ypv62hk7oHNRUbRlJ9wH9DiRqxNCp2zMhlE__m1yac09FANz7jXolQwgfZj0w0PiNJhu7-n-cK0nUzQ496iskTiu6NaJvwh4XoTBUbLf8DRxVru7qrr50dgCGDMQ8tGGZnu__3WMFFckeogJ68RmAIA"
         token_type: "Bearer"
         expires_in: 7199 
-    DeviceList:
+    RegisteredMFADevicesList:
       value:
         - deviceType: TOTP
           deviceName: Google
@@ -829,58 +817,58 @@ components:
           deviceName: MSFT
           status: Active
           createdAt: 07/16/2022
-    TypeFilteredDeviceList:
+    TypeFilteredRegisteredDevicesList:
       value:
         - deviceType: TOTP
           deviceName: Google
           status: Active
           createdAt: 06/16/2022
-    ValidationRequest:
+    AuthenticatePayload:
       value:
         otp: '3423423'
-    ValidationResponse:
+    AuthenticateResponse:
       value:
         - status: Success
           message: 'OTP has been validated successfully '
-    EmailAuthenticationRequest:
+    InitiateEmailAuthenticationPayload:
       value:
         - userName: jdoe
           deviceType: EMAIL
           email: a@b.com
           deviceName: MyEmail
           templateName: emailTemplate
-    SmsAuthenticationRequest:
+    InitiateSmsAuthenticationPayload:
       value:
         - userName: jdoe
           deviceType: SMS
           email: 999-000-9999
           deviceName: MySMS
           templateName: SMSTemplate
-    TotpAuthenticationRequest:
+    InitiateTotpAuthenticationPayload:
       value:
         - userName: jdoe
           deviceType: TOTP
           deviceName: Google
-    TotpAuthenticationResponse:
+    InitiateTotpAuthenticationResponse:
       value:
         - authId: '654564645'
           status: Success
           message: OTP has been sent to the device
-    EmailAuthenticationResponse:
+    InitiateEmailAuthenticationResponse:
       value:
         - authId: '798798789'
           status: Success
           message: OTP has been sent to the device
-    SmsAuthenticationResponse:
+    InitiateSmsAuthenticationResponse:
       value:
         - authId: '798798789'
           status: Success
           message: OTP has been sent to the device
-    TOTPDeviceAddRequest:
+    CreateTOTPDevicePayload:
       value:
         deviceType: TOTP
         deviceName: Google
-    TOTPDeviceAddResponse:
+    CreateTOTPDeviceResponse:
       value:
         deviceType: TOTP
         deviceName: Google
@@ -889,14 +877,14 @@ components:
         registrationUri: >-
           otpauth://totp/tomjones@example.com?secret=BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
         secret: BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
-    YubiKeyDeviceAddRequest:
+    CreateYubikeyDevicePayload:
        value:
         deviceType: SECURITY_KEY
         deviceName: yubikey
         rpDomain: 
             id: pingone.com
             name: PingOne    
-    YubiKeyDeviceAddResponse:
+    CreateYubikeyDeviceResponse:
        value:
         deviceType: SECURITY_KEY
         deviceName: yubikey
@@ -905,14 +893,15 @@ components:
         registrationUri: >-
           otpauth://totp/tomjones@example.com?secret=BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
         secret: BYTUOYTTUPPTDNKEODND36NV7NA7S4D3
-    TOTPDeviceRegistrationRequest:
+    ActivateTOTPDevicePayload:
       value:
-         otp: '312312'
-    TOTPDeviceRegistrationResponse:
+          deviceType: 'TOTP'
+          otp: '312312'
+    ActivateTOTPDeviceResponse:
       value:
         - status: Success
           message: 'OTP has been validated successfully '
-    RiskRequest:
+    RiskPayload:
       value:
         appId: dummy_app
         ipConfig: '{{$randomIP}}'
@@ -931,18 +920,18 @@ components:
         riskLevel: HIGH
         riskScore: '75.0'
         evaluationId: 19fb4d99-3332-4c21-88c9-dc3cdb3df5e6
-    FIDO2AuthenticationRequest:
+    InitiateFIDO2AuthenticationPayload:
       value:
         userName: username
         rpID: app.fiserv.com
         deviceType: FIDO2
-    FIDO2AuthenticationResponse:
+    InitiateFIDO2AuthenticationResponse:
       value:
         authId: 038273f3-7d84-4c80-9477-99f88646797d
         status: SUCCESS
         message: Please generate the assertion with 'publicKeyCredentialRequestOptions' using Web Authentication API and authenticate FIDO device with assertion
         publicKeyCredentialRequestOptions: "{\"challenge\":[13,93,-97,-86,-108,28,22,-98,-9,-53,37,23,-105,-122,-64,-75,57,-88,-13,57,-112,96,-33,42,-119,-72,116,-94,95,-50,-42,99],\"timeout\":120000,\"rpId\":\"iam-demo.1dc.com\",\"allowCredentials\":[{\"type\":\"public-key\",\"id\":[-114,11,-40,2,-85,-109,-107,-126,-25,-5,-80,113,-9,-25,-24,-98,123,27,-25,-34,6,-66,65,-8,60,-88,-56,16,-78,88,-57,-29,0,-93,23,-50,61,-11,-31,-128,-62,-14,-43,-59,-52,33,-110,-127,-60,31,-26,36,-45,77,64,94,-83,56,3,87,-122,-31,94,-107]}],\"userVerification\":\"preferred\"}"
-    ActivateFIDO2Request:
+    ActivateFIDO2DevicePayload:
       value:
         deviceType: FIDO2
         origin: app.fiserv.com
@@ -953,10 +942,10 @@ components:
           response:
             clientDataJSON: eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRlIiwiY2hhbGxlbmdlIjoiUW4tV2V6SmRnRnoxYXp2Q3FDRW81Q0Y0Z3pEbGdsSEtZdnBBT1VmNHVITSIsIm9yaWdpbiI6Imh0dHBzOi8vaWFtLWRlbW8uMWRjLmNvbSIsImNyb3NzT3JpZ2luIjpmYWxzZX0=
             attestationObject: o2NmbXRkbm9uZWdhdHRTdG10oGhhdXRoRGF0YVjEWvc+/XkaVwxa012pCZWAzWXwWSy8IupI6+2BznkpxM5FAAAAAgAAAAAAAAAAAAAAAAAAAAAAQB6MxQidrcWgwk2DxJlpocACs8L3HC4TT3Cq+izO+11bS4GdLp2iW/j0WvHWglZ2H2rKHQdyjz168a4E5noWNOylAQIDJiABIVggy/inGDF9alhbIY072g8+ImX1kpYIocLm0yo1Pcri4b4iWCD9l1YQdWQJbOGSBMwy6huh0+6iPaUvCXfmN5a/Wo9FUA=="
-    ActivateFIDO2Response:
+    ActivateFIDO2DeviceResponse:
       value:
         status: ACTIVE
-    AuthenticateFIDO2Device**Payload**:
+    AuthenticateFIDO2DevicePayload:
       value:
         deviceType: FIDO2
         origin: app.fiserv.com
@@ -969,24 +958,18 @@ components:
             authenticatorData: Wvc+/XkaVwxa012pCZWAzWXwWSy8IupI6+2BznkpxM4FAAAACw==
             signature: MEYCIQDp7wBeYYv+02m56wbQaLUstoZWIDxpKI2IvmgeOMUHYQIhAP2W5tDVqKHAQbTsAAZzTdXD/px9ZOtYtIysZyKs4Ws7
             userHandle: ''" 
-    AuthenticateDeviceFIDO2Response:
+    AuthenticateFIDO2DeviceResponse:
       value:
-        id: jgvYAquTlYLn-7Bx9-fonnsb594GvkH4PKjIELJYx-MAoxfOPfXhgMLy1cXMIZKBxB_mJNNNQF6tOANXhuFelQ
-        rawId: jgvYAquTlYLn+7Bx9+fonnsb594GvkH4PKjIELJYx+MAoxfOPfXhgMLy1cXMIZKBxB/mJNNNQF6tOANXhuFelQ==
-        type: public-key
-        response:
-          clientDataJSON: eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiOHVVQTA2dVB1VFRGNmI2dkhXcTdkZWt6QVo3Y2V2MDMtNnJSQzZoTEFhVSIsIm9yaWdpbiI6Imh0dHBzOi8vaWFtLWRlbW8uMWRjLmNvbSIsImNyb3NzT3JpZ2luIjpmYWxzZSwib3RoZXJfa2V5c19jYW5fYmVfYWRkZWRfaGVyZSI6ImRvIG5vdCBjb21wYXJlIGNsaWVudERhdGFKU09OIGFnYWluc3QgYSB0ZW1wbGF0ZS4gU2VlIGh0dHBzOi8vZ29vLmdsL3lhYlBleCJ9
-          authenticatorData: Wvc+/XkaVwxa012pCZWAzWXwWSy8IupI6+2BznkpxM4FAAAACw==
-          signature: MEYCIQDp7wBeYYv+02m56wbQaLUstoZWIDxpKI2IvmgeOMUHYQIhAP2W5tDVqKHAQbTsAAZzTdXD/px9ZOtYtIysZyKs4Ws7
-          userHandle: ''
-    FIDO2DeviceAddRequest:
+        status: "SUCCESS"
+        message: "Assertion has been validated successfully"
+    CreateFIDO2DevicePayload:
       value:
         deviceType: FIDO2
         rp:
           id: app.fiserv.com
           name: fiserv
         email: username@fiserv.com
-    FIDO2DeviceAddResponse:
+    CreateFIDO2DeviceResponse:
       value:
         authId: 67e07830-3636-4479-a407-da0a16b85c3c
         deviceType: FIDO2

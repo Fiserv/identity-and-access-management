@@ -44,13 +44,13 @@
        - title: MFA using TOTP 
          link: docs/ciam-mfa/TOTP.md
          sections:
-          - title: TOTP Device Registration 
+          - title: Device Registration 
             link: docs/ciam-mfa/TOTP-Registration.md
             type: recipe
-          - title: Authentication using TOTP device
+          - title: Device Authentication
             link: docs/ciam-mfa/TOTP-Authentication.md
             type: recipe
-          - title: Unpair TOTP device
+          - title: Unpair Device
             link: docs/ciam-mfa/TOTP-unpair-device.md
        - title: MFA using FIDO2
          link: docs/ciam-mfa/FIDO2/getting-started-FIDO2.md
