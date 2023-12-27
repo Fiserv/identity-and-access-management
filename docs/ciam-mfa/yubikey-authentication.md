@@ -19,7 +19,7 @@ Access tokens are credential strings that represent authorization to access a pr
 
 To get an access token, the following must be true:  
 
-- The application is configured for MFA using  application registering process.
+- The application is configured for MFA using  application registration process.
 
 - The credentials are provided to application owner for getting an access token.  
 

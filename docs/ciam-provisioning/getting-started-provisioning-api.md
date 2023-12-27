@@ -10,12 +10,12 @@ Fiserv Identity and access management provides simple and easy to use directory 
 
 ---  
 
-## Registering 
+## Registration 
 
 - CIAM Provisioning API requires registration of application.
 
 - There is an API available in Provisioning API to register a new Application.
 
-- The Application registering API requires bearer token generated using "iam.root" scope by using admin credentials.
+- The Application registration API requires bearer token generated using "iam.root" scope by using admin credentials.
 
 ---

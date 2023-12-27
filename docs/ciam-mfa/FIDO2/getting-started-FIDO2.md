@@ -13,7 +13,7 @@
 
 <!-- type: card
 title: Register FIDO2 Device
-description: Registering Device for FIDO2 authentication
+description: Registration Device for FIDO2 authentication
 link: ?path=docs/ciam-mfa/FIDO2/register-FIDO2-device.md
 -->
 

@@ -29,7 +29,7 @@ link: ?path=docs/ciam-provisioning/getting-started-provisioning-api.md
 
 <!-- type: card
 title: Admin API
-description: IAM Service Team register the application. The API requires admin credentials to generate the OAuth token needed for application registering.
+description: IAM Service Team register the application. The API requires admin credentials to generate the OAuth token needed for application registration.
 link: ?path=docs/admin-api/getting-started-admin-api.md
 -->
 

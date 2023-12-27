@@ -224,7 +224,7 @@ featuredFeatures:
         path: "/Domains/{domainId}/ServiceAccounts/{accountId}"
   - title: Admin-API
     description: >
-      IAM Service Team register the application. The API requires admin credentials to generate the OAuth token needed for application registering.
+      IAM Service Team register the application. The API requires admin credentials to generate the OAuth token needed for application registration.
 #    tags: [Getting Started, Developer Portal, CIAM, Identity And Access Management, Admin API]
     relatedDocs:
       - relatedDoc: 

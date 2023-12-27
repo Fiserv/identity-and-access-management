@@ -5,7 +5,7 @@ tags: [CIAM, Provisioning API, Register Application]
 # Initial application setup
 
 <!--theme: warning -->
-> IAM Service Team register the application. The API requires admin credentials to generate the OAuth token needed for application registering.
+> IAM Service Team register the application. The API requires admin credentials to generate the OAuth token needed for application registration.
 
 ---
 

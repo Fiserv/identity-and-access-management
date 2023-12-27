@@ -85,7 +85,7 @@
     sections:
         - title: Access Token
           link: docs/ciam-provisioning/oauth-token-generation.md
-        - title: Application Registering
+        - title: Application Registration
           link: docs/ciam-provisioning/Application/application-setup.md
         - title: Application OAuth Client
           sections:
@@ -142,8 +142,8 @@
     sections:
         - title: App Reg Risk
           link: docs/admin-api/app-reg-risk.md
-        - title: Application Registering
-          link: docs/admin-api/application-registering.md
+        - title: Application Registration
+          link: docs/admin-api/application-registration.md
         - title: CIAM MFA
           sections:    
             - title: Risk Services
