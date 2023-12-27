@@ -2,6 +2,10 @@
 
 To enable/disable FIDO2 services.
 
+| Variable | Type | Value | Required | Description |
+| -------- | -- |------------| ------- | ---- |
+| `enableFIDO2` | *boolean* | true/false | &#10004; | set true to enable the FIDO2 service or false otherwise |
+
 <!--
 type: tab
 titles: Request, Response
@@ -9,7 +13,7 @@ titles: Request, Response
 
 Endpoint **:**
 
-**Put** [app-reg/v1/fido2Service/ServiceAccount/{{svc_acc}}/config](../api/?type=put&path=/app-reg/v1/fido2Service/ServiceAccount/{svc_acc}/config&version=2.0.0)
+**Put** [{{base_url}}/app-reg/v1/fido2Service/ServiceAccount/{{svc_acc}}/config](../api/?type=put&path=/app-reg/v1/fido2Service/ServiceAccount/{svc_acc}/config&version=2.0.0)
 
 **Payload** **:**
 
@@ -19,9 +23,6 @@ Endpoint **:**
 }
 
 ```
-| Variable | Type | Value | Required | Description |
-| -------- | -- |------------| ------- | ---- |
-| `enableFIDO2` | *boolean* | true/false | &#10004; | set true to enable the FIDO2 service or false otherwise |
 
 <!--
 type: tab

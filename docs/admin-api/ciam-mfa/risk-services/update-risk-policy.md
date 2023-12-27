@@ -21,7 +21,7 @@ titles: Request, Response
 
 Endpoint **:**
 
-**PUT** [/group/{groupid}/riskPolicy/{policyId}](../api/?type=put&path=/group/{groupid}/riskPolicy/{policyId}&version=2.0.0)
+**PUT** [{{base_url}}/group/{groupid}/riskPolicy/{policyId}](../api/?type=put&path=/group/{groupid}/riskPolicy/{policyId}&version=2.0.0)
 
 **Payload** **:**
 

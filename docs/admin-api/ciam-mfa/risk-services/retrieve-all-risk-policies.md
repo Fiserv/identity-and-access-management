@@ -8,7 +8,7 @@ titles: Request, Response
 
 Endpoint **:**
 
-**GET** [/group/{groupid}/riskPolicy](../api/?type=get&path=/group/{groupid}/riskPolicy&version=2.0.0)
+**GET** [{{base_url}}/group/{groupid}/riskPolicy](../api/?type=get&path=/group/{groupid}/riskPolicy&version=2.0.0)
 
 **Payload** **:**
 

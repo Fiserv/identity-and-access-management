@@ -20,7 +20,7 @@ titles: Request, Response
 
 Endpoint **:**
 
-**POST** [/app-reg/v2/registerapp](../api/?type=post&path=/registerapp&version=2.0.0)
+**POST** [{{base_url}}/app-reg/v2/registerapp](../api/?type=post&path=/registerapp&version=2.0.0)
 
 **Payload** **:**
 

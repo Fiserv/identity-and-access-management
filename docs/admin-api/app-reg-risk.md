@@ -1,16 +1,5 @@
 ## App Registration (Admin Only)
 
-<!--
-type: tab
-titles: Request, Response
--->
-
-Endpoint **:**
-
-**POST** [/app-reg/admin/v1/registerapp](../api/?type=post&path=/app-reg/admin/v1/registerapp&version=2.0.0)
-
-**Payload** **:**
-
 The payload parameters are as: 
 
 | Variable | Type | Required | Description |
@@ -25,6 +14,17 @@ The payload parameters are as:
 | `enableCIAMRiskServices` | *boolean* | &#10004; | set true to enable risk service, false otherwise |
 | `buGroupId` | *string* | &#10004; | Business Unit ID |
 | `customCIAMRiskPolicy` | *string* |  &#10004; | custom policy |
+
+<!--
+type: tab
+titles: Request, Response
+-->
+
+Endpoint **:**
+
+**POST** [{{base_url}}/app-reg/admin/v1/registerapp](../api/?type=post&path=/app-reg/admin/v1/registerapp&version=2.0.0)
+
+**Payload** **:**
 
 ```json
 {

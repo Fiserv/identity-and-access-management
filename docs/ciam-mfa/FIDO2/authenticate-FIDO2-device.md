@@ -61,7 +61,7 @@ Endpoint to inititate device authentication **:**
 
 ```json
 {
-	"userName":"username",
+	"userName":"Harsh",
     "rpID": "https://app.fiserv.com",
     "deviceType": "FIDO2"
 }

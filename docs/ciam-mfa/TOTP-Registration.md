@@ -24,7 +24,7 @@ To Verify user using TOTP, first step required is to  register Time-based One-ti
 
 - [Step 3: Device pairing](#step-3-device-pairing)
 
-- [Step 4: Validate OTP](#step-4-validate-otp)  
+- [Step 4: Activate Device](#step-4-activate-device)  
 
 
 ---
@@ -67,7 +67,7 @@ Endpoint **:**
 ```json
 {
     "deviceType": "TOTP",
-    "deviceName": "Mydevice",
+    "deviceName": "iphone6",
 }
 ```
 <!--
@@ -82,8 +82,8 @@ type: tab
     "authId": "c0b26a2e-6142-4640-9dd7-1ebd488d46f5",
     "deviceType": "TOTP",
     "status": "ACTIVATION_REQUIRED",
-    "message": "Device registration has been initiated, please activate the device to use"
-    "deviceName": "Mydevice",
+    "message": "Device registration has been initiated, please activate the device to use",
+    "deviceName": "iphone6",
     "secret": "LXXXWKFKAKKIGOSP62SORVM67GECU6P2",
     "registrationUri": "otpauth://totp/APM0000003$jdoe?secret=LXXXWKFKAKKIGOSP62SORVM67GECU6P2"
 }
@@ -98,12 +98,12 @@ type: tab
 
 - Two options are available for Device pairing
 
-- Option: 1 requires application to provide user with the enter secret key that was  within Step-1 response. To enable MFA, user should key in secret key  manually and attach it to authenticator application.
+- **Option:1** requires application to provide user with the enter secret key that was  within Step-2 response. To enable MFA, user should key in secret key  manually and attach it to authenticator application.
 
-- Option: 2 provides a better user experience where application should create a QR code using registration URI returned within  Step -1  API  response. To enable MFA, user should use their  mobile devices authenticator app to scan generated  QR code. 
+- **Option:2** provides a better user experience where application should create a QR code using registration URI returned within  Step-2  API  response. To enable MFA, user should use their  mobile devices authenticator app to scan generated  QR code. 
 
 
-## Step 4: Validate OTP 
+## Step 4: Activate Device 
 
 - API to complete device registration process.
 
@@ -119,7 +119,7 @@ The payload parameters are as:
 
 | Variable | Type | Required | Description |
 | -------- | -----| -------  | ----------- |
-| `DeviceType` | *string* | &#10004; | Fixed(TOTP) |
+| `DeviceType` | *string* | &#10004; | TOTP (case sensitive) |
 | `OTP` | *string* | &#10004; | The OTP sent on TOTP device |
 
 <!--
@@ -149,8 +149,8 @@ type: tab
 
 ```json
 {
-  "status": "SUCCESS",
-  "message": "OTP has been validated successfully"
+  "status": "ACTIVE",
+  "message": "iphone6"
 }
 
 ```

@@ -50,8 +50,8 @@ Endpoint **:**
 
 ```json
 {
-	"userName":"demouser",
-  "deviceName": "mydevice",
+	"userName":"Joe",
+  "deviceName": "iphone6",
   "deviceType": "TOTP"
 }
 ```
