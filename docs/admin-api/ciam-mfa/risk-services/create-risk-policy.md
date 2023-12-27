@@ -19,7 +19,7 @@ titles: Request, Response
 
 Endpoint **:**
 
-**POST** [/group/{groupid}/riskPolicy](../api/?type=post&path=/group/{groupid}/riskPolicy&version=2.0.0)
+**POST** [{{base_url}}/group/{groupid}/riskPolicy](../api/?type=post&path=/group/{groupid}/riskPolicy&version=2.0.0)
 
 **Payload** **:**
 

@@ -1,14 +1,14 @@
-# MFA using SMS or EMAIL 
+# MFA using EMAIL 
 
-- A user attempts to access a protected resource that is configured to use CIAM MFA, such as a gated website.  
+- API to request MFA authentication through email.   
 
-- The CIAM MFA API  sends a notification on an out-of-band (OOB) channel to the users authentication device (possession factor), for further verification of the users identity.  
+- The CIAM MFA API sends a notification on an out-of-band (OOB) channel to the users authentication device (possession factor), for further verification of the users identity.  
 
 - The notification to the user is communicated on a separate network channel, isolated from the network channel that the user used when entering their username and password. Use of an OOB channel enhances security, reducing the possibility of man-in-the-middle (MITM), phishing, and other security vulnerability attacks.  
 
-- CIAM MFA is configured to provide a one-time passcode (OTP) through SMS  or email notification. The user must enter that passcode before it expires.
+- CIAM MFA is configured to provide a one-time passcode (OTP) through email notification. The user must enter that passcode before it expires.
 
-There are steps  required at the application-side that should meet the below criteria:  
+There are steps required at the application-side that should meet the below criteria:  
 
 - Can make http/REST calls  
 
@@ -46,21 +46,21 @@ To get an access token, the following must be true:
 
 ## Step 2: Request OTP 
 
-API to initiate Second factor authentication by contacting the user using  email or SMS provided. 
+API to initiate Second factor authentication by contacting the user using email.
 
-- API will send one-time passcode to user device i.e. EMAIl address or a phone number. 
+- API will send one-time passcode to user device i.e. EMAIl address.
 
-- API will return   authId in response which will be required during device validation.  
+- API will return authId in response which will be required during device validation.  
 
-- API supports custom templates that can be configured during application onboarding process. Custom template will allow to customize email and SMS messaging.
+- API supports custom templates that can be configured during application onboarding process. Custom template will allow to customize email.
 
 The payload parameters are as: 
 
 | Variable | Type | Required | Description |
 | -------- | -----| -------  | ----------- |
 | `userName` | *string* | &#10004; | General Name |
-| `phoneNumber` | *string* | &#10004; | Mobile number of the user or Email address|
-| `deviceType` | *string* | &#10004; | EMAIL or sms |
+| `email` | *string* | &#10004; | Email address|
+| `deviceType` | *string* | &#10004; | EMAIL (case insensitive) |
 
 <!--
 type: tab
@@ -76,8 +76,8 @@ Endpoint **:**
 ```json
 {
     "userName": "jdoe",
-    "phoneNumber": "+91-8212345212",
-    "deviceType": "sms"
+    "email": "jdoe@gmail.com",
+    "deviceType": "email"
 }
 ```
 <!--
@@ -111,6 +111,8 @@ The payload parameters are as:
 | Variable | Type | Required | Description |
 | -------- | -----| -------  | ----------- |
 | `otp` | *string* | &#10004; | OTP received |
+| `deviceType` | *string* | &#10004; | email(case insensitive) |
+
 <!--
 type: tab
 titles: Request, Response
@@ -124,7 +126,8 @@ Endpoint **:**
 
 ```json
  {
-  "otp": "523471"
+  "otp": "523471",
+  "deviceType": "email"
 }
 ```
 
@@ -146,6 +149,4 @@ type: tab
 ```
 
 <!-- type: tab-end -->
-
-
 

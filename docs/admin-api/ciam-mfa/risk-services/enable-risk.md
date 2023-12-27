@@ -17,7 +17,7 @@ titles: Request, Response
 
 Endpoint **:**
 
-**PUT** [/riskService/ServiceAccount/{svcAccount}/config](../api/?type=put&path=/riskService/ServiceAccount/{svcAccount}/config&version=2.0.0)
+**PUT** [{{base_url}}/riskService/ServiceAccount/{svcAccount}/config](../api/?type=put&path=/riskService/ServiceAccount/{svcAccount}/config&version=2.0.0)
 
 **Payload** **:**
 
