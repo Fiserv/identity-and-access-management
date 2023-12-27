@@ -746,7 +746,12 @@ components:
           type: string
         otp: 
           type: string
-
+    ActivateDeviceResponse:
+      properties:
+        status:
+          type: string
+        message:
+          type: string
   responses:
     BadRequest:
       content:
