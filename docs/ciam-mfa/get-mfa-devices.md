@@ -1,5 +1,5 @@
-## Get MFA Devices
-API to return list of registerd mfa devices for a specific user.
+## Read MFA Devices
+API to return list of registered mfa devices for the particular user, only FIDO2 and TOTP devices.
 
 - get CIAM MFA access token. 
 
@@ -28,8 +28,8 @@ type: tab
         "status": "ACTIVE",
         "createdAt": "2023-09-26T12:58:34.587Z",
         "rp": {
-            "id": "localhost",
-            "name": "localhost"
+            "id": "app.fiserv.com",
+            "name": "fiserv"
         }
     },
     {
