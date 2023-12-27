@@ -35,7 +35,7 @@ The below table identifies the parameter required for `Application OAuth Client`
 | `description` | *string* | - | &#10004; | a brief description about the application. |
 | `redirectUrls` | *list* | - | &#10004; | redirect url for the application. |
 
-### Payload that represents the Application to create
+**Payload :**
 
 ```json
 {

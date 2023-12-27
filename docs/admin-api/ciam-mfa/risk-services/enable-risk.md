@@ -19,7 +19,7 @@ Endpoint **:**
 
 **PUT** [/riskService/ServiceAccount/{svcAccount}/config](../api/?type=put&path=/riskService/ServiceAccount/{svcAccount}/config&version=2.0.0)
 
-Payload **:**
+**Payload** **:**
 
 ##### If specific policyId is provided to enable/disable
 

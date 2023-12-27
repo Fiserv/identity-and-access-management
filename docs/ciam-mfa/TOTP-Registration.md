@@ -62,7 +62,7 @@ Endpoint **:**
 
 **POST** [{{base_url}}/users/{username}/mfadevices](../api/?type=post&path=/users/{username}/mfadevices&version=2.0.0)
 
-Payload **:** 
+**Payload** **:** 
 
 ```json
 {
@@ -131,7 +131,7 @@ Endpoint **:**
 
 **POST** [{{base_url}}/users/{username}/mfadevices/{authId}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
 
-Payload **:**
+**Payload** **:**
 
 ```json
 {

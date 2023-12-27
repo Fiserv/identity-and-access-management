@@ -13,9 +13,9 @@ titles: Request, Response
 
 Endpoint **:**
 
-**GET** [/ciam-mfa/v1/users/{{username}}/mfadevices?type=TOTP](../api/?type=get&path=/users/{username}/mfadevices&branch=develop&version=2.0.0)
+**GET** [{{base_url}}/ciam-mfa/v1/users/{{username}}/mfadevices?type=TOTP](../api/?type=get&path=/users/{username}/mfadevices&branch=develop&version=2.0.0)
 
-Payload **:**
+**Payload** **:**
 
 ##### No Payload required
 

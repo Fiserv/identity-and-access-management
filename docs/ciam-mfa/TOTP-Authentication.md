@@ -5,7 +5,7 @@
 
 - [Step 1: Getting an access token](#step-1-getting-an-access-token)  
 
-- [Step 2: Initialize authentication](#step-2-initiate-authentication)  
+- [Step 2: Initiate authentication](#step-2-initiate-authentication)  
 
 - [Step 3: Validate OTP](#step-3-validate-otp)  
 
@@ -25,7 +25,7 @@ To get an access token, the following must be true:
 - The application runtime  has access to the client secret and token endpoint.  
 
 
-## Step 2: Initiate  authentication 
+## Step 2: Initiate authentication 
 
 API will initalize TOTP device authentication return authId in response which will be required during OTP validation.  
 
@@ -46,7 +46,7 @@ Endpoint **:**
 
 **POST** [{{base_url}}/ciam-mfa/v2/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
 
-Payload **:** 
+**Payload** **:** 
 
 ```json
 {
@@ -91,7 +91,7 @@ Endpoint **:**
 
 **POST** [{{base_url}}/ciam-mfa/v2/deviceAuthentications/{{authId}}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
 
-Payload **:**
+**Payload** **:**
 
 ```json
 {

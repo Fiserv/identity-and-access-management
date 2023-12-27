@@ -10,7 +10,7 @@ Endpoint **:**
 
 **GET** [/group/{groupid}/riskPolicy](../api/?type=get&path=/group/{groupid}/riskPolicy&version=2.0.0)
 
-Payload **:**
+**Payload** **:**
 
 #### No Payload to Retreive all Policies
 <!--
