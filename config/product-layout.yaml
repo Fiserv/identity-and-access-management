@@ -108,7 +108,7 @@ featuredFeatures:
         type: "get"        
         path: "/Applications/{applicationId}"  
       - relatedAPI: 
-        title: Onboard Application 
+        title: Register Application 
         description: Create a new Application
         type: "post"        
         path: "/Applications"  
@@ -224,7 +224,7 @@ featuredFeatures:
         path: "/Domains/{domainId}/ServiceAccounts/{accountId}"
   - title: Admin-API
     description: >
-      IAM Service Team onboard the application. The API requires admin credentials to generate the OAuth token needed for application onboarding.
+      IAM Service Team register the application. The API requires admin credentials to generate the OAuth token needed for application registering.
 #    tags: [Getting Started, Developer Portal, CIAM, Identity And Access Management, Admin API]
     relatedDocs:
       - relatedDoc: 

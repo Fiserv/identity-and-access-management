@@ -41,12 +41,12 @@ paths:
           $ref: '#/components/responses/ServerError'
   /registerapp:
     post:
-      summary: Onboard the application
+      summary: Register the application
       description: >- 
         Use this API to create a custom risk policy.
       x-child-product-name: 'Admin API'
       x-group-name: 'Prerequisites'
-      x-proxy-name: 'Onboard Application'
+      x-proxy-name: 'Register Application'
       requestBody:
         content:
           application/json:

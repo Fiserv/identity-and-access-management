@@ -514,7 +514,7 @@ paths:
           $ref: '#/components/responses/ServerError'
   /ciam-mfa/v2/get/token:
     post:
-      summary: Generate access token
+      summary: Access Token
       x-group-name: CIAM-MFA
       x-proxy-name: Access Token
       x-default-example: TokenGeneration

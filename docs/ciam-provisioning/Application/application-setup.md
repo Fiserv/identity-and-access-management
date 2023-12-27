@@ -1,11 +1,11 @@
 ---
-tags: [CIAM, Provisioning API, Onboard Application]
+tags: [CIAM, Provisioning API, Register Application]
 ---
 
 # Initial application setup
 
 <!--theme: warning -->
-> IAM Service Team onboard the application. The API requires admin credentials to generate the OAuth token needed for application onboarding.
+> IAM Service Team register the application. The API requires admin credentials to generate the OAuth token needed for application registering.
 
 ---
 
@@ -18,7 +18,7 @@ There are steps required at the application-side that should meet the below crit
 - Has the UAID and domain Id to create an application
 
 
-## Onboard Application    
+## Register Application    
 
 <!--
 type: tab

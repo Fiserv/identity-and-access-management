@@ -4,12 +4,12 @@
 
 - The access token is generated using *client_credential* grant type, which is provided in payload. 
 
-- To get client_id and client_secret, onboard your application through CIAM self service portal, you will receive these credential as mail.
+- To get client_id and client_secret, register your application through CIAM self service portal, you will receive these credential as mail.
 
 There are steps required at the application-side that should meet the below criteria:  
 - Can make http/REST calls.
 
-- The application is configured via onboarding process.
+- The application is configured via registering process.
 
 - Has the registered application details.
 
@@ -18,8 +18,8 @@ The below table identifies the parameter required for `Application Token Mapping
 | Variable | Type | Value | Required | Description |
 | -------- | -- |------------| ------- | ---- |
 | `grant_type` | *string* | client_credentials | &#10004; |  grant type determines the exact sequence of steps that are involved in the OAuth process. |
-| `client_id` | *string* | which is received on mail | &#10004; | The cient id which is received while onboarding the application |
-| `client_secret` | *string* | which is received on mail | &#10004; | The cient secret which is received while onboarding the application |
+| `client_id` | *string* | which is received on mail | &#10004; | The cient id which is received while registering the application |
+| `client_secret` | *string* | which is received on mail | &#10004; | The cient secret which is received while registering the application |
 
 
 <!--

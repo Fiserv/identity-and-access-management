@@ -15,13 +15,13 @@ Fiserv Identity and access management  provides  simple and easy to integrate MF
 
 ---  
 
-## Onboarding 
+## Registering 
 
 - CIAM MFA API requires registration of application.
 
 - Application team should submit a service point ticket to get yourself on-boarded.
 
-- Service Catalog > Application Services > Customer IAM Application Onboarding
+- Service Catalog > Application Services > Customer IAM Application Registering
 
 ---
 
