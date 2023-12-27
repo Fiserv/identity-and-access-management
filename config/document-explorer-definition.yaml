@@ -38,8 +38,11 @@
          link: docs/ciam-mfa/oauth-token-generation.md
        - title: Get MFA Devices
          link: docs/ciam-mfa/get-mfa-devices.md
-       - link: docs/ciam-mfa/SMS-EMAIL.md
-         title: MFA using SMS/EMAIL
+       - link: docs/ciam-mfa/email.md
+         title: MFA using Email
+         type: recipe
+       - link: docs/ciam-mfa/sms.md
+         title: MFA using SMS
          type: recipe
        - title: MFA using TOTP 
          link: docs/ciam-mfa/TOTP.md
