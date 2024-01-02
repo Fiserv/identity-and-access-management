@@ -1,7 +1,6 @@
 ## Read MFA Devices
 API to return list of registered mfa devices for the particular user, only FIDO2 and TOTP devices.
 
-- get CIAM MFA access token. 
 
 <!--
 type: tab

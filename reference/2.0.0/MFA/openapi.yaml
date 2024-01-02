@@ -21,7 +21,7 @@ paths:
         have array of  devices. Each array object will have an individual device
         information consisting of deviceType , deviceName, CreateDate.
       x-group-name: 'CIAM-MFA'
-      x-proxy-name: 'Get MFA Devices'
+      x-proxy-name: 'Read MFA Devices'
       x-default-example: Devices
       tags:
         - device endpoint definition
@@ -335,7 +335,7 @@ paths:
         a  authentication ID that is required for the next steps in the flow.
         The response also includes a status and message.
       x-group-name: CIAM-MFA
-      x-proxy-name: Request OTP
+      x-proxy-name: Initiate Authentication 
       x-default-example: EmailAuthentication
   /deviceAuthentications/{authId}:
     post:
