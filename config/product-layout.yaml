@@ -27,111 +27,239 @@
 # are granted or extended by this work or 
 # the delivery of this work
 ################################################################################
-- sections:
-  - title: Getting Started
-    link: docs/getting-started.md
-- sections:
-  - title: CIAM MFA
-    link: docs/getting-started-mfa.md
-    sections:
-       - title: Generate Access Token
-         link: docs/ciam-mfa/oauth-token-generation.md
-       - title: Risk Evaluations
-         link: docs/ciam-mfa/risk-evaluation.md
-       - link: docs/ciam-mfa/SMS-EMAIL.md
-         title: MFA using SMS/EMAIL
-         type: recipe
-       - title: MFA using TOTP 
-         link: docs/ciam-mfa/TOTP.md
-         sections:
-          - title: TOTP Device Registration 
-            link: docs/ciam-mfa/TOTP-Registration.md
-            type: recipe
-          - title: Authentication using TOTP device
-            link: docs/ciam-mfa/TOTP-Authentication.md
-            type: recipe
-       - link: docs/ciam-mfa/yubikey.md
-         title: MFA using Yubikey 
-         sections:
-          - title: Yubikey Device registration 
-            link: docs/ciam-mfa/yubikey-pairing.md
-            type: recipe
-          - title: Authentication using YubiKey
-            link: docs/ciam-mfa/yubikey-authentication.md
-            type: recipe
-  - title: CIAM Provisioning API
-    link: docs/ciam-provisioning/getting-started-provisioning-api.md
-    sections:
-        - title: Generate Access Token
-          link: docs/ciam-provisioning/oauth-token-generation.md
-        - title: Application Onboarding
-          link: docs/ciam-provisioning/Application/application-setup.md
-        - title: Application OAuth Client
-          sections:
-            - title: Read Application OAuth Client Settings
-              link: docs/ciam-provisioning/Application/application-oauth-client/get-oauth-client.md
-            - title: Update Application OAuth Client Settings
-              link: docs/ciam-provisioning/Application/application-oauth-client/update-oauth-client.md
-        - title: Application Token Mapping
-          sections:
-            - title: Read Application OAuth Client Access Token Settings
-              link: docs/ciam-provisioning/Application/application-token-mapping/get-application-token.md
-            - title: Customize Application OAuth Client Access Token Settings
-              link: docs/ciam-provisioning/Application/application-token-mapping/update-application-token.md
-            - title: Reset Application OAuth Client Access Token Settings
-              link: docs/ciam-provisioning/Application/application-token-mapping/delete-application-token.md
-        - title: Domain
-          sections:
-            - title: Search Domain
-              link: docs/ciam-provisioning/Domain/search-domains.md
-            - title: Create Domain
-              link: docs/ciam-provisioning/Domain/create-domain.md
-            - title: Get Domain by Id
-              link: docs/ciam-provisioning/Domain/search-doamin-by-Id.md
-            - title: Update Domain
-              link: docs/ciam-provisioning/Domain/update-domain.md
-            - title: Delete Domain
-              link: docs/ciam-provisioning/Domain/delete-domain.md
-        - title: Domain User
-          sections:
-            - title: Search All Domain Users
-              link: docs/ciam-provisioning/Domain/User/search-users.md
-            - title: Create User
-              link: docs/ciam-provisioning/Domain/User/create-user.md
-            - title: Get User By Id
-              link: docs/ciam-provisioning/Domain/User/search-user-by-Id.md
-            - title: Update User
-              link: docs/ciam-provisioning/Domain/User/update-user.md
-            - title: Delete User
-              link: docs/ciam-provisioning/Domain/User/delete-user.md
-        - title: Domain Service Account
-          sections:
-            - title: Search All Domain Service Accounts
-              link: docs/ciam-provisioning/Domain/service-account/search-service-accounts.md
-            - title: Create User
-              link: docs/ciam-provisioning/Domain/service-account/create-service-account.md
-            - title: Get User By Id
-              link: docs/ciam-provisioning/Domain/service-account/search-service-account-by-Id.md
-            - title: Update User
-              link: docs/ciam-provisioning/Domain/service-account/update-service-account.md
-            - title: Delete User
-              link: docs/ciam-provisioning/Domain/service-account/delete-service-account.md
-  - title: Admin APIs
-    sections:
-        - title: Application Onboarding
-          link: docs/admin-api/application-onboarding.md
-        - title: Risk Services
-          link: docs/admin-api/risk-services/getting-started-risk-api.md
-          sections:
-            - title: Create Policy
-              link: docs/admin-api/risk-services/create-policy.md
-            - title: Delete Risk Policy by ID
-              link: docs/admin-api/risk-services/delete-risk-services.md
-            - title: Get Risk Policy
-              link: docs/admin-api/risk-services/get-policy-by-id.md
-            - title: Retreive All Risk Policies
-              link: docs/admin-api/risk-services/retreive-all-risk-policies.md
-            - title: Update Risk Policy
-              link: docs/admin-api/risk-services/update-policy-by-id.md
-            - title: Risk Service Config
-              link: docs/admin-api/risk-services/risk-service-config.md
+header:
+  productName: Identity and Access Management (CIAM)
+  productionDescription: With developer-friendly, rest  communication standards, CIAM API  reduces development time and accelerates integration of access services and capabilities. Multi region availablitly brings the solution wherever integration is required, we bring highly secure and modern authentication practices  in a standardized  and for easier  integration.
+getStarted: /docs/getting-started.md
+featuredFeatures:
+  - title: Multi-Factor Authentication API
+    description: >
+      CIAM MFA API provides capabilities for enabling MFA actions in authentication flows. API supports email, SMS, TOTP authenticator application, and native application method types for use in an MFA flow. Multiple MFA methods can be associated with a user. 
+#    tags: ["tag1", "tag2"]
+#    bullets: ["REPLACEME", "REPLACEME" ]  
+    relatedDocs:
+      - relatedDoc: 
+        title: CIAM MFA
+        description: CIAM MFA 
+        link: ./docs/getting-started-mfa.md
+      - relatedDoc: 
+        title: Cryptographic device or software
+        description: This section is for authentication using 
+        link: ./docs/biometrics.md
+    relatedAPIs:
+      - relatedAPI: 
+        title: Get devices 
+        description: Get list of user devices
+        type: "get"        
+        path: "/users/{username}/mfadevices"  
+      - relatedAPI: 
+        title: Add Device
+        description: Operation to add mfa  device to the specified user.
+        type: "post"        
+        path: "/users/{username}/mfadevices"
+      - relatedAPI: 
+        title: Register Device
+        description: Operation to register the device that was added but requires activation.
+        type: "post"        
+        path: "/users/{username}/mfadevices/{authId}"
+      - relatedAPI: 
+        title: Initialize  Authentication
+        description: API for initiating multi factor authentication process. 
+        type: "post"        
+        path: "/deviceauthentications"
+      - relatedAPI: 
+        title: Validate Authentication.
+        description: API for validating requested authentication.
+        type: "post"        
+        path: "/deviceauthentications/{authid}"
+      - relatedAPI: 
+        title: Authenticate Device
+        description: API to validate the assertion used in the multi-factor authentication flow.
+        type: "post"        
+        path: "/deviceAuthentications/00d6df92-16c6-4bfb-9ff7-27e6d2b91349"
+      - relatedAPI:
+        title: Check Device's FIDO Registration
+        description: Checks if user is registered for FIDO the given device; and if user has activated any device for FIDO.
+        type: "get"
+        path: "/users/{username}/isFidoRegistered"
+      - relatedAPI:
+        title: Unpair MFA Device
+        description: Unpairs the registered device
+        type: "get"
+        path: "/ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}?code="all""
+  - title: Provisioning API
+    description: >
+      CIAM Provisioning API provides the REST endpoints to connect and perform various operations on directory. API support the CRUD operations for Users, Service Accounts and Domains. It also enables to perform account administration operations like enabling the account, password reset, account unlock. One can also retrieve the account status details using Provisioning API.
+#    tags: [Getting Started, Developer Portal, CIAM, Identity And Access Management, Provisioning API]
+    relatedDocs:
+      - relatedDoc: 
+        title: Provisioning APIs
+        description: Provisioning Documentation
+        link: ./docs/ciam-provisioning/getting-started-provisioning-api.md
+    relatedAPIs:
+      - relatedAPI: 
+        title: Search Applications 
+        description: Get list of Applications
+        type: "get"        
+        path: "/Applications"      
+      - relatedAPI: 
+        title: Get an Application 
+        description: Get an Application by Application Id 
+        type: "get"        
+        path: "/Applications/{applicationId}"  
+      - relatedAPI: 
+        title: Onboard Application 
+        description: Create a new Application
+        type: "post"        
+        path: "/Applications"  
+      - relatedAPI: 
+        title: Update Application 
+        description: Update an Application
+        type: "put"        
+        path: "/Applications/{applicationId}"  
+      - relatedAPI: 
+        title: Delete an Application 
+        description: Delete an Application
+        type: "delete"        
+        path: "/Applications/{applicationId}"  
+      - relatedAPI: 
+        title: Get Application OAuth Client
+        description: Get application OAuth client settings.
+        type: "get"        
+        path: "/Applications/{applicationId}/Client"
+      - relatedAPI: 
+        title: Update Application OAuth Client
+        description: Update application OAuth client settings.
+        type: "put"        
+        path: "/Applications/{applicationId}/Client"
+      - relatedAPI: 
+        title: Get Application Token Mapping
+        description: Get application OAuth client access token settings.
+        type: "get"        
+        path: "/Applications/{applicationId}/AccessTokenMapping"
+      - relatedAPI: 
+        title: Update Application Token Mapping
+        description: updates oauth client custom access token settings.
+        type: "put"        
+        path: "/Applications/{applicationId}/AccessTokenMapping"
+      - relatedAPI: 
+        title: Delete Application Token Mapping
+        description: Reverts custom access token mappings to default.
+        type: "delete"        
+        path: "/Applications/{applicationId}/AccessTokenMapping"
+      - relatedAPI: 
+        title: Search Domain
+        description: search Domain.
+        type: "get"        
+        path: "/Domains"
+      - relatedAPI: 
+        title: Create Domain
+        description: Create Domain.
+        type: "post"        
+        path: "/Domains"
+      - relatedAPI: 
+        title: Get Domain by Id
+        description: Get Domain by Id.
+        type: "get"        
+        path: "/Domains/{domainId}"
+      - relatedAPI: 
+        title: Update Domain
+        description: Update Domain.
+        type: "put"        
+        path: "/Domains/{domainId}"
+      - relatedAPI: 
+        title: Delete Domain
+        description: Delete Domain.
+        type: "delete"        
+        path: "/Domains/{domainId}"
+      - relatedAPI: 
+        title: Search Domain User
+        description: list all users of domain.
+        type: "get"        
+        path: "/Domains/{domainId}/Users"
+      - relatedAPI: 
+        title: Create user for a Domain
+        description: Create user for a Domain.
+        type: "post"        
+        path: "/Domains/{domainId}/Users"
+      - relatedAPI: 
+        title: Get Domain by Id
+        description: Get Domain by Id.
+        type: "get"        
+        path: "/Domains/{domainId}/Users/{userId}"
+      - relatedAPI: 
+        title: update user
+        description: update user.
+        type: "put"        
+        path: "/Domains/{domainId}/Users/{userId}"
+      - relatedAPI: 
+        title: Delete user
+        description: Delete user.
+        type: "delete"        
+        path: "/Domains/{domainId}/Users/{userId}"
+      - relatedAPI: 
+        title: Search Domain service accounts
+        description: list all service accounts of domain.
+        type: "get"        
+        path: "/Domains/{domainId}/ServiceAccounts"
+      - relatedAPI: 
+        title: Create service account for domain
+        description: Create service account for domain.
+        type: "post"        
+        path: "/Domains/{domainId}/ServiceAccounts"
+      - relatedAPI: 
+        title: get service account by id
+        description: Get service account by id.
+        type: "get"        
+        path: "/Domains/{domainId}/ServiceAccounts/{accountId}"
+      - relatedAPI: 
+        title: update service account
+        description: update service account.
+        type: "put"        
+        path: "/Domains/{domainId}/ServiceAccounts/{accountId}"
+      - relatedAPI: 
+        title: Delete service account
+        description: Delete service account.
+        type: "delete"        
+        path: "/Domains/{domainId}/ServiceAccounts/{accountId}"
+  - title: Admin-API
+    description: >
+      IAM Service Team onboard the application. The API requires admin credentials to generate the OAuth token needed for application onboarding.
+#    tags: [Getting Started, Developer Portal, CIAM, Identity And Access Management, Admin API]
+    relatedDocs:
+      - relatedDoc: 
+        title: Admin API
+        description: Admin API Documentation
+        link: ./docs/admin-api/getting-started-admin-api.md
+    relatedAPIs:
+      - relatedAPI: 
+        title: Register App
+        description: Generate service account and password
+        type: "post"        
+        path: "/registerapp"      
+      - relatedAPI: 
+        title: Enable/Disable Risk Services
+        description: Use this API to enable/disable risk services.
+        type: "put"        
+        path: "/riskService/ServiceAccount/{svcAccount}/config"  
+      - relatedAPI: 
+        title: Create Risk Policy 
+        description: Use this API to create a custom risk policy.
+        type: "post"        
+        path: "group/{groupid}/riskPolicy"  
+      - relatedAPI: 
+        title: Read a Risk Policy by policy Id 
+        description: Use this API to retrieve a policy using the policy Id.
+        type: "get"        
+        path: "group/{groupid}/riskPolicy/{policyId}"  
+      - relatedAPI: 
+        title: Update a Risk Policy by policy Id 
+        description: Use this API to update a policy using the policy Id.
+        type: "post"        
+        path: "group/{groupid}/riskPolicy/{policyId}"
+      - relatedAPI: 
+        title: Delete a Risk Policy by policy Id 
+        description: Use this API to delete a policy using the policy Id.
+        type: "post"        
+        path: "group/{groupid}/riskPolicy/{policyId}"    
+      

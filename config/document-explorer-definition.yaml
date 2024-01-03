@@ -41,6 +41,10 @@
        - link: docs/ciam-mfa/SMS-EMAIL.md
          title: MFA using SMS/EMAIL
          type: recipe
+       - title: Unpair MFA Device
+         link: docs/ciam-mfa/unpair-mfa-device.md
+       - title: Get MFA Devices
+         link: docs/ciam-mfa/get-mfa-devices.md
        - title: MFA using TOTP 
          link: docs/ciam-mfa/TOTP.md
          sections:
@@ -58,6 +62,24 @@
             type: recipe
           - title: Authentication using YubiKey
             link: docs/ciam-mfa/yubikey-authentication.md
+            type: recipe
+       - title: MFA using FIDO2
+         link: docs/ciam-mfa/FIDO2/getting-started-FIDO2.md
+         sections: 
+          - title: Register FIDO2 Device
+            link: docs/ciam-mfa/FIDO2/register-FIDO2-device.md
+            type: recipe
+          - title: Authenticate FIDO2 Device
+            link: docs/ciam-mfa/FIDO2/authenticate-FIDO2-device.md
+            type: recipe
+          - title: Authenticate FIDO2 Device- usernameless
+            link: docs/ciam-mfa/FIDO2/authenticate-FIDO2-device-usernameless.md
+            type: recipe    
+          - title: MFA Device - Check Device Type
+            link: docs/ciam-mfa/FIDO2/check-device-type.md
+            type: recipe
+          - title: Is FIDO Registered
+            link: docs/ciam-mfa/FIDO2/is-FIDO-Registered.md
             type: recipe
   - title: CIAM Provisioning API
     link: docs/ciam-provisioning/getting-started-provisioning-api.md
@@ -119,20 +141,22 @@
   - title: Admin APIs
     link: docs/admin-api/getting-started-admin-api.md
     sections:
+        - title: App Reg Risk
+          link: docs/admin-api/app-reg-risk.md
         - title: Application Onboarding
           link: docs/admin-api/application-onboarding.md
         - title: Risk Services
           link: docs/admin-api/risk-services/getting-started-risk-api.md
           sections:
             - title: Create Policy
-              link: docs/admin-api/risk-services/create-risk-policy.md
+              link: docs/admin-api/ciam-mfa/risk-services/create-risk-policy.md
             - title: Delete Risk Policy by ID
-              link: docs/admin-api/risk-services/delete-risk-policy.md
+              link: docs/admin-api/ciam-mfa/risk-services/delete-risk-policy.md
             - title: Get Risk Policy
-              link: docs/admin-api/risk-services/get-risk-policy-by-id.md
+              link: docs/admin-api/ciam-mfa/risk-services/get-risk-policy-by-id.md
             - title: Retreive All Risk Policies
-              link: docs/admin-api/risk-services/retrieve-all-risk-policies.md
+              link: docs/admin-api/ciam-mfa/risk-services/retrieve-all-risk-policies.md
             - title: Update Risk Policy
-              link: docs/admin-api/risk-services/update-risk-policy.md
+              link: docs/admin-api/ciam-mfa/risk-services/update-risk-policy.md
             - title: Risk Service Config
-              link: docs/admin-api/risk-services/risk-service-configuration.md
+              link: docs/admin-api/ciam-mfa/risk-services/enable-risk.md
