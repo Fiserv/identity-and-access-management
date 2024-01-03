@@ -146,7 +146,7 @@
         - title: Application Onboarding
           link: docs/admin-api/application-onboarding.md
         - title: Risk Services
-          link: docs/admin-api/risk-services/getting-started-risk-api.md
+          link: docs/admin-api/ciam-mfa/risk-services/getting-started-risk-api.md
           sections:
             - title: Create Policy
               link: docs/admin-api/ciam-mfa/risk-services/create-risk-policy.md
