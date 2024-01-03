@@ -55,14 +55,20 @@ description:  CIAM MFA API allows application to use Modern TOTP  authentication
 link: ?path=docs/ciam-mfa/TOTP.md
 -->
 
+<!-- type: row-end -->
+
+<!-- type: row -->
 <!-- type: card
 title: MFA using Yubikey
 description: Allows used to authenticate using hardware token device.
 link: ?path=docs/ciam-mfa/yubikey.md
 -->
-
+<!-- type: card
+title: MFA using FIDO2
+description: Allows used to authenticate using registered FIDO2 device
+link: ?path=docs/ciam-mfa/FIDO2/getting-started-FIDO2.md
+-->
 <!-- type: row-end -->
-
 ---
 
 ## Error Codes and messages
