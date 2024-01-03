@@ -3,19 +3,23 @@ API to enable or disable Risk Policy.
 
 If client want to enable/disable any particular policy, then he can provide that policyID in body of the request, else if no policyID is mentioned in the body, our default policy would be enabled.
 
-<!--
-type: tab
-titles: Request, Response
--->
-
-### Payload to Register App
-
 The parameters of payload request are as:
 
 | Variable | Type | Value | Required | Description |
 | -------- | -- |------------| ------- | ---- |
 | `enableRisk` | *boolean* | true/false | &#10004; | set true to enable the risk policy or false otherwise |
 | `policyID` | *string* | policy Id | - | mention it if you want to enable/disable any particular policy |
+
+<!--
+type: tab
+titles: Request, Response
+-->
+
+Endpoint **:**
+
+**PUT** [{{base_url}}/riskService/ServiceAccount/{svcAccount}/config](../api/?type=put&path=/riskService/ServiceAccount/{svcAccount}/config&version=2.0.0)
+
+**Payload** **:**
 
 ##### If specific policyId is provided to enable/disable
 

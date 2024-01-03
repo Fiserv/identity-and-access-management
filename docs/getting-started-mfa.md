@@ -15,13 +15,13 @@ Fiserv Identity and access management  provides  simple and easy to integrate MF
 
 ---  
 
-## Onboarding 
+## Registration 
 
 - CIAM MFA API requires registration of application.
 
 - Application team should submit a service point ticket to get yourself on-boarded.
 
-- Service Catalog > Application Services > Customer IAM Application Onboarding
+- Service Catalog > Application Services > Customer IAM Application Registration
 
 ---
 
@@ -44,25 +44,31 @@ CIAM MFA has various configuration possibilities that allow application to deter
 <!-- type: row -->
 
 <!-- type: card
-title: MFA using SMS or Email
+title: MFA using Email
 description: CIAM MFA API allows application to use Email ar SMS as authetnication factor.
-link: ?path=docs/ciam-mfa/SMS-EMAIL.md
+link: ?path=docs/ciam-mfa/email.md
+-->
+<!-- type: card
+title: MFA using SMS
+description: CIAM MFA API allows application to use Email ar SMS as authetnication factor.
+link: ?path=docs/ciam-mfa/sms.md
 -->
 
+
+<!-- type: row-end -->
+
+<!-- type: row -->
 <!-- type: card
 title:  MFA using TOTP
 description:  CIAM MFA API allows application to use Modern TOTP  authentication..
 link: ?path=docs/ciam-mfa/TOTP.md
 -->
-
 <!-- type: card
-title: MFA using Yubikey
-description: Allows used to authenticate using hardware token device.
-link: ?path=docs/ciam-mfa/yubikey.md
+title: MFA using FIDO2
+description: Allows used to authenticate using registered FIDO2 device
+link: ?path=docs/ciam-mfa/FIDO2/getting-started-FIDO2.md
 -->
-
 <!-- type: row-end -->
-
 ---
 
 ## Error Codes and messages

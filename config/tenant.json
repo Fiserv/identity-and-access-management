@@ -5,6 +5,7 @@
   "brandLogoURL": "https://raw.githubusercontent.com/Fiserv/Developer-Portal-Tenant-API/develop/assets/images/Fiserv_Logo.jpg",
   "solution": ["merchants", "financial-institutions", "fintech"],
   "brandDescription": "",
+  "getStartedFilePath": "/docs/getting-started.md",
   "categories": [
     {
       "name": "businessTypes",
@@ -23,7 +24,7 @@
       "version": "1.0.0",
       "versionType": "minor",
       "releaseNotesPath": "docs/release-notes/2022/march.md",
-      "apiSpecFileNames": [ "MFA/openapi", "MFA/openapi2" ]
+      "apiSpecFileNames": [ "MFA/openapi" ]
     },
 	{
       "version": "2.0.0",
@@ -35,8 +36,8 @@
   "product": {
     "featured": true,
     "logoURL": "https://raw.githubusercontent.com/Fiserv/Developer-Portal-Tenant-API/develop/assets/images/Portal_Logo.png",
-    "description": "To onboard properly into the Developer Studio as a tenant each product must support these APIs so that we can retrieve product specific API specifications and documentation.",
-    "longDescription":"To onboard properly into the Developer Studio as a tenant each product must support these APIs so that we can retrieve product specific API specifications and documentation.",
+    "description": "To register properly into the Developer Studio as a tenant each product must support these APIs so that we can retrieve product specific API specifications and documentation.",
+    "longDescription":"To register properly into the Developer Studio as a tenant each product must support these APIs so that we can retrieve product specific API specifications and documentation.",
     "apiSpecification": "/v1/apis/IdentityAndAccessManagement",
     "layout": "/v1/layouts/IdentityAndAccessManagement",
     "documentation": "/v1/docs/IdentityAndAccessManagement",

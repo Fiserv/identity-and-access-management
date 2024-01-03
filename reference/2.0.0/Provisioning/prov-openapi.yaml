@@ -330,7 +330,7 @@ paths:
       x-group-name: 'Application'
       x-proxy-name: 'Create Application'
       x-child-product-name: 'Provisioning'
-      summary: Onboard Application
+      summary: Register Application
       security: 
         - Oauth2CC:
           - "iam.root"
@@ -2600,7 +2600,7 @@ components:
           scopes:
             application.client: Application client scope for allowed CIAM Provisioning API ACL
             application.client domain.manage: Application client scope allowed for Delete of App Owned Domain
-            iam.root: Root scope used to onboard applications
+            iam.root: Root scope used to register applications
   headers: {}
   responses: {}
   parameters: {}
