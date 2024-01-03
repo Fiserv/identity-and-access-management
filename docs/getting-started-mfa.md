@@ -44,24 +44,24 @@ CIAM MFA has various configuration possibilities that allow application to deter
 <!-- type: row -->
 
 <!-- type: card
-title: MFA using SMS or Email
+title: MFA using Email
 description: CIAM MFA API allows application to use Email ar SMS as authetnication factor.
-link: ?path=docs/ciam-mfa/SMS-EMAIL.md
+link: ?path=docs/ciam-mfa/email.md
+-->
+<!-- type: card
+title: MFA using SMS
+description: CIAM MFA API allows application to use Email ar SMS as authetnication factor.
+link: ?path=docs/ciam-mfa/sms.md
 -->
 
-<!-- type: card
-title:  MFA using TOTP
-description:  CIAM MFA API allows application to use Modern TOTP  authentication..
-link: ?path=docs/ciam-mfa/TOTP.md
--->
 
 <!-- type: row-end -->
 
 <!-- type: row -->
 <!-- type: card
-title: MFA using Yubikey
-description: Allows used to authenticate using hardware token device.
-link: ?path=docs/ciam-mfa/yubikey.md
+title:  MFA using TOTP
+description:  CIAM MFA API allows application to use Modern TOTP  authentication..
+link: ?path=docs/ciam-mfa/TOTP.md
 -->
 <!-- type: card
 title: MFA using FIDO2
