@@ -8,7 +8,7 @@ type: tab
 titles: Request, Response
 -->
 
-### Payload to Register App
+### Payload to enable risk service
 
 The parameters of payload request are as:
 

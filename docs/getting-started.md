@@ -23,12 +23,17 @@ description: Provisioning API is a set of APIs which simplifies all the director
 link: ?path=docs/ciam-provisioning/getting-started-provisioning-api.md
 -->
 
+<!-- type: row-end -->
+
+<!-- type: row -->
+
 <!-- type: card
 title: Admin API
 description: IAM Service Team onboard the application. The API requires admin credentials to generate the OAuth token needed for application onboarding.
 link: ?path=docs/admin-api/getting-started-admin-api.md
 -->
-<!-- type: row-end -->
 
+
+<!-- type: row-end -->
 ---
 
