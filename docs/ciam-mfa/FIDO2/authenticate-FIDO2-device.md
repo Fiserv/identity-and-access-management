@@ -19,7 +19,7 @@ Access tokens are credential strings that represent authorization to access a pr
 
 To get an access token, the following must be true:  
 
-- The application is configured for MFA using  application onboarding process.
+- The application is configured for MFA using  application registration process.
 
 - The credentials are provided to application owner for getting an access token.  
 
@@ -40,23 +40,6 @@ To get an access token, the following must be true:
 
 - Refer API explorer -> MFA -> Authenticate FIDO2 Device.
 
-<!--
-type: tab
-titles: Request, Response
--->
-Endpoint to inititate device authentication **:**
-
-**POST /ciam-mfa/v2/users/deviceAuthentications**
-
-Payload to inititate device authentication **:**
-
-```json
-{
-	"userName":"username",
-    "rpID": "https://app.fiserv.com",
-    "deviceType": "FIDO2"
-}
-```
 
 Attributes used in payload of request are as:
 
@@ -65,6 +48,25 @@ Attributes used in payload of request are as:
 | `userName` | *string* | &#10004; | userName |
 | `rpID` | *string* | &#10004; | URL |
 | `deviceType` | *string* | &#10004; | Authentication Device |
+
+<!--
+type: tab
+titles: Request, Response
+-->
+Endpoint to inititate device authentication **:**
+
+**POST** [{{base_url}}/ciam-mfa/v2/users/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
+
+**Payload** **:**
+
+```json
+{
+	"userName":"Harsh",
+    "rpID": "https://app.fiserv.com",
+    "deviceType": "FIDO2"
+}
+```
+
 
 <!--
 type: tab
@@ -282,11 +284,11 @@ type: tab
 titles: Request, Response
 -->
 
-Endpoint for  validate assertion **:**
+Endpoint **:**
 
-**POST /ciam-mfa/v2/users/deviceAuthentications/{authId}**
+**POST** [{{base_url}}/ciam-mfa/v2/users/deviceAuthentications/{authId}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
 
-Payload for validate assertion **:**
+**Payload** **:**
 
 
 ```json

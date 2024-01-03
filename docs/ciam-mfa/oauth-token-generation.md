@@ -1,41 +1,45 @@
-# OAuth Access Token
+# Access Token
 
-- Access tokens are credential strings that represent authorization to access a protected resource. Applications obtain access tokens by making OAuth connect requests to an authorization server; CIAM Provisioning API resource servers require clients to authenticate using access tokens. Access tokens are obtained from the token endpoint (when using the client credentials grant type).
+- CIAM MFA apis are secured with and access token, so in order to use any api, you need to first generate the access token.
 
-- Scopes are used to grant an application different levels of access to data on behalf of the end user. Each API may declare one or more scopes. 
+- The access token is generated using *client_credential* grant type, which is provided in payload. 
 
-<!--theme: info -->
-Here are the list of allowed scopes:
-- application.client 
-Application client scope for allowed CIAM Provisioning API.
-
-- application.client domain.manage
-Application client scope allowed for Delete of App Owned Domain.
-
----
+- To get client_id and client_secret, register your application through CIAM self service portal, you will receive these credential as mail.
 
 There are steps required at the application-side that should meet the below criteria:  
 - Can make http/REST calls.
 
-- The application is configured via onboarding process.
+- The application is configured via registration process.
 
 - Has the registered application details.
-
-
-## Getting an access token 
-
-<!--
-type: tab
-titles: Request, Response
--->
 
 The below table identifies the parameter required for `Application Token Mapping`.
 
 | Variable | Type | Value | Required | Description |
 | -------- | -- |------------| ------- | ---- |
 | `grant_type` | *string* | client_credentials | &#10004; |  grant type determines the exact sequence of steps that are involved in the OAuth process. |
-| `scope` | *string* | application.client domain.manage | &#10004; |  scope defines the access level for the generated token. |
+| `client_id` | *string* | which is received on mail | &#10004; | The cient id which is received while registration the application |
+| `client_secret` | *string* | which is received on mail | &#10004; | The cient secret which is received while registration the application |
 
+
+<!--
+type: tab
+titles: Request, Response
+-->
+
+Endpoint **:**
+
+**POST** [{{base_url}}/ciam-mfa/v2/get/token](../api/?type=post&path=/ciam-mfa/v2/get/token&version=2.0.0)
+
+**Payload** **:**
+
+```json
+{
+    "grant_type":"client_credential",
+    "client_id":"Sfq5hn4nf",
+    "client_secret":"S^7j|)v,Zd"
+}
+```
 
 <!--
 type: tab

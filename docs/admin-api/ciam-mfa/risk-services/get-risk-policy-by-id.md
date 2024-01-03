@@ -1,19 +1,25 @@
 ## Get Risk Policy by ID
 
 API to get any specific policy. Provide the policyId as path parameter in the request to get the policy.
-<!--
-type: tab
-titles: Request, Response
--->
 
-
-The below table identifies the parameter required
+The below table explains about the path parameter:
 
 | Variable | Type | Maximum Length | Required | Description |
 | -------- | -- |------------| ------- | ---- |
 | `policyId` | *string* | - | &#10004; | A unique ID used to identify the policy. |
 
+<!--
+type: tab
+titles: Request, Response
+-->
 
+Endpoint **:**
+
+**GET** [{{base_url}}/group/{groupid}/riskPolicy/{policyId}](../api/?type=get&path=/group/{groupid}/riskPolicy/{policyId}&version=2.0.0)
+
+**Payload** **:**
+
+#### No payload required
 <!--
 type: tab
 -->

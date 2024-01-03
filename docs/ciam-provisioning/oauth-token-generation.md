@@ -17,7 +17,7 @@ Application client scope allowed for Delete of App Owned Domain.
 There are steps required at the application-side that should meet the below criteria:  
 - Can make http/REST calls.
 
-- The application is configured via onboarding process.
+- The application is configured via registration process.
 
 - Has the registered application details.
 

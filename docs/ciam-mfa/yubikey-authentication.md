@@ -19,7 +19,7 @@ Access tokens are credential strings that represent authorization to access a pr
 
 To get an access token, the following must be true:  
 
-- The application is configured for MFA using  application onboarding process.
+- The application is configured for MFA using  application registration process.
 
 - The credentials are provided to application owner for getting an access token.  
 
@@ -29,6 +29,14 @@ To get an access token, the following must be true:
 ## Step 2: Create MFA  Device 
 
 - API will initiate  device authentication and return authId in response which will be required during  validation.  
+
+The payload parameters are as: 
+
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `userName` | *string* | &#10004; | General Name |
+| `deviceName` | *string* | &#10004; | Name of the device |
+| `deviceType` | *string* | &#10004; | Fixed(SECURITY_KEY) |
 
 <!--
 type: tab
@@ -236,16 +244,27 @@ function getCompatibility() {
 
 - This operation uses the application/vnd.pingidentity.assertion.check+json custom media type as the content type in the request header.
 
+Attributes used in payload of request are as:
+
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `deviceType` | *string* | &#10004; | SECURITY_KEY |
+| `origin` | *string* | &#10004; | App origin |
+| `attestation` | *string* | &#10004; | Object |
+
 <!--
 type: tab
 titles: Request, Response
 -->
 
-### Example of a check assetion request 
+**POST /ciam-mfa/v2/deviceAuthentications/{{authId}}**
+
+### Example of a check assertion request 
 
 
 ```json
 {
+    "deviceType": "SECURITY_KEY",
     "origin": "https://app.pingone.com",
     "assertion": "{{assertionFromBrowser}}"
 }
