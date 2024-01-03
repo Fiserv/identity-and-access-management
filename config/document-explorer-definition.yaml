@@ -58,22 +58,22 @@
        - title: MFA using FIDO2
          link: docs/ciam-mfa/FIDO2/getting-started-FIDO2.md
          sections: 
-          - title: Register FIDO2 Device
+          - title: Device Registration
             link: docs/ciam-mfa/FIDO2/register-FIDO2-device.md
             type: recipe
-          - title: Authenticate FIDO2 Device
+          - title: Device Authentication - with username
             link: docs/ciam-mfa/FIDO2/authenticate-FIDO2-device.md
             type: recipe
-          - title: Authenticate FIDO2 Device- usernameless
+          - title: Device Authentication - usernameless
             link: docs/ciam-mfa/FIDO2/authenticate-FIDO2-device-usernameless.md
             type: recipe    
           - title: Filter Devices by Type
             link: docs/ciam-mfa/FIDO2/filter-devices-by-type.md
             type: recipe
-          - title: Is FIDO Registered
+          - title: Is FIDO2 Registered
             link: docs/ciam-mfa/FIDO2/is-FIDO-Registered.md
             type: recipe
-          - title: Unpair FIDO2 Device
+          - title: Unpair Device
             link: docs/ciam-mfa/FIDO2/unpair-FIDO2-device.md
             type: recipe
        - title: Unpair MFA Device
