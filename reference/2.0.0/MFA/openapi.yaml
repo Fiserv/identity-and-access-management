@@ -192,7 +192,7 @@ paths:
       x-group-name: CIAM-MFA 
       x-default-example: TOTP
   /ciam-mfa/v2/users/{user_name}/mfadevices/{device_name}:
-    get:
+    delete:
       tags:
         - unpair TOTP device endpoint
       parameters:
@@ -235,7 +235,7 @@ paths:
       x-proxy-name: Unpair TOTP Device
       x-group-name: CIAM-MFA
   /ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/all:
-    get:
+    delete:
       tags:
         - unpair FIDO2 device endpoint
       parameters:
