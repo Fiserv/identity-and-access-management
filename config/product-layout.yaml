@@ -86,7 +86,7 @@ featuredFeatures:
         title: Unpair MFA Device
         description: Unpairs the registered device
         type: "get"
-        path: "/ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}?code="all""
+        path: "/ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}?code=all"
   - title: Provisioning API
     description: >
       CIAM Provisioning API provides the REST endpoints to connect and perform various operations on directory. API support the CRUD operations for Users, Service Accounts and Domains. It also enables to perform account administration operations like enabling the account, password reset, account unlock. One can also retrieve the account status details using Provisioning API.
