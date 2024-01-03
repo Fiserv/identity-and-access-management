@@ -1,5 +1,5 @@
 ## Authenticate FIDO2 Device - usernameless
-FIDO2 authentication flow is multistep process as depicted below.
+FIDO2 usernameless authentication flow is multistep process as depicted below.
 
 ---  
 
@@ -19,7 +19,7 @@ Access tokens are credential strings that represent authorization to access a pr
 
 To get an access token, the following must be true:  
 
-- The application is configured for MFA using  application onboarding process.
+- The application is configured for MFA using  application registration process.
 
 - The credentials are provided to application owner for getting an access token.  
 
@@ -44,11 +44,11 @@ To get an access token, the following must be true:
 type: tab
 titles: Request, Response
 -->
-Endpoint to inititate device authentication **:**
+Endpoint **:**
 
-**POST /ciam-mfa/v2/users/deviceAuthentications**
+**POST** [{{base_url}}/ciam-mfa/v2/users/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
 
-Payload to inititate device authentication **:**
+**Payload :**
 
 ```json
 {
@@ -288,11 +288,11 @@ type: tab
 titles: Request, Response
 -->
 
-Endpoint for  validate assertion **:**
+Endpoint **:**
 
-**POST /ciam-mfa/v2/users/deviceAuthentications/{authId}**
+**POST** [{{base_url}}/ciam-mfa/v2/users/deviceAuthentications/{authId}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
 
-Payload for validate assertion - usernameless **:**
+**Payload** **:**
 
 
 ```json

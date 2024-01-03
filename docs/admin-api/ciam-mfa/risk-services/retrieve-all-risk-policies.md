@@ -6,6 +6,12 @@ type: tab
 titles: Request, Response
 -->
 
+Endpoint **:**
+
+**GET** [{{base_url}}/group/{groupid}/riskPolicy](../api/?type=get&path=/group/{groupid}/riskPolicy&version=2.0.0)
+
+**Payload** **:**
+
 #### No Payload to Retreive all Policies
 <!--
 type: tab

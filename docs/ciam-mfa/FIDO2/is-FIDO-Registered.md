@@ -13,11 +13,11 @@ type: tab
 titles: Request, Response
 -->
 
-Endpoint to get MFA devices **:**
+Endpoint **:**
 
-**GET /ciam-mfa/v2/users/{{username}}/isFidoRegistered/{{rpId}}**
+**GET** [{{base_url}}/ciam-mfa/v2/users/{{username}}/isFidoRegistered/{{rpId}}](../api/?type=get&path=/users/{username}/isFidoRegistered/{rpId}&version=2.0.0)
 
-### Example Payload to Authenticate Device
+**Payload** **:**
 
 ##### No Payload required
 
@@ -35,7 +35,7 @@ type: tab
 }
 ```
 
-#### 2 - Not a single device registered for given user.
+#### 2 - No any registered device for given user.
 ```json
 {
     "status": "FAILURE",

@@ -8,7 +8,7 @@ Access tokens are credential strings that represent authorization to access a pr
 
 To get an access token, the following must be true:  
 
-- The application is configured for MFA using  application onboarding process.
+- The application is configured for MFA using  application registration process.
 
 - The credentials are provided to application owner for getting an access token.  
 
@@ -21,10 +21,21 @@ To get an access token, the following must be true:
 
 - As a pre-requisite user  must have a supported Yubikey hardware.
 
+Attributes used in payload of request are as:
+
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `deviceType` | *string* | &#10004; | Fixed(SECURITY_KEY) |
+| `deviceName` | *string* | - | Name of Yubikey device |
+| `rp.id` | *string* | &#10004; | Your application URL prefix |
+| `rp.name` | *string* | &#10004; | Application Name |
+
 <!--
 type: tab
 titles: Request, Response
 -->
+
+**POST: /ciam-mfa/v2/users/{{user_name}}/mfadevices**
 
 ### Example of a Create MFA device 
 

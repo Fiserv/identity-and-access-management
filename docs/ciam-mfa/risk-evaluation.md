@@ -17,14 +17,6 @@ There are steps required at the application-side that should meet the below crit
 
 - Has the Risk SDK to collect the signals data from the browser
 
-
-## Risk Evaluation    
-
-<!--
-type: tab
-titles: Request, Response
--->
-
 The below table identifies the parameter required for `Risk Evaluation`.
 
 | Variable | Type | Maximum Length | Required | Description |
@@ -37,7 +29,17 @@ The below table identifies the parameter required for `Risk Evaluation`.
 | `browserUserAgent` | *string* | - | &#10004; | The user agent string for the browser. |
 | `signalData` | *string* | - | &#10004; | The data collected by the Signals (CIAM Risk) SDK. |
 
-### Payload that represents the Risk Evaluation
+## Risk Evaluation    
+<!--
+type: tab
+titles: Request, Response
+-->
+
+Endpoint **:**
+
+**POST** [{{base_url}}/ciam-mfa/v2/riskEvaluations](../api/?type=post&path=/riskEvaluations&version=2.0.0)
+
+**Payload** **:**
 
 ```json
 {
