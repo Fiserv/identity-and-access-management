@@ -1,17 +1,17 @@
-# MFA using YubiKey
+## Authenticate FIDO2 Device - usernameless
+FIDO2 usernameless authentication flow is multistep process as depicted below.
 
 ---  
 
 - [Step 1: Getting an access token](#step-1-getting-an-access-token)  
 
-- [Step 2: Initialize authentication](#step-2-initialize-authentication)  
+- [Step 2: Initiate device authentication usernameless](#step-2-initiate-device-authentication-usernameless)  
 
-- [Step 3: Validate OTP](#step-3-validate-otp)  
+- [Step 3: Validate user (JavaScript WebAuthn API - Browser Side)](#step-3-validate-user-javascript-webauthn-api---browser-side)  
 
+- [Step 4: Validate assertion](#step-4-validate-assertion)
 
 ---
-
-A FIDO2 biometrics device such as Yubikey sflow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
 
 ## Step 1: Getting an access token     
 
@@ -26,51 +26,57 @@ To get an access token, the following must be true:
 - The application runtime  has access to the client secret and token endpoint. 
 
 
-## Step 2: Create MFA  Device 
+## Step 2: Initiate Device Authentication Usernameless
 
-- API will initiate  device authentication and return authId in response which will be required during  validation.  
+- API will initiate  device authentication and return authId in response which will be required during assertion validation.  
 
-The payload parameters are as: 
+- As a pre-requisite the FIDO2 service must be enabled for application.
 
-| Variable | Type | Required | Description |
-| -------- | -----| -------  | ----------- |
-| `userName` | *string* | &#10004; | General Name |
-| `deviceName` | *string* | &#10004; | Name of the device |
-| `deviceType` | *string* | &#10004; | Fixed(SECURITY_KEY) |
+- API requires username, rpID and deviceType as request payload.
+
+- API will return *publicKeyCredentialCreationOptions* in response which will be required for browser side JavaScript WebAuthn API to consume and [create a passkey](#step-3-validate-user-javascript-webauthn-api---browser-side )
+
+- API will return *authId* in response which will be required during [validate assertion](#step-4-validate-assertion).
+
+- Refer API explorer -> MFA -> Authenticate FIDO2 Device.
 
 <!--
 type: tab
 titles: Request, Response
 -->
+Endpoint **:**
 
-### Example of a Create MFA device 
+**POST** [{{base_url}}/ciam-mfa/v2/users/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
+
+**Payload :**
 
 ```json
 {
-    "deviceType": "SECURITY_KEY",
-    "deviceName": "Mydevice",
-    "userName":"demouser"   
+    "rpID": "https://app.fiserv.com",
+    "deviceType": "FIDO2"
 }
 ```
+
+Attributes used in payload of request are as:
+
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `userName` | *string* | &#10004; | userName |
+| `rpID` | *string* | &#10004; | URL |
+| `deviceType` | *string* | &#10004; | Authentication Device |
+
 <!--
 type: tab
 -->
 
-### Example of authentication request (201: Created) response
-
+### Example of Initiate Auth Request OTP (201: Created) response
 
 ```json
 {
-    "authId": "09859da1-aed0-4be0-af1d-5583471b5d9c",
-    "deviceType": "SECURITY_KEY",
-    "status": "ACTIVATION_REQUIRED",
-    "message": "Device registration has been initiated, please activate the device to use"
-    "deviceName": "Mydevice",
-    "rp": {
-        "id": "pingone.com",
-        "name": "pingone.com"
-    },
-    "publicKeyCredentialCreationOptions": "{\"rp\":{\"id\":\"pingone.com\"},\"user\":{\"id\":[-80,-62,-62,-66,84,85,-36,51,81,8,95,88,-105,64,103,-72,14,-18,-24,54,65,-58,-79,36,10,-55,-93,33,108,41,37,-94],\"displayName\":\"9ad15e9e-3ac6-43f7-a053-d46b87d6c4a7_tomjones\",\"name\":\"9ad15e9e-3ac6-43f7-a053-d46b87d6c4a7_tomjones\"},\"challenge\":[-103,5,109,97,69,75,87,108,-122,-11,54,15,-111,-60,-32,-92,-91,-21,70,34,96,-72,87,66,-45,-5,-99,-112,26,110,-33,-112],\"pubKeyCredParams\":[{\"type\":\"public-key\",\"alg\":\"-7\"},{\"type\":\"public-key\",\"alg\":\"-37\"},{\"type\":\"public-key\",\"alg\":\"-257\"}],\"timeout\":120000,\"excludeCredentials\":[],\"authenticatorSelection\":{\"authenticatorAttachment\":\"cross-platform\",\"requireResidentKey\":false,\"userVerification\":\"preferred\"},\"attestation\":\"direct\"}"
+    "authId": "038273f3-7d84-4c80-9477-99f88646797d",
+    "status": "SUCCESS",
+    "message": "Please generate the assertion with 'publicKeyCredentialRequestOptions' using Web Authentication API and authenticate FIDO device with assertion",
+    "publicKeyCredentialRequestOptions": "{"challenge":[13,93,-97,-86,-108,28,22,-98,-9,-53,37,23,-105,-122,-64,-75,57,-88,-13,57,-112,96,-33,42,-119,-72,116,-94,95,-50,-42,99],"timeout":120000,"rpId":"iam-demo.1dc.com","allowCredentials":[{"type":"public-key","id":[-114,11,-40,2,-85,-109,-107,-126,-25,-5,-80,113,-9,-25,-24,-98,123,27,-25,-34,6,-66,65,-8,60,-88,-56,16,-78,88,-57,-29,0,-93,23,-50,61,-11,-31,-128,-62,-14,-43,-59,-52,33,-110,-127,-60,31,-26,36,-45,77,64,94,-83,56,3,87,-122,-31,94,-107]}],"userVerification":"preferred"}"
 }
 
 
@@ -79,9 +85,33 @@ type: tab
 <!-- type: tab-end -->
 
 
-## Step 3: Device pairing
+## Step 3: Validate User (JavaScript WebAuthn API - Browser Side)
 
-A  Yubikey device flow uses functions from the Web Authentication API (webauthn API) to manage device authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
+- Passwordless implmentation flow uses functions from the Web Authentication API (webauthn API) to manage FIDO2 device authentication.
+
+- To validate user(ask for user biometrics to validate), browser side java script need to be executed. 
+
+- Script requires input of "publicKeyCredentialCreationOptions" recevied in [initiate device authentication](#step-2-initiate-device-authentication).
+
+- During script exceution browser will prompt user to choose available authenticator, request is been sent to the authenticator, user authenticate themself by providing the biometrics.
+
+- Once the user is authenticated successfully, an assertion object is created by the browser side script.
+
+- Assertion object is required during [Validate Assertion](#step-4-validate-assertion).
+
+
+**Note**: As a pre-requisite client browser should be compatible for FIDO2 (WebAuthn).
+
+Differnece: In usernamless flow, autheticator like mobile will showcase the list of all the accounts whose passkeys are stored for given rpID and user need to select one apropriate account followed by providind biometrics to generate assertion with right userHandle.
+
+For authticator like security key or platform no account selection required just providing biometrics will genrate assertion with the right userHandle.
+
+Note: With the help of "userHandle" server identifies which user's authetication request is this. 
+
+
+The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
+
+FIDO2 device authentication flow uses functions from the Web Authentication API (webauthn API) to manage device authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
 
 Call the navigator.credentials.get method using the publicKeyCredentialOptions returned from the assertion.check
 
@@ -220,14 +250,14 @@ function getCompatibility() {
         if (result) {
           return 'FULL';
         } else if (isWebAuthnSupported()) {
-          return 'SECURITY_KEY_ONLY';
+          return 'FIDO2_ONLY';
         } else {
           return 'NONE';
         }
       })
       .catch(() => {
         if (isWebAuthnSupported()) {
-          return 'SECURITY_KEY_ONLY';
+          return 'FIDO2_ONLY';
         } else {
           return 'NONE';
         }
@@ -236,40 +266,48 @@ function getCompatibility() {
 
 ```
 
-## Step 4: Validating  Security Key device
+## Step 4: Validate assertion
 
-- The multi-factor authentication flow for a Yubikey device checks the authenticator assertion response, which contains the signed challenge needed to complete the MFA flow. The MFA actions service validates the challenge.
+- Validate assertion is last step of authentication. In this step assertion gets validated with server to verify if the same registered user is trying to login.
 
-- The following sample shows the operation to validate the assertion used in the multi-factor authentication flow. 
+- Once the user is validated at step 3, an assertion object gets created by browser side script.
 
-- This operation uses the application/vnd.pingidentity.assertion.check+json custom media type as the content type in the request header.
+- Validation assertion is an API call with below payload.
 
-Attributes used in payload of request are as:
+- *authId* recieved in initiate device authentication.
 
-| Variable | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| `deviceType` | *string* | &#10004; | SECURITY_KEY |
-| `origin` | *string* | &#10004; | App origin |
-| `attestation` | *string* | &#10004; | Object |
+- *assertion* created during create a passkey step.
 
+- *Origin* is name of the site from where the cilent is requesting.
+
+- The assertion is the JSON object and the JSON looks like this:
+
+**Note**: In usernamless flow assertion object has "userHandle" value which tells server which user is requesting for authetication
 <!--
 type: tab
 titles: Request, Response
 -->
 
-**POST /ciam-mfa/v2/deviceAuthentications/{{authId}}**
+Endpoint **:**
 
-### Example of a check assertion request 
+**POST** [{{base_url}}/ciam-mfa/v2/users/deviceAuthentications/{authId}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
+
+**Payload** **:**
 
 
 ```json
 {
-    "deviceType": "SECURITY_KEY",
-    "origin": "https://app.pingone.com",
-    "assertion": "{{assertionFromBrowser}}"
+    "deviceType": "FIDO2",
+    "origin": "https://app.fiserv.com",
+    "assertion": "{\"id\":\"j6I9tovjxsVtndQQZJ43rQ\",\"rawId\":\"j6I9tovjxsVtndQQZJ43rQ==\",\"type\":\"public-key\",\"response\":{\"clientDataJSON\":\"eyJ0eXBlIjoid2ViYXV0aG4uZ2V0IiwiY2hhbGxlbmdlIjoiU2NmbktzSmNWNnR4WXBrWTd4bW5Yd3BQeXJRYTZ0SlJxVENmak9uN1hzUSIsIm9yaWdpbiI6Imh0dHBzOi8vbG9jYWxob3N0Ojk0NDMiLCJjcm9zc09yaWdpbiI6ZmFsc2V9\",\"authenticatorData\":\"SZYN5YgOjGh0NBcPZHZgW4/krrmihjLHmVzzuoMdl2MdAAAAAA==\",\"signature\":\"MEUCIQD8miXpRynxQ+cV9utI7E2Cs/mS47IagF2RqbfKK+DMlAIgWNS6sJA0R4NoNBt+aW1Z9NZGm7hUQDMyw6GwNYFBRQc=\",\"userHandle\":\"ey2q99IUCnLDfygPtwwrvhr7q/XycIe1IjgMXDKildk=\"}}"
 }
     
 ```
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `deviceType` | *string* | &#10004; | Authentication Device |
+| `origin` | *string* | &#10004; | URL |
+| `assertion` | *string* | &#10004; | assertion object |
 
 <!--
 type: tab
@@ -287,3 +325,4 @@ type: tab
 ```
 
 <!-- type: tab-end --> 
+

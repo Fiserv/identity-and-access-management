@@ -1,12 +1,12 @@
-# MFA using SMS or EMAIL 
+# MFA using SMS 
 
-- A user attempts to access a protected resource that is configured to use CIAM MFA, such as a gated website.  
+- API to request MFA authentication through sms on mobile number. 
 
 - The CIAM MFA API  sends a notification on an out-of-band (OOB) channel to the users authentication device (possession factor), for further verification of the users identity.  
 
 - The notification to the user is communicated on a separate network channel, isolated from the network channel that the user used when entering their username and password. Use of an OOB channel enhances security, reducing the possibility of man-in-the-middle (MITM), phishing, and other security vulnerability attacks.  
 
-- CIAM MFA is configured to provide a one-time passcode (OTP) through SMS  or email notification. The user must enter that passcode before it expires.
+- CIAM MFA is configured to provide a one-time passcode (OTP) through SMS notification. The user must enter that passcode before it expires.
 
 There are steps  required at the application-side that should meet the below criteria:  
 
@@ -37,7 +37,7 @@ Access tokens are credential strings that represent authorization to access a pr
 
 To get an access token, the following must be true:  
 
-- The application is configured for MFA using  application onboarding process.
+- The application is configured for MFA using  application registration process.
 
 - The credentials are provided to application owner for getting an access token.  
 
@@ -46,30 +46,38 @@ To get an access token, the following must be true:
 
 ## Step 2: Request OTP 
 
-API to initiate Second factor authentication by contacting the user using  email or SMS provided. 
+API to initiate Second factor authentication by contacting the user using mobile number provided. 
 
-- API will send one-time passcode to user device i.e. EMAIl address or a phone number. 
+- API will send one-time passcode to user device i.e. phone number. 
 
-- API will return   authId in response which will be required during device validation.  
+- API will return authId in response which will be required during device validation.  
 
-- API supports custom templates that can be configured during application onboarding process. Custom template will allow to customize email and SMS messaging.
+- API supports custom templates that can be configured during application registration process. Custom template will allow to customize SMS messaging.
 
+The payload parameters are as: 
+
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `userName` | *string* | &#10004; | General Name |
+| `phoneNumber` | *string* | &#10004; | Mobile number of the user |
+| `deviceType` | *string* | &#10004; | sms(case insensitive) |
 
 <!--
 type: tab
 titles: Request, Response
 -->
 
-### Example of a request OTP  payload request using email 
+Endpoint **:**
 
+**POST** [{{base_url}}/ciam-mfa/v2/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
 
+**Payload** **:**
 
 ```json
 {
     "userName": "jdoe",
-    "email": "jon.doe@gmail.com",
-    "deviceType": "EMAIL",
-    "templateName": "demotemplate"
+    "phoneNumber": "+91-8212345212",
+    "deviceType": "sms"
 }
 ```
 <!--
@@ -92,18 +100,29 @@ type: tab
 <!-- type: tab-end -->
 ## Step 3: Validate OTP 
 
-API to validate one-time passcode that was sent on email or SMS provided.
+API to validate one-time passcode that was sent on mobile number provided.
 
 - API will authId in path and otp in the body to complete the validation.
 
-- API will HTTP code ,  status and message in response to the validation process.
+- API will HTTP code, status and message in response to the validation process.
+
+The payload parameters are as: 
+
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `otp` | *string* | &#10004; | OTP received |
+| `deviceType` | *string* | &#10004; | SMS(case insensitive) |
 
 <!--
 type: tab
 titles: Request, Response
 -->
 
-### Example of a validation request
+Endpoint **:**
+
+**POST** [{{base_url}}/ciam-mfa/v2/deviceAuthentications/{{authId}}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
+
+**Payload** **:**
 
 ```json
  {

@@ -11,14 +11,42 @@ servers:
   - url: https://ciam-mfa-api-dev.1dc.com/app-reg/v1
   - url: https://ciam-mfa-api-dev.1dc.com/app-reg/v2
 paths:
+  /app-reg/admin/v1/registerapp:
+    post:
+      summary: App registration Admin Risk
+      description: >-
+        Use this API for admin app reg admin.
+      x-child-product-name: 'Admin API'
+      x-group-name: 'Prerequisites'
+      x-proxy-name: 'Admin App Reg'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppRegRiskAdminRequest'
+      responses:
+        '201':
+          description: CREATED
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AppRegRiskAdminResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
   /registerapp:
     post:
-      summary: Onboard the application
+      summary: Register the application
       description: >- 
         Use this API to create a custom risk policy.
       x-child-product-name: 'Admin API'
       x-group-name: 'Prerequisites'
-      x-proxy-name: 'Application Registration'
+      x-proxy-name: 'Register Application'
       requestBody:
         content:
           application/json:
@@ -46,7 +74,7 @@ paths:
         Use this API to enable/disable risk services.
       x-child-product-name: 'Admin API'
       x-group-name: 'Prerequisites'
-      x-proxy-name: 'Risk Service Configuration'
+      x-proxy-name: 'Enable/Disable Risk'
       parameters:
         - name: svcAccId
           in: path
@@ -73,7 +101,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
-  /riskPolicy:
+  /group/{groupid}/riskPolicy:
     post:
       summary: Create Risk Policy
       description: >- 
@@ -81,6 +109,12 @@ paths:
       x-child-product-name: 'Admin API'
       x-group-name: 'Risk Services'
       x-proxy-name: 'Create Risk Policy'
+      parameters:
+        - name: groupid
+          in: path
+          schema:
+            type: string
+          required: true
       requestBody:
         content:
           application/json:
@@ -108,6 +142,12 @@ paths:
       x-child-product-name: 'Admin API'
       x-group-name: 'Risk Services'
       x-proxy-name: 'Retrieve All Risk Policies'
+      parameters:
+        - name: groupid
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: OK
@@ -123,7 +163,7 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
-  /riskPolicy/{policyId}:
+  /group/{groupid}/riskPolicy/{policyId}:
     get:
       summary: Read a Risk Policy by policy Id
       description: >- 
@@ -133,6 +173,11 @@ paths:
       x-proxy-name: 'Get Risk Policy By Id'
       parameters:
         - name: policyId
+          in: path
+          schema:
+            type: string
+          required: true
+        - name: groupid
           in: path
           schema:
             type: string
@@ -170,6 +215,11 @@ paths:
           schema:
             type: string
           required: true
+        - name: groupid
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '200':
           description: OK
@@ -198,6 +248,11 @@ paths:
           schema:
             type: string
           required: true
+        - name: groupid
+          in: path
+          schema:
+            type: string
+          required: true
       responses:
         '204':
           description: No Content
@@ -209,6 +264,58 @@ paths:
           $ref: '#/components/responses/NotFound'
         '500':
           $ref: '#/components/responses/ServerError'  
+  /app-reg/v1/fido2Service/ServiceAccount/{svc_acc}/config:
+    put:
+      summary: API to enable FIDO2 service for the given service account
+      parameters:
+        - name: svc_acc
+          description: the service account for which fido service need to be enabled
+          in: path
+          required: true
+          schema: 
+            type: string
+      x-child-product-name: 'Admin API'
+      x-group-name: 'FIDO2'
+      x-proxy-name: 'Enable/Disable FIDO2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                enableFIDO2:
+                  type: boolean
+            example:
+              enable:
+                value:
+                  enableFIDO2: true
+              disable:
+                value:
+                  enableFIDO2: false
+      responses:
+        '201':
+          description: Created
+          content:
+            string:
+              schema:
+                type: object
+              example:
+                enable:
+                  value:
+                    message: FIDO2 Service has been now enabled for your application
+                disable:
+                  value:
+                    message: FIDO2 Service has been now disabled for your application
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError' 
+
+        
 components:
   schemas:
     ErrorResponse:
@@ -323,6 +430,40 @@ components:
           type: boolean
         policyID:
           type: string
+    AppRegRiskAdminRequest:
+      properties:
+        apm:
+          type: string
+        appName:
+          type: string
+        uaid:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        maxUsers:
+          type: string
+        owner:
+          type: string
+        enableCIAMRiskServices:
+          type: boolean
+        buGroupId:
+          type: string
+        customCIAMRiskPolicy:
+          type: string
+    AppRegRiskAdminResponse:
+      properties:
+        appName:
+          type: string
+        owner:
+          type: string
+        uaid:
+          type: string
+        ciamRiskSvcAcctFriendlyID:
+          type: string
+        ciamRiskEmailStatus:
+          type: string
   responses:
     BadRequest:
       content:
@@ -371,4 +512,16 @@ components:
             traceId: 7027b61dbf7645399d204dbfa0de0870
             timestamp: 2022-06-24-15.30.20
       description: An unexpected internal server error occurred.
+      x-model-version: 1
+    PartialContent:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: '10003'
+            message: Partial Content 
+            traceId: 7027b61dbf7645399d204dbfa0de0870
+            timestamp: 2022-06-24-15.30.20
+      description: Partial Content provided
       x-model-version: 1

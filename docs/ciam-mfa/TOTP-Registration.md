@@ -24,7 +24,7 @@ To Verify user using TOTP, first step required is to  register Time-based One-ti
 
 - [Step 3: Device pairing](#step-3-device-pairing)
 
-- [Step 4: Register TOTP device](#step-4-register-totp-device)  
+- [Step 4: Activate Device](#step-4-activate-device)  
 
 
 ---
@@ -35,7 +35,7 @@ Access tokens are credential strings that represent authorization to access a pr
 
 To get an access token, the following must be true:  
 
-- The application is configured for MFA using  application onboarding process.
+- The application is configured for MFA using  application registration process.
 
 - The credentials are provided to application owner for getting an access token.  
 
@@ -58,12 +58,16 @@ type: tab
 titles: Request, Response
 -->
 
-### Example of a request OTP  payload request using email 
+Endpoint **:**
+
+**POST** [{{base_url}}/users/{username}/mfadevices](../api/?type=post&path=/users/{username}/mfadevices&version=2.0.0)
+
+**Payload** **:** 
 
 ```json
 {
     "deviceType": "TOTP",
-    "deviceName": "Mydevice",
+    "deviceName": "iphone6",
 }
 ```
 <!--
@@ -78,8 +82,8 @@ type: tab
     "authId": "c0b26a2e-6142-4640-9dd7-1ebd488d46f5",
     "deviceType": "TOTP",
     "status": "ACTIVATION_REQUIRED",
-    "message": "Device registration has been initiated, please activate the device to use"
-    "deviceName": "Mydevice",
+    "message": "Device registration has been initiated, please activate the device to use",
+    "deviceName": "iphone6",
     "secret": "LXXXWKFKAKKIGOSP62SORVM67GECU6P2",
     "registrationUri": "otpauth://totp/APM0000003$jdoe?secret=LXXXWKFKAKKIGOSP62SORVM67GECU6P2"
 }
@@ -94,16 +98,16 @@ type: tab
 
 - Two options are available for Device pairing
 
-- Option: 1 requires application to provide user with the enter secret key that was  within Step-1 response. To enable MFA, user should key in secret key  manually and attach it to authenticator application.
+- **Option:1** requires application to provide user with the enter secret key that was  within Step-2 response. To enable MFA, user should key in secret key  manually and attach it to authenticator application.
 
-- Option: 2 provides a better user experience where application should create a QR code using registration URI returned within  Step -1  API  response. To enable MFA, user should use their  mobile devices authenticator app to scan generated  QR code. 
+- **Option:2** provides a better user experience where application should create a QR code using registration URI returned within  Step-2  API  response. To enable MFA, user should use their  mobile devices authenticator app to scan generated  QR code. 
 
 
-## Step 4: Register TOTP device 
+## Step 4: Activate Device 
 
 - API to complete device registration process.
 
-- After sucessfull  paring device activation is required for completing sevice registration.
+- After successfull paring device activation is required for completing sevice registration.
 
 - Authenticator app will device a code after pairing that will be sent in request for activation.
 
@@ -111,15 +115,27 @@ type: tab
 
 - API will HTTP code,  status and message in response to the validation process. 
 
+The payload parameters are as: 
+
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `DeviceType` | *string* | &#10004; | TOTP (case sensitive) |
+| `OTP` | *string* | &#10004; | The OTP sent on TOTP device |
+
 <!--
 type: tab
 titles: Request, Response
 -->
 
-### Example of a validation request
+Endpoint **:**
+
+**POST** [{{base_url}}/users/{username}/mfadevices/{authId}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
+
+**Payload** **:**
 
 ```json
- {
+{
+  "deviceType":"TOTP",
   "otp": "523471"
 }
 ```
@@ -133,8 +149,8 @@ type: tab
 
 ```json
 {
-  "status": "SUCCESS",
-  "message": "OTP has been validated successfully"
+  "status": "ACTIVE",
+  "message": "iphone6"
 }
 
 ```

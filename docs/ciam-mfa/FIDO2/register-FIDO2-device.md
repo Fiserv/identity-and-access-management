@@ -1,8 +1,19 @@
-# MFA using YubiKey
+## Register FIDO2 Device
+FIDO2 registration flow is multistep process as depicted below.
 
-A FIDO2 biometrics device such as Yubikey sflow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication. The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
+---  
 
-## Step 1: Getting an access token     
+- [Step 1: Getting access token ](#step-1-getting-access-token)  
+
+- [Step 2: Initiate device registration ](#step-2-initiate-device-registration)  
+
+- [Step 3: Create a passkey (JavaScript WebAuthn API - Browser Side) ](#step-3-create-a-passkey-javascript-webauthn-api---browser-side)  
+
+- [Step 4: Activate device ](#step-4-activate-device)
+
+---
+
+## Step 1: Getting access token      
 
 Access tokens are credential strings that represent authorization to access a protected resource. Applications obtain access tokens by making OAuth 2 or OpenID Connect requests to an authorization server; MFA API resource servers require clients to authenticate using access tokens. Access tokens are obtained from the token endpoint (when using the client credentials grant type).
 
@@ -15,71 +26,89 @@ To get an access token, the following must be true:
 - The application runtime  has access to the client secret and token endpoint. 
 
 
-## Step 2: Create MFA  Device 
+## Step 2: Initiate device registration 
 
-- API to Create MFA  deivce for user.
+- As a pre-requisite the FIDO2 service must be enabled for application.
 
-- As a pre-requisite user  must have a supported Yubikey hardware.
+- API requires user details, username and user email address along with relying party information.
 
-Attributes used in payload of request are as:
+- API will return "publicKeyCredentialCreationOptions" in response which will be required for browser side JavaScript WebAuthn API to consume and [create a passkey](#step-3-create-a-passkey-javascript-webauthn-api---browser-side)
 
-| Variable | Type | Required | Description |
-| -------- | ---- | -------- | ----------- |
-| `deviceType` | *string* | &#10004; | Fixed(SECURITY_KEY) |
-| `deviceName` | *string* | - | Name of Yubikey device |
-| `rp.id` | *string* | &#10004; | Your application URL prefix |
-| `rp.name` | *string* | &#10004; | Application Name |
+- API will return "authId" in response which will be required during [device activation](#step-4-activate-device).
+
+- Refer API explorer -> MFA -> Register Device for API reference. 
+
+
 
 <!--
 type: tab
 titles: Request, Response
 -->
+Endpoint **:**
 
-**POST: /ciam-mfa/v2/users/{{user_name}}/mfadevices**
+**POST** [{{base_url}}/ciam-mfa/v2/users/{{username}}/mfadevices](../api/?type=post&path=/users/{username}/mfadevices&version=2.0.0)
 
-### Example of a Create MFA device 
+**Payload** **:**
 
 ```json
 {
-    "deviceType": "SECURITY_KEY",
-    "deviceName": "Mydevice",
+    "deviceType": "FIDO2",
     "rp": {
-        "id": "pingone.com",
-        "name": "PingOne"
+        "id": "app.fiserv.com",
+        "name": "fiserv"
     },
+    "email": "username@fiserv.com"
 }
 ```
+
+Attributes used in payload of request are as:
+
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `deviceType` | *string* | &#10004; | The type of device which user want to register for MFA. Note: irespective of device type user wants to register MOBILE/YUBIKY/PLATFORM for FIDO2 device registration fields value will always be "FIDO2". |
+| `rp.id` | *string* | &#10004; | The ID of the relying party, used for logging in without having to provide a password. The value of the field should be a domain name, such as sample.com / fiserv.com |
+| `rp.name` | *string* | &#10004; | The relying party's human-readable display name (for example, acme). |
+| `email` | *string* | &#10004; | Email address of the user |
+
 <!--
 type: tab
 -->
 
-### Example of authentication request (201: Created) response
-
+### Example of Create MFA Device (201: Created) response
 
 ```json
 {
-    "authId": "09859da1-aed0-4be0-af1d-5583471b5d9c",
-    "deviceType": "SECURITY_KEY",
+    "authId": "67e07830-3636-4479-a407-da0a16b85c3c",
+    "deviceType": "FIDO2",
     "status": "ACTIVATION_REQUIRED",
-    "message": "Device registration has been initiated, please activate the device to use"
-    "deviceName": "Mydevice",
     "rp": {
-        "id": "pingone.com",
-        "name": "pingone.com"
+        "id": "app.fiserv.com",
+        "name": "fiserv"
     },
-    "publicKeyCredentialCreationOptions": "{\"rp\":{\"id\":\"pingone.com\"},\"user\":{\"id\":[-80,-62,-62,-66,84,85,-36,51,81,8,95,88,-105,64,103,-72,14,-18,-24,54,65,-58,-79,36,10,-55,-93,33,108,41,37,-94],\"displayName\":\"9ad15e9e-3ac6-43f7-a053-d46b87d6c4a7_tomjones\",\"name\":\"9ad15e9e-3ac6-43f7-a053-d46b87d6c4a7_tomjones\"},\"challenge\":[-103,5,109,97,69,75,87,108,-122,-11,54,15,-111,-60,-32,-92,-91,-21,70,34,96,-72,87,66,-45,-5,-99,-112,26,110,-33,-112],\"pubKeyCredParams\":[{\"type\":\"public-key\",\"alg\":\"-7\"},{\"type\":\"public-key\",\"alg\":\"-37\"},{\"type\":\"public-key\",\"alg\":\"-257\"}],\"timeout\":120000,\"excludeCredentials\":[],\"authenticatorSelection\":{\"authenticatorAttachment\":\"cross-platform\",\"requireResidentKey\":false,\"userVerification\":\"preferred\"},\"attestation\":\"direct\"}"
+    "publicKeyCredentialCreationOptions": "{"rp":{"id":"app.fiserv.com","name":"fiserv"},"user":{"id":[-121,2,76,83,98,-86,-48,1,-114,31,-30,-9,116,52,-37,-78,68,-51,63,37,14,68,-112,56,-104,-7,-41,-116,-121,-46,-38,22],"displayName":"APM_NA_TEST_RUN_2102231126$demouser","name":"APM_NA_TEST_RUN_2102231126$demouser"},"challenge":[-19,41,45,-102,-21,109,-109,-125,32,121,-4,-78,-123,80,53,58,81,29,-111,81,75,11,-44,73,-81,90,4,42,-27,108,75,20],"pubKeyCredParams":[{"type":"public-key","alg":"-7"},{"type":"public-key","alg":"-37"},{"type":"public-key","alg":"-257"}],"timeout":120000,"excludeCredentials":[],"authenticatorSelection":{"residentKey":"required","requireResidentKey":true,"userVerification":"required"},"attestation":"none"}"
 }
 
-
 ```
-
 <!-- type: tab-end -->
 
+## Step 3: Create a passkey (JavaScript WebAuthn API - Browser Side)
 
-## Step 3: Device pairing
+- Passwordless implmentation flow uses functions from the Web Authentication API (webauthn API) to manage device registration (pairing) and authentication.
 
-Call the `navigator.credentials.create` method using the publicKeyCredentialOptions value returned from the Add  Device API:
+- To create a passkey, browser side java script need to be executed. 
 
+- Script requires input of "publicKeyCredentialCreationOptions" recevied in [initiate device registration](#step-2-initiate-device-registration).
+
+- During script exceution browser will prompt user to choose available authenticator, request is been sent to the authenticator, user approves the request and authenticate himself, once user approves, passkey is been created.
+
+- Once the passkey is generated on the device, an attestation object is created.
+
+- Attestation object is required in [device activation](#step-4-activate-device).
+
+
+**Note**: As a pre-requisite client browser should be compatible for FIDO2 (WebAuthn).
+
+The following sample JavaScript code will help you implement the webauthn API for browser-based operations.
 
 ```javascript
 
@@ -215,35 +244,53 @@ function toBase64Str(bin){
 
 ```
 
-## Step 4: Activate Security Key device
+## Step 4: Activate device 
 
-- Devices with a status of ACTIVATION_REQUIRED are activated with a valid attestation and origin. The attestation is generated by the browser as a response to a user action, such as a fingerprint or clicks on the security key.
+- Activate device is last step of registration. In this step user registration details get saved in server which is used to authenticate user later on.
 
-- The sample shows the POST /users/{{userID}}/devices/{{authId}} operation to activate the device specified in the request URL. This operation uses the application/vnd.pingidentity.device.activate+json custom content type in the request header to specify the activation action.
+- Once the passkey is created at step 3, an attestion object gets created by browser side script.
 
-- The attestation property passes in the attestation JSON from the browser. The JSON looks like this:
+- Activate Device is an API call with below payload.
+
+- *authId* recieved in initiate device registration.
+
+- *attestation* created during create a passkey.
+
+- *Origin* is name of the site from where the cilent is requesting.
+
+- The attestation is the JSON object and the JSON looks like this:
 
 <!--
 type: tab
 titles: Request, Response
 -->
 
-### Example of a attestation request 
+Endpoint **:**
 
+**POST** [{{base_url}}/ciam-mfa/v2/users/{{username}}/mfadevices/{{authId}}](../api/?type=post&path=/users/{username}/mfadevices/{authId}&version=2.0.0)
+
+**Payload** **:**
 
 ```json
 {
-    "origin": "https://app.pingone.com",
+    "origin": "https://app.fiserv.com",
     "attestation": "{\"id\":\"ARacmDOuRE7DJV6L7w\",\"type\":\"public-key\",\"rawId\":\"ARacmDOuRE7DJV6L7w=\",\"response\":{\"clientDataJSON\":\"eyJ0eXBlIjoid2ViYXV0aG4uY3JlYXRYWxzZX0=\",\"attestationObject\":\"o2NmbXRmcGFja2VkZ2F0dFFO29h8n6WKBn6tHCQ=\"},\"clientExtensionResults\":{}}"
 }
 ```
+
+Attributes used in payload of request are as:
+
+| Variable | Type | Required | Description |
+| -------- | ---- | -------- | ----------- |
+| `origin` | *string* | &#10004; | App origin |
+| `attestation` | *string* | &#10004; | Object |
+
 
 <!--
 type: tab
 -->
 
 ### Example of a validation (200: Created) response
-
 
 ```json
 {

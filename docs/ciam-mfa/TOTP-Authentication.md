@@ -1,11 +1,11 @@
-# MFA using TOTP Device
+# Authentication using TOTP
 
 
 ---  
 
 - [Step 1: Getting an access token](#step-1-getting-an-access-token)  
 
-- [Step 2: Initialize authentication](#step-2-initialize-authentication)  
+- [Step 2: Initiate authentication](#step-2-initiate-authentication)  
 
 - [Step 3: Validate OTP](#step-3-validate-otp)  
 
@@ -18,33 +18,41 @@ Access tokens are credential strings that represent authorization to access a pr
 
 To get an access token, the following must be true:  
 
-- The application is configured for MFA using  application onboarding process.
+- The application is configured for MFA using  application registration process.
 
 - The credentials are provided to application owner for getting an access token.  
 
 - The application runtime  has access to the client secret and token endpoint.  
 
 
-## Step 2: Initialize  authentication 
+## Step 2: Initiate authentication 
 
 API will initalize TOTP device authentication return authId in response which will be required during OTP validation.  
 
+The payload parameters are as: 
 
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `userName` | *string* | &#10004; | General Name |
+| `deviceName` | *string* | &#10004; | Name of the device |
+| `deviceType` | *string* | &#10004; | Fixed(TOTP) |
 
 <!--
 type: tab
 titles: Request, Response
 -->
 
-### Example of a request OTP  payload request using email 
+Endpoint **:**
 
+**POST** [{{base_url}}/ciam-mfa/v2/deviceAuthentications](../api/?type=post&path=/deviceAuthentications&version=2.0.0)
 
+**Payload** **:** 
 
 ```json
 {
-	"userName":"demouser",
-    "deviceName": "mydevice",
-    "deviceType": "TOTP"
+	"userName":"Joe",
+  "deviceName": "iphone6",
+  "deviceType": "TOTP"
 }
 ```
 <!--
@@ -68,15 +76,26 @@ type: tab
 
 - API will HTTP code ,  status and message in response to the validation process.
 
+The payload parameters are as: 
+
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `DeviceType` | *string* | &#10004; | Fixed(TOTP) |
+| `OTP` | *string* | &#10004; | The OTP sent on TOTP device |
 <!--
 type: tab
 titles: Request, Response
 -->
 
-### Example of a validation request
+Endpoint **:**
+
+**POST** [{{base_url}}/ciam-mfa/v2/deviceAuthentications/{{authId}}](../api/?type=post&path=/deviceAuthentications/{authId}&version=2.0.0)
+
+**Payload** **:**
 
 ```json
- {
+{
+  "deviceType":"TOTP",
   "otp": "523471"
 }
 ```

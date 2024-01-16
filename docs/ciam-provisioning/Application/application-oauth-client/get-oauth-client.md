@@ -22,7 +22,7 @@ The below table identifies the parameter required for `Application OAuth Client`
 
 | Variable | Type | Maximum Length | Required | Description |
 | -------- | -- |------------| ------- | ---- |
-| `applicationId` | *string* | - | &#10004; | A unique ID used to identify the Application, This will be created by application after successful application onboarding. |
+| `applicationId` | *string* | - | &#10004; | A unique ID used to identify the Application, This will be created by application after successful application registration. |
 
 
 <!--
