@@ -191,7 +191,7 @@ paths:
       x-proxy-name: Activate Device
       x-group-name: CIAM-MFA 
       x-default-example: TOTP
-  /ciam-mfa/v2/users/{user_name}/mfadevices/{device_name}:
+  /ciam-mfa/v2/users/{user_name}/mfadevices/totp/{device_name}:
     delete:
       tags:
         - unpair TOTP device endpoint
@@ -200,13 +200,6 @@ paths:
           description: >-
             Username of the user unpairing the device. This should be similar
             to username used during registration
-          schema:
-            type: string
-          in: path
-          required: true
-        - name: device_type
-          description: >-
-            The type of the device to be unpaired.
           schema:
             type: string
           in: path

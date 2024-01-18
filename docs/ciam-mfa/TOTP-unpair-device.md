@@ -2,6 +2,13 @@
 
 This API is used to unpair any device registered for TOTP authentication.
 
+The path parameters are as: 
+
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `user_name` | *string* | &#10004; | username |
+| `device_name` | *string* | &#10004; | Name of TOTP device |
+
 <!--
 type: tab
 titles: Request, Response
@@ -9,7 +16,7 @@ titles: Request, Response
 
 Endpoint **:**
 
-**DELETE** [{{base_url}}/ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_name}}](../api/?type=get&path=/ciam-mfa/v2/users/{user_name}/mfadevices/{device_name}&version=2.0.0)
+**DELETE** [{{base_url}}/ciam-mfa/v2/users/{{user_name}}/mfadevices/totp/{{device_name}}](../api/?type=get&path=/ciam-mfa/v2/users/{user_name}/mfadevices/{device_name}&version=2.0.0)
 
 **Payload** **:**
 
