@@ -191,7 +191,7 @@ paths:
       x-proxy-name: Activate Device
       x-group-name: CIAM-MFA 
       x-default-example: TOTP
-  /ciam-mfa/v2/users/{user_name}/mfadevices/{device_name}:
+  /ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/{device_name}:
     delete:
       tags:
         - unpair TOTP device endpoint
