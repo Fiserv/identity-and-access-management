@@ -554,15 +554,12 @@ components:
   schemas:
     TokenGenerationPayload:
       properties:
-        - grant_type: 
-            type: string
-            required: true
-        - client_id:
-            type: string
-            required: true
-        - client_secret:
-            type: string
-            required: true
+        grant_type: 
+          type: string
+        client_id:
+          type: string
+        client_secret:
+          type: string
     TokenGenerationResponse:
       properties:
         access_token:
