@@ -32,7 +32,7 @@ paths:
           in: path
           required: true
         - name: type
-          description: TOTP/FIDO
+          description: TOTP/FIDO Devices
           schema:
             type: string
           in: query
@@ -107,13 +107,13 @@ paths:
                         device for authentication.  Response also returns registration URI that
                         will be a  string that specifies the authenticator key URI (for example,
                         otpauth://totp/abc@example.com?secret={secretValue}.
-                YubiKey:
-                  $ref: '#/components/examples/CreateYubikeyDeviceResponse'
-                  summary: Response returns a  authentication ID that
-                        is required for the next steps in the flow to validate and activate the
-                        device for authentication.  Response also returns registration URI that
-                        will be a  string that specifies the authenticator key URI (for example,
-                        otpauth://totp/abc@example.com?secret={secretValue}.
+                # YubiKey:
+                #   $ref: '#/components/examples/CreateYubikeyDeviceResponse'
+                #   summary: Response returns a  authentication ID that
+                #         is required for the next steps in the flow to validate and activate the
+                #         device for authentication.  Response also returns registration URI that
+                #         will be a  string that specifies the authenticator key URI (for example,
+                #         otpauth://totp/abc@example.com?secret={secretValue}.
                 FIDO2:
                   $ref: '#/components/examples/CreateFIDO2DeviceResponse'
           description: Created
@@ -205,7 +205,7 @@ paths:
           required: true
         - name: device_type
           description: >-
-            The type of the device to be unpaired.
+            The type of the device to be unpaired(TOTP in this case).
           schema:
             type: string
           in: path
@@ -248,7 +248,7 @@ paths:
           required: true
         - name: device_type
           description: >-
-            The type of the device to be unpaired.
+            The type of the device to be unpaired(FIDO2 in this case)
           schema:
             type: string
           in: path
@@ -487,6 +487,12 @@ paths:
             type: string
           in: path
           required: true
+        - name: rpId
+          description: Relying Party Id
+          schema:
+            type: string
+          in: path
+          required: true
       responses:
         '200':
           content:
@@ -550,10 +556,13 @@ components:
       properties:
         grant_type: 
           type: string
+          required: true
         client_id:
           type: string
+          required: true
         client_secret:
           type: string
+          required: true
     TokenGenerationResponse:
       properties:
         access_token:
@@ -855,7 +864,7 @@ components:
           deviceName: Google
     InitiateTotpAuthenticationResponse:
       value:
-        - authId: '654564645'
+        - authId: '038273f3-7d84-4c80-9477-99f88646797d'
           status: Success
           message: OTP has been sent to the device
     InitiateEmailAuthenticationResponse:
