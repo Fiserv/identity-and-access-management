@@ -44,11 +44,11 @@ To get an access token, the following must be true:
 
 ## Step 2: Create TOTP Device 
 
-- API to Create TOTP  deivce for user.
+- API to Create TOTP  device for user.
 
 - As a pre-requisite user  must install a supported authenticator app on the mobile device they  intend to register for MFA.
 
-- Each user must enable MFA for themselves using a device they will have access to every time they sign in. An administrator cannot enable MFA for another user.
+- Each user must enable MFA using the device they will have access to everytime. An administrator cannot enable MFA for another user.
 
 - API will return secret and registration URL in response that will be used for device paring.
 
@@ -109,11 +109,11 @@ type: tab
 
 - After successfull paring device activation is required for completing sevice registration.
 
-- Authenticator app will device a code after pairing that will be sent in request for activation.
+- Authenticator app will send a code after pairing. That code should be passed in request payload for activation.
 
 - API will require authId in path that was sent in the response of add device request and otp in the body to complete the validation.
 
-- API will HTTP code,  status and message in response to the validation process. 
+- API will return HTTP code,  status and message in response to the validation process. 
 
 The payload parameters are as: 
 
@@ -144,7 +144,7 @@ Endpoint **:**
 type: tab
 -->
 
-### Example of a validation (200: Created) response
+### Example of a validation (200: Success) response
 
 
 ```json

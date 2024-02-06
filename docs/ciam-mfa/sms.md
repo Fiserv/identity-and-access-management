@@ -102,9 +102,9 @@ type: tab
 
 API to validate one-time passcode that was sent on mobile number provided.
 
-- API will authId in path and otp in the body to complete the validation.
+- API will require authId in path and otp in the body to complete the validation.
 
-- API will HTTP code, status and message in response to the validation process.
+- API will return HTTP code, status and message in response to the validation process.
 
 The payload parameters are as: 
 
@@ -126,6 +126,7 @@ Endpoint **:**
 
 ```json
  {
+  "deviceType": "SMS",
   "otp": "523471"
 }
 ```
