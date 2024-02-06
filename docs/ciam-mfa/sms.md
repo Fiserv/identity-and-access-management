@@ -126,6 +126,7 @@ Endpoint **:**
 
 ```json
  {
+  "deviceType": "SMS",
   "otp": "523471"
 }
 ```

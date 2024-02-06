@@ -345,16 +345,16 @@ paths:
               $ref: '#/components/schemas/AuthenticatePayload'
             examples:
               EmailAuthentication:
-                $ref: '#/components/examples/AuthenticatePayload'
+                $ref: '#/components/examples/EmailAuthenticatePayload'
                 summary: Email otp validation request
               SMSAuthentication:
-                $ref: '#/components/examples/AuthenticatePayload'
+                $ref: '#/components/examples/SMSAuthenticatePayload'
                 summary: SMS otp validation request
               TOTPAuthentication:
-                $ref: '#/components/examples/AuthenticatePayload'
+                $ref: '#/components/examples/TOTPAuthenticatePayload'
                 summary: TOTP  validation request
               FIDO2:
-                $ref: '#/components/examples/AuthenticateFIDO2DevicePayload'
+                $ref: '#/components/examples/FIDO2AuthenticatePayload'
                 summary: FIDO2 validation request
         required: true
       tags:
@@ -833,8 +833,17 @@ components:
           deviceName: Google
           status: Active
           createdAt: 06/16/2022
-    AuthenticatePayload:
+    EmailAuthenticatePayload:
       value:
+        deviceType: "Email"
+        otp: '3423423'
+    SMSAuthenticatePayload:
+      value:
+        deviceType: "SMS"
+        otp: '3423423'
+    TOTPAuthenticatePayload:
+      value:
+        deviceType: "TOTP"
         otp: '3423423'
     AuthenticateResponse:
       value:
@@ -955,7 +964,7 @@ components:
     ActivateFIDO2DeviceResponse:
       value:
         status: ACTIVE
-    AuthenticateFIDO2DevicePayload:
+    FIDO2AuthenticatePayload:
       value:
         deviceType: FIDO2
         origin: app.fiserv.com

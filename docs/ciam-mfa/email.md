@@ -126,8 +126,8 @@ Endpoint **:**
 
 ```json
  {
-  "otp": "523471",
-  "deviceType": "email"
+  "deviceType": "email",
+  "otp": "523471"
 }
 ```
 
