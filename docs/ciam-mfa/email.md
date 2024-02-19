@@ -48,7 +48,7 @@ To get an access token, the following must be true:
 
 API to initiate Second factor authentication by contacting the user using email.
 
-- API will send one-time passcode to user device i.e. EMAIl address.
+- API will send one-time passcode to user device i.e. EMAIL address.
 
 - API will return authId in response which will be required during device validation.  
 
