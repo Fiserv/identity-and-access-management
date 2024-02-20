@@ -119,7 +119,7 @@ The payload parameters are as:
 
 | Variable | Type | Required | Description |
 | -------- | -----| -------  | ----------- |
-| `DeviceType` | *string* | &#10004; | TOTP (case insensitive) |
+| `DeviceType` | *string* | &#10004; | TOTP/totp |
 | `OTP` | *string* | &#10004; | The OTP sent on TOTP device |
 
 <!--
