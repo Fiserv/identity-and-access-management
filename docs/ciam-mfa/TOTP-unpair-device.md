@@ -2,6 +2,13 @@
 
 This API is used to unpair any device registered for TOTP authentication.
 
+The path parameters are as: 
+
+| Variable | Type | Required | Description |
+| -------- | -----| -------  | ----------- |
+| `user_name` | *string* | &#10004; | username |
+| `device_name` | *string* | &#10004; | Name of TOTP device |
+
 <!--
 type: tab
 titles: Request, Response
