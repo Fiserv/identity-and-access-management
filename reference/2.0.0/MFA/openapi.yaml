@@ -1,14 +1,13 @@
 openapi: 3.0.0
 info:
   title: CIAM MFA API
-  version: 1.0.0
+  version: 2.0.0
   description: >-
     This API Specification is designed to provide technical guidance required to
     consume and integrate with our APIs for multi factor authentication.
   x-logo:
     url: ''
 servers:
-  - url: https://ciam-mfa-api-dev.1dc.com/ciam-mfa/v1
   - url: https://ciam-mfa-api-dev.1dc.com/ciam-mfa/v2
 paths:
   /users/{username}/mfadevices:
@@ -33,7 +32,7 @@ paths:
           in: path
           required: true
         - name: type
-          description: TOTP/FIDO
+          description: TOTP/FIDO Devices
           schema:
             type: string
           in: query
@@ -108,13 +107,13 @@ paths:
                         device for authentication.  Response also returns registration URI that
                         will be a  string that specifies the authenticator key URI (for example,
                         otpauth://totp/abc@example.com?secret={secretValue}.
-                YubiKey:
-                  $ref: '#/components/examples/CreateYubikeyDeviceResponse'
-                  summary: Response returns a  authentication ID that
-                        is required for the next steps in the flow to validate and activate the
-                        device for authentication.  Response also returns registration URI that
-                        will be a  string that specifies the authenticator key URI (for example,
-                        otpauth://totp/abc@example.com?secret={secretValue}.
+                # YubiKey:
+                #   $ref: '#/components/examples/CreateYubikeyDeviceResponse'
+                #   summary: Response returns a  authentication ID that
+                #         is required for the next steps in the flow to validate and activate the
+                #         device for authentication.  Response also returns registration URI that
+                #         will be a  string that specifies the authenticator key URI (for example,
+                #         otpauth://totp/abc@example.com?secret={secretValue}.
                 FIDO2:
                   $ref: '#/components/examples/CreateFIDO2DeviceResponse'
           description: Created
@@ -191,7 +190,7 @@ paths:
       x-proxy-name: Activate Device
       x-group-name: CIAM-MFA 
       x-default-example: TOTP
-  /ciam-mfa/v2/users/{user_name}/mfadevices/totp/{device_name}:
+  /ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/{device_name}:
     delete:
       tags:
         - unpair TOTP device endpoint
@@ -200,6 +199,13 @@ paths:
           description: >-
             Username of the user unpairing the device. This should be similar
             to username used during registration
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: device_type
+          description: >-
+            The type of the device to be unpaired(TOTP in this case).
           schema:
             type: string
           in: path
@@ -242,7 +248,7 @@ paths:
           required: true
         - name: device_type
           description: >-
-            The type of the device to be unpaired.
+            The type of the device to be unpaired(FIDO2 in this case)
           schema:
             type: string
           in: path
@@ -339,16 +345,16 @@ paths:
               $ref: '#/components/schemas/AuthenticatePayload'
             examples:
               EmailAuthentication:
-                $ref: '#/components/examples/AuthenticatePayload'
+                $ref: '#/components/examples/EmailAuthenticatePayload'
                 summary: Email otp validation request
               SMSAuthentication:
-                $ref: '#/components/examples/AuthenticatePayload'
+                $ref: '#/components/examples/SMSAuthenticatePayload'
                 summary: SMS otp validation request
               TOTPAuthentication:
-                $ref: '#/components/examples/AuthenticatePayload'
+                $ref: '#/components/examples/TOTPAuthenticatePayload'
                 summary: TOTP  validation request
               FIDO2:
-                $ref: '#/components/examples/AuthenticateFIDO2DevicePayload'
+                $ref: '#/components/examples/FIDO2AuthenticatePayload'
                 summary: FIDO2 validation request
         required: true
       tags:
@@ -477,6 +483,12 @@ paths:
       parameters:
         - name: username
           description: Username
+          schema:
+            type: string
+          in: path
+          required: true
+        - name: rpId
+          description: Relying Party Id
           schema:
             type: string
           in: path
@@ -821,8 +833,17 @@ components:
           deviceName: Google
           status: Active
           createdAt: 06/16/2022
-    AuthenticatePayload:
+    EmailAuthenticatePayload:
       value:
+        deviceType: "Email"
+        otp: '3423423'
+    SMSAuthenticatePayload:
+      value:
+        deviceType: "SMS"
+        otp: '3423423'
+    TOTPAuthenticatePayload:
+      value:
+        deviceType: "TOTP"
         otp: '3423423'
     AuthenticateResponse:
       value:
@@ -849,7 +870,7 @@ components:
           deviceName: Google
     InitiateTotpAuthenticationResponse:
       value:
-        - authId: '654564645'
+        - authId: '038273f3-7d84-4c80-9477-99f88646797d'
           status: Success
           message: OTP has been sent to the device
     InitiateEmailAuthenticationResponse:
@@ -943,7 +964,7 @@ components:
     ActivateFIDO2DeviceResponse:
       value:
         status: ACTIVE
-    AuthenticateFIDO2DevicePayload:
+    FIDO2AuthenticatePayload:
       value:
         deviceType: FIDO2
         origin: app.fiserv.com

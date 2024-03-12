@@ -15,7 +15,7 @@ TOTP 2FA benefits -
 - Faster average time to authenticate
 
 
-TOTP authentication is a multi-step process where  device registration as a pre-requisite before it  can be used for  MFA, refer below information device registration and authentication. 
+TOTP authentication is a multi-step process where device registration is a pre-requisite before it  can be used for  MFA. Refer below information on device registration and authentication. 
 
 <!-- type: row -->
 

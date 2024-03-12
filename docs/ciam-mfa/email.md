@@ -48,7 +48,7 @@ To get an access token, the following must be true:
 
 API to initiate Second factor authentication by contacting the user using email.
 
-- API will send one-time passcode to user device i.e. EMAIl address.
+- API will send one-time passcode to user device i.e. EMAIL address.
 
 - API will return authId in response which will be required during device validation.  
 
@@ -102,9 +102,9 @@ type: tab
 
 API to validate one-time passcode that was sent on email or SMS provided.
 
-- API will authId in path and otp in the body to complete the validation.
+- API will require authId in path and otp in the body to complete the validation.
 
-- API will HTTP code, status and message in response to the validation process.
+- API will return HTTP code, status and message in response to the validation process.
 
 The payload parameters are as: 
 
@@ -126,8 +126,8 @@ Endpoint **:**
 
 ```json
  {
-  "otp": "523471",
-  "deviceType": "email"
+  "deviceType": "email",
+  "otp": "523471"
 }
 ```
 

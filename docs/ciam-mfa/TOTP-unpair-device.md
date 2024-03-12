@@ -16,7 +16,7 @@ titles: Request, Response
 
 Endpoint **:**
 
-**DELETE** [{{base_url}}/ciam-mfa/v2/users/{{user_name}}/mfadevices/totp/{{device_name}}](../api/?type=get&path=/ciam-mfa/v2/users/{user_name}/mfadevices/{device_name}&version=2.0.0)
+**DELETE** [{{base_url}}/ciam-mfa/v2/users/{{user_name}}/mfadevices/{{device_type}}/{{device_name}}](../api/?type=delete&path=/ciam-mfa/v2/users/{user_name}/mfadevices/{device_type}/{device_name}&version=2.0.0)
 
 **Payload** **:**
 
